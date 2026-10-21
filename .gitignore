@@ -1,22 +1,9 @@
-# Competition data: login-gated, never commit
+__pycache__/
+.pytest_cache/
+.venv/
 data/*
 !data/README.md
 !data/.gitkeep
-
-# Scratch and caches
-__pycache__/
-*.pyc
-.pytest_cache/
-.venv/
-.venv-*/
-*.egg-info/
-/tmp/
-*.npy
-*.npz
+tmp/
 *.log
-
-# Large intermediates (keep out of Git)
-scratch/
-runs/
-
-# Submission files in docs/downloads/ ARE committed on purpose (the site serves them).
+.DS_Store

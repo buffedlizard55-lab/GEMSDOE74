@@ -1,6 +1,8 @@
-"""gems74: metric and submission tooling for the DOE GEMS Prize (DrivenData #306)."""
+"""gems74: submission format validator and writer for the DOE GEMS Prize (DrivenData #306).
 
-from .metric import ALPHA, BETA, R_M, PIXEL_M, components, dti, kernel  # noqa: F401
+The metric lives in ``src/gems74/metric.py`` (single implementation, shared by all sessions).
+"""
+
 from .submission import (  # noqa: F401
     EXPECTED_CRS,
     EXPECTED_SHAPE,

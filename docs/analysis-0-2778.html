@@ -4,7 +4,7 @@
 <title>The 0.2778 question · GEMSDOE74</title>
 <link rel="stylesheet" href="assets/site.css">
 </head><body>
-<header class="top"><span class="brand">GEMSDOE74</span><a href="index.html">Home</a><a href="executive-summary.html">How to submit</a><a href="analysis-0-2778.html" aria-current="page">The 0.2778 question</a><a href="hypotheses.html">Hypotheses</a><a href="leaderboard.html">Leaderboard</a><a href="irregularities.html">Irregularities</a><a href="sources.html">Sources</a><a href="run-card.html">Run card</a></header>
+<header class="top"><span class="brand">GEMSDOE74</span><a href="index.html">Home</a><a href="submit-checklist.html">How to submit</a><a href="analysis-0-2778.html" aria-current="page">The 0.2778 question</a><a href="hypotheses.html">Hypotheses</a><a href="leaderboard.html">Leaderboard</a><a href="irregularities.html">Irregularities</a><a href="sources.html">Sources</a><a href="run-card.html">Run card</a></header>
 <main>
 
 <h1>The 0.2778 question</h1>
@@ -57,7 +57,7 @@
 <h2>4. Can we beat 0.2778?</h2>
 <div class="card">
 <p><b>On the public board:</b> 0.2778 is rank 47. Ranks 1–46 are all above it, and the top-5 public cut is 0.3539. Beating 0.2778 is therefore a rank-47 target, not a prize-level target. Prizes are decided on the private test set and on the expanded label set, which the public board does not show (rules §3.6).</p>
-<p><b>On our side:</b> we cannot score a candidate yet, so no claim of beating 0.2778 is made. To make one, we need (1) the official feature stack, (2) our evaluator run on a spatially blocked holdout with a withheld-positive count and a 95% confidence interval, and (3) a candidate whose emitted dots have mean credit above 0.2 times the incumbent's holdout score. Until (2) exists, the incumbent is undefined, so there is nothing to beat in our own terms.</p>
+<p><b>On our side:</b> a candidate now exists on <code>main</code> (section 7). It does not beat the random control on either of its two holdout versions, so <b>no claim of beating 0.2778 is made</b>. The holdout is also catalogue-only, so it cannot reward new faults (section 7). A valid test of "higher than 0.2778" still needs the official feature stack, a holdout that is independent of the catalogue, and a receipt.</p>
 <p><b>Verdict:</b> <span class="pill p-no">NOT SHOWN</span> Plausible as a target, unproven as a result.</p>
 </div>
 
@@ -78,6 +78,23 @@
 <li>Anything about the private test set, which decides Phase 1.</li>
 <li>Whether the mechanisms above hold on the real hidden faults. They are derived from the metric's definition, and the score tests show only that the algebra is right.</li>
 </ul>
+</div>
+
+
+<h2>7. The candidate already on main (other session)</h2>
+<div class="card">
+<p>A second working session merged work to <code>main</code> before this PR (PR #1, branch <code>arena/af8a6393-gemsdoe74</code>). Its candidate is <code>docs/downloads/gems74-h74-alt-spring-39500-20261021T000000Z-52f76038-zeros.tif</code>, labelled UNSCORED in its own files. We checked the following.</p>
+<table>
+<tr><th>Check</th><th>Result</th><th>Label</th></tr>
+<tr><td>Holdout v0.1 (4 quadrants, catalogue hidden)</td><td>Candidate pooled DTI 0.00144; random control 0.03399; Δ −0.03254; passes random control: <b>no</b></td><td><span class="pill p-hd">HOLDOUT-DTI</span> (their evaluator v0.1)</td></tr>
+<tr><td>Holdout v0.2 (segments, 20% hidden per fold)</td><td>Candidate pooled DTI 0.00162; random control 0.03103; Δ −0.02941; passes random control: <b>no</b></td><td><span class="pill p-hd">HOLDOUT-DTI</span> (their evaluator v0.2)</td></tr>
+<tr><td>sha256 of the file</td><td><code>f745fdb0bcc7b09c73e9ca5460ec81b3628421d3516d514e63720bd547d14597</code>, the same as its registry</td><td><span class="pill p-hd">MEASURED-LOCAL</span></td></tr>
+<tr><td>Format (our validator and theirs)</td><td>Ours: passes. Theirs: exit 0 on the zeros file. Their script exits 1 on the NaN twin, which is a valid format (IR-74-17).</td><td><span class="pill p-hd">MEASURED-LOCAL</span></td></tr>
+<tr><td>Uniqueness vs the GEMSDOE32 primary (0.2778 file)</td><td>Spearman ρ over the full grid = 0.0015 (threshold &gt; 0.90 for a copy). Overlap: 6.2% of the reference's dots lie within 3 px of a candidate dot; 9.4% in the other direction (threshold &gt; 70%).</td><td><span class="pill p-hd">MEASURED-LOCAL</span> This session's computation; not an organiser check.</td></tr>
+<tr><td>Holdout truth</td><td>Catalogue only. Their own evidence note says this <b>cannot reward genuinely new faults</b> (IR-32-PROXY-01).</td><td><span class="pill p-cl">CLAIM</span> (their note)</td></tr>
+<tr><td>Their ranked-list claim</td><td>Their hypothesis file says H74-A shows "+0.0031 over D2.8" on a drift-corrected holdout. The evidence files above show a failure against the random control. The two disagree (IR-74-20).</td><td><span class="pill p-cl">CLAIM</span></td></tr>
+</table>
+<p><span class="pill p-no">VERDICT</span> Unique by the uniqueness check, and not cleared for submission. Its holdout fails the random control, so it does not meet the gate in this project's own protocol. Do not submit it, and do not treat its "YES" on its page as an approval. See <a href="irregularities.html">IR-74-18</a>.</p>
 </div>
 
 </main>

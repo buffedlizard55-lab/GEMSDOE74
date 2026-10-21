@@ -21,9 +21,27 @@ from pathlib import Path
 import numpy as np
 import pytest
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-from gems74 import metric  # noqa: E402
+# --- shim: adapt the shared metric (src/gems74/metric.py) to the names used by these tests.
+from src.gems74.metric import dti_exact as _dti_exact, kernel as _kernel_px  # noqa: E402
+
+
+class metric:  # noqa: N801  (namespace shim; keeps test bodies unchanged)
+    @staticmethod
+    def kernel(d_m):
+        return float(_kernel_px(np.asarray(d_m, dtype=float) / 100.0))
+
+    @staticmethod
+    def components(pred, truth):
+        r = _dti_exact(pred, truth)
+        return {"TP_w": r["tp"], "FP_w": r["fp"], "FN_w": r["fn"], "G": r["n_truth"], "DTI": r["dti"]}
+
+    @staticmethod
+    def dti(pred, truth):
+        return _dti_exact(pred, truth)["dti"]
+
+
 
 H, W = 60, 60
 TRUTH = [(10, 10), (10, 30), (30, 10), (30, 30), (50, 50), (45, 15)]

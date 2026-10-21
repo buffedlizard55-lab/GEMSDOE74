@@ -1,16 +1,17 @@
 #!/usr/bin/env python3
 """Build the generated parts of the GitHub Pages site in docs/.
 
-What it does (idempotent):
+What it does (idempotent, no network):
   1. docs/leaderboard.html  <- docs/data/leaderboard_2026-10-21.json
   2. docs/run-card.html     <- docs/data/run-card.json
   3. Replaces the block between
          <!-- BEGIN:SUBMISSION_STATUS --> and <!-- END:SUBMISSION_STATUS -->
-     in docs/index.html and docs/executive-summary.html with the current state of
-     docs/downloads/*.receipt.json. With no receipt, it shows a red NOT READY panel.
-     A receipt is only shown as READY when its `release_status` is exactly "READY".
-
-Nothing here fetches from the network. Source data is recorded in docs/data/.
+     in docs/index.html and docs/submit-checklist.html
+     with a self-contained status panel. The panel is decided from what is on disk:
+       * READY only when a docs/downloads/*.receipt.json has release_status exactly "READY";
+       * HOLD when downloadable files exist but none is cleared (shows why);
+       * NOT READY when there are no downloadable files at all.
+     Holdout numbers shown in the panel are read from evidence/*.json and labelled HOLDOUT-DTI.
 """
 
 import html
@@ -22,10 +23,11 @@ ROOT = Path(__file__).resolve().parents[1]
 DOCS = ROOT / "docs"
 DATA = DOCS / "data"
 DOWNLOADS = DOCS / "downloads"
+EVIDENCE = ROOT / "evidence"
 
 NAV = [
     ("index.html", "Home"),
-    ("executive-summary.html", "How to submit"),
+    ("submit-checklist.html", "Submit checklist"),
     ("analysis-0-2778.html", "The 0.2778 question"),
     ("hypotheses.html", "Hypotheses"),
     ("leaderboard.html", "Leaderboard"),
@@ -38,11 +40,27 @@ PILL = {
     "ORGANIZER-CONFIRMED": "p-ol",
     "PUBLIC-LEADERBOARD": "p-pl",
     "HOLDOUT-DTI": "p-hd",
+    "MEASURED-LOCAL": "p-hd",
     "CLAIM": "p-cl",
     "PROJECTION": "p-pr",
     "NOT COMPUTED": "p-no",
     "NOT RUN": "p-no",
 }
+
+STATUS_STYLE = """<style>
+.gstat{font:15px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;border-radius:12px;padding:16px 18px;margin:16px 0;border:2px solid;color:#111;background:#fff}
+.gstat h2{font-size:18px;margin:0 0 6px}
+.gstat.hold{border-color:#b00020;background:#fff3f3}
+.gstat.ready{border-color:#0a7a0a;background:#f1fbf1}
+.gstat.notready{border-color:#b35c00;background:#fff8ef}
+.gstat ul{margin:6px 0 6px 18px;padding:0}
+.gstat code{font-size:13px}
+.gstat .lab{display:inline-block;font-size:11px;font-weight:700;border-radius:999px;padding:2px 8px;margin-right:4px;background:#e8eefc;color:#123}
+.gstat .btn{display:inline-block;margin-top:6px;padding:9px 14px;border-radius:9px;font-weight:700;text-decoration:none;border:1px solid #888;color:#111;background:#fff}
+.gstat .btn.go{background:#0a7a0a;border-color:#0a7a0a;color:#fff}
+.gstat .btn.review{background:#fff;border-color:#b35c00;color:#7a3e00}
+.gstat .nav{font-size:13px;margin-top:8px}
+</style>"""
 
 
 def page(title: str, body: str, active: str) -> str:
@@ -61,7 +79,7 @@ def page(title: str, body: str, active: str) -> str:
 <main>
 {body}
 </main>
-<footer>Generated or edited in repo <code>buffedlizard55-lab/GEMSDOE74</code>. Every number carries an evidence label. Not affiliated with DrivenData, NLR, DOE or USGS.</footer>
+<footer>Not affiliated with DrivenData, NLR, DOE or USGS. Every number carries an evidence label.</footer>
 </body></html>
 """
 
@@ -107,49 +125,111 @@ def build_run_card() -> None:
     (DOCS / "run-card.html").write_text(page("Run card", body, "run-card.html"))
 
 
-def submission_status_html() -> str:
-    receipts = sorted(DOWNLOADS.glob("*.receipt.json"))
-    ready = []
-    for rp in receipts:
-        r = json.loads(rp.read_text())
-        if r.get("release_status") == "READY":
-            ready.append(r)
-    if not ready:
-        return """<div class="status hold">
-<p class="big">NO SUBMISSION FILE IS READY. DO NOT SUBMIT ANYTHING FROM THIS SITE YET.</p>
-<p>No GeoTIFF has been generated from the competition data, so there is no prediction to submit. A file without a real prediction would use one of the three weekly slots for nothing.</p>
-<p><b>Blocker:</b> the training features and labels are login-gated on DrivenData, and this build environment cannot download them. See <a href="irregularities.html">IR-74-04</a> for the data-source question that has to be cleared before any mirror is used.</p>
-<p><a class="btn dis" aria-disabled="true">Download submission .tif (not available)</a></p>
-</div>"""
-    parts = []
-    for r in ready:
-        parts.append(
-            f"""<div class="status ready"><p class="big">READY TO SUBMIT: {html.escape(r['submission_name'])}</p>
-<div class="kv"><div>File</div><div><a href="downloads/{html.escape(r['file'])}">{html.escape(r['file'])}</a></div>
-<div>Note field</div><div>{html.escape(r['submission_note'])} <span class="mut">({r['note_chars']}/200)</span></div>
-<div>sha256</div><div><code>{html.escape(r['sha256'])}</code></div>
-<div>Validator</div><div>{'PASSED' if r['validator']['passed'] else 'FAILED'}</div></div>
-<p><a class="btn" href="downloads/{html.escape(r['file'])}">Download submission .tif</a></p></div>"""
+def _load(path: Path):
+    try:
+        return json.loads(path.read_text())
+    except (OSError, ValueError):
+        return None
+
+
+def _holdout_lines() -> list:
+    """Summarise the holdout evidence on disk, labelled HOLDOUT-DTI."""
+    out = []
+    for name, label in (("holdout_h74a.json", "v0.1 4-quadrant"), ("holdout_h74a_segments.json", "v0.2 segment")):
+        d = _load(EVIDENCE / name)
+        if not d:
+            continue
+        cand = d.get("candidate", {})
+        rnd = d.get("random_control", {})
+        cat_key = "pooled_DTI_cat_hidden" if "pooled_DTI_cat_hidden" in cand else "pooled_DTI_cat"
+        passes = d.get("passes_random", d.get("passes_random_cat"))
+        out.append(
+            f"<li><span class=\"lab\">HOLDOUT-DTI</span> {html.escape(label)}: candidate {cand.get(cat_key, float('nan')):.5f} "
+            f"vs random control {rnd.get(cat_key, float('nan')):.5f} "
+            f"(passes random control: <b>{'yes' if passes else 'NO'}</b>). "
+            f"Source: <code>evidence/{html.escape(name)}</code>.</li>"
         )
-    return "\n".join(parts)
+    return out
 
 
-def inject_status(path: Path) -> None:
+def submission_status_html() -> str:
+    ready = []
+    for rp in sorted(DOWNLOADS.glob("*.receipt.json")):
+        r = _load(rp)
+        if r and r.get("release_status") == "READY":
+            ready.append(r)
+
+    files = sorted(p for p in DOWNLOADS.iterdir() if p.is_file() and p.suffix.lower() in (".tif", ".zip"))
+    cleared = bool(ready)
+
+    if cleared:
+        parts = []
+        for r in ready:
+            parts.append(
+                f"<h2>READY TO SUBMIT: {html.escape(str(r.get('submission_name', '')))}</h2>"
+                f"<ul><li>File: <a href=\"downloads/{html.escape(r['file'])}\">{html.escape(r['file'])}</a></li>"
+                f"<li>Note ({r.get('note_chars', '?')}/200): {html.escape(str(r.get('submission_note', '')))}</li>"
+                f"<li>sha256: <code>{html.escape(str(r.get('sha256', '')))}</code></li></ul>"
+                f"<a class=\"btn go\" href=\"downloads/{html.escape(r['file'])}\">Download submission .tif</a>"
+            )
+        return f'<div class="gstat ready">{"".join(parts)}</div>' + STATUS_NAV
+
+    if files:
+        listing = "".join(
+            f"<li><a href=\"downloads/{html.escape(p.name)}\">{html.escape(p.name)}</a> "
+            f"<span class=\"lab\">FOR REVIEW ONLY</span></li>"
+            for p in files
+        )
+        hold_lines = "".join(_holdout_lines()) or "<li>No holdout evidence file found.</li>"
+        primary = next((p for p in files if p.name.endswith("zeros.tif")), files[0])
+        return f"""<div class="gstat hold">
+<h2>HOLD: DO NOT SUBMIT. Downloadable files exist but none is cleared.</h2>
+<p><b>Submit: NO.</b> <b>Download:</b> for review only, not cleared for submission.</p>
+<p><b>Files in <code>docs/downloads/</code>:</b></p><ul>{listing}</ul>
+<p><b>Why it is on hold:</b></p>
+<ul>
+<li>No <code>*.receipt.json</code> in <code>docs/downloads/</code> has <code>release_status</code> set to READY. Promotion is a separate step and has not been done.</li>
+{hold_lines}
+<li>The inputs are not verified. <code>scripts/fetch_data.sh</code> pulls the labels and the sample submission from a sibling repo's mirror of login-gated competition data, and the rights are unconfirmed (<a href="irregularities.html">IR-74-04</a>).</li>
+<li>The holdout truth is catalogue-only, so it cannot reward genuinely new faults (the candidate's own evidence note).</li>
+</ul>
+<a class="btn review" href="downloads/{html.escape(primary.name)}">Download for review only (not cleared)</a>
+{STATUS_NAV}
+</div>"""
+
+    return f"""<div class="gstat notready">
+<h2>NO SUBMISSION FILE IS READY. DO NOT SUBMIT ANYTHING FROM THIS SITE YET.</h2>
+<p>No GeoTIFF is in <code>docs/downloads/</code>, so there is nothing to submit.</p>
+<p><b>Blocker:</b> the competition feature stack and labels are login-gated on DrivenData and cannot be downloaded here (<a href="irregularities.html">IR-74-04</a>).</p>
+{STATUS_NAV}
+</div>"""
+
+
+STATUS_NAV = (
+    '<div class="nav">Also: <a href="submit-checklist.html">submit checklist</a> · '
+    '<a href="analysis-0-2778.html">0.2778 analysis</a> · <a href="hypotheses.html">hypotheses</a> · '
+    '<a href="irregularities.html">irregularities</a> · <a href="sources.html">sources</a> · '
+    '<a href="leaderboard.html">leaderboard</a> · <a href="run-card.html">run card</a></div>'
+)
+
+
+def inject_status(path: Path) -> bool:
+    if not path.exists():
+        return False
     text = path.read_text()
-    new = re.sub(
-        r"<!-- BEGIN:SUBMISSION_STATUS -->.*?<!-- END:SUBMISSION_STATUS -->",
-        "<!-- BEGIN:SUBMISSION_STATUS -->\n" + submission_status_html() + "\n<!-- END:SUBMISSION_STATUS -->",
-        text,
-        flags=re.S,
-    )
+    block = "<!-- BEGIN:SUBMISSION_STATUS -->\n" + STATUS_STYLE + "\n" + submission_status_html() + "\n<!-- END:SUBMISSION_STATUS -->"
+    new, n = re.subn(r"<!-- BEGIN:SUBMISSION_STATUS -->.*?<!-- END:SUBMISSION_STATUS -->", lambda _m: block, text, flags=re.S)
+    if n == 0:
+        raise SystemExit(f"no SUBMISSION_STATUS markers in {path.name}")
     if new != text:
         path.write_text(new)
+    return True
 
 
 def main() -> None:
     build_leaderboard()
     build_run_card()
-    for name in ("index.html", "executive-summary.html"):
+    for name in ("index.html", "submit-checklist.html"):
         inject_status(DOCS / name)
     print("site built:", ", ".join(sorted(p.name for p in DOCS.glob("*.html"))))
 

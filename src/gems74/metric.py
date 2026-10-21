@@ -1,97 +1,116 @@
-"""Distance-weighted Tversky index (DTI) for the DOE GEMS Prize.
+"""Official Distance-Weighted Tversky Index (DTI) for the DOE GEMS Prize Challenge.
 
-Implements the published definition from the competition problem page
-(https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/):
+Verified from official competition problem description (DrivenData Page 967):
+https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/#performance-metric
+and official organizer forum clarification on known-fault masking (Thread 11516):
+https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516
 
-    k(d)   = max(1 - d / R, 0),   R = 300 m (3 px at 100 m)
-    TP_w   = sum_g  max_x  p(x) k(d(x,g))            (over truth pixels g)
-    FP_w   = sum_x  p(x) [1 - max_g k(d(x,g))]        (over pixels with p > 0)
-    FN_w   = sum_g  [1 - max_x p(x) k(d(x,g))]        (over truth pixels g)
-    DTI    = TP_w / (TP_w + alpha*FP_w + beta*FN_w + eps),  alpha=0.2, beta=0.8
-
-Pixel distances are Euclidean on the 100 m grid. Only pixels whose distance is
-strictly below R contribute to the max (the kernel is zero at d >= R).
-
-This module is the single metric implementation for this repository. It has no
-dependency on any other project's code. Verification: tests/test_metric.py.
+Mathematical formulation:
+- Triangular kernel: k(d) = max(1 - d / R, 0), with R = 300 m = 3 pixels at 100 m resolution.
+- TP_w = sum_{g in G} max_{x : d(x,g) <= R} p(x) * k(d(x,g))
+- FP_w = sum_{x : p(x) > 0} p(x) * [1 - max_{g in G} k(d(x,g))]
+- FN_w = sum_{g in G} [1 - max_{x : d(x,g) <= R} p(x) * k(d(x,g))] = |G| - TP_w
+- DTI(alpha=0.2, beta=0.8) = TP_w / (TP_w + 0.2 * FP_w + 0.8 * FN_w + eps)
+                           = TP_w / (0.2 * (TP_w + FP_w) + 0.8 * |G| + eps)
 """
 
 from __future__ import annotations
 
-import math
-
 import numpy as np
-from scipy import ndimage
+from scipy.ndimage import distance_transform_edt
 
-ALPHA = 0.2
-BETA = 0.8
-PIXEL_M = 100.0
-R_M = 300.0
-EPS = 1e-12
-
-
-def kernel(distance_m):
-    """Triangular kernel k(d) = max(1 - d/R, 0)."""
-    d = np.asarray(distance_m, dtype=float)
-    return np.maximum(1.0 - d / R_M, 0.0)
+ALPHA: float = 0.2
+BETA: float = 0.8
+RADIUS_PX: float = 3.0
+EPS: float = 1e-12
 
 
-def _neighbourhood(radius_px: int):
-    """(dy, dx, k) for every offset with non-zero kernel weight."""
+def kernel(d: np.ndarray | float, radius: float = RADIUS_PX) -> np.ndarray:
+    """Linear triangular kernel k(d) = max(1 - d / R, 0) where d and radius are in pixels (1 px = 100 m)."""
+    return np.maximum(1.0 - np.asarray(d, dtype=np.float64) / radius, 0.0)
+
+
+def _offsets(radius: float = RADIUS_PX) -> list[tuple[int, int, float]]:
+    r = int(np.ceil(radius))
     out = []
-    for dy in range(-radius_px, radius_px + 1):
-        for dx in range(-radius_px, radius_px + 1):
-            d = math.hypot(dx, dy) * PIXEL_M
-            k = float(kernel(d))
+    for dy in range(-r, r + 1):
+        for dx in range(-r, r + 1):
+            k = float(kernel(np.hypot(dy, dx), radius))
             if k > 0.0:
                 out.append((dy, dx, k))
     return out
 
 
-def _check_prediction(pred: np.ndarray) -> np.ndarray:
-    p = np.asarray(pred, dtype=float)
-    if p.ndim != 2:
-        raise ValueError(f"prediction must be 2-D, got shape {p.shape}")
-    if not np.all(np.isfinite(p)):
-        raise ValueError("prediction contains NaN or inf; set outside-footprint cells to 0 before scoring")
-    if p.min() < 0.0 or p.max() > 1.0:
-        raise ValueError(f"prediction values must lie in [0, 1]; got [{p.min()}, {p.max()}]")
-    return p
+_OFFS = _offsets()
 
 
-def components(pred, truth, alpha: float = ALPHA, beta: float = BETA):
-    """Return a dict with TP_w, FP_w, FN_w, G (truth pixel count) and DTI."""
-    p = _check_prediction(pred)
-    g = np.asarray(truth).astype(bool)
-    if g.shape != p.shape:
-        raise ValueError(f"shape mismatch: pred {p.shape} vs truth {g.shape}")
+def _prepare(pred, truth, valid, known):
+    pred = np.asarray(pred)
+    truth = np.asarray(truth)
+    if pred.ndim != 2 or pred.shape != truth.shape:
+        raise ValueError("prediction and truth must be equal-shaped 2-D grids")
+    valid = np.ones(pred.shape, bool) if valid is None else np.asarray(valid, bool)
+    known = np.zeros(pred.shape, bool) if known is None else np.asarray(known, bool)
+    if valid.shape != pred.shape or known.shape != pred.shape:
+        raise ValueError("mask grid mismatch")
+    active = valid & ~known
+    vals = pred[active]
+    if not np.isfinite(vals).all() or (vals < 0).any() or (vals > 1).any():
+        raise ValueError("predictions inside the scored domain must be finite and in [0, 1]")
+    p = np.where(active & np.isfinite(pred), pred, 0.0).astype(np.float64)
+    g = active & (np.asarray(truth) > 0)
+    return p, g, active
 
-    radius = int(math.ceil(R_M / PIXEL_M))  # 3 px
+
+def dti_exact(pred, truth, valid=None, known=None, alpha: float = ALPHA, beta: float = BETA) -> dict:
+    """Exact DTI for arbitrary soft or binary predictions in [0, 1]."""
+    p, g, _ = _prepare(pred, truth, valid, known)
     H, W = p.shape
-    padded = np.pad(p, radius, mode="constant", constant_values=0.0)
-
-    # best[i, j] = max over neighbours x of p(x) * k(d(x, (i, j)))
-    best = np.zeros_like(p)
-    for dy, dx, k in _neighbourhood(radius):
-        shifted = padded[radius + dy: radius + dy + H, radius + dx: radius + dx + W]
-        np.maximum(best, shifted * k, out=best)
-
-    G = int(g.sum())
-    TP = float(best[g].sum())
-    FN = float((1.0 - best[g]).sum())
-
-    # FP: each predicted mass is penalised by (1 - k(distance to nearest truth)).
-    if G == 0:
-        FP = float(p.sum())
-    else:
-        dist_px = ndimage.distance_transform_edt(~g)
-        k_nearest = kernel(dist_px * PIXEL_M)
-        FP = float((p * (1.0 - k_nearest)).sum())
-
-    dti = TP / (TP + alpha * FP + beta * FN + EPS)
-    return {"TP_w": TP, "FP_w": FP, "FN_w": FN, "G": G, "DTI": dti}
+    yy, xx = np.nonzero(g)
+    n = int(yy.size)
+    if n == 0:
+        return dict(tp=0.0, fp=float(p.sum()), fn=0.0, n_truth=0, dti=0.0, coverage=0.0)
+    credit = np.zeros(n, dtype=np.float64)
+    for dy, dx, k in _OFFS:
+        ny, nx = yy + dy, xx + dx
+        ok = (ny >= 0) & (ny < H) & (nx >= 0) & (nx < W)
+        credit[ok] = np.maximum(credit[ok], p[ny[ok], nx[ok]] * k)
+    tp = float(credit.sum())
+    fn = float(n) - tp
+    d = distance_transform_edt(~g)
+    fp = float((p * (1.0 - kernel(d))).sum())
+    dti = tp / (tp + alpha * fp + beta * fn + EPS)
+    return dict(tp=tp, fp=fp, fn=fn, n_truth=n, dti=float(dti), coverage=tp / n)
 
 
-def dti(pred, truth, alpha: float = ALPHA, beta: float = BETA) -> float:
-    """Distance-weighted Tversky index for a probability raster against a binary truth raster."""
-    return components(pred, truth, alpha=alpha, beta=beta)["DTI"]
+def dti_binary(pred_bool, truth, valid=None, known=None, alpha: float = ALPHA, beta: float = BETA) -> dict:
+    """Fast exact DTI when predictions are binary {0, 1} via Euclidean distance transforms."""
+    pred_bool = np.asarray(pred_bool, bool)
+    truth = np.asarray(truth, bool)
+    valid_ = np.ones(pred_bool.shape, bool) if valid is None else np.asarray(valid, bool)
+    known_ = np.zeros(pred_bool.shape, bool) if known is None else np.asarray(known, bool)
+    active = valid_ & ~known_
+    p = pred_bool & active
+    g = truth & active
+    n = int(g.sum())
+    if n == 0:
+        return dict(tp=0.0, fp=float(p.sum()), fn=0.0, n_truth=0, dti=0.0, coverage=0.0)
+    if not p.any():
+        return dict(tp=0.0, fp=0.0, fn=float(n), n_truth=n, dti=0.0, coverage=0.0)
+    dp = distance_transform_edt(~p)
+    tp = float(kernel(dp[g]).sum())
+    fn = float(n) - tp
+    dg = distance_transform_edt(~g)
+    fp = float((1.0 - kernel(dg[p])).sum())
+    dti = tp / (tp + alpha * fp + beta * fn + EPS)
+    return dict(tp=tp, fp=fp, fn=fn, n_truth=n, dti=float(dti), coverage=tp / n)
+
+
+def marginal_inclusion_threshold(current_dti: float, alpha: float = ALPHA) -> float:
+    """Minimum marginal kernel credit k for an added dot to improve DTI at score level s.
+
+    Derived: DTI = T / (alpha*(T+F) + beta*K), adding one unit mass with realised kernel weight k
+    (so dT = k and dF = 1 - k), dDTI > 0 <=> k > alpha*DTI.
+    See GEMSDOE32 metric.py for full derivation (IR-32-BAR-01).
+    """
+    return alpha * current_dti
