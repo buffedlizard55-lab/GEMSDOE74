@@ -340,7 +340,7 @@ def hero_download_block(rc: dict, prefix: str = "") -> str:
     nan_rel = prefix + "downloads/gemsdoe74-triregime-radon-piedmont-37654-20261021T051000Z-nan.tif"
     return f"""
     <section class="verdict-hero">
-      <div class="verdict-pill">✅ YES — APPROVED &amp; PORTAL-VERIFIED FOR DRIVENDATA SUBMISSION</div>
+      <div class="verdict-pill">✅ YES — OK TO DOWNLOAD AND SUBMIT TO DRIVENDATA · VERDICT: PROMOTE</div>
       <h1>Download &amp; Submit: <code>GEMSDOE74</code> Tri-Regime Steerable Radon + PU Piedmont GeoTIFF</h1>
       <p style="margin:0;color:#d0d7de;max-width:960px;">
         <strong>Unmistakable Status:</strong> This file is <strong>100% real-data generated, unique across all 165 historical + parallel rasters</strong>
@@ -716,6 +716,8 @@ Marginal Gain Gate:  Delta_DTI &gt; 0   &lt;==&gt;   E[Delta TP_w / Delta N_dots
     review_dir = DOCS / "review"
     review_dir.mkdir(parents=True, exist_ok=True)
     review_map = {
+        "index.html": ("Submission Hub & Audit Index", "index.html", index_body.replace('src="assets/', 'src="../assets/')),
+        "executive-summary.html": ("Executive Summary & Upload Guide", "executive-summary.html", exec_body.replace('src="assets/', 'src="../assets/')),
         "analysis-0-2778.html": ("Forensic Analysis of 0.2778", "research.html", res_body),
         "hypotheses.html": ("5 Hypotheses (H74-1..5)", "hypotheses.html", hyp_body),
         "irregularities.html": ("Irregularity Audit (IR-74-30..37)", "irregularities.html", irr_body),
@@ -728,11 +730,6 @@ Marginal Gain Gate:  Delta_DTI &gt; 0   &lt;==&gt;   E[Delta TP_w / Delta N_dots
         # Adjust download paths in hero block when rendered at depth 1 (`docs/review/`)
         patched = rbody.replace('href="downloads/', 'href="../downloads/').replace('href="executive-summary.html"', 'href="../executive-summary.html"')
         (review_dir / rname).write_text(render_shell(rtitle, active_key, patched, prefix="../"))
-
-    # Remove obsolete stale JSON files if any so `evidence/*_g74.json` is the single clean source of truth
-    for stale in [DOCS / "data" / "metrics.json", DOCS / "review" / "data" / "audit.json", EVIDENCE / "run_card.json"]:
-        if stale.exists():
-            stale.unlink()
 
     print(f"Built {len(pages)} root pages + {len(review_map)} review pages cleanly in {DOCS}!")
 
