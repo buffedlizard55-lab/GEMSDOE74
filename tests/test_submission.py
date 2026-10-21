@@ -13,7 +13,7 @@ def test_write_and_validate():
         # create fake template
         meta=dict(driver="GTiff", dtype="float32", count=1, crs=CRS, transform=TRANSFORM, width=WIDTH, height=HEIGHT, nodata=None)
         with rasterio.open(tpl,"w",**meta) as dst:
-            dst.write(np.where(fp,0.0,0.0).astype(np.float32),1)
+            dst.write(np.where(fp,0.0,np.nan).astype(np.float32),1)
         out=pathlib.Path(td)/"out.tif"
         # use write_submission from grid
         write_submission(arr, str(tpl), str(out), footprint=fp, outside="zero")
@@ -37,9 +37,9 @@ def test_range_guard():
         tpl=pathlib.Path(td)/"tpl.tif"
         meta=dict(driver="GTiff", dtype="float32", count=1, crs=CRS, transform=TRANSFORM, width=WIDTH, height=HEIGHT, nodata=None)
         with rasterio.open(tpl,"w",**meta) as dst:
-            dst.write(np.zeros(shape,dtype=np.float32),1)
+            dst.write(np.where(fp,0.0,np.nan).astype(np.float32),1)
         try:
             write_submission(bad, str(tpl), str(pathlib.Path(td)/"bad.tif"), footprint=fp, outside="zero")
             assert False, "should have raised"
-        except AssertionError:
+        except ValueError:
             pass

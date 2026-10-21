@@ -79,5 +79,8 @@
   "all_checks_passed": true,
   "validation_passed": true,
   "note": "GEMSDOE74 H74-1 basement-step B=2 d2.8 35641 dots; all-finite 0-1; zeros-outside",
-  "unique_id": "af4afc84b6ff"
+  "unique_id": "af4afc84b6ff",
+  "release_status": "HOLD — FORMAT/RESEARCH FIXTURE ONLY; DO NOT SUBMIT",
+  "scientific_validation": "not established; official training features/labels/template absent",
+  "template_match": "not checked against actual official sample submission"
 }

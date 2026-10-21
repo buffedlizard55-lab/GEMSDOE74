@@ -1,82 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Executive summary — how to submit · GEMSDOE74</title>
-<style>
-:root{--bg:#0b1020;--card:#121a33;--accent:#4cc2ff;--accent2:#7af0c0;--warn:#ffcc66;--text:#e6eaf2;--muted:#9aa4c2;--line:#1f2a4a}
-*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,sans-serif;background:#0b1020;color:var(--text);line-height:1.6}
-a{color:var(--accent)}header,main,footer{max-width:980px;margin:0 auto;padding:0 20px}
-header{padding-top:20px}nav{display:flex;gap:10px;flex-wrap:wrap;font-size:13px}nav a{padding:6px 10px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.03)}
-.card{background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:14px;padding:16px;margin:16px 0}
-.warn{background:rgba(255,204,102,.12);border:1px solid rgba(255,204,102,.4);padding:10px 12px;border-radius:10px}
-.ok{background:rgba(122,240,192,.12);border:1px solid rgba(122,240,192,.4);padding:10px 12px;border-radius:10px}
-.btn{display:inline-block;padding:12px 16px;border-radius:10px;background:var(--accent);color:#05101e;font-weight:700;text-decoration:none}
-code{background:rgba(255,255,255,.06);padding:2px 6px;border-radius:6px}
-.table{width:100%;border-collapse:collapse;font-size:13px}.table th,.table td{border:1px solid var(--line);padding:8px 10px;text-align:left}
-.table th{background:rgba(255,255,255,.04);color:var(--muted)}
-.small{font-size:13px;color:var(--muted)}h1{margin:16px 0 8px}h2{margin:22px 0 8px;color:var(--accent2)}
-ol{margin:0 0 8px 18px}ul{margin:0 0 8px 18px}
-</style>
-</head>
-<body>
-<header>
-  <nav><a href="index.html">← Overview</a><a href="hypotheses.html">Hypotheses</a><a href="research.html">Research</a><a href="sources.html">Sources</a></nav>
-  <h1>Executive summary — how to submit in 5 clicks</h1>
-  <p class="small">This page is the only thing you need to read to submit. It is the “obvious whether it is OK to download and submit” page required by the brief. The file is portal-safe, validated byte-wise, and unique.</p>
-</header>
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Submission guide — GEMSDOE74</title><link rel="stylesheet" href="assets/site.css"></head>
+<body><header class="top"><span class="brand">GEMSDOE74</span><a href="index.html">Overview</a><a href="hypotheses.html">Hypotheses</a><a href="sources.html">Sources</a><a href="review/repo-audit-2026-10-21.html">Code audit</a></header>
 <main>
-  <div class="card" style="border-color:#2a6a4a">
-    <h2 style="margin-top:0">✅ It is OK to download and submit this file</h2>
-    <p><a class="btn" href="downloads/gemsdoe74-h74-1-basement-step-35641-20261021T000000Z-100b4b19-zeros.tif" download>⬇ Download submission .tif (268 KB)</a> &nbsp; <a class="btn" style="background:transparent;color:var(--accent);border:1px solid var(--accent)" href="downloads/gemsdoe74-h74-1-basement-step-35641-20261021T000000Z-100b4b19-zeros.zip" download>⬇ .zip</a></p>
-    <div class="ok"><strong>What you are getting:</strong> a single-band float32 GeoTIFF, EPSG:32611, 100 m, 3730×3292, <code>nodata=None</code>, all 12,279,160 cells finite, every value in [0,1], 35,641 dots at 0/1, 0 on the known catalogue. SHA-256 <code>af4afc84b6ff758ccae86dc116c1b14dd1b66de48462899eebc4d5b43d7aef27</code>. Verified by re-opening the bytes from disk — see <a href="downloads/gemsdoe74-h74-1-basement-step-35641-20261021T000000Z-100b4b19-zeros.json">receipt</a>.</div>
-  </div>
-
-  <div class="card">
-    <h2 style="margin-top:0">Step-by-step (with the “Note” to paste)</h2>
-    <ol class="small">
-      <li><strong>Download</strong> the blue button above. Confirm the filename is <code>gemsdoe74-h74-1-basement-step-35641-20261021T000000Z-100b4b19-zeros.tif</code> and the SHA starts <code>af4afc84…</code> (optional but recommended: <code>sha256sum</code>).</li>
-      <li>Log in to <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">DrivenData 306</a> → sidebar <em>Submit</em> → <em>Make new submission</em>.</li>
-      <li><strong>File to submit:</strong> choose the downloaded <code>.tif</code> (or the <code>.zip</code> which contains the same single GeoTIFF). The form accepts <code>.tif</code> or <code>.zip</code> with one GeoTIFF inside.</li>
-      <li><strong>Note (optional):</strong> paste exactly (67 chars):<br><code style="display:inline-block;margin:6px 0;padding:8px;background:#0e1a33;border:1px solid #2a4a6a;border-radius:8px;word-break:break-all">GEMSDOE74 H74-1 basement-step B=2 d2.8 35641 dots; all-finite 0-1; zeros-outside</code> <button onclick="navigator.clipboard.writeText('GEMSDOE74 H74-1 basement-step B=2 d2.8 35641 dots; all-finite 0-1; zeros-outside')">Copy</button><br>Short name for your tracking (if the form asks): <code>GEMSDOE74-H74-1-BASEMENT-STEP</code></li>
-      <li>Click <em>Create submission</em>. The portal validates CRS/shape/transform and that every value is in [0,1]. This file passes both (see “Why the old error cannot fire” below). You will see a submission row; scores appear on the public leaderboard when the organizer refreshes.</li>
-    </ol>
-    <p class="small"><strong>NaN-outside twin:</strong> If you prefer the competition’s literal wording (“data outside bounds is null or nan”), use <a href="downloads/gemsdoe74-h74-1-basement-step-35641-20261021T000000Z-100b4b19-nan.tif">this NaN-outside twin</a> (identical inside, NaN outside, <code>nodata=nan</code>). Both are legal; the portal scores them identically (GEMSDOE30 ledger: 0.1294 vs 0.1294).</p>
-  </div>
-
-  <div class="card">
-    <h2 style="margin-top:0">Why the old error “Predicted values must be in range [0,1]” cannot fire here</h2>
-    <p class="small">Two distinct failures produce that message, both measured on the competition’s own data in GEMSDOE30 (2026-10-03, <a href="research.html#range-error">research note</a>):</p>
-    <table class="table">
-      <tr><th>Failure</th><th>Symptom</th><th>This file’s immunity</th></tr>
-      <tr><td>Float32 sentinel <code>-3.402823e38</code> from <code>training_features.tif</code> (7,113,308 cells, 3,061 inside footprint)</td><td>Portal sees −3.4×10³⁸ ∉ [0,1]</td><td>We never copy a band through; predictions are synthetic 0/1 clipped to [0,1]; sentinel explicitly asserted absent</td></tr>
-      <tr><td>NaN outside footprint with <code>nodata=nan</code> (5,165,852 valid vs 5,167,373 footprint → 1,521 stranded NaN inside if footprint taken from a feature band)</td><td>NaN ∉ [0,1] if validator checks whole array</td><td>We derive footprint only from <code>np.isfinite(sample_submission.tif)</code> (or synthetic 42% mask), write <code>nodata=None</code> and zeros outside; re-read asserts all 12,279,160 cells finite and in [0,1]</td></tr>
-    </table>
-    <p class="small"><strong>Verified:</strong> <code>src/gemsdoe74/submission.py</code> fails closed — a surviving non-finite or out-of-range cell aborts the build. Receipts: <a href="downloads/gemsdoe74-h74-1-basement-step-35641-20261021T000000Z-100b4b19-zeros.json">zeros</a>, <a href="downloads/gemsdoe74-h74-1-basement-step-35641-20261021T000000Z-100b4b19-nan.json">NaN twin</a>.</p>
-  </div>
-
-  <div class="card">
-    <h2 style="margin-top:0">What to expect after submitting</h2>
-    <ul class="small">
-      <li><strong>Public vs private:</strong> The public leaderboard shows your public-test DTI. The Initial Prize Round is scored on a private test set; the Final Prize Round rescored the same file against an expanded label set after expert review. You choose one submission for both rounds.</li>
-      <li><strong>Scoring rule you should know:</strong> Known USGS/INGENIOUS faults are masked from evaluation (staff clarification <a href="https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516/4">11516</a>). That is why this file has 0 dots on the catalogue — putting them there is pure waste of the emission budget.</li>
-      <li><strong>Do not re-upload the old H19-5 file:</strong> It scored 0.1922 (ORGANIZER-CONFIRMED) and is kept for reference only; re-uploading spends a weekly slot for no new information.</li>
-    </ul>
-  </div>
-
-  <div class="card warn">
-    <h3 style="margin-top:0">Is this file “better” than 0.2778 / 0.3262?</h3>
-    <p class="small">No organizer score exists for this file — it is <strong>UNSCORED</strong>. The numbers under “Holdout” on the overview page are HOLDOUT-DTI (0.194 mean, 95% CI 0.122–0.266, 4/4 folds vs random), not a leaderboard score. They say the emission rule beats a random control on a synthetic spatially-blocked holdout, so it is worth the experiment. The verdict “promote” means the <em>experiment</em> passed its pre-registered gate; promotion to a real weekly slot is a separate selector step within the weekly cap.</p>
-  </div>
-
-  <div class="card">
-    <h3>Quick verify after download</h3>
-    <pre style="background:#0e1a33;border:1px solid #1f2a4a;padding:10px;border-radius:8px;overflow:auto;font-size:12px"><code>sha256sum gemsdoe74-h74-1-basement-step-35641-20261021T000000Z-100b4b19-zeros.tif
-# expected: af4afc84b6ff758ccae86dc116c1b14dd1b66de48462899eebc4d5b43d7aef27
-python -c "import rasterio;import numpy as np;ds=rasterio.open('gemsdoe74-h74-1-basement-step-35641-20261021T000000Z-100b4b19-zeros.tif');a=ds.read(1);print(ds.shape,ds.crs,ds.transform);print('finite',np.isfinite(a).all(),'range',a.min(),a.max(),'n>',(a>0).sum())"
-# expected: (3730,3292) EPSG:32611 Affine(100,0,243350,0,-100,4508550) finite True range 0 1 n> 35641</code></pre>
-  </div>
-</main>
-<footer style="padding:20px 0;margin-top:20px;border-top:1px solid #1f2a4a"><p class="small">GEMSDOE74 · <a href="index.html">Overview</a> · <a href="sources.html">Sources</a></p></footer>
-</body>
-</html>
+<h1>Submission guide</h1>
+<section class="status hold"><span class="pill p-hold">DO NOT SUBMIT</span>
+<h2>No competition-ready prediction is available</h2>
+<p><strong>Download decision: NOT OK to download and submit as a competition prediction.</strong> The linked TIF is a historical synthetic fixture only. It is offered for local format inspection, not for a weekly submission slot. No competition score or organizer receipt exists for it.</p>
+<p><a class="button" href="downloads/gemsdoe74-h74-1-basement-step-35641-20261021T000000Z-100b4b19-zeros.tif" download>Download H74-1 format fixture (NOT A SUBMISSION)</a></p>
+<p>File: <code>gemsdoe74-h74-1-basement-step-35641-20261021T000000Z-100b4b19-zeros.tif</code><br>SHA-256: <code>af4afc84b6ff758ccae86dc116c1b14dd1b66de48462899eebc4d5b43d7aef27</code><br>Historical name: <code>GEMSDOE74-H74-1-BASEMENT-STEP</code><br>Historical note (80 characters): <code>GEMSDOE74 H74-1 basement-step B=2 d2.8 35641 dots; all-finite 0-1; zeros-outside</code></p>
+<p>The name/note are metadata for tracking this old fixture; they must not be entered as a competition submission.</p>
+</section>
+<section class="card"><h2>What local format inspection did—and did not—establish</h2>
+<p>The zero-filled fixture reopened locally as a single-band float32 GeoTIFF with dimensions 3730×3292, EPSG:32611, transform (100, 0, 243350, 0, −100, 4508550), no nodata tag, finite values in [0,1], and 35,641 positive cells. The same basic properties were observed for the H74-A zero-filled fixture, with 39,500 positive cells. These are <strong>MEASURED-LOCAL format facts</strong>, not competition scores and not evidence of spatial correctness.</p>
+<ul><li>Actual `sample_submission.tif` is absent, so exact CRS/shape/geotransform/footprint matching to the competition template is not independently verified.</li>
+<li>The local validator's catalogue check was skipped because the labels are absent.</li>
+<li>The files were generated using synthetic surfaces/targets or unverified provenance. The legacy generator hard-coded some evaluation and registry fields.</li>
+<li>All zero-filled cells—including outside any footprint—are finite and in range, which avoids a negative sentinel/NaN range failure but does not establish the competition portal's exact treatment of outside-footprint predictions.</li></ul>
+</section>
+<section class="card"><h2>Why the previous range error can recur</h2>
+<p>The portal message “Predicted values must be in range [0, 1]” is consistent with predictions containing a negative nodata sentinel or non-finite values treated as predictions. A local writer should use a valid prediction array, avoid writing sentinels into data cells, and reopen the written TIFF to check finite values and [0,1]. This does not establish what the organizer validator accepted; only an actual portal receipt can do that.</p>
+<p>The old repository pages asserted two specific causes and claimed competition-specific measurements. The relevant official files are not present in this checkout, so those causal measurements are not independently reproducible here. See the <a href="review/repo-audit-2026-10-21.html">audit</a> and <a href="irregularities.html">irregularity log</a>.</p>
+</section>
+<section class="card"><h2>How to submit once a future candidate is genuinely cleared</h2>
+<ol><li>Download the uniquely named `.tif` from the candidate's release panel only when it explicitly says <strong>OK TO SUBMIT</strong> and links to an audit receipt.</li>
+<li>On the <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">DrivenData DOE GEMS competition</a>, open Submit → New submission.</li>
+<li>Choose the single-band `.tif` (or a ZIP containing exactly one GeoTIFF), enter its unique name and ≤140-character note, and submit.</li>
+<li>Keep the submission-page receipt. Record its score only as <code>ORGANIZER-CONFIRMED</code> and do not infer a score from local holdout results.</li></ol>
+<p>Before any release, verify the actual official template match, validate file values after writing, run the compliant spatial holdout and leakage canary, perform registry duplicate checks, document input provenance/rights, and pass the independent slot selector. See the <a href="https://github.com/buffedlizard55-lab/GEMSDOE74/blob/main/PROMPT.md">standing project brief in the repository</a>.</p>
+</section>
+</main><footer>Research tooling, not affiliated with DrivenData, DOE, NLR, or USGS.</footer></body></html>

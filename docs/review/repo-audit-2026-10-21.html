@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Repository audit — GEMSDOE74</title><link rel="stylesheet" href="../assets/site.css"></head>
+<body><header class="top"><span class="brand">GEMSDOE74 audit</span><a href="../index.html">Overview</a><a href="../executive-summary.html">Submission guide</a><a href="../hypotheses.html">Hypotheses</a></header>
+<main><h1>Repository review — 2026-10-21</h1>
+<section class="status hold"><span class="pill p-hold">NEGATIVE / HOLD</span><h2>Do not submit either checked-in TIFF</h2>
+<p>This review found that H74-1 is a synthetic fixture, H74-A has unverified sibling-mirror provenance, and the former generator/holdout code fabricated evidence fields. Their format can be inspected locally, but their spatial predictions are not supported by official inputs or a compliant holdout. The top-level page and executive summary have been corrected to say this plainly.</p></section>
+<section class="card"><h2>Line-by-line findings (repository facts)</h2><ol>
+<li><strong>Competition data absent.</strong> `data/README.md` says the folder is a placeholder; the inventory contains only README and `.gitkeep`. This review did not obtain login-gated DrivenData files. The official data tab is <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/data/">here</a>.</li>
+<li><strong>Generator was synthetic, not a training/inference pipeline.</strong> In the previous `scripts/generate_submission.py`, `build_h74_1_field()` created synthetic depth and elevation; code made a synthetic catalogue and hidden truth and then emitted dots. It did not read the competition feature stack. That implementation was replaced with a fail-closed entry point. Running it now exits 2 and writes no candidate.</li>
+<li><strong>Holdout was not protocol-compliant.</strong> The prior evaluator hid random catalogue pixels in quadrants; the segment-named version labeled connected pixels and explicitly disabled its collar. Neither rebuilt catalogue features from visible segments or used the required buffered whole-segment hide-and-recover. Both entry points now exit 2 without writing evidence.</li>
+<li><strong>Hard-coded leakage/registry metrics.</strong> The former generator inserted `AUC=0.68`, `rho=0.42`, and `overlap=38.2%` directly into its run report. They were not measured there. Those historical numbers are excluded from the current run card; no registry rasters are present to reproduce correlation or overlap.</li>
+<li><strong>Canary test was a false assurance.</strong> `tests/test_canary.py` returned successfully when its optional local data were missing, and its old random-pixel split was not the required holdout. It now tests only that the helper catches a deliberate label-copy feature; this is a software unit test, not a real-data leakage result.</li>
+<li><strong>Old release pages contradicted themselves.</strong> The overview top panel said HOLD, while lower hero content and the executive summary said ready/OK to submit. Those pages now consistently say DO NOT SUBMIT and classify existing TIFs as review fixtures.</li>
+<li><strong>Format inspection is narrower than release validation.</strong> The local validator reopened H74-1 zeros TIFF and returned exit 0; it reported one band float32, 3292×3730, EPSG:32611, expected pinned transform, all stored values finite and in [0,1], nodata unset, and 35,641 positives. Its catalogue check was skipped (`/tmp/gems74_data/labels.tif` absent). The official template itself is also absent, so template match and real footprint correctness remain unknown.</li>
+<li><strong>Score attribution is unproven.</strong> No organizer receipt in this repo connects `h33-h33-2-b2` to the stated 0.2778. Sparse predictions could plausibly interact favorably with distance-weighted Tversky, but the specific causal explanation needs the original raster, exact evaluator and receipt. Repository prose previously overstated that explanation; README now labels it a hypothesis.</li>
+<li><strong>Leaderboard numbers conflict by date/source.</strong> The user prompt includes 0.3195 as current high. The committed dated snapshot `docs/review/data/leaderboard_2026-10-21.json` records 0.4413 at rank 1 and 0.2778 at rank 47. This review did not independently fetch the live page; treat the JSON as a dated repository snapshot, not a live feed. Recheck the <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">official leaderboard</a> before citing current rank.</li>
+</ol></section>
+<section class="card"><h2>Local TIFF checks</h2><p>Evidence class: <strong>MEASURED-LOCAL</strong>, not `ORGANIZER-CONFIRMED`. SHA-256 values were independently calculated from the checked-in files, and rasterio reopened the files.</p>
+<table><thead><tr><th>Review fixture</th><th>SHA-256</th><th>Observed format properties</th><th>Release</th></tr></thead><tbody>
+<tr><td>H74-1 zeros</td><td><code>af4afc84b6ff758ccae86dc116c1b14dd1b66de48462899eebc4d5b43d7aef27</code></td><td>1-band float32; 3730×3292; EPSG:32611; pinned transform; finite [0,1]; nodata=None; 35,641 positive cells</td><td>NOT CLEARED</td></tr>
+<tr><td>H74-A zeros</td><td><code>f745fdb0bcc7b09c73e9ca5460ec81b3628421d3516d514e63720bd547d14597</code></td><td>1-band float32; 3730×3292; EPSG:32611; pinned transform; finite [0,1]; nodata=None; 39,500 positive cells</td><td>NOT CLEARED</td></tr>
+</tbody></table><p>The pinned geometry comes from repository constants and historical receipts. Exact comparison to the official sample submission was unavailable. The optional catalogue test did not run.</p></section>
+<section class="card"><h2>Candidate hypotheses, in order to test once official data are obtained</h2>
+<p>The <a href="../hypotheses.html">hypotheses page</a> lists four distinct, unvalidated ideas (magnetic tilt-angle continuity, gravity curvature persistence, seismicity coherence, conductivity-boundary disruption), their proposed signatures/confounds, and qualitative effort ranking. Their field names are provisional until checked against the official manifest. No expected score is asserted; no candidate has passed a holdout.</p></section>
+<section class="card"><h2>Official review links</h2><ul>
+<li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">DrivenData problem and metric description</a></li>
+<li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/data/">Competition data tab (login required)</a></li>
+<li><a href="https://github.com/drivendataorg/gems-prize-reference-solution">Official reference-solution repository</a></li>
+<li><a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">NLR competition report</a></li>
+<li><a href="https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and">USGS GeoDAWN survey page</a></li>
+<li><a href="https://gdr.openei.org/submissions/1391">GDR/INGENIOUS submission 1391</a></li>
+</ul></section>
+<section class="card"><h2>Next steps and limitations</h2><ol>
+<li>Obtain official competition data using authorized DrivenData access; record provenance/rights.</li>
+<li>Inspect official feature manifest, template grid and footprint. Add integrity checks.</li>
+<li>Implement exact segment withholding plus buffer, visible-only feature derivation, pixel-exact masking, pooled DTI, and uncertainty estimates.</li>
+<li>Replace synthetic pipeline, then compare feature-alone AUC, no-skill/random controls, incumbent on identical folds, and registered rasters.</li>
+<li>Enable a real-data writer only after the full gate and byte-level validation pass. Keep release decision separate from submission slot choice.</li>
+</ol></section>
+<p><a href="data/run-card.json">Current JSON run card</a> · <a href="../irregularities.html">Irregularities</a></p>
+</main><footer>Repository audit, not an organizer ruling or score receipt.</footer></body></html>

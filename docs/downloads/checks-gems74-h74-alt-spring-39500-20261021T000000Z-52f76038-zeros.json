@@ -50,5 +50,8 @@
     "target": 39500,
     "mechanism": "Fluid conduit fault detection via spring collinearity (PCA strike) + K enrichment / Th/K depletion alteration halo lineaments",
     "distinctiveness": "H33-2-B2 mean dist to spring 67.7px, K 100 vs 124 random; this emission mean dist ~12px, K high; expected rank-correlation <0.4"
-  }
+  },
+  "release_status": "HOLD — FORMAT/RESEARCH FIXTURE ONLY; DO NOT SUBMIT",
+  "scientific_validation": "not established; official training features/labels/template absent",
+  "template_match": "not checked against actual official sample submission"
 }
