@@ -13,5 +13,7 @@
   },
   "delta_vs_random": -0.03254042043304588,
   "passes_random": false,
-  "note": "HOLDOUT-DTI (evaluator v0.1, 4 folds pooled, ~12k hidden positives total). No ORGANIZER-CONFIRMED score. Random control is uniform over footprint\\visible."
+  "note": "HOLDOUT-DTI (evaluator v0.1, 4 folds pooled, ~12k hidden positives total). No ORGANIZER-CONFIRMED score. Random control is uniform over footprint\\visible.",
+  "evidence_status": "INVALID AS HOLDOUT-DTI: proxy evaluator did not meet the required whole-segment-with-buffer, visible-only-feature-rebuild and pixel-exact masking protocol; do not use for model selection or cite as a valid score.",
+  "release_decision": "negative"
 }

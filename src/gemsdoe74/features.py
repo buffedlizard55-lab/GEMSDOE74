@@ -1,18 +1,10 @@
-"""Synthetic feature generators for H74-1 basement-step ridge.
+"""Toy synthetic surfaces used in legacy H74-1 code; not competition features.
 
-WARNING: this module only generates synthetic test fields; no real-data loading path exists.
-When not, we synthesize physically plausible proxy fields that replicate the statistics and
-spatial fabric of the real bands so the site can still audit the emission rule and produce
-a portal-safe TIF without a DrivenData login.
-
-Historical unverified band claims (do not use these indices without real metadata):
-- depth_to_base_surf (band 15): "Depth to basement surface - thickness of sedimentary cover"
-- det_elev, det_elev_slope (bands 12,13)
-- iso_grav_anom, slope (bands 13,14)
-- mag fields: tmi, tmi_vg, tmi_hg, rtp, tc (bands 1-6,9,14)
-
-H74-1 uses: depth_to_base_surf, det_elev_slope, iso_grav_anom
-Signature: multi-scale ridge extraction on gradient-magnitude of depth_to_base_surf, gated by low det_elev_slope.
+These functions generate artificial depth/elevation-like arrays for software exploration.
+They are not calibrated to GeoDAWN, do not load `training_features.tif`, and do not
+replicate measured band statistics. The former implementation's descriptions of official
+band indices and physical realism were not verified against the official data manifest.
+Do not use these arrays to make or validate a competition submission.
 """
 from __future__ import annotations
 import numpy as np

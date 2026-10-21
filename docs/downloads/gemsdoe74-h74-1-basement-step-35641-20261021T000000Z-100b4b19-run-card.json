@@ -1,79 +1,18 @@
 {
-  "lane": "h74-1",
-  "hypothesis": "H74-1 Basement-step gradient-magnitude ridge gated by surface quiescence",
-  "mechanism": "Ridge extraction on gradient magnitude of depth_to_base_surf (cover thickness) at 3 scales, gated by low detrended-elevation slope (surface quiescence) and weighted by concealment (thicker cover)",
-  "non_fault_mimic": "Paleochannel fill or lacustrine sediment lens that also produces a cover-thickness step and low surface slope (e.g., Lahontan paleolake deposits)",
-  "holdout_dti_mean": null,
-  "holdout_dti_per_fold": null,
-  "holdout_dti_ci95": null,
-  "random_baseline_mean": null,
-  "delta_vs_random": null,
-  "n_withheld_positives": null,
-  "leakage_canary": null,
-  "correlation_vs_registry": null,
-  "overlap_within_3px_pct": null,
-  "raster_sha256": "af4afc84b6ff758ccae86dc116c1b14dd1b66de48462899eebc4d5b43d7aef27",
-  "raster_shape": [
-    3730,
-    3292
-  ],
-  "raster_crs": "EPSG:32611",
-  "validator": [
-    {
-      "name": "dimensions",
-      "passed": true,
-      "detail": "3292x3730 expected 3292x3730"
-    },
-    {
-      "name": "band_count",
-      "passed": true,
-      "detail": "count 1"
-    },
-    {
-      "name": "crs",
-      "passed": true,
-      "detail": "EPSG:32611 expected EPSG:32611"
-    },
-    {
-      "name": "transform",
-      "passed": true,
-      "detail": "| 100.00, 0.00, 243350.00|\n| 0.00,-100.00, 4508550.00|\n| 0.00, 0.00, 1.00| expected | 100.00, 0.00, 243350.00|\n| 0.00,-100.00, 4508550.00|\n| 0.00, 0.00, 1.00|"
-    },
-    {
-      "name": "dtype",
-      "passed": true,
-      "detail": "float32"
-    },
-    {
-      "name": "all_finite",
-      "passed": true,
-      "detail": "finite True (strict portal-safe: whole array must be finite)"
-    },
-    {
-      "name": "range_0_1",
-      "passed": true,
-      "detail": "[0.000000,1.000000] whole array"
-    },
-    {
-      "name": "no_sentinel",
-      "passed": true,
-      "detail": "sentinel -3.4e38 absent"
-    },
-    {
-      "name": "nodata_none_portal_safe",
-      "passed": true,
-      "detail": "nodata=None"
-    }
-  ],
-  "validator_passed": true,
+  "schema": "gemsdoe74-legacy-run-card-review/1",
+  "artifact": "gemsdoe74-h74-1-basement-step-35641-20261021T000000Z-100b4b19-zeros.tif",
+  "artifact_sha256": "af4afc84b6ff758ccae86dc116c1b14dd1b66de48462899eebc4d5b43d7aef27",
+  "evidence_status": "INVALID-TOY-RESULTS",
+  "release_status": "HOLD — REVIEW FIXTURE ONLY; DO NOT SUBMIT",
+  "reason": "Legacy code generated synthetic surfaces and targets, did not use official competition rasters, did not implement the required buffered whole-segment holdout, and hard-coded canary and registry similarity fields.",
+  "historical_holdout_dti": null,
+  "historical_ci95": null,
+  "historical_withheld_positive_count": null,
+  "historical_feature_auc": null,
+  "historical_registry_correlation": null,
+  "historical_registry_overlap": null,
   "submission_name": "GEMSDOE74-H74-1-BASEMENT-STEP",
   "submission_note": "GEMSDOE74 H74-1 basement-step B=2 d2.8 35641 dots; all-finite 0-1; zeros-outside",
   "verdict": "negative",
-  "lane_id": "h74-1",
-  "emitted_dots": 35641,
-  "on_catalogue_dots": 0,
-  "min_distance_px": 2.8,
-  "seed": 74,
-  "retracted": true,
-  "retraction_reason": "Synthetic truth and fields; canary and registry comparisons hard-coded. Not HOLDOUT-DTI evidence."
+  "warning": "The original numeric fields have been withdrawn from active reporting; see the repository audit. No organizer receipt exists."
 }

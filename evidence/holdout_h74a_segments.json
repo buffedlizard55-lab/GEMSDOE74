@@ -147,5 +147,7 @@
   "delta_sgmc": -0.03287164038438945,
   "passes_random_cat": false,
   "passes_random_sgmc": false,
-  "note": "HOLDOUT-DTI (evaluator v0.2 segment-based, 4 folds, ~12k hidden truth total). No ORGANIZER-CONFIRMED score. Holdout truth is catalogue only, so it cannot reward genuinely new faults (IR-32-PROXY-01)."
+  "note": "HOLDOUT-DTI (evaluator v0.2 segment-based, 4 folds, ~12k hidden truth total). No ORGANIZER-CONFIRMED score. Holdout truth is catalogue only, so it cannot reward genuinely new faults (IR-32-PROXY-01).",
+  "evidence_status": "INVALID AS HOLDOUT-DTI: proxy evaluator did not meet the required whole-segment-with-buffer, visible-only-feature-rebuild and pixel-exact masking protocol; do not use for model selection or cite as a valid score.",
+  "release_decision": "negative"
 }

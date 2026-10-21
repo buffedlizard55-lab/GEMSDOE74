@@ -1,31 +1,36 @@
-"""Leakage canary: single feature alone should not get AUC >0.90."""
-import pytest
+"""Unit tests for leakage_canary; these are not real-data leakage results."""
 import numpy as np
-from sklearn.metrics import roc_auc_score
-import rasterio, pathlib
-def test_canary():
-    # Test that catalogue-masked holdout not leaking via footprint or distance
-    # Simple: check that a single band (e.g., K) alone does not predict hidden faults with high AUC
-    try:
-        K = rasterio.open("/tmp/gems74_data/external/geodawn_rad_u8.tif").read(1).astype(float)
-        cat = rasterio.open("/tmp/gems74_data/labels.tif").read(1)>0
-        foot = np.isfinite(rasterio.open("/tmp/gems74_data/sample_submission.tif").read(1))
-    except Exception:
-        pytest.skip("Optional mirrored data absent; this is not a successful leakage check")
-    # Create holdout: hide 20% segments (approximate with random pixels)
-    rng=np.random.default_rng(0)
-    # Use segment-based truth already computed? Simplify: random 10% of cat as positives, rest as negatives
-    pos_idx=np.argwhere(cat & foot)
-    neg_idx=np.argwhere(foot & ~cat)
-    # Sample
-    n_pos=min(2000, len(pos_idx))
-    n_neg=2000
-    pos_sample=pos_idx[rng.choice(len(pos_idx), n_pos, replace=False)]
-    neg_sample=neg_idx[rng.choice(len(neg_idx), n_neg, replace=False)]
-    y=np.concatenate([np.ones(n_pos), np.zeros(n_neg)])
-    # Feature: K value
-    X=np.concatenate([K[pos_sample[:,0], pos_sample[:,1]], K[neg_sample[:,0], neg_sample[:,1]]])
-    # AUC should be modest
-    auc=roc_auc_score(y, X)
-    print(f"canary AUC K alone = {auc:.3f}")
-    assert auc < 0.90, f"Leakage suspected AUC {auc} >0.90"
+
+from gemsdoe74.holdout import hide_and_recover_scores, leakage_canary
+import pytest
+
+
+def test_canary_flags_a_feature_that_encodes_the_labels():
+    labels = np.zeros((20, 20), dtype=bool)
+    labels[::2, ::2] = True
+    mask = np.ones_like(labels, dtype=bool)
+
+    result = leakage_canary({"deliberate_label_copy": labels.astype(float)}, labels, mask)
+
+    assert len(result) == 1
+    assert result[0]["auc"] == 1.0
+    assert result[0]["flag_leakage"] is True
+
+
+def test_canary_does_not_flag_independent_deterministic_feature():
+    labels = np.zeros((20, 20), dtype=bool)
+    labels[::2, ::2] = True
+    mask = np.ones_like(labels, dtype=bool)
+    # Feature varies spatially but is independent of the checkerboard labels.
+    feature = np.random.RandomState(17).normal(size=labels.shape)
+
+    result = leakage_canary({"independent_noise": feature}, labels, mask)
+
+    assert len(result) == 1
+    assert result[0]["auc"] < 0.90
+    assert result[0]["flag_leakage"] is False
+
+
+def test_legacy_holdout_helper_fails_closed():
+    with pytest.raises(NotImplementedError, match="No compliant holdout evaluator"):
+        hide_and_recover_scores(None, None, None, None, None)

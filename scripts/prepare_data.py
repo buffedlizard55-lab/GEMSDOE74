@@ -1,52 +1,100 @@
 #!/usr/bin/env python3
-"""Validate required real inputs, rejecting absent files and mismatched grids."""
-import argparse
+"""Validate locally placed official competition inputs and write a provenance manifest.
+
+This script does not download data or decide usage rights. Place authorized official
+files under data/ and verify provenance from the DrivenData data tab first.
+"""
 import hashlib
 import json
+import sys
+from datetime import datetime, timezone
 from pathlib import Path
+
 import numpy as np
 import rasterio
 
-def prepare(data):
-    data = Path(data)
-    manifest = data / 'prepared_manifest.json'
-    manifest.unlink(missing_ok=True)  # never leave a stale success on failed rerun
-    names = ['sample_submission.tif', 'training_features.tif', 'existing_faults.tif']
-    missing = [n for n in names if not (data / n).is_file()]
-    if missing:
-        raise ValueError('Missing required real inputs: ' + ', '.join(missing))
-    records = []
-    grid = None
-    for name in names:
-        p = data / name
-        with rasterio.open(p) as ds:
-            current = (ds.shape, ds.crs, ds.transform)
-            if ds.crs is None or (grid is not None and current != grid):
-                raise ValueError(f'{name}: grid mismatch or missing CRS')
-            grid = current
-            if name != 'training_features.tif' and ds.count != 1:
-                raise ValueError(f'{name}: expected single band')
-            for band in range(1, ds.count + 1):
-                a = ds.read(band, masked=True)
-                values = a.compressed()
-                if values.size == 0 or not np.isfinite(values).all():
-                    raise ValueError(f'{name} band {band}: empty or nonfinite unmasked data')
-            h = hashlib.sha256()
-            with p.open('rb') as f:
-                for chunk in iter(lambda: f.read(1 << 20), b''):
-                    h.update(chunk)
-            records.append({'file': name, 'sha256': h.hexdigest(), 'bands': ds.count,
-                            'descriptions': ds.descriptions})
-    result = {'checked': True, 'organizer_authenticated': False, 'files': records,
-              'note': 'Header/integrity checks only; band semantics and rights still require provenance.'}
-    manifest.write_text(json.dumps(result, indent=2) + '\n')
-    return result
+DATA = Path("data")
+REQUIRED = ("sample_submission.tif", "training_features.tif", "labels.tif")
+OPTIONAL_RASTERS = ("existing_faults.tif",)
 
-if __name__ == '__main__':
-    ap = argparse.ArgumentParser()
-    ap.add_argument('--data', default='data')
-    args = ap.parse_args()
-    try:
-        prepare(args.data)
-    except (ValueError, OSError) as e:
-        ap.exit(2, f'BLOCKED: {e}\n')
+
+def sha256(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as stream:
+        for chunk in iter(lambda: stream.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+
+def main() -> int:
+    missing = [name for name in REQUIRED if not (DATA / name).is_file()]
+    if missing:
+        # Remove a stale success record so failed preparation cannot leave misleading state.
+        (DATA / "prepared_manifest.json").unlink(missing_ok=True)
+        print("BLOCKED: missing required official input(s): " + ", ".join(missing), file=sys.stderr)
+        print("No prepared_manifest.json was written. Obtain authorized files from the official data tab.", file=sys.stderr)
+        return 2
+
+    reference = DATA / "sample_submission.tif"
+    with rasterio.open(reference) as template:
+        geometry = {
+            "width": template.width,
+            "height": template.height,
+            "shape": [template.height, template.width],
+            "crs": template.crs.to_string() if template.crs else None,
+            "transform": list(template.transform)[:6],
+            "band_count": template.count,
+            "dtype": list(template.dtypes),
+            "nodata": template.nodata,
+            "finite_footprint_cells": int(np.isfinite(template.read(1)).sum()),
+        }
+    if not geometry["crs"]:
+        print("FAIL: sample_submission.tif has no CRS", file=sys.stderr)
+        return 1
+
+    datasets = []
+    for name in REQUIRED[1:] + tuple(n for n in OPTIONAL_RASTERS if (DATA / n).is_file()):
+        path = DATA / name
+        with rasterio.open(path) as dataset:
+            matches = (
+                dataset.width == geometry["width"] and
+                dataset.height == geometry["height"] and
+                dataset.crs == rasterio.crs.CRS.from_string(geometry["crs"]) and
+                dataset.transform == rasterio.Affine(*geometry["transform"])
+            )
+            record = {
+                "file": name,
+                "sha256": sha256(path),
+                "shape": [dataset.height, dataset.width],
+                "crs": dataset.crs.to_string() if dataset.crs else None,
+                "transform": list(dataset.transform)[:6],
+                "band_count": dataset.count,
+                "dtype": list(dataset.dtypes),
+                "nodata": dataset.nodata,
+                "matches_sample_submission_geometry": bool(matches),
+            }
+            datasets.append(record)
+            if not matches:
+                print(f"FAIL: {name} geometry does not match sample_submission.tif", file=sys.stderr)
+
+    if not all(item["matches_sample_submission_geometry"] for item in datasets):
+        print("No prepared_manifest.json was written because geometry checks failed.", file=sys.stderr)
+        return 1
+
+    manifest = {
+        "schema": "gemsdoe74-input-manifest/1",
+        "checked_utc": datetime.now(timezone.utc).isoformat(),
+        "provenance_status": "owner must verify files came from authorized official competition download",
+        "template": {"file": reference.name, "sha256": sha256(reference), **geometry},
+        "datasets": datasets,
+        "status": "local geometry/integrity checks passed; scientific validity and rights not asserted",
+    }
+    target = DATA / "prepared_manifest.json"
+    target.write_text(json.dumps(manifest, indent=2) + "\n")
+    print(json.dumps(manifest, indent=2))
+    print(f"Wrote {target}; verify source rights and feature-band meanings before use.")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

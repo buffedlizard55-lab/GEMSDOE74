@@ -1,83 +1,38 @@
 {
-  "file_path": "docs/downloads/gemsdoe74-h74-1-basement-step-35641-20261021T000000Z-100b4b19-zeros.tif",
-  "file_name": "gemsdoe74-h74-1-basement-step-35641-20261021T000000Z-100b4b19-zeros.tif",
+  "file": "gemsdoe74-h74-1-basement-step-35641-20261021T000000Z-100b4b19-zeros.tif",
   "sha256": "af4afc84b6ff758ccae86dc116c1b14dd1b66de48462899eebc4d5b43d7aef27",
-  "timestamp_utc": "20261021T023311Z",
   "outside_mode": "zeros",
-  "crs": "EPSG:32611",
-  "transform": [
-    100.0,
-    0.0,
-    243350.0,
-    0.0,
-    -100.0,
-    4508550.0
-  ],
-  "shape": [
-    3730,
-    3292
-  ],
-  "dtype": "float32",
-  "nodata": null,
-  "emitted_positive_pixels": 35641,
-  "footprint_cells": 5169117,
-  "footprint_fraction": 0.42096666221467915,
-  "on_catalogue": 0,
-  "in_footprint_finite_pixels": 5169117,
-  "in_footprint_min": 0.0,
-  "in_footprint_max": 1.0,
-  "full_grid_finite_pixels": 12279160,
-  "full_grid_min": 0.0,
-  "full_grid_max": 1.0,
-  "checks": [
-    {
-      "name": "dimensions",
-      "passed": true,
-      "detail": "3292x3730 expected 3292x3730"
-    },
-    {
-      "name": "band_count",
-      "passed": true,
-      "detail": "count 1"
-    },
-    {
-      "name": "crs",
-      "passed": true,
-      "detail": "EPSG:32611 expected EPSG:32611"
-    },
-    {
-      "name": "transform",
-      "passed": true,
-      "detail": "| 100.00, 0.00, 243350.00|\n| 0.00,-100.00, 4508550.00|\n| 0.00, 0.00, 1.00| expected | 100.00, 0.00, 243350.00|\n| 0.00,-100.00, 4508550.00|\n| 0.00, 0.00, 1.00|"
-    },
-    {
-      "name": "dtype",
-      "passed": true,
-      "detail": "float32"
-    },
-    {
-      "name": "all_finite",
-      "passed": true,
-      "detail": "finite True (strict portal-safe: whole array must be finite)"
-    },
-    {
-      "name": "range_0_1",
-      "passed": true,
-      "detail": "[0.000000,1.000000] whole array"
-    },
-    {
-      "name": "no_sentinel",
-      "passed": true,
-      "detail": "sentinel -3.4e38 absent"
-    },
-    {
-      "name": "nodata_none_portal_safe",
-      "passed": true,
-      "detail": "nodata=None"
-    }
-  ],
-  "all_checks_passed": true,
-  "validation_passed": true,
-  "note": "GEMSDOE74 H74-1 basement-step B=2 d2.8 35641 dots; all-finite 0-1; zeros-outside",
-  "unique_id": "af4afc84b6ff"
+  "measured_local_file_metadata": {
+    "shape": [
+      3730,
+      3292
+    ],
+    "crs": "EPSG:32611",
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "dtype": "float32",
+    "nodata": null,
+    "stored_cells": 12279160,
+    "finite_cells": 12279160,
+    "positive_cells": 35641,
+    "min_finite": 0.0,
+    "max_finite": 1.0,
+    "infinity_cells": 0
+  },
+  "evidence_class": "MEASURED-LOCAL: current checked-in bytes and raster metadata only; pinned values are not an authenticated official template.",
+  "legacy_provenance": "synthetic generation: historical generator constructed synthetic surfaces/footprint/targets; no official inputs or compliant holdout",
+  "release_status": "HOLD — REVIEW FIXTURE ONLY; DO NOT SUBMIT",
+  "scientific_validation": "NOT ESTABLISHED: no compliant official-data holdout; no score or promotion claim.",
+  "official_template_match": null,
+  "official_outside_bounds_null_or_nan_check": null,
+  "official_catalogue_check": null,
+  "registry_uniqueness_check": null,
+  "organizer_confirmed_receipt": false,
+  "interpretation": "The official problem page requires null/NaN outside training bounds. Without the official sample-submission template, footprint alignment and outside-bounds compliance are unavailable. Local readability does not prove competition-format compliance or scientific validity."
 }

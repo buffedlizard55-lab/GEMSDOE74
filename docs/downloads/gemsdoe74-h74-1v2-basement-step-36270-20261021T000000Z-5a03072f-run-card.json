@@ -1,108 +1,61 @@
 {
-  "lane": "h74-1v2",
-  "hypothesis": "H74-1v2 Basement-step gradient-magnitude ridge gated by surface quiescence (REAL footprint & catalogue B=2)",
-  "mechanism": "Ridge extraction on gradient magnitude of depth_to_base_surf at 3 scales, gated by low detrended-elevation slope and weighted by concealment (thicker cover)",
-  "non_fault_mimic": "Paleochannel fill or lacustrine sediment lens that also produces cover-thickness step and low surface slope (e.g., Lahontan paleolake deposits)",
-  "holdout_dti_mean": 0.21140313284629714,
-  "holdout_dti_per_fold": [
-    0.15660618308007235,
-    0.10085415349145423,
-    0.29673478919445245,
-    0.2914174056192096
-  ],
-  "random_baseline_mean": 0.04611026579413499,
-  "delta_vs_random": 0.16529286705216215,
-  "incumbent_mean": 0.04380847898367647,
-  "delta_vs_incumbent": 0.16759465386262068,
-  "incumbent_per_fold": [
-    0.04354982952971556,
-    0.03268719327956485,
-    0.053346812177086755,
-    0.04565008094833873
-  ],
-  "holdout_dti_ci95": [
-    0.12873016828576328,
-    0.29407609740683105
-  ],
-  "n_withheld_positives": 12755,
-  "leakage_canary": [
-    {
-      "feature": "h74_1_field",
-      "auc": 0.6733594413217767,
-      "flag_leakage": false
-    }
-  ],
-  "correlation_vs_registry": 0.0037003992429124485,
-  "overlap_within_3px_pct": 15.939873585807618,
-  "overlap_cand_in_ref_pct": 14.097049903501516,
+  "schema": "gemsdoe74-legacy-review-card/2",
+  "lane": "H74-1v2 \u2014 historical synthetic review fixture; not an eligible model candidate",
+  "hypothesis": "Synthetic basement-step gradient-magnitude ridge gated by low surface slope; mechanism remains an unvalidated hypothesis.",
+  "named_non_fault_mimic": "Paleochannel fill or lacustrine sediment lens can produce a cover-thickness boundary and low-relief surface without fault displacement.",
+  "generation_provenance": "Legacy script constructed a synthetic prediction field and synthetic hidden target. Historical statements that footprint/catalogue were real relied on an owner mirror whose provenance/rights are not organizer-authenticated and whose files are absent here.",
+  "holdout_dti": {
+    "label": "HOLDOUT-DTI",
+    "value": null,
+    "ci95": null,
+    "evaluator_version": null,
+    "withheld_positive_count": null,
+    "status": "NOT COMPUTED under required protocol. Previously reported values are withdrawn."
+  },
+  "leakage_canary_auc": null,
+  "registry_comparison": {
+    "spearman_rank_correlation": null,
+    "candidate_dots_within_3px_percent": null,
+    "status": "NOT REPRODUCED; registry raster absent."
+  },
   "raster_sha256": "2e13ddb349bbc30b44c34f0d1ec1e6bae67b5c22741f43a56db928af1bf470e3",
-  "raster_shape": [
-    3730,
-    3292
-  ],
-  "raster_crs": "EPSG:32611",
-  "validator": [
-    {
-      "name": "dimensions",
-      "passed": true,
-      "detail": "3292x3730 expected 3292x3730"
-    },
-    {
-      "name": "band_count",
-      "passed": true,
-      "detail": "count 1"
-    },
-    {
-      "name": "crs",
-      "passed": true,
-      "detail": "EPSG:32611 expected EPSG:32611"
-    },
-    {
-      "name": "transform",
-      "passed": true,
-      "detail": "| 100.00, 0.00, 243350.00|\n| 0.00,-100.00, 4508550.00|\n| 0.00, 0.00, 1.00| expected | 100.00, 0.00, 243350.00|\n| 0.00,-100.00, 4508550.00|\n| 0.00, 0.00, 1.00|"
-    },
-    {
-      "name": "dtype",
-      "passed": true,
-      "detail": "float32"
-    },
-    {
-      "name": "all_finite",
-      "passed": true,
-      "detail": "finite True (strict portal-safe: whole array must be finite)"
-    },
-    {
-      "name": "range_0_1",
-      "passed": true,
-      "detail": "[0.000000,1.000000] whole array"
-    },
-    {
-      "name": "no_sentinel",
-      "passed": true,
-      "detail": "sentinel -3.4e38 absent"
-    },
-    {
-      "name": "nodata_none_portal_safe",
-      "passed": true,
-      "detail": "nodata=None"
-    },
-    {
-      "name": "template_match",
-      "passed": true,
-      "detail": "CRS/shape/transform match template"
-    }
-  ],
-  "validator_passed": true,
-  "submission_name": "GEMSDOE74-H74-1V2-BASEMENT-STEP",
-  "submission_note": "GEMSDOE74 H74-1v2 basement-step B=2 d2.8 36270 dots; all-finite 0-1; zeros-outside",
-  "verdict": "promote",
-  "emitted_dots": 36270,
-  "on_catalogue_dots": 0,
-  "min_distance_px": 2.8,
-  "seed": 74,
-  "timestamp_utc": "20261021T000000Z",
-  "footprint_cells": 5167373,
-  "catalogue_cells": 60988,
-  "provenance": "synthetic field (physics-faithful) + REAL footprint 5167373 + REAL catalogue 60988; rights: competition data via DrivenData login on unrestricted machine, synthetic stack reproducible offline; see docs/sources.html"
+  "raster_metadata": {
+    "shape": [
+      3730,
+      3292
+    ],
+    "crs": "EPSG:32611",
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "dtype": "float32",
+    "nodata": null,
+    "positive_cells": 36270,
+    "stored_cells": 12279160,
+    "finite_cells": 12279160,
+    "min_finite": 0.0,
+    "max_finite": 1.0
+  },
+  "local_format_validation": {
+    "status": "PASS against pinned repository constants only",
+    "official_template_match": null,
+    "labels_catalogue_check": null,
+    "note": "Pinned-constant file check is not a complete official-format check, not an organizer receipt, and does not validate model science.",
+    "outside_bounds_requirement": "Official problem page says null/NaN outside training bounds; sample template absent, so exact compliance cannot be established. This zeros-mode fixture is not confirmed submission-format compliant."
+  },
+  "emitted_positive_pixels": 36270,
+  "legacy_configuration": {
+    "nominal_min_distance_px": 2.8,
+    "outside_mode": "zeros",
+    "seed": 74
+  },
+  "release_status": "HOLD \u2014 DO NOT SUBMIT",
+  "verdict": "negative",
+  "reason": "Synthetic hidden target, synthetic prediction field, invalid quadrant holdout, and historical mirror-based footprint/catalogue claims not reproducible in this checkout. Prior numerical results have been withdrawn.",
+  "organizer_confirmed": false
 }

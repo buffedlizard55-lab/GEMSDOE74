@@ -1,145 +1,82 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Run card · GEMSDOE74 review</title>
-<link rel="stylesheet" href="../assets/site.css">
-</head><body><aside id="INTEGRITY-RETRACTION-20261021" style="padding:24px;background:#fff0ed;color:#752217;border:4px solid #a82b20"><b>HISTORICAL PAGE — DO NOT SUBMIT.</b> Prior synthetic H74-1 scores, AUC and registry claims are retracted. Other legacy holdouts do not meet the buffered protocol. <a href="../audit-20261021.html">Read the authoritative audit.</a></aside>
-<header class="top"><span class="brand">GEMSDOE74</span><a href="../index.html">Site home</a><a href="submit-checklist.html">Submit checklist</a><a href="analysis-0-2778.html">The 0.2778 question</a><a href="hypotheses.html">Hypotheses</a><a href="leaderboard.html">Leaderboard</a><a href="irregularities.html">Irregularities</a><a href="sources.html">Sources</a><a href="run-card.html" aria-current="page">Run card</a></header>
-<main>
-
-<h1>Run card</h1>
-<p class="sub">Machine-readable copy: <a href="data/run-card.json">data/run-card.json</a> · schema gems74-run-card/1 · 2026-10-21</p>
-<div class="status hold"><p class="big">READY. H74-1v2 Basement-step ridge gated by quiescence is cleared for submission (portal-safe, unique, beats random and incumbent on same holdout).</p>
-<p></p></div>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Run card · GEMSDOE74</title><link rel="stylesheet" href="../assets/site.css"></head>
+<body><header class="top"><span class="brand">GEMSDOE74</span><a href="../index.html">Overview</a><a href="../executive-summary.html">Submission guide</a><a href="../hypotheses.html">Hypotheses</a><a href="repo-audit-2026-10-21.html">Code audit</a></header><main><h1>Current run card</h1>
+<p class="sub">Status: <strong>HOLD — DO NOT SUBMIT</strong>. Machine-readable record: <a href="../data/run-card.json">JSON</a>.</p>
+<section class="status hold"><h2>Verdict: negative</h2><p>Holdout DTI, CI, withheld-positive count, and registry comparison are null because no compliant real-data evaluation was possible.</p></section>
 <pre>{
-  &quot;schema&quot;: &quot;gems74-run-card/1&quot;,
-  &quot;session_branch&quot;: &quot;arena/0fa7e216-gemsdoe74&quot;,
+  &quot;schema&quot;: &quot;gemsdoe74-audit-run-card/2&quot;,
   &quot;date_utc&quot;: &quot;2026-10-21&quot;,
-  &quot;status&quot;: &quot;READY. H74-1v2 Basement-step ridge gated by quiescence is cleared for submission (portal-safe, unique, beats random and incumbent on same holdout).&quot;,
-  &quot;lane&quot;: {
-    &quot;method&quot;: &quot;H74-1v2 Basement-step ridge gated by quiescence: multi-scale Hessian ridge on gradient-magnitude of depth_to_base_surf (synthetic but physics-faithful, 3 scales sigma 1.0/2.0/3.5, max-pooled), gated by low det_elev_slope (40th/70th percentile quiescence) and weighted by cover thickness (20/80 conceal 0.5-1). Poisson-disk d2.8 (280m) matching 300m kernel, B=2 prune 0 on REAL catalogue 60988. Uses REAL footprint 5167373 from sample_submission.tif and REAL catalogue from labels.tif via gh api mirror; synthetic field only where training_features.tif is login-gated.&quot;,
-    &quot;lane_status&quot;: &quot;EXECUTED: 1/3 experiments used, &lt;2h. Lane H74-1 unchanged mechanism, but now with REAL footprint &amp; catalogue validation. Correlation vs registry rho 0.0037 &lt;0.90, overlap 15.9% &lt;70% — not drifted, not duplicate.&quot;
-  },
-  &quot;hypothesis&quot;: &quot;H74-1v2 Basement-step gradient-magnitude ridge gated by surface quiescence — concealed basement-block boundaries under basin fill (thick cover, low surface slope) vs exposed Quaternary surface-fault catalogue&quot;,
-  &quot;mechanism&quot;: &quot;Fault-block boundary is a step in cover thickness → boundary is crest line of gradient-magnitude, not blob. Hessian eigen-decomposition on gradient-magnitude at 3 scales, anisotropy |λ2|/|λ1|&gt;5, skeleton max-pooled. Quiescence gate removes exposed scarps (high slope) already in catalogue, keeps concealed steps. Concealment weight up-weights thicker cover where catalogue detection probability lowest.&quot;,
-  &quot;named_non_fault_process_that_could_mimic_it&quot;: &quot;Paleochannel fill or lacustrine sediment lens (Lahontan paleolake deposits) that also produces cover-thickness step and low surface slope — reason holdout includes 65% random-scattered hidden truth as magnetic/seismic lineaments not on basement steps (IR-74-HOLDOUT-SYNTH).&quot;,
+  &quot;branch&quot;: &quot;arena/2ac1b3ab-gemsdoe74&quot;,
+  &quot;hypothesis&quot;: &quot;H74-1v2 basement-step ridge gated by low surface slope; legacy artifact audit only&quot;,
+  &quot;mechanism&quot;: &quot;The legacy script synthesizes a basement-depth surface, computes a multiscale ridge response, gates by synthetic slope, and emits 36,270 dots. The raster is not derived from official training features, so this is not a validated geological prediction.&quot;,
+  &quot;named_non_fault_process_that_could_mimic_it&quot;: &quot;Paleochannel or lacustrine sediment-thickness boundary can produce a cover-thickness step and low-relief basin surface without fault displacement.&quot;,
   &quot;holdout_dti&quot;: {
     &quot;label&quot;: &quot;HOLDOUT-DTI&quot;,
-    &quot;evaluator&quot;: &quot;gemsdoe74.metric v0.1 compute_dti_components (alpha 0.2 beta 0.8 R300m triangular kernel, epsilon 1e-7) — exact distance-weighted Tversky. 4-quadrant spatially-blocked (NE/NW/SE/SW), pooled? No, mean over quadrants, each quadrant&#x27;s detector never sees its hidden faults. Every rival re-emitted at same pixel count in report for fair contrast.&quot;,
-    &quot;candidate&quot;: &quot;docs/downloads/gemsdoe74-h74-1v2-basement-step-36270-20261021T000000Z-5a03072f-zeros.tif (36,270 dots)&quot;,
-    &quot;mean&quot;: 0.21140313284629714,
-    &quot;per_fold&quot;: [
-      0.156612082,
-      0.10084641,
-      0.296728012,
-      0.291421825
-    ],
-    &quot;ci95&quot;: [
-      0.128731,
-      0.294078
-    ],
-    &quot;random_baseline_mean&quot;: 0.046112,
-    &quot;delta_vs_random&quot;: 0.165291,
-    &quot;incumbent_mean&quot;: 0.043812979,
-    &quot;delta_vs_incumbent&quot;: 0.16759,
-    &quot;incumbent_per_fold&quot;: [
-      0.043549829,
-      0.032687193,
-      0.053346812,
-      0.045650081
-    ],
-    &quot;incumbent_file&quot;: &quot;/tmp/h33.tif sha256 c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9 (GEMSDOE32 H33-2-B2 37654 dots)&quot;,
-    &quot;withheld_positives&quot;: 12755,
-    &quot;withheld_description&quot;: &quot;field-high 12755 cells keep 4472 + random 8283, 35/65 mix to avoid trivial high DTI (without mix HOLDOUT-DTI would be 0.51 leakage-like, IR-74-HOLDOUT-SYNTH). Catalogue excluded from hidden (hidden are off-catalogue faults).&quot;,
-    &quot;passes_random&quot;: true,
-    &quot;passes_incumbent&quot;: true,
-    &quot;caveat&quot;: &quot;HOLDOUT-DTI is not ORGANIZER-CONFIRMED. Truth is visible catalogue + synthetic scatter, cannot reward genuinely new fault far from any known trace (IR-32-PROXY-01) — but incumbent comparison on same synthetic truth is fair for relative ranking.&quot;
+    &quot;value&quot;: null,
+    &quot;ci95&quot;: null,
+    &quot;evaluator_version&quot;: null,
+    &quot;withheld_positive_count&quot;: null,
+    &quot;status&quot;: &quot;NOT COMPUTED: legacy report&#x27;s synthetic hidden target and 4-quadrant scoring are not the required buffered whole-segment hide-and-recover protocol. Prior HOLDOUT-DTI fields are withdrawn and must not be used for model selection.&quot;
   },
-  &quot;correlation_and_overlap_vs_registry&quot;: {
+  &quot;correlation_overlap_vs_registry&quot;: {
     &quot;label&quot;: &quot;MEASURED-LOCAL&quot;,
-    &quot;reference&quot;: &quot;GEMSDOE32 primary zeros.tif sha256 c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9 (H33-2-B2 37654 dots)&quot;,
-    &quot;candidate_sha256&quot;: &quot;2e13ddb349bbc30b44c34f0d1ec1e6bae67b5c22741f43a56db928af1bf470e3&quot;,
-    &quot;candidate_file&quot;: &quot;docs/downloads/gemsdoe74-h74-1v2-basement-step-36270-20261021T000000Z-5a03072f-zeros.tif&quot;,
-    &quot;spearman_rho_full_grid&quot;: 0.0037,
-    &quot;spearman_method&quot;: &quot;500k subsample over 12,279,160 cells (mostly zeros, ties dominate)&quot;,
-    &quot;dot_overlap_reference_within_3px_of_candidate&quot;: 15.9,
-    &quot;dot_overlap_candidate_within_3px_of_reference&quot;: 14.1,
-    &quot;thresholds&quot;: {
-      &quot;rho_copy_above&quot;: 0.9,
-      &quot;overlap_copy_above&quot;: 70
-    },
-    &quot;pass_uniqueness&quot;: true,
-    &quot;method_note&quot;: &quot;Both checked on surface before placement AND on final dots per protocol. If either exceeds threshold, logged as duplicate and stopped.&quot;
+    &quot;spearman_rank_correlation&quot;: null,
+    &quot;dot_overlap_within_3px_percent&quot;: null,
+    &quot;status&quot;: &quot;NOT REPRODUCED: registry raster is not present in this checkout. Historical comparison values are not accepted as measured in this audit.&quot;
   },
-  &quot;leakage_canary&quot;: {
-    &quot;status&quot;: &quot;PASS&quot;,
-    &quot;rule&quot;: &quot;Single feature alone AUC &gt;0.90 on holdout means leakage until proven otherwise&quot;,
-    &quot;result&quot;: &quot;H74-1v2 field AUC 0.6734 &lt;0.90, no flag. Computed via roc_auc_score(field[foot], hidden[foot]) on REAL footprint 5167373.&quot;,
-    &quot;flag_leakage&quot;: false
+  &quot;raster&quot;: {
+    &quot;file&quot;: &quot;docs/downloads/gemsdoe74-h74-1v2-basement-step-36270-20261021T000000Z-5a03072f-zeros.tif&quot;,
+    &quot;sha256&quot;: &quot;2e13ddb349bbc30b44c34f0d1ec1e6bae67b5c22741f43a56db928af1bf470e3&quot;,
+    &quot;evidence_class&quot;: &quot;MEASURED-LOCAL: hash and GeoTIFF metadata re-read from checked-in bytes&quot;,
+    &quot;warning&quot;: &quot;Historical research/format fixture; synthetic prediction field and hidden target; not cleared for submission.&quot;
   },
-  &quot;raster_sha256&quot;: &quot;2e13ddb349bbc30b44c34f0d1ec1e6bae67b5c22741f43a56db928af1bf470e3&quot;,
-  &quot;raster_shape&quot;: [
-    3730,
-    3292
-  ],
-  &quot;raster_crs&quot;: &quot;EPSG:32611&quot;,
-  &quot;raster_transform&quot;: [
-    100.0,
-    0.0,
-    243350.0,
-    0.0,
-    -100.0,
-    4508550.0
-  ],
-  &quot;raster_dtype&quot;: &quot;float32&quot;,
-  &quot;raster_nodata&quot;: null,
   &quot;validator_output&quot;: {
-    &quot;dimensions&quot;: true,
-    &quot;band_count&quot;: true,
+    &quot;command&quot;: &quot;.venv/bin/python scripts/validate_submission.py docs/downloads/gemsdoe74-h74-1v2-basement-step-36270-20261021T000000Z-5a03072f-zeros.tif&quot;,
+    &quot;exit_status&quot;: 0,
+    &quot;single_band_float32&quot;: true,
+    &quot;shape&quot;: [
+      3730,
+      3292
+    ],
     &quot;crs&quot;: &quot;EPSG:32611&quot;,
-    &quot;transform&quot;: &quot;100/243350/4508550/-100&quot;,
-    &quot;dtype_float32&quot;: true,
-    &quot;all_finite&quot;: true,
-    &quot;range_0_1&quot;: true,
-    &quot;no_sentinel&quot;: true,
-    &quot;nodata_none&quot;: true,
-    &quot;full_grid_finite_pixels&quot;: 12279160,
-    &quot;footprint_cells&quot;: 5167373,
-    &quot;emitted_positive_pixels&quot;: 36270,
-    &quot;on_catalogue&quot;: 0,
-    &quot;checks&quot;: &quot;src/gemsdoe74/submission.py validate_tif strict_portal_safe passes; scripts/validate_submission.py ALL CHECKS PASS on zeros.tif (nan twin correctly flagged as non-strict valid)&quot;,
-    &quot;all_checks_passed&quot;: true
+    &quot;transform&quot;: [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    &quot;stored_values_finite&quot;: true,
+    &quot;stored_values_in_0_1&quot;: true,
+    &quot;nodata&quot;: null,
+    &quot;positive_cells&quot;: 36270,
+    &quot;catalogue_check&quot;: null,
+    &quot;official_template_match&quot;: null,
+    &quot;note&quot;: &quot;Local format check against pinned repository constants only. Official template, footprint and labels are absent; exit 0 is not organizer confirmation.&quot;
   },
   &quot;submission&quot;: {
     &quot;name&quot;: &quot;GEMSDOE74-H74-1V2-BASEMENT-STEP&quot;,
     &quot;note&quot;: &quot;GEMSDOE74 H74-1v2 basement-step B=2 d2.8 36270 dots; all-finite 0-1; zeros-outside&quot;,
-    &quot;note_chars&quot;: 77,
-    &quot;note_limit&quot;: 140,
-    &quot;file&quot;: &quot;gemsdoe74-h74-1v2-basement-step-36270-20261021T000000Z-5a03072f-zeros.tif&quot;,
-    &quot;sha256&quot;: &quot;2e13ddb349bbc30b44c34f0d1ec1e6bae67b5c22741f43a56db928af1bf470e3&quot;,
-    &quot;release_status&quot;: &quot;READY&quot;,
-    &quot;zip&quot;: &quot;gemsdoe74-h74-1v2-basement-step-36270-20261021T000000Z-5a03072f-zeros.zip&quot;,
-    &quot;nan_twin&quot;: &quot;gemsdoe74-h74-1v2-basement-step-36270-20261021T000000Z-5a03072f-nan.tif&quot;
+    &quot;note_length_characters&quot;: 77,
+    &quot;release_status&quot;: &quot;HOLD — DO NOT SUBMIT&quot;,
+    &quot;organizer_confirmed_receipt&quot;: false,
+    &quot;note_warning&quot;: &quot;name/note are tracking metadata for this fixture only; do not use on a competition form&quot;
   },
-  &quot;verdict&quot;: &quot;promote&quot;,
-  &quot;verdict_note&quot;: &quot;Negative results are deliverables; promotion to a real slot is separate selector step within weekly cap shown on submission page. 1/3 experiments used.&quot;,
+  &quot;verdict&quot;: &quot;negative&quot;,
   &quot;budget&quot;: {
-    &quot;experiments_limit&quot;: 3,
-    &quot;experiments_used_this_session&quot;: 1,
-    &quot;experiments_used_total&quot;: &quot;H74-1v2 is v2 of H74-1 (same lane, improved validation); prior lane H74-1 counted as 1, this v2 is refinement not new hypothesis, so 1/3 used&quot;,
+    &quot;experiment_limit&quot;: 3,
+    &quot;experiments_run_in_this_review&quot;: 0,
     &quot;time_limit_hours&quot;: 2,
-    &quot;note&quot;: &quot;2h budget: ~44s generate, ~30s validate, remaining for site updates&quot;
+    &quot;note&quot;: &quot;Code/evidence review and format inspection only; no valid model experiment or weekly slot used.&quot;
   },
-  &quot;labels_key&quot;: {
-    &quot;HOLDOUT-DTI&quot;: &quot;Score computed by local evaluator on spatially-blocked or segment-based holdout. Evaluator version and withheld count are given above.&quot;,
-    &quot;MEASURED-LOCAL&quot;: &quot;Computed in this session from files in this repo or pinned sibling files. Not an organiser result.&quot;,
-    &quot;ORGANIZER-CONFIRMED&quot;: &quot;Copied from DrivenData submission receipt. None exists for any file in this repo (UNSCORED).&quot;,
-    &quot;PUBLIC-LEADERBOARD&quot;: &quot;Row on public DrivenData board. Public test only. Top is 0.4413 xiaofanhu 2026-10-21 snapshot (see docs/data/leaderboard_2026-10-21.json).&quot;,
-    &quot;PROJECTION&quot;: &quot;Model arithmetic. Never written as a score.&quot;,
-    &quot;CLAIM&quot;: &quot;Owner or site statement without a receipt.&quot;
-  }
+  &quot;limitations&quot;: [
+    &quot;Official DrivenData training features, labels and sample submission are absent and login-gated.&quot;,
+    &quot;H74-1v2 generation used synthetic prediction fields and hidden truth; its prior numerical holdout and leakage values are invalid.&quot;,
+    &quot;A previous session reported an owner-mirror footprint/catalogue; the mirror provenance is not organizer-authenticated and files are absent here.&quot;,
+    &quot;The previous internal READY receipt is not an organizer receipt; it has been changed to HOLD.&quot;,
+    &quot;No compliant holdout, real-data feature-alone leakage test, full registry duplicate calculation or organizer result is available.&quot;
+  ]
 }</pre>
-
-</main>
-<footer>Not affiliated with DrivenData, NLR, DOE or USGS. Every number carries an evidence label.</footer>
-</body></html>
+<p><a href="repo-audit-2026-10-21.html">Full audit and limitations</a></p></main><footer>Snapshot-derived page; not an organizer receipt.</footer></body></html>
