@@ -1,0 +1,429 @@
+{
+  "protocol_rule": "Rule 4 \u2014 Single-feature holdout AUC leakage canary (AUC > 0.90 means leakage)",
+  "evaluator_folds": "buffered_component_draw(seed=20, 4 spatial quadrants)",
+  "n_withheld_positives": 11321,
+  "n_sampled_negatives": 120000,
+  "n_model_features_tested": 52,
+  "max_symmetric_auc": 0.60926,
+  "all_features_passed": true,
+  "leaking_features": [],
+  "excluded_diagnostic_sgmc_auc": 0.52221,
+  "features": [
+    {
+      "index": 42,
+      "feature": "piedmont_apron_grad",
+      "holdout_auc": 0.60926,
+      "symmetric_auc": 0.60926,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    {
+      "index": 50,
+      "feature": "worm_piedmont_flank",
+      "holdout_auc": 0.59287,
+      "symmetric_auc": 0.59287,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    {
+      "index": 21,
+      "feature": "dem10_slope_std",
+      "holdout_auc": 0.58937,
+      "symmetric_auc": 0.58937,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    {
+      "index": 35,
+      "feature": "lidar1m_step_deq",
+      "holdout_auc": 0.58796,
+      "symmetric_auc": 0.58796,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    {
+      "index": 24,
+      "feature": "dem10_hgm200",
+      "holdout_auc": 0.58299,
+      "symmetric_auc": 0.58299,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    {
+      "index": 43,
+      "feature": "range_front_slope_jump",
+      "holdout_auc": 0.58026,
+      "symmetric_auc": 0.58026,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    {
+      "index": 44,
+      "feature": "concave_piedmont_lap",
+      "holdout_auc": 0.57398,
+      "symmetric_auc": 0.57398,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    {
+      "index": 20,
+      "feature": "dem10_slope_max",
+      "holdout_auc": 0.57322,
+      "symmetric_auc": 0.57322,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    {
+      "index": 22,
+      "feature": "dem10_hgm20",
+      "holdout_auc": 0.56936,
+      "symmetric_auc": 0.56936,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    {
+      "index": 23,
+      "feature": "dem10_hgm50",
+      "holdout_auc": 0.56872,
+      "symmetric_auc": 0.56872,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    {
+      "index": 14,
+      "feature": "geod_2ndinv",
+      "holdout_auc": 0.56786,
+      "symmetric_auc": 0.56786,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    {
+      "index": 12,
+      "feature": "geod_shear",
+      "holdout_auc": 0.56742,
+      "symmetric_auc": 0.56742,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    {
+      "index": 26,
+      "feature": "dem10_curv",
+      "holdout_auc": 0.56694,
+      "symmetric_auc": 0.56694,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    {
+      "index": 19,
+      "feature": "det_elev_slope",
+      "holdout_auc": 0.56486,
+      "symmetric_auc": 0.56486,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    {
+      "index": 45,
+      "feature": "scarp_collinear_9px",
+      "holdout_auc": 0.55501,
+      "symmetric_auc": 0.55501,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    {
+      "index": 25,
+      "feature": "dem10_steep_ratio",
+      "holdout_auc": 0.54808,
+      "symmetric_auc": 0.54808,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    {
+      "index": 48,
+      "feature": "worm_lidar1m_flank",
+      "holdout_auc": 0.54455,
+      "symmetric_auc": 0.54455,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    {
+      "index": 16,
+      "feature": "seismic_dens",
+      "holdout_auc": 0.54362,
+      "symmetric_auc": 0.54362,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    {
+      "index": 11,
+      "feature": "depth_base_grad",
+      "holdout_auc": 0.53902,
+      "symmetric_auc": 0.53902,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    {
+      "index": 15,
+      "feature": "seismic_prox",
+      "holdout_auc": 0.46169,
+      "symmetric_auc": 0.53831,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    {
+      "index": 38,
+      "feature": "rad_hydro_upflow",
+      "holdout_auc": 0.46351,
+      "symmetric_auc": 0.53649,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    {
+      "index": 37,
+      "feature": "lidar1m_valid",
+      "holdout_auc": 0.53185,
+      "symmetric_auc": 0.53185,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    {
+      "index": 46,
+      "feature": "pot_collinear_13px",
+      "holdout_auc": 0.52868,
+      "symmetric_auc": 0.52868,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    {
+      "index": 0,
+      "feature": "tmi_hg_log",
+      "holdout_auc": 0.52858,
+      "symmetric_auc": 0.52858,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    {
+      "index": 3,
+      "feature": "mag_tc",
+      "holdout_auc": 0.47144,
+      "symmetric_auc": 0.52856,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    {
+      "index": 9,
+      "feature": "grav_res",
+      "holdout_auc": 0.52708,
+      "symmetric_auc": 0.52708,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    {
+      "index": 34,
+      "feature": "zmean_elev",
+      "holdout_auc": 0.52644,
+      "symmetric_auc": 0.52644,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    {
+      "index": 8,
+      "feature": "grav_slope",
+      "holdout_auc": 0.52409,
+      "symmetric_auc": 0.52409,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    {
+      "index": 10,
+      "feature": "depth_base",
+      "holdout_auc": 0.52385,
+      "symmetric_auc": 0.52385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    {
+      "index": 47,
+      "feature": "multiphysics_strike_consensus",
+      "holdout_auc": 0.52277,
+      "symmetric_auc": 0.52277,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    {
+      "index": 17,
+      "feature": "mt_cond_surf",
+      "holdout_auc": 0.4785,
+      "symmetric_auc": 0.5215,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    {
+      "index": 41,
+      "feature": "potential_hessian_ridge",
+      "holdout_auc": 0.51874,
+      "symmetric_auc": 0.51874,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    {
+      "index": 51,
+      "feature": "worm_geopotential_flank",
+      "holdout_auc": 0.51786,
+      "symmetric_auc": 0.51786,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    {
+      "index": 1,
+      "feature": "tmi_vg_res",
+      "holdout_auc": 0.48273,
+      "symmetric_auc": 0.51727,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    {
+      "index": 13,
+      "feature": "geod_dilat",
+      "holdout_auc": 0.51632,
+      "symmetric_auc": 0.51632,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    {
+      "index": 28,
+      "feature": "dem10_onesided3",
+      "holdout_auc": 0.48379,
+      "symmetric_auc": 0.51621,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    {
+      "index": 7,
+      "feature": "grav_vg",
+      "holdout_auc": 0.51513,
+      "symmetric_auc": 0.51513,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    {
+      "index": 18,
+      "feature": "det_elev",
+      "holdout_auc": 0.51276,
+      "symmetric_auc": 0.51276,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    {
+      "index": 27,
+      "feature": "dem10_onesided",
+      "holdout_auc": 0.48794,
+      "symmetric_auc": 0.51206,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    {
+      "index": 36,
+      "feature": "lidar1m_coh_curv_deq",
+      "holdout_auc": 0.48996,
+      "symmetric_auc": 0.51004,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    {
+      "index": 6,
+      "feature": "grav_hg",
+      "holdout_auc": 0.50827,
+      "symmetric_auc": 0.50827,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    {
+      "index": 49,
+      "feature": "worm_dem10_flank",
+      "holdout_auc": 0.49537,
+      "symmetric_auc": 0.50463,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    {
+      "index": 4,
+      "feature": "tilt_mag",
+      "holdout_auc": 0.50436,
+      "symmetric_auc": 0.50436,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    {
+      "index": 2,
+      "feature": "rtp_res",
+      "holdout_auc": 0.4964,
+      "symmetric_auc": 0.5036,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    {
+      "index": 40,
+      "feature": "topo_hessian_ridge",
+      "holdout_auc": 0.50342,
+      "symmetric_auc": 0.50342,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    {
+      "index": 31,
+      "feature": "chi_ksn",
+      "holdout_auc": 0.50319,
+      "symmetric_auc": 0.50319,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    {
+      "index": 33,
+      "feature": "tect_minus_fluvial",
+      "holdout_auc": 0.50306,
+      "symmetric_auc": 0.50306,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    {
+      "index": 5,
+      "feature": "mag_up150_demag",
+      "holdout_auc": 0.49811,
+      "symmetric_auc": 0.50189,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    {
+      "index": 30,
+      "feature": "chi_step_asym",
+      "holdout_auc": 0.50152,
+      "symmetric_auc": 0.50152,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    {
+      "index": 39,
+      "feature": "tiger_road_logdist",
+      "holdout_auc": 0.50132,
+      "symmetric_auc": 0.50132,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    {
+      "index": 29,
+      "feature": "chi_step_max",
+      "holdout_auc": 0.50086,
+      "symmetric_auc": 0.50086,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    {
+      "index": 32,
+      "feature": "chi_log_area",
+      "holdout_auc": 0.50085,
+      "symmetric_auc": 0.50085,
+      "threshold": 0.9,
+      "status": "PASS"
+    }
+  ]
+}
