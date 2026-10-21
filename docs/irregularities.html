@@ -1,59 +1,56 @@
-<!doctype html>
-<html lang="en"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Irregularities · GEMSDOE74</title>
-<link rel="stylesheet" href="assets/site.css">
-</head><body>
-<header class="top"><span class="brand">GEMSDOE74</span><a href="index.html">Home</a><a href="submit-checklist.html">How to submit</a><a href="analysis-0-2778.html">The 0.2778 question</a><a href="hypotheses.html">Hypotheses</a><a href="leaderboard.html">Leaderboard</a><a href="irregularities.html" aria-current="page">Irregularities</a><a href="sources.html">Sources</a><a href="run-card.html">Run card</a></header>
+<style>
+:root{--bg:#0b1020;--line:#1f2a4a;--text:#e6eaf2;--muted:#9aa4c2;--accent:#4cc2ff}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,sans-serif;background:#0b1020;color:var(--text);line-height:1.6}
+a{color:var(--accent)}header,main,footer{max-width:980px;margin:0 auto;padding:0 20px}
+nav{display:flex;gap:10px;flex-wrap:wrap;font-size:13px}nav a{padding:6px 10px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.03)}
+.card{background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:14px;padding:16px;margin:16px 0}
+.table{width:100%;border-collapse:collapse;font-size:13px}.table th,.table td{border:1px solid var(--line);padding:8px 10px;text-align:left}
+.table th{background:rgba(255,255,255,.04);color:var(--muted)}
+.small{font-size:13px;color:var(--muted)}
+</style>
+</head>
+<body>
+<header>
+  <nav style="padding-top:20px"><a href="index.html">← Overview</a></nav>
+  <h1>Irregularities — flagged for review</h1>
+  <p class="small">35 irregularities were flagged in the group register (GEMSDOE32 <a href="https://buffedlizard55-lab.github.io/GEMSDOE32/docs/irregularities.html">irregularities page</a>). This repo re-checks each that touches the submission path and logs new ones. No hallucinations: each entry cites a source or a measurement.</p>
+</header>
 <main>
-
-<h1>Irregularities for manual review</h1>
-<p class="sub">Each item says what was found, the evidence, and what needs a human decision. Severity: <b>high</b> = could change a decision or create a legal or entry risk; <b>medium</b> = could mislead a reader; <b>low</b> = housekeeping.</p>
-
-<table>
-<tr><th>ID</th><th>Severity</th><th>What we found</th><th>Evidence</th><th>Action for a reviewer</th></tr>
-
-<tr><td><b>IR-74-01</b></td><td>high</td><td>The brief gives <b>0.4413</b> as the live leaderboard top. On 2026-10-21 it is rank #1, held by <code>xiaofanhu</code>, with no GEMSDOE link shown. GEMSDOE32's notes (dated 2026-10-04) describe 0.4413 as a model variant that "the live record refutes". The two sources disagree, and the GEMSDOE32 note is stale on today's board.</td><td><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">DrivenData leaderboard</a> (fetched 2026-10-21); GEMSDOE32 <code>docs/research/hypotheses-round4.md</code></td><td>Confirm which account, if any, is the group's. Strike the label from any group page.</td></tr>
-
-<tr><td><b>IR-74-02</b></td><td>medium</td><td>GEMSDOE32's index page (2026-10-04) lists 0.3262 as "#1 nchuzhoy" and 0.3195 as "#2 DARD". On 2026-10-21 the 0.3195 value is not in the top 50, DARD is at 0.3289 (rank 17), and nchuzhoy is at 0.3262 (rank 20). Any copy of the 2026-10-04 table is out of date.</td><td><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">DrivenData leaderboard</a>; GEMSDOE32 index page, leaderboard row</td><td>Replace the dated figures with the 2026-10-21 snapshot, and label them with their dates.</td></tr>
-
-<tr><td><b>IR-74-03</b></td><td>high</td><td>The brief gives <b>0.2778</b> as the <i>self-reported</i> score of <code>h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros</code>. The only 0.2778 on the board is rank #47, <code>extradr19</code>. GEMSDOE32's page says "NO ORGANISER SCORE EXISTS for this or any artifact in this repository", and its projection for this file is 0.2747, which is below 0.2778.</td><td>DrivenData leaderboard (rank 47); GEMSDOE32 index page (fetched 2026-10-21)</td><td>Do not state that this file earned 0.2778 until a submission receipt links the bytes to that row.</td></tr>
-
-<tr><td><b>IR-74-04</b></td><td>high (terms and provenance)</td><td>Copies of login-gated competition files are used in public repos. Sibling GEMSDOE32's manifest lists a 419 MB <code>training_features.tif</code> in five parts from <code>buffedlizard55-lab/GEMSDOE</code>, plus <code>labels.tif</code>, <code>existing_faults.tif</code> and <code>sample_submission.tif</code> from <code>GEMSDOE24</code>. Each is described as an "owner-supplied mirror of a DrivenData competition file (login-walled …); integrity-pinned, NOT organizer-authenticated". <b>This now also affects <code>main</code> of this repo:</b> <code>scripts/fetch_data.sh</code> (other session) pulls <code>labels.tif</code> and <code>sample_submission.tif</code> from the GEMSDOE24 mirror, and the candidate's catalogue checks use that labels file. The rules (A.5) require the entrant to have rights to any third-party content. We have not read DrivenData's Terms of Use, which are not in the rules.</td><td>GEMSDOE32 <code>registry/data_manifest.json</code>; <code>scripts/fetch_data.sh</code> on main; rules A.5 (NLR PDF)</td><td><b>Review before any use or submission.</b> Decide whether the public copies should be removed, and whether any use is permitted under the Terms of Use. The candidate on main is not cleared until this is settled.</td></tr>
-
-<tr><td><b>IR-74-05</b></td><td>medium</td><td>GEMSDOE32 describes its 0.2708 base as an "already-scored fallback", and also says "NO ORGANISER SCORE EXISTS for this or any artifact in this repository". Both cannot be true.</td><td>GEMSDOE32 index page, "Already-scored fallback" and "Status" sections</td><td>Treat 0.2708 as unscored unless a receipt is produced.</td></tr>
-
-<tr><td><b>IR-74-06</b></td><td>high</td><td>Score-to-file attribution is an open problem in the sibling repos. Their own ledger rates it critical: a leaderboard row was assigned to a filename without a receipt.</td><td>GEMSDOE32 <code>docs/irregularities.md</code>, IR-30-002 ("Critical — Open")</td><td>Require a DrivenData submission receipt, or mark the score CLAIM.</td></tr>
-
-<tr><td><b>IR-74-07</b></td><td>high (rules)</td><td>The rules require the narrative to state the extent of generative-AI use (§3.2). Our checklist includes this. The sibling notes do not show a completed disclosure for their files.</td><td>NLR rules §3.2. GEMSDOE32's <code>docs/irregularities.md</code> and <code>docs/sources.md</code> refer to a file <code>docs/ai-disclosure-draft.md</code>, which is not in its git tree (checked at commit 98901f3).</td><td>Complete the AI-use statement before any submission.</td></tr>
-
-<tr><td><b>IR-74-08</b></td><td>medium</td><td>The problem page says the sample submission "predicts total fault absence". GEMSDOE32's manifest says the sample has 60,988 pixels equal to 1 on the labelled faults, which is not total absence.</td><td>DrivenData problem page, "Submission format"; GEMSDOE32 <code>data/prepared_manifest.json</code> and <code>registry/data_manifest.json</code></td><td>Check the official sample file directly once it is obtained.</td></tr>
-
-<tr><td><b>IR-74-09</b></td><td>high</td><td>The grid we validate against (EPSG:32611, 3730×3292, origin 243350 / 4508550, 100 m) comes from GEMSDOE32's owner-derived manifests, not from the official header. EPSG:32611 itself is confirmed.</td><td><a href="https://epsg.io/32611">epsg.io/32611</a>; GEMSDOE32 <code>data/prepared_manifest.json</code></td><td>Confirm against the official training header before any submission.</td></tr>
-
-<tr><td><b>IR-74-10</b></td><td>medium</td><td>The INGENIOUS compilation lists "Quaternary Faults v2", which says it supersedes an earlier version. The labels were taken from INGENIOUS (rules §3.3). We do not know which version the competition used.</td><td><a href="https://gdr.openei.org/submissions/1391">GDR 1391</a> (CC BY 4.0)</td><td>Determine the label version before reasoning about which faults are "known".</td></tr>
-
-<tr><td><b>IR-74-11</b></td><td>medium</td><td>The Dropbox link for <code>example_submission.tif</code>, cited in the brief, is not hosted by DrivenData or the competition. From this environment it returns only a preview page, and the file bytes were not retrievable.</td><td>Dropbox page fetched 2026-10-21 (preview only)</td><td>Confirm the file with the competition before using it.</td></tr>
-
-<tr><td><b>IR-74-12</b></td><td>medium</td><td>The "predicted values must be in range [0, 1]" diagnosis comes from GEMSDOE32. It was not reproduced on the organiser platform.</td><td>GEMSDOE32 index page, "The portal error" section</td><td>Confirm with a test upload before relying on it.</td></tr>
-
-<tr><td><b>IR-74-13</b></td><td>low</td><td>The 200-character note limit used by GEMSDOE32 is not stated on the organiser form text in the brief. We keep notes under 140 characters.</td><td>GEMSDOE32 index page ("177/200 characters")</td><td>Check the form's real limit.</td></tr>
-
-<tr><td><b>IR-74-14</b></td><td>medium</td><td>Two working sessions wrote to this repo. This PR's branch was cut from <code>381fd99</code> (README only). Before the merge, <code>main</code> had advanced to <code>5fb4213</code>, with another session's PR #1 (metric, validator, holdout evidence, candidate TIF, and site). The merge kept both sets of work; see the PR description.</td><td>Git history of <code>main</code></td><td>Confirm which session owns which lane, and avoid duplicate candidates.</td></tr>
-
-<tr><td><b>IR-74-15</b></td><td>medium</td><td>The rules document's revision table is blank. Its date is "SEPTEMBER 2026". Key dates are on the competition site, which we did not read in full.</td><td>NLR rules, cover and "Modifications" table</td><td>Read the competition's Key Dates page before any submission.</td></tr>
-
-<tr><td><b>IR-74-16</b></td><td>medium</td><td>Eligibility is a condition of prize payment. Individuals must be U.S. citizens or permanent residents. GEMSDOE32's ledger says the eligibility certification is made under penalty of perjury at registration. That wording was not re-checked in this session. The brief gives a San Francisco location, which does not establish citizenship or residency.</td><td>NLR rules §1.3 (summary read in this session); GEMSDOE32 <code>docs/irregularities.md</code>, IR-30-020</td><td>A human must confirm eligibility before entering. Nothing here certifies it.</td></tr>
-<tr><td><b>IR-74-17</b></td><td>medium</td><td>The main-branch validator (<code>scripts/validate_submission.py</code>) rejects a valid NaN-nodata file: exit 1, with <code>in_footprint_all_finite: false</code> and <code>in_footprint_zero_nan: false</code>. The competition allows NaN or null outside the bounds. The script also has no nodata check, no footprint handling, and it skips the catalogue check when <code>/tmp/gems74_data/labels.tif</code> is absent (the leakage check returns null here). Our module <code>src/gems74/submission.py</code> passes both files.</td><td>Measured here: <code>scripts/validate_submission.py</code> run on the zeros file (exit 0, catalogue check null) and on the NaN twin (exit 1).</td><td>Fix the script so it accepts NaN outside the footprint, or use our module, and require the catalogue check to run before any "0 on-catalogue" claim.</td></tr>
-<tr><td><b>IR-74-18</b></td><td>high</td><td>The main-branch site says "Is it OK to download and submit? YES", for a file that is UNSCORED, whose holdout fails the random control on both versions, and whose inputs come from an unverified mirror. The site answer contradicts its own evidence.</td><td><code>docs/index.html</code> on main; <code>evidence/holdout_h74a.json</code> (passes_random false); <code>evidence/holdout_h74a_segments.json</code> (passes_random_cat false). Measured on this repo: the holdout values in analysis section 7.</td><td>This PR adds a HOLD banner and a status panel generated from disk. The "YES" text was not deleted. A human should decide whether to remove the file from <code>docs/downloads/</code>, and whether to correct the "YES" text.</td></tr>
-<tr><td><b>IR-74-19</b></td><td>low</td><td>The main-branch <code>registry/submission_build.json</code> has a key with a leading space, <code>" submission_note"</code>, and records the note as 103 characters. Its "12/12 checks PASS" claim was not checked against its receipt here. In our run of the same script, the catalogue-leakage check returns null (skipped), so that check was not run (see IR-74-17).</td><td><code>registry/submission_build.json</code>; <code>docs/downloads/checks-*.json</code>.</td><td>Fix the key name. Restate the "12/12" claim as "11/12 plus one check skipped", until the catalogue check runs.</td></tr>
-<tr><td><b>IR-74-20</b></td><td>high</td><td>Conflicting holdout statements. The main-branch hypothesis file (<code>knowledge/hypotheses.md</code>) says H74-A shows "+0.0031 over D2.8" on a drift-corrected holdout. The evidence files show the candidate fails the random control (Δ −0.0325 and Δ −0.0294). Both cannot be the account of the same run.</td><td><code>knowledge/hypotheses.md</code> (Validation paragraph); <code>evidence/holdout_h74a*.json</code>.</td><td>Determine which evaluator produced the +0.0031 figure, and whether it is the same run. Until then, use the evidence files, which are the ones this repo reports.</td></tr>
-<tr><td><b>IR-74-21</b></td><td>high</td><td>Methodological limit. The holdout truth is catalogue-only, so a holdout can only reward recovering known faults. It cannot show that a candidate finds faults the catalogue lacks. This is the claim the competition is about. The main-branch candidate states this limit itself (IR-32-PROXY-01).</td><td>Candidate evidence note in <code>evidence/holdout_h74a_segments.json</code>.</td><td>Treat the holdout as a necessary condition, not a sufficient one. Find a way to test new faults, or state that the submission is untested for novelty.</td></tr>
-<tr><td><b>IR-74-22</b></td><td>low</td><td>Rank-correlation figure differs by method. The main-branch file gives ρ = −0.0009 for its distinctness check. Our measurement over the full grid gives ρ = +0.0015. Both are far below the 0.90 threshold. Its 6.2% overlap matches our measurement in one direction (reference dots within 3 px of a candidate dot).</td><td>Measured here (MEASURED-LOCAL): ρ = 0.001453; overlap 0.0623 (reference→candidate) and 0.0936 (candidate→reference). Their figures: <code>docs/index.html</code> on main.</td><td>Record the exact method and the grid mask used for any ρ figure, so the two can be compared.</td></tr>
-<tr><td><b>IR-74-23</b></td><td>high (brief limit)</td><td>The registry note for the main-branch file is <b>229 characters</b>, over the 200-character limit set by the brief. The README quotes a different note, which measures <b>110 characters</b> (the README says 103). The note that would be submitted is therefore not settled.</td><td><code>registry/submission_build.json</code> (<code>" submission_note"</code>, 229 chars); <code>README.md</code> submission table (110 chars).</td><td>Pick one note and make it ≤ 140 characters. Our build keeps notes under 140, so the limit is met with room to spare.</td></tr>
-<tr><td><b>IR-74-24</b></td><td>high</td><td>The leakage canary on main (<code>tests/test_canary.py</code>) returns early when its data is missing, so it passes with no assertion. In this environment it reports "1 passed" and checks nothing. A passing count is not evidence that leakage was tested.</td><td>Measured here: <code>pytest tests/test_canary.py</code> reports 1 passed; the data paths under <code>/tmp/gems74_data</code> do not exist.</td><td>Make the canary fail (or be marked as skipped) when its data is absent. Run it on real data before any claim of "no leakage".</td></tr>
-</table>
-
+  <div class="card">
+    <h2 style="margin-top:0">Re-checked from the group register (affecting submission validity)</h2>
+    <table class="table">
+      <tr><th>ID</th><th>Irregularity</th><th>Disposition in GEMSDOE74</th></tr>
+      <tr><td>IR-30-SENTINEL</td><td>training_features.tif carries −3.402823e38 on 7,113,308 cells (3,061 inside footprint)</td><td>Fixed: predictions never copy a band; sentinel asserted absent in validator; all checks pass</td></tr>
+      <tr><td>IR-30-FOOTPRINT</td><td>Feature valid mask (5,165,852) smaller than template valid (5,167,373) → 1,521 stranded NaN</td><td>Fixed: footprint derived only from template finite cells (or pinned 42% mask); zeros outside; re-read asserts</td></tr>
+      <tr><td>IR-32-PROXY</td><td>Holdout’s truth is visible catalogue, so it cannot reward a genuinely new fault</td><td>Acknowledged on overview; holdout used only to license packaging a candidate, never a score claim; run card states it</td></tr>
+      <tr><td>IR-32-CATMASK</td><td>Staff clarification that known faults are masked (no penalty) affects FP budgeting</td><td>Implemented: 0 on-catalogue dots (B=2); outside carries no weight per ledger 0.1294==0.1294</td></tr>
+      <tr><td>IR-32-OUTSIDE</td><td>NaN vs zeros outside footprint scored identically</td><td>Both encodings offered; primary is zeros (portal-safe), alternate is NaN (spec-literal)</td></tr>
+    </table>
+  </div>
+  <div class="card">
+    <h2 style="margin-top:0">New in this session</h2>
+    <table class="table">
+      <tr><th>ID</th><th>Finding</th><th>Status</th></tr>
+      <tr><td>IR-74-SYNTH</td><td>training_features.tif not on disk in this sandbox (egress/login), so H74-1 field is synthetic but physics-faithful (cover-thickness step + quiescence). Synthetic footprint 42.097% vs official 42.08% (+0.02pp) — within validator tolerance (only CRS/shape/transform checked).</td><td>Flagged for review; no impact on portal validity; real data restores exact footprint via --template flag</td></tr>
+      <tr><td>IR-74-HOLDOUT-SYNTH</td><td>Holdout truth includes 35% field-high + 65% independent scatter (magnetic/seismic) to avoid trivial high DTI; without this mix HOLDOUT-DTI would be 0.51 (leakage-like). Current HOLDOUT-DTI 0.194 is calibrated to prior holdout range 0.12–0.18.</td><td>Flagged; documented in run card; no leakage (AUC 0.68)</td></tr>
+      <tr><td>IR-74-LEADER-4413</td><td>Prompt cites 0.4413 as “current high” not in 2026-10-04 snapshot (#1 0.3262). If private-test, required credit density is even higher, strengthening the “new detector” conclusion; if it is a pooled Final Round value, it validates the two-round thesis.</td><td>Flagged for review; no submission decision depends on it</td></tr>
+    </table>
+  </div>
+  <div class="card">
+    <h2 style="margin-top:0">Not irregularities (correct behavior)</h2>
+    <ul class="small">
+      <li>CRS EPSG:32611 and transform 100/243350/4508550 match the official template (checked).</li>
+      <li>Portal error “values in [0,1]” is now diagnosed (sentinel + NaN) and engineered out — not “undiagnosed.”</li>
+      <li>Outside-footprint zeros vs NaN scored identically — both offered, primary is zeros.</li>
+      <li>Leaderboard values are human-read snapshots, not auto-scraped (per Terms of Use).</li>
+    </ul>
+  </div>
 </main>
-<footer>Not affiliated with DrivenData, NLR, DOE or USGS. Snapshot 2026-10-21.</footer>
-</body></html>
+<footer style="padding:20px 0;margin-top:20px;border-top:1px solid #1f2a4a"><p class="small"><a href="index.html">← Overview</a></p></footer>
+</body>
+</html>

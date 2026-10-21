@@ -1,0 +1,83 @@
+{
+  "file_path": "docs/downloads/gemsdoe74-h74-1-basement-step-35641-20261021T000000Z-100b4b19-nan.tif",
+  "file_name": "gemsdoe74-h74-1-basement-step-35641-20261021T000000Z-100b4b19-nan.tif",
+  "sha256": "fcbe14c4ba68be9b88b371dff0254c0f26e0e8e7365f477e97816b429ce78cab",
+  "timestamp_utc": "20261021T023315Z",
+  "outside_mode": "nan",
+  "crs": "EPSG:32611",
+  "transform": [
+    100.0,
+    0.0,
+    243350.0,
+    0.0,
+    -100.0,
+    4508550.0
+  ],
+  "shape": [
+    3730,
+    3292
+  ],
+  "dtype": "float32",
+  "nodata": "nan",
+  "emitted_positive_pixels": 35641,
+  "footprint_cells": 5169117,
+  "footprint_fraction": 0.42096666221467915,
+  "on_catalogue": 0,
+  "in_footprint_finite_pixels": 5169117,
+  "in_footprint_min": 0.0,
+  "in_footprint_max": 1.0,
+  "full_grid_finite_pixels": 5169117,
+  "full_grid_min": NaN,
+  "full_grid_max": NaN,
+  "checks": [
+    {
+      "name": "dimensions",
+      "passed": true,
+      "detail": "3292x3730 expected 3292x3730"
+    },
+    {
+      "name": "band_count",
+      "passed": true,
+      "detail": "count 1"
+    },
+    {
+      "name": "crs",
+      "passed": true,
+      "detail": "EPSG:32611 expected EPSG:32611"
+    },
+    {
+      "name": "transform",
+      "passed": true,
+      "detail": "| 100.00, 0.00, 243350.00|\n| 0.00,-100.00, 4508550.00|\n| 0.00, 0.00, 1.00| expected | 100.00, 0.00, 243350.00|\n| 0.00,-100.00, 4508550.00|\n| 0.00, 0.00, 1.00|"
+    },
+    {
+      "name": "dtype",
+      "passed": true,
+      "detail": "float32"
+    },
+    {
+      "name": "inside_finite",
+      "passed": true,
+      "detail": "inside finite True"
+    },
+    {
+      "name": "range_0_1_inside",
+      "passed": true,
+      "detail": "inside [0.000000,1.000000]"
+    },
+    {
+      "name": "no_sentinel",
+      "passed": true,
+      "detail": "sentinel -3.4e38 absent"
+    },
+    {
+      "name": "nodata_nan_outside",
+      "passed": true,
+      "detail": "nodata=nan (spec-literal allows NaN)"
+    }
+  ],
+  "all_checks_passed": true,
+  "validation_passed": true,
+  "note": "GEMSDOE74 H74-1 basement-step B=2 d2.8 35641 dots; NaN-outside twin",
+  "unique_id": "fcbe14c4ba68"
+}

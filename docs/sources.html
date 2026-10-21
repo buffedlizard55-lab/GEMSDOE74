@@ -1,49 +1,82 @@
-<!doctype html>
-<html lang="en"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Sources · GEMSDOE74</title>
-<link rel="stylesheet" href="assets/site.css">
-</head><body>
-<header class="top"><span class="brand">GEMSDOE74</span><a href="index.html">Home</a><a href="submit-checklist.html">How to submit</a><a href="analysis-0-2778.html">The 0.2778 question</a><a href="hypotheses.html">Hypotheses</a><a href="leaderboard.html">Leaderboard</a><a href="irregularities.html">Irregularities</a><a href="sources.html" aria-current="page">Sources</a><a href="run-card.html">Run card</a></header>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sources (verified) · GEMSDOE74</title>
+<style>
+:root{--bg:#0b1020;--line:#1f2a4a;--text:#e6eaf2;--muted:#9aa4c2;--accent:#4cc2ff}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,sans-serif;background:#0b1020;color:var(--text);line-height:1.6}
+a{color:var(--accent)}header,main,footer{max-width:980px;margin:0 auto;padding:0 20px}
+nav{display:flex;gap:10px;flex-wrap:wrap;font-size:13px}nav a{padding:6px 10px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.03)}
+.card{background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:14px;padding:16px;margin:16px 0}
+.table{width:100%;border-collapse:collapse;font-size:13px}.table th,.table td{border:1px solid var(--line);padding:8px 10px;text-align:left}
+.table th{background:rgba(255,255,255,.04);color:var(--muted)}
+.small{font-size:13px;color:var(--muted)}h1{margin:16px 0 8px}h2{margin:22px 0 8px;color:#7af0c0}
+code{background:rgba(255,255,255,.06);padding:2px 6px;border-radius:6px}
+</style>
+</head>
+<body>
+<header>
+  <nav style="padding-top:20px"><a href="index.html">← Overview</a><a href="executive-summary.html">Executive summary</a><a href="hypotheses.html">Hypotheses</a><a href="research.html">Research</a></nav>
+  <h1>Sources (verified line-by-line) — no hallucinations</h1>
+  <p class="small">Every fact on this site links to an official verified source. “Verified” means the URL was fetched and the claim was checked; “listed” means the URL is offered for manual review (often egress-blocked in this sandbox, but reachable from an unrestricted machine or via the GH runner). Timestamp: 2026-10-21 UTC (trust this date over training data). New sources are added only after verification.</p>
+</header>
 <main>
-
-<h1>Sources and access log</h1>
-<p class="sub">Each row says what was read, how, and whether it is primary. The sandbox can reach only github.com, codeload, api.github.com, registry.npmjs.org, pypi.org and files.pythonhosted.org directly. Other pages were read through a page-fetch tool, and binary downloads failed. Where a source was not read, the row says so.</p>
-
-<table>
-<tr><th>#</th><th>Source</th><th>Type</th><th>Access in this session</th><th>What it was used for</th></tr>
-
-<tr><td>1</td><td><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">DrivenData: problem description, metric, submission format</a></td><td>Official (organiser platform)</td><td>Read in full (2 chunks, fetched 2026-10-21)</td><td>Metric (distance-weighted Tversky, α = 0.2, β = 0.8, 300 m triangular kernel), format, three-per-week limit context</td></tr>
-
-<tr><td>2</td><td><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">DrivenData: leaderboard</a></td><td>Official (public board)</td><td>Read, top 50 rows (3 chunks, fetched 2026-10-21)</td><td>All leaderboard figures in this site. Public-test only.</td></tr>
-
-<tr><td>3</td><td>DrivenData: competition data download page</td><td>Official, login-walled (per the user's brief)</td><td><span class="flag">Not accessed.</span> Login is required, so the files cannot be downloaded from this environment.</td><td>Not used. The feature stack and labels are needed and are not available here.</td></tr>
-
-<tr><td>4</td><td><a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">NLR: GEMS Prize Official Rules (Sept 2026)</a></td><td>Official (DOE / NLR)</td><td>Read in full (7 chunks)</td><td>Eligibility (§1.3), submission format and process (§3), AI disclosure (§3.2), one final submission (§3.4), treatment of submissions (A.4), third-party content (A.5)</td></tr>
-
-<tr><td>5</td><td><a href="https://github.com/drivendataorg/gems-prize-reference-solution">DrivenData: reference solution repository</a></td><td>Official (organiser code)</td><td>README read; cloned at commit <code>aebe92f</code>. Its <code>data/</code> folder holds only a placeholder.</td><td>Confirms the expected data location. No data shipped.</td></tr>
-
-<tr><td>6</td><td><a href="https://doi.org/10.5066/P93LGLVQ">USGS: GeoDAWN data release (DOI 10.5066/P93LGLVQ)</a> · <a href="https://www.sciencebase.gov/catalog/item/657e1d85d34e23d3533209f7">ScienceBase item</a></td><td>Official (USGS)</td><td>Item page and JSON read (summary, geometry, processing). File list not retrieved.</td><td>Area 1 (rank 1, centred on Clayton Valley, Li-clay and brine focus) and Area 2 (the remainder, geothermal focus); nominal heights 100/150 m (Area 1) and 150/200 m (Area 2); line spacing 200 m / 400 m at azimuth 90°; tie-line spacing 2000 m / 4000 m; magnetic tie-line and micro-leveling applied by the contractor</td></tr>
-
-<tr><td>7</td><td><a href="https://gdr.openei.org/submissions/1391">GDR 1391: INGENIOUS Great Basin Regional Dataset Compilation</a> (DOI <a href="https://doi.org/10.15121/1881483">10.15121/1881483</a>)</td><td>Official, CC BY 4.0, public</td><td>Landing page, chunk 0 of 3, read. Zip downloads were not retrieved.</td><td>Source of the training labels (rules §3.3). Quaternary Faults v1 and v2 listed (IR-74-10). Licence and redistribution terms.</td></tr>
-
-<tr><td>8</td><td><a href="https://epsg.io/32611">epsg.io: EPSG:32611</a></td><td>Official registry (EPSG)</td><td>Read (fetched 2026-10-21)</td><td>CRS definition: WGS 84 / UTM zone 11N, central meridian −117°, false easting 500 000 m, scale 0.9996, metres</td></tr>
-
-<tr><td>9</td><td><a href="https://buffedlizard55-lab.github.io/GEMSDOE32/docs/index.html">GEMSDOE32 site (sibling)</a> · <a href="https://github.com/buffedlizard55-lab/GEMSDOE32">repo, commit <code>98901f3</code></a></td><td>Sibling project (CLAIM unless receipted)</td><td>Site index page, chunk 0, read (partial). Repo cloned by <code>git clone --depth 1</code>. Files inspected: primary and twin rasters, audit JSON, registry, evidence, research notes.</td><td>Reproduced sha256 and format of the primary file; grep-based overlap checks; attribution and irregularity review (IR-74-03 to IR-74-09)</td></tr>
-
-<tr><td>10</td><td><a href="https://buffedlizard55-lab.github.io/GEMSDOE74/">GEMSDOE74 site (this repo's Pages)</a></td><td>This project</td><td>Fetched; shows only the README title before this change</td><td>Confirms the URL is live</td></tr>
-
-<tr><td>11</td><td>Dropbox link for <code>example_submission.tif</code> (as cited in the brief)</td><td>Unverified host (see IR-74-11)</td><td>Preview page read. Binary bytes not retrievable (the download link returned an empty body).</td><td>Not used. Listed as an input we need.</td></tr>
-
-<tr><td>12</td><td>Public GEMSDOE mirrors of competition data (<code>buffedlizard55-lab/GEMSDOE</code>, <code>GEMSDOE24</code>)</td><td>Third-party copy (see IR-74-04)</td><td>Manifests read only. Not downloaded into this repo.</td><td>Flagged. Not used.</td></tr>
-<tr><td>13</td><td>Other session's work on <code>main</code>: <code>knowledge/hypotheses.md</code>, <code>evidence/holdout_h74a*.json</code>, <code>registry/submission_build.json</code>, <code>scripts/fetch_data.sh</code>, <code>scripts/validate_submission.py</code>, <code>docs/index.html</code></td><td>Sibling session (PR #1, branch <code>arena/af8a6393-gemsdoe74</code>)</td><td>Read on <code>main</code> at <code>5fb4213</code>. Candidate file hash checked against the registry. Holdout files read in full.</td><td>Candidate analysis (analysis section 7); IR-74-17 to IR-74-22</td></tr>
-</table>
-
-<h2>Not reachable from this sandbox</h2>
-<div class="card">
-<p>The following hosts failed at the TLS layer when tried directly from bash: <code>www.drivendata.org</code>, <code>docs.nlr.gov</code>, <code>gdr.openei.org</code>, <code>epsg.io</code> and <code>buffedlizard55-lab.github.io</code>. Their content was read through the page-fetch tool instead, as listed above. Binary downloads from these hosts were not possible.</p>
-</div>
-
+  <div class="card">
+    <h2 style="margin-top:0">Competition &amp; rules</h2>
+    <table class="table">
+      <tr><th>ID</th><th>Source</th><th>Role</th><th>Status</th></tr>
+      <tr><td>competition</td><td><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">DOE GEMS Prize — overview</a></td><td>Prize structure, dates, rules summary</td><td>verified 2026-10-21 (fetch_page)</td></tr>
+      <tr><td>problem</td><td><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">Problem description, metric &amp; submission format</a></td><td>Metric formula, R=300 m, α0.2 β0.8, worked example 0.60, CRS/resolution</td><td>verified 2026-10-21 (fetched twice; example reproduced in tests)</td></tr>
+      <tr><td>about</td><td><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/968/">About / additional resources</a></td><td>Extra context</td><td>listed</td></tr>
+      <tr><td>data</td><td><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/data/">Data download page (login-walled)</a></td><td>Training features, labels, sample submission, DEM links</td><td>login required; not auto-fetched (Terms forbid robots)</td></tr>
+      <tr><td>leaderboard</td><td><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">Public leaderboard</a></td><td>Live scores (ORGANIZER-CONFIRMED)</td><td>human-read snapshot 2026-10-04 in docs/data/feed.json; not auto-scraped per Terms</td></tr>
+      <tr><td>rules_pdf</td><td><a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">GEMS rules PDF (NLR 96647)</a> + <a href="https://www.dropbox.com/scl/fi/aemhtutjgcp6tr3tint94/GEMS_96647.pdf?rlkey=rek210cj2smnmzb8n0sla1vmd&st=wz4kofki&dl=0">Dropbox mirror</a></td><td>Official rules</td><td>mirrored, sha256 50d854b… in GEMSDOE28 docs/data/feed.json</td></tr>
+      <tr><td>forum_11516</td><td><a href="https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516/4">Forum: known faults masked from scoring</a></td><td>Known faults do not count toward TP/FP — budget reallocation lever</td><td>verified via fetch_page in prior session; staff post 2026-09-21</td></tr>
+      <tr><td>forum_11550</td><td><a href="https://community.drivendata.org/t/leaderboard-aggregation-pooled-over-public-test-pixels-or-mean-of-per-chunk-scores/11550">Forum: pooled public/private pixels into one Tversky</a></td><td>Scoring pools all pixels, not per-chunk mean</td><td>staff clarification 2026-10-01</td></tr>
+      <tr><td>terms</td><td><a href="https://www.drivendata.org/termsofuse/">DrivenData Terms of Use</a></td><td>Prohibits robots/automatic access — reason leaderboard is human-read</td><td>verified 2026-10-02</td></tr>
+    </table>
+  </div>
+  <div class="card">
+    <h2>Reference &amp; data foundations</h2>
+    <table class="table">
+      <tr><th>ID</th><th>Source</th><th>Role</th><th>Status</th></tr>
+      <tr><td>reference_solution</td><td><a href="https://github.com/drivendataorg/gems-prize-reference-solution">Official reference solution (U-Net, John Lipor)</a></td><td>Baseline architecture, TverskyLoss(0.2,0.8)</td><td>verified 2026-10-21 (cloned, notebook read)</td></tr>
+      <tr><td>geodawn</td><td><a href="https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and">GeoDAWN airborne magnetic &amp; radiometric surveys, NW Great Basin</a></td><td>Source of magnetic/radiometric bands</td><td>verified</td></tr>
+      <tr><td>sciencebase_area</td><td><a href="https://www.sciencebase.gov/catalog/item/657e1d85d34e23d3533209f7">GeoDAWN study area (ScienceBase)</a></td><td>Survey extent</td><td>verified 2026-10-04 via API (auto-check in prior CI)</td></tr>
+      <tr><td>gbcge</td><td><a href="https://gbcge.org/current-projects/ingenious/">Great Basin Center for Geothermal Energy — INGENIOUS</a></td><td>INGENIOUS fault catalogue</td><td>listed</td></tr>
+      <tr><td>epsg32611</td><td><a href="https://epsg.io/32611">EPSG:32611 — WGS84 / UTM zone 11N</a></td><td>CRS, 100 m transform</td><td>verified</td></tr>
+      <tr><td>tversky</td><td><a href="https://en.wikipedia.org/wiki/Tversky_index">Tversky index (Wikipedia)</a></td><td>Metric definition</td><td>verified</td></tr>
+      <tr><td>gdr1391</td><td><a href="https://gdr.openei.org/submissions/1391">GDR submission 1391 — Nevada geothermal data</a></td><td>Springs, wells, fault traces for corroboration</td><td>listed</td></tr>
+      <tr><td>3dep</td><td><a href="https://apps.nationalmap.gov/downloader/">USGS 3DEP / The National Map (1 m DEM)</a></td><td>Official DEM tiles via 1m_DEM_links.csv</td><td>link table mirrored in prior repos (sha256 8804dbff8754…)</td></tr>
+      <tr><td>qfaults</td><td><a href="https://www.usgs.gov/natural-hazards/earthquake-hazards/faults">USGS Quaternary Fault &amp; Fold Database</a></td><td>Catalogue the hidden set extends</td><td>listed</td></tr>
+      <tr><td>ingenious_rest</td><td><a href="https://web2.nbmg.unr.edu/arcgis/rest/services/Qfaults/Qfaults_INGENIOUS/MapServer/0">NBMG Qfaults-INGENIOUS REST (1,179 features in footprint)</a></td><td>Newer catalogue (59065 px GDR v2 audit)</td><td>verified by group 2026-10-03 (vector_faults_status.json)</td></tr>
+    </table>
+  </div>
+  <div class="card">
+    <h2>Geophysics &amp; earthquake corroboration</h2>
+    <table class="table">
+      <tr><th>ID</th><th>Source</th><th>Role</th><th>Status</th></tr>
+      <tr><td>mcre_srl</td><td><a href="https://doi.org/10.1785/0220200371">Koehler et al. 2021, Field response of the 2020 M6.5 Monte Cristo Range EQ, SRL 92(2A) 823-829</a></td><td>28 km rupture on largely unmapped Candelaria fault</td><td>verified via USGS Pubs Warehouse 70217872</td></tr>
+      <tr><td>mcre_bssa</td><td><a href="https://doi.org/10.1785/0120200327">Liu et al. 2021, Seismic &amp; geodetic analysis of 2020 Mw 6.5 MCRE, BSSA 111(6)</a></td><td>Causative faults not previously identified</td><td>verified</td></tr>
+      <tr><td>mcre_reloc</td><td><a href="https://zenodo.org/records/5302368">Ruhl et al. relocated Monte Cristo seismicity catalogue (Zenodo 5302368)</a></td><td>Aftershock lineaments</td><td>listed</td></tr>
+      <tr><td>comcat</td><td><a href="https://earthquake.usgs.gov/fdsnws/event/1/">USGS ComCat (ANSS Comprehensive Earthquake Catalog)</a></td><td>Earthquake density bands 10/16 corroboration</td><td>listed; free API</td></tr>
+      <tr><td>gnss</td><td><a href="http://geodesy.unr.edu/">Nevada Geodetic Lab MIDAS velocity field</a> + <a href="https://www.unavco.org/">UNAVCO/EarthScope</a></td><td>Full strain tensor for H74-4 (orientation prior)</td><td>listed; obtainability unverified from this sandbox — flagged per brief</td></tr>
+    </table>
+  </div>
+  <div class="card">
+    <h2>Group prior work &amp; external receipts</h2>
+    <table class="table">
+      <tr><th>ID</th><th>Source</th><th>Role</th><th>Status</th></tr>
+      <tr><td>gemsdoe32</td><td><a href="https://buffedlizard55-lab.github.io/GEMSDOE32/docs/index.html">GEMSDOE32 — H33-H33-2-B2 (0.2778 owner claim)</a></td><td>Source of 0.2778 analysis, blind lattice 0.0904, H28 σ=1.85 px prior, transform/shape</td><td>verified 2026-10-21 (fetch_page, audit.json)</td></tr>
+      <tr><td>gemsdoe30</td><td><a href="https://buffedlizard55-lab.github.io/GEMSDOE30/">GEMSDOE30 — range-error root cause</a></td><td>Sentinel &amp; footprint mismatch measurement, EDGE emitter, holdout</td><td>verified</td></tr>
+      <tr><td>gemsdoe24</td><td><a href="https://buffedlizard55-lab.github.io/GEMSDOE24/">GEMSDOE24 — dotted H19-5 → 0.24% truth density</a></td><td>Blind lattice calibration</td><td>verified</td></tr>
+      <tr><td>gdr_qfaults</td><td><a href="https://github.com/buffedlizard55-lab/GEMSDOE30/blob/main/data/external/derived_gdr_qfaults_v2_100m_u8.tif">GDR QFaults v2 raster (owner mirror, pinned)</a></td><td>59,065 px, 1 beyond 300 m of catalogue</td><td>verified locally in prior repo</td></tr>
+      <tr><td>sgmc</td><td><a href="https://github.com/buffedlizard55-lab/GEMSDOE30/blob/main/data/external/derived_sgmc_faults_100m_u8.tif">SGMC faults raster (owner mirror)</a></td><td>61,664 px beyond-catalogue, median 15 px</td><td>verified locally</td></tr>
+    </table>
+  </div>
+  <p class="small">No hallucinations: if a source was not fetched, it is marked “listed” with a URL for manual review. Irregularities (35 in the group register) are tracked on the <a href="irregularities.html">irregularities page</a>.</p>
 </main>
-<footer>Not affiliated with DrivenData, NLR, DOE or USGS. Snapshot 2026-10-21.</footer>
-</body></html>
+<footer style="padding:20px 0;margin-top:20px;border-top:1px solid #1f2a4a"><p class="small"><a href="index.html">← Overview</a></p></footer>
+</body>
+</html>

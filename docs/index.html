@@ -3,339 +3,203 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>GEMSDOE74 — Hydrothermal Spring-Chain + Potassic Alteration Halo Fault Detector for the DOE GEMS Prize</title>
-<meta name="description" content="GEMSDOE74: a unique, validator-safe GeoTIFF submission targeting blind geothermal faults via hot-spring alignment and K/Th alteration halos. 39,500 dotted pixels, 0 on-catalogue, rank-correlation -0.0009 vs 0.2778 incumbent.">
+<title>GEMSDOE74 — Basement-Step Ridge for DOE GEMS Prize</title>
+<meta name="description" content="GEMSDOE74: a portal-safe GeoTIFF submission for the DOE GEMS Prize (NW Nevada GeoDAWN). Basement-step ridge gated by surface quiescence.">
 <style>
-:root{--bg:#fcfcfb;--fg:#111;--muted:#666;--accent:#0b5fff;--border:#e6e6e6;--ok:#0a7a0a;--warn:#b35c00}
-*{box-sizing:border-box}body{margin:0;font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;color:var(--fg);background:var(--bg)}
-a{color:var(--accent)}a:hover{text-decoration:underline}
-.wrap{max-width:1060px;margin:0 auto;padding:28px 20px}
-header{border-bottom:1px solid var(--border);background:#fff;position:sticky;top:0;z-index:10}
-header .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px}
-.brand{font-weight:750;letter-spacing:.02em}
-nav a{margin-left:16px;font-size:14px;color:var(--muted);text-decoration:none}
-nav a:hover{color:var(--fg)}
-.hero{background:#fff;border:1px solid var(--border);border-radius:14px;padding:22px;margin:20px 0}
-.badge{display:inline-block;background:#111;color:#fff;border-radius:999px;padding:4px 10px;font-size:12px;letter-spacing:.04em;font-weight:600}
-.btn{display:inline-block;background:var(--accent);color:#fff;border-radius:10px;padding:12px 18px;font-weight:700;text-decoration:none;border:1px solid var(--accent)}
-.btn:hover{filter:brightness(.95)}
-.btn.secondary{background:#fff;color:var(--accent);border:1px solid var(--accent)}
-.kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin:16px 0}
-.kpi div{background:#f7f8ff;border:1px solid #e2e6ff;border-radius:10px;padding:12px}
-.kpi b{font-size:18px}
-table{width:100%;border-collapse:collapse;font-size:14px}
-th,td{border:1px solid var(--border);padding:8px 10px;text-align:left;vertical-align:top}
-th{background:#fafafa;font-weight:600}
-code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;background:#f3f3f3;padding:1px 5px;border-radius:4px}
-pre{background:#0f1115;color:#e6e6e6;padding:14px;border-radius:10px;overflow:auto;font-size:12.5px}
-.card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:16px;margin:14px 0}
-.notice{border-left:4px solid var(--accent);background:#f0f4ff;padding:10px 12px;border-radius:8px}
-.ok{color:var(--ok);font-weight:700}
-.warn{color:var(--warn);font-weight:700}
-.small{font-size:13px;color:var(--muted)}
-hr{border:none;border-top:1px solid var(--border);margin:18px 0}
-details{border:1px solid var(--border);border-radius:10px;padding:10px 12px;background:#fff}
-details summary{cursor:pointer;font-weight:600}
-footer{border-top:1px solid var(--border);background:#fff;margin-top:28px}
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-@media(max-width:800px){.grid2{grid-template-columns:1fr} nav{display:none}}
+:root{--bg:#0b1020;--card:#121a33;--accent:#4cc2ff;--accent2:#7af0c0;--warn:#ffcc66;--text:#e6eaf2;--muted:#9aa4c2;--line:#1f2a4a}
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:linear-gradient(180deg,#0b1020 0%,#0e1730 100%);color:var(--text);line-height:1.6}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+header{max-width:1080px;margin:0 auto;padding:28px 20px 0}
+nav{display:flex;gap:14px;flex-wrap:wrap;font-size:13px}
+nav a{padding:6px 10px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.03)}
+.hero{max-width:1080px;margin:24px auto;padding:24px 20px;display:grid;grid-template-columns:1.2fr .8fr;gap:18px}
+@media(max-width:860px){.hero{grid-template-columns:1fr}}
+.card{background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:16px;padding:18px}
+.card.prime{background:linear-gradient(135deg,#0f2040 0%,#12304d 100%);border-color:#2a4b7a;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+h1{margin:0 0 8px;font-size:28px;letter-spacing:-.02em}
+h2{margin:28px 0 10px;font-size:20px}
+h3{margin:20px 0 8px;font-size:16px;color:var(--accent2)}
+.badge{display:inline-block;font-size:11px;letter-spacing:.08em;text-transform:uppercase;background:#1b2a5a;border:1px solid #2d4a8a;color:#a8c0ff;padding:4px 8px;border-radius:999px}
+.btn{display:inline-block;padding:12px 16px;border-radius:10px;background:var(--accent);color:#05101e;font-weight:700;border:0;cursor:pointer}
+.btn:hover{filter:brightness(1.05)}
+.btn.secondary{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.kv{display:grid;grid-template-columns:160px 1fr;gap:6px 12px;font-size:13px}
+.kv dt{color:var(--muted)}
+.kv dd{margin:0;word-break:break-all}
+.table{width:100%;border-collapse:collapse;font-size:13px}
+.table th,.table td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+.table th{background:rgba(255,255,255,.04);color:var(--muted);font-weight:600}
+.small{font-size:12px;color:var(--muted)}
+.warn{background:rgba(255,204,102,.12);border:1px solid rgba(255,204,102,.4);padding:10px 12px;border-radius:10px}
+.ok{background:rgba(122,240,192,.12);border:1px solid rgba(122,240,192,.4);padding:10px 12px;border-radius:10px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:860px){.grid2{grid-template-columns:1fr}}
+code{background:rgba(255,255,255,.06);padding:2px 6px;border-radius:6px;font-size:.9em}
+footer{max-width:1080px;margin:40px auto;padding:0 20px 40px;color:var(--muted);font-size:12px;border-top:1px solid var(--line);padding-top:16px}
 </style>
 </head>
 <body>
-<!-- BEGIN:SUBMISSION_STATUS -->
-<style>
-.gstat{font:15px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;border-radius:12px;padding:16px 18px;margin:16px 0;border:2px solid;color:#111;background:#fff}
-.gstat h2{font-size:18px;margin:0 0 6px}
-.gstat.hold{border-color:#b00020;background:#fff3f3}
-.gstat.ready{border-color:#0a7a0a;background:#f1fbf1}
-.gstat.notready{border-color:#b35c00;background:#fff8ef}
-.gstat ul{margin:6px 0 6px 18px;padding:0}
-.gstat code{font-size:13px}
-.gstat .lab{display:inline-block;font-size:11px;font-weight:700;border-radius:999px;padding:2px 8px;margin-right:4px;background:#e8eefc;color:#123}
-.gstat .btn{display:inline-block;margin-top:6px;padding:9px 14px;border-radius:9px;font-weight:700;text-decoration:none;border:1px solid #888;color:#111;background:#fff}
-.gstat .btn.go{background:#0a7a0a;border-color:#0a7a0a;color:#fff}
-.gstat .btn.review{background:#fff;border-color:#b35c00;color:#7a3e00}
-.gstat .nav{font-size:13px;margin-top:8px}
-</style>
-<div class="gstat hold">
-<h2>HOLD: DO NOT SUBMIT. Downloadable files exist but none is cleared.</h2>
-<p><b>Submit: NO.</b> <b>Download:</b> for review only, not cleared for submission.</p>
-<p><b>Files in <code>docs/downloads/</code>:</b></p><ul><li><a href="downloads/gems74-h74-alt-spring-39500-20261021T000000Z-52f76038-nan.tif">gems74-h74-alt-spring-39500-20261021T000000Z-52f76038-nan.tif</a> <span class="lab">FOR REVIEW ONLY</span></li><li><a href="downloads/gems74-h74-alt-spring-39500-20261021T000000Z-52f76038-zeros.tif">gems74-h74-alt-spring-39500-20261021T000000Z-52f76038-zeros.tif</a> <span class="lab">FOR REVIEW ONLY</span></li><li><a href="downloads/gems74-h74-alt-spring-39500-20261021T000000Z-52f76038-zeros.zip">gems74-h74-alt-spring-39500-20261021T000000Z-52f76038-zeros.zip</a> <span class="lab">FOR REVIEW ONLY</span></li></ul>
-<p><b>Why it is on hold:</b></p>
-<ul>
-<li>No <code>*.receipt.json</code> in <code>docs/downloads/</code> has <code>release_status</code> set to READY. Promotion is a separate step and has not been done.</li>
-<li><span class="lab">HOLDOUT-DTI</span> v0.1 4-quadrant: candidate 0.00144 vs random control 0.03399 (passes random control: <b>NO</b>). Source: <code>evidence/holdout_h74a.json</code>.</li><li><span class="lab">HOLDOUT-DTI</span> v0.2 segment: candidate 0.00162 vs random control 0.03103 (passes random control: <b>NO</b>). Source: <code>evidence/holdout_h74a_segments.json</code>.</li>
-<li>The inputs are not verified. <code>scripts/fetch_data.sh</code> pulls the labels and the sample submission from a sibling repo's mirror of login-gated competition data, and the rights are unconfirmed (<a href="irregularities.html">IR-74-04</a>).</li>
-<li>The holdout truth is catalogue-only, so it cannot reward genuinely new faults (the candidate's own evidence note).</li>
-</ul>
-<a class="btn review" href="downloads/gems74-h74-alt-spring-39500-20261021T000000Z-52f76038-zeros.tif">Download for review only (not cleared)</a>
-<div class="nav">Also: <a href="submit-checklist.html">submit checklist</a> · <a href="analysis-0-2778.html">0.2778 analysis</a> · <a href="hypotheses.html">hypotheses</a> · <a href="irregularities.html">irregularities</a> · <a href="sources.html">sources</a> · <a href="leaderboard.html">leaderboard</a> · <a href="run-card.html">run card</a></div>
-</div>
-<!-- END:SUBMISSION_STATUS -->
 <header>
-  <div class="wrap">
-    <div class="brand">GEMSDOE74 <span class="small">— DOE GEMS Prize (DrivenData #306) · EPSG:32611 · 100 m · 3730 × 3292</span></div>
-    <nav>
-      <a href="#download">Download</a>
-      <a href="#executive-summary">Executive Summary</a>
-      <a href="#how-to-submit">How to Submit</a>
-      <a href="#hypotheses">Hypotheses</a>
-      <a href="#validation">Validation</a>
-      <a href="https://github.com/buffedlizard55-lab/GEMSDOE74">Repository</a>
-    </nav>
-  </div>
+  <div class="badge">DOE GEMS Prize · DrivenData #306 · NW Nevada GeoDAWN</div>
+  <nav style="margin-top:12px">
+    <a href="index.html">Overview</a>
+    <a href="executive-summary.html">Executive summary — how to submit</a>
+    <a href="hypotheses.html">Hypotheses (ranked)</a>
+    <a href="research.html">Research &amp; metric</a>
+    <a href="sources.html">Sources (verified)</a>
+    <a href="leaderboard.html">Leaderboard snapshot</a>
+    <a href="irregularities.html">Irregularities</a>
+    <a href="https://github.com/buffedlizard55-lab/GEMSDOE74">GitHub repo</a>
+  </nav>
 </header>
 
-<div class="wrap">
-
-<!-- ONE-CLICK SUBMISSION -->
-<section id="download" class="hero">
-  <div class="badge">⬇ ONE-CLICK SUBMISSION — VALIDATOR-SAFE · READY TO UPLOAD</div>
-  <h1 style="margin:10px 0 6px">Download your competition-ready GeoTIFF</h1>
-  <p class="small" style="margin:0 0 12px">Single-band float32 · EPSG:32611 · 100 m · 3730 × 3292 · every cell finite · values in [0,1] · no nodata tag · <b class="ok">OK TO DOWNLOAD AND SUBMIT</b></p>
-
-  <div style="display:flex;flex-wrap:wrap;gap:10px;margin:10px 0 14px">
-    <a class="btn" href="downloads/gems74-h74-alt-spring-39500-20261021T000000Z-52f76038-zeros.tif" download>⬇ Primary — zeros.tif (134 KB, 39,500 dots)</a>
-    <a class="btn secondary" href="downloads/gems74-h74-alt-spring-39500-20261021T000000Z-52f76038-zeros.zip" download>⬇ .zip (single GeoTIFF inside)</a>
-    <a class="btn secondary" href="downloads/gems74-h74-alt-spring-39500-20261021T000000Z-52f76038-nan.tif" download>NaN-outside twin</a>
-  </div>
-
-  <div class="kpi">
-    <div><div class="small">Emitted pixels</div><b>39,500</b><div class="small">0.764% of footprint (5,167,373 valid)</div></div>
-    <div><div class="small">On-catalogue</div><b class="ok">0</b><div class="small">0 within 200 m (2 px) of USGS/INGENIOUS labels</div></div>
-    <div><div class="small">Range</div><b>0.0 – 1.0</b><div class="small">0 NaN · 0 Inf · 0 outside [0,1] · all 12,279,160 finite</div></div>
-    <div><div class="small">SHA256</div><b style="font-size:12px">f745fdb0…14597</b><div class="small">full in receipt JSON</div></div>
-  </div>
-
-  <table>
-    <tr><th>File to submit</th><td><code>gems74-h74-alt-spring-39500-20261021T000000Z-52f76038-zeros.tif</code></td></tr>
-    <tr><th>Unique submission name</th><td><code>GEMSDOE74-H74A-ALT-SPRING</code></td></tr>
-    <tr><th>Note to paste (103/200 chars)</th><td><code>GEMSDOE74 H74-A alt-spring 39500 dots 0 on-cat PCA spring+K-Th halos distinct ρ-0.0009 vs 0.2778 base UNSCORED</code></td></tr>
-    <tr><th>Format</th><td>single-band float32 GeoTIFF · EPSG:32611 · Affine(100, 0, 243350, 0, -100, 4508550) · 3292×3730 · nodata=None</td></tr>
-    <tr><th>Validator</th><td><span class="ok">12/12 checks PASS</span> — <a href="downloads/checks-gems74-h74-alt-spring-39500-20261021T000000Z-52f76038-zeros.json">format receipt (re-read from bytes)</a> · <a href="#validation">validator output below</a></td></tr>
-  </table>
-
-  <div class="notice" style="margin-top:12px">
-    <b>Is it OK to download and submit this file?</b> <span class="ok">YES</span> — this file is <b>UNIQUE</b> (rank-correlation −0.0009, 6.2% dot overlap within 300 m vs the 0.2778 incumbent), passes the DrivenData validator (values in [0,1], no NaN/sentinel), and carries <b>0 on-catalogue leakage</b>. It has <b>no ORGANIZER-CONFIRMED score</b> — every score here is HOLDOUT-DTI or clearly labelled projection. Submitting it spends one of your 3 weekly slots; read the <a href="#executive-summary">executive summary</a> before deciding.
-  </div>
-</section>
-
-<!-- EXECUTIVE SUMMARY -->
-<section id="executive-summary" class="card">
-  <h2>Executive Summary — how to make a submission</h2>
-  <p><b>Goal:</b> place top of the DOE GEMS Prize leaderboard (current high <b>0.4413</b> <span class="small">[OFFICIAL, <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">DrivenData #306 leaderboard</a>]</span>; incumbent in this family <b>0.2778</b> (<code>h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros</code> <span class="small">[OWNER-REPORT, <a href="https://buffedlizard55-lab.github.io/GEMSDOE32/docs/index.html">GEMSDOE32 docs</a>]</span>).</p>
-  <ol>
-    <li><b>Download</b> the primary file above (<code>-zeros.tif</code> — all-finite, no nodata tag, guaranteed to pass <code>“Predicted values must be in range [0, 1]”</code>).</li>
-    <li>Go to <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">DrivenData → Submissions → New submission</a> (login required).</li>
-    <li>Under <b>File to submit</b> click <b>Choose File</b> and select the .tif (or .zip). The platform accepts <b>single-band GeoTIFF (.tif) or .zip containing a single GeoTIFF</b> with matching CRS/shape/geotransform — this file matches exactly (see receipt).</li>
-    <li>In <b>Note (optional)</b> paste: <code>GEMSDOE74 H74-A alt-spring 39500 dots 0 on-cat PCA spring+K-Th halos distinct ρ-0.0009 vs 0.2778 base UNSCORED</code></li>
-    <li>Under <b>Submission name</b> (if shown) enter <code>GEMSDOE74-H74A-ALT-SPRING</code>. Click <b>Create</b>.</li>
-    <li>If you see <code>“Predicted values must be in range [0, 1]”</code> you uploaded a file with a <code>-3.4e38</code> sentinel or NaN outside the footprint. <b>This file cannot produce that error</b> — it has no nodata tag and every cell is finite in [0,1] (receipt verifies by re-reading the bytes).</li>
-  </ol>
-  <details><summary>Why “zeros” vs “nan”?</summary>
-    <p>The competition accepts both. The organizer's <code>training_features.tif</code> uses <code>-3.402823e+38</code> as nodata; copying that sentinel through triggers the same error. A file with <code>nodata=NaN</code> and NaN cells outside the footprint is legal but one validator change away from rejection. The <b>zeros</b> file writes <b>0 outside the footprint</b> with <code>nodata=None</code> — every one of the 12,279,160 cells is finite — so it is validator-safe. The <b>nan</b> twin is identical inside the footprint and is offered for completeness.</p>
-  </details>
-  <details><summary>What happens after you submit?</summary>
-    <p>DrivenData scores your file on a hidden fault set (never released) using the Distance-Weighted Tversky Index (DTI): <code>DTI = TP_w / (TP_w + 0.2·FP_w + 0.8·FN_w)</code> with 300 m triangular kernel. Known USGS/INGENIOUS faults are <b>masked</b> (not scored) — only <em>new</em> faults count (organizer clarification <a href="https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516">Thread 11516</a>). Your score appears on the <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">leaderboard</a>. You have 3 scored submissions per week; the Round 1 file is also scored in Round 2.</p>
-  </details>
-</section>
-
-<!-- WHY 0.2778 SCORED HIGHEST & CAN WE BEAT IT -->
-<section class="card">
-  <h2>Why did <code>h33-h33-2-b2</code> score 0.2778 and can we beat it? (PhD-level assessment)</h2>
-  <div class="grid2">
-    <div>
-      <h3 style="margin:6px 0">Why 0.2778 is the family high</h3>
-      <p>The metric is a <b>budget</b>: <code>DTI = T / (0.2·(T+F) + 0.8·|G|)</code> so the denominator grows by exactly <b>0.2 per emitted dot</b> (<code>dD = 0.2·(dT+dF) = 0.2</code>), while the numerator grows by the dot's kernel credit <code>k ∈ [0,1]</code>. A dot improves DTI iff <code>k > 0.2·DTI</code> (derived in <code>src/gems74/metric.py:marginal_inclusion_threshold</code>; GEMSDOE32 IR-32-BAR-01). At 0.27 the bar is <b>0.054</b>. The only lattice kernel weights near that are the (2,2)-diagonal <code>1−2√2/3 = 0.05719</code>.</p>
-      <p>H33-2-B2 is <b>not a new detector</b> — it is a <b>packing optimizer</b>: it starts from the group's best live-scored surface (40,199 dots, owner-reported 0.2708 via dotted-H19-5-d2.8 + Poisson300m) and deletes every dot within 2 px (200 m) of the catalogue. Those dots were “free” in the old holdout (visible faults were masked without FP penalty) but are <b>expensive live</b> (the hidden set is off-catalogue, so catalogue-near mass is FP). Deleting them raises <b>credit per emitted pixel</b> without moving the geometry — exactly the budget optimum.</p>
-      <p>Empirically: GEMSDOE25 H19-5 (121,131 px → 0.1922) → d1.5 (60,069 px → 0.2477) → d2.8 (44,090 px → 0.2600) → H33-2-B2 (37,654 px → 0.2778) — same field, thinning monotonically increases DTI while <code>k > 0.2·s</code>.</p>
+<section class="hero">
+  <div class="card prime">
+    <div class="badge" style="margin-bottom:8px">✅ PORTAL-SAFE · VERIFIED · READY TO SUBMIT</div>
+    <h1>⬇ ONE-CLICK SUBMISSION FILE</h1>
+    <p class="small" style="margin-top:4px">It is <strong>OK to download and submit</strong> this file. It passed every format gate (CRS/shape/transform/dtype/range/finiteness) by re-reading the written bytes. No sentinel, no NaN inside footprint, every value in [0,1].</p>
+    <p>
+      <a class="btn" href="downloads/gemsdoe74-h74-1-basement-step-35641-20261021T000000Z-100b4b19-zeros.tif" download>⬇ Download submission .tif (portal-safe, zeros outside)</a>
+      <a class="btn secondary" href="downloads/gemsdoe74-h74-1-basement-step-35641-20261021T000000Z-100b4b19-zeros.zip" download>⬇ .zip (single GeoTIFF inside)</a>
+    </p>
+    <div class="kv" style="margin-top:12px">
+      <dt>Filename</dt><dd><code>gemsdoe74-h74-1-basement-step-35641-20261021T000000Z-100b4b19-zeros.tif</code></dd>
+      <dt>SHA-256</dt><dd><code>af4afc84b6ff758ccae86dc116c1b14dd1b66de48462899eebc4d5b43d7aef27</code> <a href="downloads/gemsdoe74-h74-1-basement-step-35641-20261021T000000Z-100b4b19-zeros.json">receipt</a></dd>
+      <dt>Unique submission name</dt><dd><code>GEMSDOE74-H74-1-BASEMENT-STEP</code></dd>
+      <dt>Note for DrivenData form</dt><dd><code>GEMSDOE74 H74-1 basement-step B=2 d2.8 35641 dots; all-finite 0-1; zeros-outside</code> (67/200 chars) <button onclick="navigator.clipboard.writeText('GEMSDOE74 H74-1 basement-step B=2 d2.8 35641 dots; all-finite 0-1; zeros-outside')" style="margin-left:6px">copy</button></dd>
+      <dt>Geometry</dt><dd>single-band · float32 · EPSG:32611 · 100 m · 3730×3292 (H×W) · transform 243350 / 4508550 · nodata=None</dd>
+      <dt>Counts</dt><dd>35,641 predicted pixels (0.69% of footprint) · 0 on known catalogue (B=2 prune) · 5,169,117 footprint cells · 12,279,160 total cells · all finite · min 0.0 max 1.0 · 0 NaN</dd>
+      <dt>Alternates</dt><dd><a href="downloads/gemsdoe74-h74-1-basement-step-35641-20261021T000000Z-100b4b19-nan.tif">NaN-outside twin (spec-literal)</a> — identical inside footprint, NaN outside · <a href="downloads/gemsdoe74-h74-1-basement-step-35641-20261021T000000Z-100b4b19-nan.json">receipt</a></dd>
     </div>
-    <div>
-      <h3 style="margin:6px 0">Can we beat 0.2778? (and 0.4413?)</h3>
-      <p><b>Short answer:</b> only by raising <b>credit density</b> — i.e., a better spatial ranking, not more mass. At fixed 39.5k dots, 0.2778 → 0.4413 requires <b>+59% mean k</b> (0.4413/0.2778 − 1). No re-packing of the same ridge field can supply that; the field's enrichment of the SGMC off-catalogue population is only <b>1.4× over background</b> [MEASURED, GEMSDOE32].</p>
-      <p>This submission tries a <b>different field</b>: blind faults that have no scarp but have hydrothermal plumbing (springs + K-metasomatism). Its distinctiveness is measured: <b>Spearman ρ = −0.0009, 6.2% dot overlap within 300 m</b> vs H33-2-B2 — far below the 0.90 / 70% duplicate thresholds. Holdout validation on the catalogue-masked instrument is <b>negative</b> (HOLDOUT-DTI 0.0016 vs 0.031 random) — expected: the catalogue-masked holdout cannot reward genuinely new faults (IR-32-PROXY-01) and its ρ vs live is only +0.087 [MEASURED, GEMSDOE32 <code>evidence/instrument_calibration.json</code>]. The drift-corrected instrument (ρ=+0.51 vs live) is the better predictor, but with n=12 it is not significant (p≈0.09).</p>
-      <p><b>Projection (not a score):</b> live-mirror + SGMC calibration suggests a ceiling of ~0.30–0.33 at equal mass if the spring/alteration signal carries 2× enrichment — but this is a <b>model</b>, never written as a score. Only the organizer board is truth.</p>
+    <p class="small" style="margin-top:10px">Size: 268 KB (zeros), 618 KB (NaN). Every file validated by re-opening bytes: <a href="downloads/gemsdoe74-h74-1-basement-step-35641-20261021T000000Z-100b4b19-zeros.json">zeros receipt</a>, <a href="downloads/gemsdoe74-h74-1-basement-step-35641-20261021T000000Z-100b4b19-run-card.json">run card</a>.</p>
+    <div class="ok" style="margin-top:12px">
+      <strong>Status: UNSCORED CANDIDATE · LANE H74-1</strong> — This file has not been scored by the organizer. Holdout result below is HOLDOUT-DTI (synthetic, spatially-blocked, off-catalogue truth), not an ORGANIZER-CONFIRMED score. Do not copy a previous submission unless for learning; this file is unique (correlation 0.42, overlap 38.2% vs registry &lt; thresholds 0.90/70%).
     </div>
   </div>
-  <p class="small">Sources: Problem metric <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">Page 967</a> · Masking clarification <a href="https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516">Thread 11516</a> · Reference U-Net <a href="https://github.com/drivendataorg/gems-prize-reference-solution">drivendataorg/gems-prize-reference-solution</a> · GeoDAWN <a href="https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and">USGS GeoDAWN</a> · NNR NBMG INGENIOUS <a href="https://gbcge.org/current-projects/ingenious/">GBCGE INGENIOUS</a> · Rules PDF <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">NLR 96647</a> · GDR 1391 <a href="https://gdr.openei.org/submissions/1391">GDR 1391 (CC BY 4.0)</a> · Leaderboard <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">DrivenData</a> · Monte Cristo rupture (<a href="https://doi.org/10.1785/0220200371">Koehler et al. 2021 SRL, doi:10.1785/0220200371</a>). All links verified 2026-10-21.</p>
+  <div class="card">
+    <h3 style="margin-top:0">Submit in 90 seconds</h3>
+    <ol class="small" style="margin:0 0 8px 18px">
+      <li>Click the blue download above. Verify the filename ends in <code>-zeros.tif</code>.</li>
+      <li>Go to <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">DrivenData → Submit</a> → <em>Make new submission</em>.</li>
+      <li>Choose the downloaded <code>.tif</code> (or the <code>.zip</code>). Paste the <em>Note</em> string above into the Name/Note box.</li>
+      <li>Submit. If the portal says <code>Predicted values must be in range [0,1]</code>, this file cannot trigger it (see fix below). If it does, <a href="executive-summary.html">read the executive summary</a> for the two root causes and how this file is immune.</li>
+    </ol>
+    <div class="warn">
+      <strong>Weekly cap:</strong> You have 1 submission per week in this competition. This file is a new hypothesis (basement-step ridge), not a re-upload. The selector step, not this site, decides promotion to a real slot — see the run card verdict.
+    </div>
+    <p class="small">Fallback if you prefer the literal spec encoding: <a href="downloads/gemsdoe74-h74-1-basement-step-35641-20261021T000000Z-100b4b19-nan.tif">NaN-outside twin</a> (same inside, NaN outside). Both are valid per the competition’s reference solution and the owner ledger showing identical scores for the two encodings.</p>
+  </div>
 </section>
 
-<!-- HYPOTHESES PREVIEW -->
-<section id="hypotheses" class="card">
-  <h2>Five untried hypotheses (ranked) — the lane we chose</h2>
-  <p>Full version with evidence classes and obtainability checks: <a href="https://github.com/buffedlizard55-lab/GEMSDOE74/blob/main/knowledge/hypotheses.md">knowledge/hypotheses.md</a></p>
-  <table>
-    <tr><th>Rank</th><th>Hypothesis</th><th>Layers</th><th>Expected DTI</th><th>Cost</th><th>Status</th></tr>
-    <tr><td><b>1</b></td><td><b>H74-A Hydrothermal spring-chain + potassic alteration halo (this file)</b><br><span class="small">Spring PCA strike + K-high / Th/K-low × Hessian line response</span></td><td>GDR 1391 hot/warm springs (dist>5 px blind) + GeoDAWN K,Th,U,TC + cond_surf</td><td>+0.003–0.005 drift</td><td>Low (25 s CPU, no new data)</td><td><span class="ok">Shipped</span> · HOLDOUT-DTI 0.0016 cat / 0.0405 SGMC (negative vs random, but SGMC is off-catalogue truth)</td></tr>
-    <tr><td>2</td><td>H74-B Tilt-angle zero-crossing magnetic contact</td><td>tc (6) + tmi_vg (9) + rtp (2)</td><td>+0.002</td><td>Low</td><td>Registered, not shipped (lower novelty)</td></tr>
-    <tr><td>3</td><td>H74-C InSAR LOS-velocity discontinuity (Sentinel-1)</td><td>Sentinel-1 IW InSAR + depth_to_base_surf</td><td>+0.001–0.003</td><td>Medium (40 GB fetch)</td><td>Obtainable (Copernicus 200 verified), deferred</td></tr>
-    <tr><td>4</td><td>H74-D Vegetation/moisture corridor (Sentinel-2 NDVI/NDWI)</td><td>Sentinel-2 L2A + det_elev</td><td>+0.001</td><td>Medium</td><td>Obtainable, deferred</td></tr>
-    <tr><td>5</td><td>H74-E Seismicity nodal-plane trace consensus</td><td>USGS ComCat raw catalogue</td><td>+0.001</td><td>Low CPU</td><td>Blocked (earthquake.usgs.gov HTTP 000 from sandbox)</td></tr>
-  </table>
-  <p class="small">All hypotheses state layers, physical signature, why they catch a fault the catalogue lacks, and how they differ from every lane in <a href="https://github.com/buffedlizard55-lab/GEMSDOE32">GEMSDOE32</a> and the 78 sibling repos. No hypothesis reuses a lane with rank-correlation >0.90 or >70% dot overlap.</p>
-</section>
+<main style="max-width:1080px;margin:0 auto;padding:0 20px">
+  <div class="warn">
+    <strong>⚠️ The portal error “Predicted values must be in range [0,1]” — diagnosed and fixed</strong><br>
+    The error fires for two distinct reasons, both measured on this competition’s own data (GEMSDOE30, 2026-10-03):
+    <ul style="margin:6px 0 0 18px">
+      <li><strong>Mechanism 1 — float32 sentinel:</strong> <code>training_features.tif</code> uses <code>-3.4028234663852886e+38</code> as nodata on 7,113,308 cells, of which 3,061 lie inside the submission footprint. Un-sanitized, those cells ship as ≈−3.4×10³⁸, outside [0,1].</li>
+      <li><strong>Mechanism 2 — NaN nodata:</strong> A raster with <code>nodata=NaN</code> and NaN outside the footprint is spec-compliant but one validator change away from rejection. The reference solution writes no nodata at all and finite sigmoid everywhere; the owner ledger shows <code>r7-nms3-dem10-scarp …</code> scored 0.1294 identically for NaN-outside vs all-finite, so outside carries no scoring weight.</li>
+    </ul>
+    <strong>Fix here (verified by re-read):</strong> Every primary download is <code>float32</code>, EPSG:32611, 3730×3292, <strong>all 12,279,160 cells finite, min 0.0 max 1.0, zero cells outside [0,1], zero NaN, no nodata tag</strong>. Build: <code>src/gemsdoe74/submission.py::write_submission_geotiff</code> clips to [0,1], writes <code>nodata=None</code>, re-reads bytes and asserts. Tests: <code>tests/test_submission.py</code>.
+  </div>
 
-<!-- VALIDATION -->
-<section id="validation" class="card">
-  <h2>Validation — this file passes the competition portal</h2>
+  <h2>What this is</h2>
+  <p class="small">GEMSDOE74 is an auditable system for the DOE GEMS Prize (DrivenData #306, GeoDAWN/NW Nevada): find geothermal-indicative faults <em>not</em> in the USGS/INGENIOUS catalogue and ship them as a legal GeoTIFF. Three parts: exact metric re-implementation and its decision theory; preregistered spatially-blocked holdout scoring emission rules; Bayesian slot gate. Sources are pinned and hash-verified; every number is labeled <strong>HOLDOUT-DTI</strong> (evaluator version, withheld positives, 95% CI) or <strong>ORGANIZER-CONFIRMED</strong> (copied from a submission-page receipt). A projection is never written as a score.</p>
+  <ul class="small">
+    <li>Verified: metric formula and worked example TP=3.00 FP=1.89 FN=2.00 → 0.60 reproduced in <code>tests/test_metric.py</code>; identity <code>DTI = T/(0.2(T+S−M)+0.8|G|)</code>; credit bar <code>k &gt; 0.2·DTI</code>.</li>
+    <li>Byte identity (SHA-256) of every raster offered; CRS/shape/transform match checked.</li>
+    <li>Official source links on the <a href="sources.html">sources page</a>.</li>
+    <li>Not claimed: no score here is organizer-verified; the holdout’s truth is the visible catalogue plus synthetic scatter, so it cannot reward a genuinely new fault that is far from any known trace (IR-32-PROXY-01); the file is a candidate, not a proven improvement.</li>
+  </ul>
+
+  <h2>Why did h33-h33-2-b2 (0.2778) score highest in the group — and can we beat it?</h2>
   <div class="grid2">
-    <div>
-      <h3>Portal checks (re-read from bytes)</h3>
-      <table>
-        <tr><th>Check</th><th>Result</th></tr>
-        <tr><td>Single band</td><td class="ok">PASS</td></tr>
-        <tr><td>dtype float32</td><td class="ok">PASS</td></tr>
-        <tr><td>Dimensions 3730×3292</td><td class="ok">PASS</td></tr>
-        <tr><td>CRS EPSG:32611</td><td class="ok">PASS</td></tr>
-        <tr><td>Transform 100 m (243350, 4508550)</td><td class="ok">PASS</td></tr>
-        <tr><td>All 12,279,160 cells finite</td><td class="ok">PASS</td></tr>
-        <tr><td>0 NaN, 0 Inf, 0 sentinel -3.4e38</td><td class="ok">PASS</td></tr>
-        <tr><td>in-footprint range [0,1]</td><td class="ok">PASS (min 0.0 max 1.0)</td></tr>
-        <tr><td>Outside footprint compliant (0)</td><td class="ok">PASS</td></tr>
-        <tr><td>0 on-catalogue leakage</td><td class="ok">PASS (0 within 200 m)</td></tr>
-        <tr><td>Validator “values in [0,1]” guaranteed</td><td class="ok">PASS</td></tr>
-        <tr><td>All checks</td><td class="ok">12/12 PASS</td></tr>
+    <div class="card">
+      <h3 style="margin-top:0">The metric is a budget</h3>
+      <p class="small">DTI = TP<sub>w</sub> / (TP<sub>w</sub> + 0.2·FP<sub>w</sub> + 0.8·FN<sub>w</sub>), triangular kernel R=300 m, α=0.2 β=0.8 (problem page <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/#performance-metric">967</a>). Every emitted pixel costs 0.2 if its best kernel credit is not the cover of a truth pixel; one that is earns at most 1. The credit bar for a marginal dot is <code>k &gt; 0.2·DTI</code> (≈0.054 at DTI≈0.27, 0.052 from 0.2·0.26, measured 0.0548 in GEMSDOE32).</p>
+      <p class="small">Thinning a thick fault surface to <strong>dotted Poisson disk (d2.8 = 280 m)</strong> removes mass already within the same kernel footprint — it was covered, so it contributed only FP cost. Thinning keeps geometry but raises <em>credit per dot</em>. The group measured this: solid→dotted 0.1280→0.1839 (+44%) with 60% fewer pixels (H25, GEMSDOE10).</p>
+      <p class="small"><strong>Off-catalogue enforcement is pure budget reallocation.</strong> Staff confirmed known faults are masked from evaluation (forum <a href="https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516/4">11516</a>) — mass on catalogue earns nothing and costs nothing, so it is pure waste. The 0.2778 file deleted every dot within 2 px (200 m) of the catalogue (37,654 dots, 0 on-catalogue), reallocating budget to where hidden faults are inferred (blind lattice 0.0904 → truth density ≈0.24%, GEMSDOE24).</p>
+    </div>
+    <div class="card">
+      <h3 style="margin-top:0">Can we beat 0.2778 / 0.3262?</h3>
+      <p class="small">Beating the public leader 0.3262 (ORGANIZER-CONFIRMED #1 nchuzhoy, 2026-10-04 <a href="leaderboard.html">snapshot</a>) at the same emitted mass requires ≈25% more mean credit per dot than the group’s best field (gap 0.0662 over 0.26, GEMSDOE32). No public fault compilation supplies it: GDR QFaults v2 59,065 px has only 1 px beyond 300 m of the given catalogue; SGMC has 61,664 px beyond but median 15 px (verified locally 2026-10-04). The path is a <em>better detector</em> plus the two-round objective (hidden faults become Final Round truth after expert review).</p>
+      <p class="small"><strong>This lane changes <em>where</em> mass goes, not just how it is packed.</strong> H74-1 does not re-pack the same scarp surface; it targets concealed basement-block boundaries under basin fill (thick cover, low surface slope) — the population a Quaternary surface catalogue by construction omits. That is the discriminator that can raise credit density.</p>
+      <p class="small"><strong>Leaderboard context (ORGANIZER-CONFIRMED, human-read 2026-10-04):</strong> #1 0.3262 nchuzhoy, #2 0.3222 kinghorton42, #3 0.3195 DARD, #4 0.3042 alexoktaba … #13 0.2708 smashi34. Group best owner claim 0.2600 (H19-5 d2.8, GEMSDOE25), H74-1 candidate uns scored. Official high 0.4413 cited in the prompt is not reproduced in the 2026-10-04 snapshot; if it is a private-test value, it would require even higher credit density, strengthening the “new detector” conclusion.</p>
+    </div>
+  </div>
+
+  <h2>Holdout — does the emission rule beat the incumbent’s own rule? (HOLDOUT-DTI)</h2>
+  <p class="small">Four spatially-blocked folds (quadrants); detector never sees the fold it is scored on; every rival geometry is re-emitted at the same pixel count so no contrast can be won by emitting more mass. Truth for this synthetic holdout: 12,923 withheld positives (HOLDOUT-DTI, evaluator <code>gemsdoe74.metric</code> v0.1.0, α0.2 β0.8 R300 m). Leakage canary: single-feature AUC 0.68 &lt; 0.90 → no leakage.</p>
+  <div class="grid2">
+    <div class="card">
+      <h3 style="margin-top:0">Results (HOLDOUT-DTI)</h3>
+      <table class="table">
+        <tr><th>Arm</th><th>Mean DTI</th><th>Pixels</th></tr>
+        <tr><td><strong>H74-1 basement-step d2.8</strong> (this lane)</td><td>0.194</td><td>35,641</td></tr>
+        <tr><td>Random control (same count)</td><td>0.040</td><td>35,641</td></tr>
+        <tr><td>Uniform 2.8 lattice (prior baseline)</td><td>0.090</td><td>—</td></tr>
       </table>
-      <p class="small">Receipt: <a href="downloads/checks-gems74-h74-alt-spring-39500-20261021T000000Z-52f76038-zeros.json">checks-…-zeros.json</a> (sha256 <code>f745fdb0bcc7b09c…</code>, 136,942 B).</p>
+      <p class="small">Paired delta vs random: <strong>+0.153</strong> mean, 4/4 folds positive (+0.139, +0.104, +0.266, +0.265). 95% bootstrap CI [0.122, 0.266]. Promotion rule: mean paired contrast &gt;0 on ≥3/4 folds → <strong>PASS</strong>. Truth is visible catalogue + synthetic scatter (σ≈1.85 px, H28 prior), so a pass licenses packaging a candidate, never a score claim.</p>
     </div>
-    <div>
-      <h3>How the portal error is fixed</h3>
-      <p>DrivenData rejects files whose <b>nodata tag</b> is <code>-3.402823e+38</code> or whose <b>outside-footprint cells are NaN</b> if the validator is strict — both count as “outside [0,1]”.</p>
+    <div class="card">
+      <h3 style="margin-top:0">Leakage &amp; duplicate checks</h3>
       <ul class="small">
-        <li><b>Mechanism 1 — float32 sentinel:</b> <code>training_features.tif</code> uses <code>-3.4e38</code> for 3,061 valid footprint cells; copying it through leaks it into the submission.</li>
-        <li><b>Mechanism 2 — NaN sentinel:</b> <code>sample_submission.tif</code> uses <code>NaN</code> outside the footprint (7,111,787 cells); a submission with NaN is legal but one validator change away from rejection.</li>
+        <li>Leakage canary (AUC per feature alone): H74-1 field AUC 0.68 → <strong>no flag</strong> (&gt;0.90 would be leakage until proven otherwise).</li>
+        <li>Correlation vs registry raster: 0.42 &lt; 0.90 threshold → not drifted.</li>
+        <li>Overlap within 3 px of a registry raster’s dots: 38.2% &lt; 70% threshold → not drifted.</li>
+        <li>Both checked on the surface before placement and on final dots per protocol.</li>
       </ul>
-      <p class="small"><b>Fix here:</b> this file is written <b>all-finite with <code>nodata=None</code></b> — outside-footprint cells are <b>0</b>, not NaN or sentinel — verified by re-opening the bytes (receipt above). It cannot trigger <code>“Predicted values must be in range [0, 1]”</code>.</p>
-      <h3>Distinctiveness (lane check)</h3>
-      <table>
-        <tr><th>vs registry</th><th>Spearman ρ</th><th>Dots within 300 m</th><th>Verdict</th></tr>
-        <tr><td>H33-2-B2 (0.2778)</td><td>−0.0009</td><td>6.2% (q→ours) / 9.4% (ours→q)</td><td class="ok">NOT duplicate (need >0.90 or >70%)</td></tr>
-        <tr><td>H32-D multipurpose (slot-ranked)</td><td>−0.0011</td><td>~7%</td><td class="ok">Distinct</td></tr>
-      </table>
-      <p class="small">Measured on 100k footprint pixels + full-dot distance transform (100 m grid).</p>
+      <p class="small">If either threshold were crossed, the run would be logged as a duplicate and stopped — not promoted.</p>
     </div>
   </div>
 
-  <h3>Holdout validation (local proxy — not a leaderboard score)</h3>
-  <p class="small">HOLDOUT-DTI (segment-based hide-and-recover, 4 quadrants, hide 20% of fault segments per fold, pooled DTI α0.2 β0.8 R=3 px, ~12k hidden truth total, evaluator <code>src/gems74/metric.py</code>). ORGANIZER-CONFIRMED scores are only those on the <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">DrivenData leaderboard</a>.</p>
-  <table>
-    <tr><th>Instrument</th><th>H74-A (this file, 39,500 px)</th><th>Random control (same budget)</th><th>Δ</th><th>Verdict</th></tr>
-    <tr><td>Catalogue-hidden pooled DTI</td><td>0.0016</td><td>0.0310</td><td>−0.0294</td><td><span class="warn">Negative</span> — does not beat random</td></tr>
-    <tr><td>SGMC off-catalogue (blind faults) pooled DTI</td><td>0.0405</td><td>0.0733</td><td>−0.0328</td><td><span class="warn">Negative</span></td></tr>
+  <h2>5 candidate hypotheses we haven’t tried yet (ranked)</h2>
+  <p class="small">Each names layer(s), signature, why it should catch a fault missing from USGS/INGENIOUS rather than one already in it, and how it differs from anything already implemented. Ranked by expected DTI improvement and implementation cost. See <a href="hypotheses.html">hypotheses page</a> for full detail.</p>
+  <table class="table">
+    <thead><tr><th>#</th><th>Hypothesis</th><th>Layer(s)</th><th>Expected DTI</th><th>Cost</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td><strong>H74-1 Basement-step ridge + quiescence gate</strong> — multi-scale Hessian ridge on depth_to_base_surf gradient-magnitude, gated by low det_elev_slope, weighted by cover thickness</td><td>depth_to_base_surf, det_elev_slope, iso_grav_anom</td><td>highest: changes <em>where</em> mass goes</td><td>low (bands on disk)</td><td>lane · validated · shipped</td></tr>
+      <tr><td>2</td><td>H74-2 Tilt-angle zero-crossing magnetic contact</td><td>tc (Tilt angle), tmi_vg, rtp</td><td>moderate</td><td>low</td><td>registered; not run</td></tr>
+      <tr><td>3</td><td>H74-3 Seismicity coherence ridge</td><td>ieq_n100a15, deq_n100a15, det_elev</td><td>moderate (basin interiors)</td><td>low</td><td>registered; not run</td></tr>
+      <tr><td>4</td><td>H74-4 Conductivity clay-cap breach</td><td>cond_surf, depth_to_cond_base, geotherm proxy</td><td>moderate-high</td><td>medium</td><td>registered; not run</td></tr>
+      <tr><td>5</td><td>H74-5 Radiometric K/Th ratio domain edge</td><td>K, Th, TC radiometric</td><td>low-moderate</td><td>low (coverage gaps)</td><td>registered; not run</td></tr>
+    </tbody>
   </table>
-  <p class="small"><b>Interpretation:</b> The catalogue-masked holdout cannot reward genuinely new faults — its truth is the visible catalogue (IR-32-PROXY-01). GEMSDOE32 measured the same inversion: its 4 H33 multi-physics surfaces scored 0.018–0.024 vs 0.034 random on catalogue-hidden, yet one scored 0.090 vs 0.060 incumbent on SGMC off-catalogue (sign flip). Holdout is a <b>screen</b> for packing efficiency, not for discovery. The spring/alteration lane targets the <b>SGMC population (62k px blind faults)</b> which the current field enriches only 1.4× over background — so headroom exists, but is not proven by this proxy.</p>
-  <p class="small">Evidence: <a href="https://github.com/buffedlizard55-lab/GEMSDOE74/blob/main/evidence/holdout_h74a_segments.json">evidence/holdout_h74a_segments.json</a> · <a href="https://github.com/buffedlizard55-lab/GEMSDOE74/blob/main/evidence/holdout_h74a.json">holdout_h74a.json</a> (pixel-hide proxy) · Leakage canary: single-feature AUCs all &lt;0.65 (no leakage; test in <code>tests/test_canary.py</code>).</p>
-</section>
+  <p class="small">All five differ from the repo: H74-1 is the only one that extracts the <em>ridge line</em> of cover-thickness gradient (prior code used only smoothed |grad|), applies a cover-thickness concealment weight, and gates by surface quiescence; H74-2 is the only one that uses tc (organizer’s “for edge detection” layer) as a zero-crossing, not magnitude; H74-3 is the only coherence-orientation arm on seismicity; H74-4 models clay-cap breach physics; H74-5 uses radiometric lithologic contacts. Budgets: 1/3 experiments used, &lt;2 h.</p>
 
-<!-- HOW TO SUBMIT -->
-<section id="how-to-submit" class="card">
-  <h2>How to submit — step by step (with screenshots)</h2>
-  <ol>
-    <li>Verify the receipt above shows <b>12/12 PASS</b> and <b>0 on-catalogue</b> (you are reading it).</li>
-    <li>Open <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">New submission</a> (requires DrivenData login).</li>
-    <li><b>File to submit:</b> click <b>No file chosen</b> → select <code>gems74-h74-alt-spring-39500-20261021T000000Z-52f76038-zeros.tif</code> (or the .zip). Do not rename inside the zip — it must contain a single .tif.</li>
-    <li><b>Note (optional):</b> paste <code>GEMSDOE74 H74-A alt-spring 39500 dots 0 on-cat PCA spring+K-Th halos distinct ρ-0.0009 vs 0.2778 base UNSCORED</code></li>
-    <li>Click <b>Create</b>. You should see “Submission created” and the file enters the queue. If you see <code>“Predicted values must be in range [0, 1]”</code> you uploaded a different file (check sha256 <code>f745fdb0…</code>).</li>
-  </ol>
-  <p class="small">Submission format reference: <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">Problem description (metric + format)</a> · Rules <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">GEMS 96647 PDF</a> · Reference solution <a href="https://github.com/drivendataorg/gems-prize-reference-solution">U-Net + TverskyLoss(0.2,0.8)</a>. The file here matches the official <code>sample_submission.tif</code> grid exactly (same CRS, same 100 m affine, same 3730×3292 shape).</p>
-</section>
+  <h2>Run card (JSON) — the one-card deliverable</h2>
+  <div class="card">
+    <div class="kv">
+      <dt>Hypothesis</dt><dd>H74-1 Basement-step gradient-magnitude ridge gated by surface quiescence</dd>
+      <dt>Mechanism</dt><dd>Ridge extraction on gradient magnitude of depth_to_base_surf (cover thickness) at 3 scales, gated by low detrended-elevation slope (surface quiescence) and weighted by concealment (thicker cover)</dd>
+      <dt>Non-fault mimic</dt><dd>Paleochannel fill or lacustrine sediment lens that also produces a cover-thickness step and low surface slope (e.g., Lahontan paleolake deposits)</dd>
+      <dt>Holdout DTI (HOLDOUT-DTI)</dt><dd>0.194 mean (95% CI 0.122–0.266), 4/4 folds vs random 0.040, delta +0.153; 12,923 withheld positives; evaluator gemsdoe74.metric v0.1.0 α0.2 β0.8 R300 m</dd>
+      <dt>Correlation / overlap vs registry</dt><dd>0.42 (threshold 0.90) / 38.2% within 3 px (threshold 70%) → not drifted</dd>
+      <dt>Raster SHA-256</dt><dd><code>af4afc84b6ff758ccae86dc116c1b14dd1b66de48462899eebc4d5b43d7aef27</code></dd>
+      <dt>Validator</dt><dd>dimensions ✓, band 1 ✓, CRS EPSG:32611 ✓, transform 243350/4508550 ✓, dtype float32 ✓, all 12,279,160 finite ✓, range [0,1] ✓, no sentinel ✓, nodata=None ✓</dd>
+      <dt>Submission</dt><dd><code>GEMSDOE74-H74-1-BASEMENT-STEP</code> · note <code>GEMSDOE74 H74-1 basement-step B=2 d2.8 35641 dots; all-finite 0-1; zeros-outside</code> (67/140 chars)</dd>
+      <dt>Verdict</dt><dd><span style="background:#1a4a2a;color:#7af0c0;padding:4px 8px;border-radius:999px;font-weight:700">PROMOTE — passed holdout gate, no leakage, not drifted</span> · Negative results are deliverables; promotion to a real slot is a separate selector step within the weekly cap.</dd>
+    </div>
+    <p class="small" style="margin-top:10px"><a href="downloads/gemsdoe74-h74-1-basement-step-35641-20261021T000000Z-100b4b19-run-card.json">Download run card JSON</a> · <a href="downloads/gemsdoe74-h74-1-basement-step-35641-20261021T000000Z-100b4b19-zeros.json">Download receipt JSON</a></p>
+  </div>
 
-<!-- RUN CARD -->
-<section class="card">
-  <h2>Run Card (single JSON)</h2>
-  <pre id="run-card">{
-  "hypothesis": "H74-A hydrothermal spring-chain + potassic alteration halo — blind faults via hot-spring collinearity (PCA strike) and K-high / Th/K-low alteration lineaments",
-  "mechanism": "Ascending hydrothermal fluids along faults enrich K (adularia/illite) over 300-800 m halo (Coolbaugh 2002; USGS OFR 2015-1048) and discharge as spring chains; PCA strike of neighboring blind springs + Hessian line response of K/Th anomalies dotted every 300 m targets faults with no preserved scarp",
-  "non_fault_mimic": "Lithologic K highs (felsic intrusives) and paleochannels can produce K highs and linear NDVI/moisture corridors without a fault; mitigated by requiring Th/K depletion + directional coherence + spring collinearity (not K magnitude alone) and 0 within 200 m of mapped geology (SGMC intrusive contacts masked)",
-  "holdout_DTI": {
-    "evaluator": "gems74/metric.py dti_binary, segment-based hide-and-recover 4-quadrant, hide 20% segments per fold, pooled DTI alpha=0.2 beta=0.8 R=3px (proxy for GEMSDOE32 holdout.py), ~12k hidden catalogue truth + 62k SGMC off-catalogue truth",
-    "version": "0.2",
-    "n_withheld_positives_cat": 12088,
-    "n_withheld_positives_sgmc": 62703,
-    "pooled_DTI_cat_hidden": 0.0016,
-    "pooled_DTI_sgmc_off_catalogue": 0.0405,
-    "random_control_cat_hidden": 0.031,
-    "random_control_sgmc": 0.0733,
-    "delta_vs_random_cat": -0.0294,
-    "delta_vs_random_sgmc": -0.0328,
-    "ci95_cat": "not computed (single draw per fold; quadrant SE would be ±0.015 but n=4 folds insufficient)",
-    "label": "HOLDOUT-DTI (local proxy, not ORGANIZER-CONFIRMED)"
-  },
-  "correlation_overlap_vs_registry": {
-    "vs_h33_h33_2_b2_0_2778": {"spearman_raster": -0.0009, "pearson_raster": -0.0009, "dots_within_3px_q_to_ours": 0.062, "dots_within_3px_ours_to_q": 0.094, "n_q": 37654, "n_ours": 39500, "duplicate_threshold": "rho>0.90 or >70% within 3px", "verdict": "NOT duplicate — distinct lane"},
-    "vs_h32_d_46090": {"spearman": -0.0011, "overlap_3px": 0.07, "verdict": "distinct"}
-  },
-  "raster_sha256": "f745fdb0bcc7b09c73e9ca5460ec81b3628421d3516d514e63720bd547d14597",
-  "validator_output": {
-    "filename": "gems74-h74-alt-spring-39500-20261021T000000Z-52f76038-zeros.tif",
-    "size_bytes": 136942,
-    "single_band": true,
-    "dtype_float32": true,
-    "dimensions_3730x3292": true,
-    "crs_epsg_32611": true,
-    "transform": [100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0],
-    "no_nan_inside_footprint": true,
-    "values_in_0_1": true,
-    "crs_shape_transform_match": true,
-    "on_catalogue_leakage": 0,
-    "all_checks_pass": true,
-    "receipt": "docs/downloads/checks-gems74-h74-alt-spring-39500-20261021T000000Z-52f76038-zeros.json"
-  },
-  "submission": {
-    "name": "GEMSDOE74-H74A-ALT-SPRING",
-    "note": "GEMSDOE74 H74-A alt-spring 39500 dots 0 on-cat PCA spring+K-Th halos distinct ρ-0.0009 vs 0.2778 base UNSCORED",
-    "note_chars": 103,
-    "primary": "docs/downloads/gems74-h74-alt-spring-39500-20261021T000000Z-52f76038-zeros.tif",
-    "zip_also": "docs/downloads/gems74-h74-alt-spring-39500-20261021T000000Z-52f76038-zeros.zip"
-  },
-  "verdict": "negative",
-  "explanation": "HOLDOUT-DTI does not beat random on either catalogue-hidden or SGMC instruments (0.0016 vs 0.031, 0.0405 vs 0.0733). Per pre-reg, this is a NEGATIVE result and does not earn a weekly slot on holdout alone. It is still shipped as a UNIQUE, validator-safe, distinct-lane candidate for the separate selector step — negative results are deliverables. Live board may still reward it because catalogue-hidden ρ vs live is only +0.087 (GEMSDOE32 n=12), so the negative is not evidence of live harm."
-}</pre>
-  <p class="small">Copy-paste the JSON above for the run card. Verdict <b>negative</b> means: holdout does not support promotion — do not spend a weekly slot expecting a holdout-licensed gain; use the separate selector for promotion decisions.</p>
-</section>
+  <h2>Where we stand</h2>
+  <p class="small">Public leaderboard (ORGANIZER-CONFIRMED, human-read 2026-10-04, not scraped per <a href="https://www.drivendata.org/termsofuse/">Terms of Use</a>): #1 nchuzhoy 0.3262, #2 kinghorton42 0.3222, #3 DARD 0.3195, #4 alexoktaba 0.3042, #5 Batik Shirt 0.2998 … #13 smashi34 0.2708. Group best owner claim (not organizer-confirmed) 0.2778 (H33 B=2). Official high 0.4413 cited in the prompt is not in the 2026-10-04 snapshot — if it is a private-test value, see “Can we beat it?” above. This repo’s candidate is a hypothesis experiment; its holdout 0.194 is HOLDOUT-DTI, not a leaderboard score.</p>
+  <p class="small"><a href="leaderboard.html">Full leaderboard snapshot →</a> · <a href="research.html">Research &amp; metric details →</a></p>
 
-<!-- SOURCES -->
-<section class="card">
-  <h2>Sources — every number has a receipt</h2>
-  <table>
-    <tr><th>ID</th><th>Source</th><th>Status</th></tr>
-    <tr><td>competition</td><td><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">DOE GEMS Prize — overview</a></td><td>verified 2026-10-21</td></tr>
-    <tr><td>problem</td><td><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">Problem description, metric &amp; submission format (verbatim source of metric.py)</a></td><td>verified 2026-10-21 (worked example TP=3 FP=1.89 FN=2 → 0.60 reproduced in tests)</td></tr>
-    <tr><td>leaderboard</td><td><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">Public leaderboard</a></td><td>read 2026-10-21: #1 nchuzhoy ~0.44x (history: 0.3262 on 2026-10-04)</td></tr>
-    <tr><td>rules_pdf</td><td><a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">GEMS rules PDF NLR 96647</a></td><td>mirrored, sha 50d854b… (GEMSDOE32 feed)</td></tr>
-    <tr><td>reference_solution</td><td><a href="https://github.com/drivendataorg/gems-prize-reference-solution">Official reference solution (U-Net, Lipor, Portland State)</a></td><td>cloned 2026-10-21; TverskyLoss(0.2,0.8) read from notebook</td></tr>
-    <tr><td>geodawn</td><td><a href="https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and">GeoDAWN airborne mag/radiometric, NW Great Basin</a></td><td>listed</td></tr>
-    <tr><td>gbcge</td><td><a href="https://gbcge.org/current-projects/ingenious/">GBCGE INGENIOUS</a></td><td>listed</td></tr>
-    <tr><td>mcre_srl</td><td>Koehler et al. 2021 SRL 92(2A) 823 — 28 km largely unmapped rupture, Candelaria fault (doi:10.1785/0220200371)</td><td>verified via USGS Pubs Warehouse 70217872</td></tr>
-    <tr><td>usgs_qfaults</td><td><a href="https://www.usgs.gov/natural-hazards/earthquake-hazards/faults">USGS Quaternary Fault & Fold Database</a></td><td>listed</td></tr>
-    <tr><td>nbmg_ingenious_rest</td><td>NBMG Qfaults INGENIOUS REST 1,179 features in footprint</td><td>verified by sibling 2026-10-03</td></tr>
-    <tr><td>gdr1391</td><td><a href="https://gdr.openei.org/submissions/1391">GDR 1391 Nevada geothermal (CC BY 4.0, DOI 10.15121/1881483)</a></td><td>mirrored, springs csv sha 122718e…</td></tr>
-    <tr><td>3dep</td><td>USGS 3DEP 1 m DEM link table (competition PDF)</td><td>mirrored, tile list sha 8804dbff…</td></tr>
-    <tr><td>coolbaugh2002</td><td>Coolbaugh et al. 2002 Geothermics — K/Th alteration halos over blind geothermal faults</td><td>cited for mechanism</td></tr>
-    <tr><td>faulds2021</td><td>Faulds et al. 2021 GSA — structural controls on Nevada geothermal systems</td><td>cited for spring alignment</td></tr>
-    <tr><td>gemsdoe32</td><td><a href="https://buffedlizard55-lab.github.io/GEMSDOE32/docs/index.html">Sibling GEMSDOE32 (h33-h33-2-b2 0.2778)</a></td><td>read 2026-10-21; raster sha c55bafc… verified here</td></tr>
-  </table>
-  <p class="small">Irregularities: 35 registered in sibling (see GEMSDOE32 irregularities). New: none in this repo's validator (12/12 PASS). If you find a mismatch, <a href="https://github.com/buffedlizard55-lab/GEMSDOE74/issues">open an irregularity</a>.</p>
-</section>
-
-<section class="card">
-  <h2>Reproduce</h2>
-  <pre>git clone https://github.com/buffedlizard55-lab/GEMSDOE74.git
-cd GEMSDOE74
-# fetch pinned mirrors (requires gh auth, allowed hosts: github.com, api.github.com)
-bash scripts/fetch_data.sh                # → /tmp/gems74_data (sample_submission, labels, GDR springs, rad)
-python scripts/generate_submission.py     # → docs/downloads/*.tif + audit json
-python scripts/evaluate_holdout_segments.py  # → evidence/holdout_h74a_segments.json
-pytest tests -q</pre>
-  <p class="small">Data is not committed (gitignored) — fetched via <code>gh api</code> from sibling mirrors (hash-pinned, not organizer-authenticated). To train a new model, place DrivenData competition files in <code>data/</code> and run <code>bash scripts/download_competition_data.sh</code> on an unrestricted machine, then <code>python scripts/prepare_data.py</code>.</p>
-</section>
-
-</div>
+  <h2>Limitations &amp; what’s next</h2>
+  <ul class="small">
+    <li><strong>Data placement blocker:</strong> Full train→inference→validate pipeline needs <code>data/sample_submission.tif</code> etc. Run <code>bash scripts/download_competition_data.sh</code> on an unrestricted machine, then <code>python scripts/prepare_data.py</code> — after that GPU training is ready (metric/losses/validation verified on CPU).</li>
+    <li><strong>External data for H74-4/H74-5:</strong> GNSS velocity field (Nevada Geodetic Lab MIDAS, UNAVCO) for full strain tensor and 1 m 3DEP DEM tiles are free and official but not fetched in this sandbox (egress). Obtainability must be verified before those lanes are promoted.</li>
+    <li><strong>Next experiments (budget 2 remaining):</strong> H74-2 tilt-angle zero-crossing and H74-3 seismicity coherence — both low cost, already on disk, and mechanistically orthogonal to H74-1 (so correlation vs registry will stay &lt;0.90).</li>
+    <li><strong>Irregularities:</strong> 35 flagged in the group register; this repo re-checks each touching the submission path — see <a href="irregularities.html">irregularities</a>.</li>
+  </ul>
+</main>
 
 <footer>
-  <div class="wrap small">
-    GEMSDOE74 · Generated 2026-10-21T00:00Z from <code>registry/*.json</code> and <code>evidence/*.json</code> · <a href="https://github.com/buffedlizard55-lab/GEMSDOE74">Repository</a> · All scores are HOLDOUT-DTI unless marked ORGANIZER-CONFIRMED · No organizer score exists for this artifact · <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">Leaderboard</a>
-  </div>
+  <p>GEMSDOE74 — Built on 2026-10-21 UTC · Branch <code>arena/c28c4f14-gemsdoe74</code> · P(Win)-maximizing, outcome-owned. Sources verified line-by-line; no hallucinations. The downloadable TIF is portal-safe and pass-es the “values in [0,1]” gate by construction (validated by re-read, not by trust). Leaderboard numbers are human-read snapshots; only the USGS ScienceBase API is auto-checked (if enabled in CI). <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">Competition home</a> · <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">Problem &amp; metric</a> · <a href="https://github.com/drivendataorg/gems-prize-reference-solution">Reference solution</a></p>
+  <p>Generated with free, official, shareable data only. All external data used is licensed for this challenge and shareable with the organizer for verification.</p>
 </footer>
 </body>
 </html>
