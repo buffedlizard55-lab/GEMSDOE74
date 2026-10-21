@@ -1,0 +1,59 @@
+{
+  "lane": "h74-1",
+  "hypothesis": "H74-1 Basement-step gradient-magnitude ridge gated by surface quiescence",
+  "mechanism": "Multi-scale Gaussian gradient magnitude on depth_to_base_surf (cover thickness) at sigma=1.5 and 3.0 px, gated by surface quiescence (det_elev_slope < 6\u00b0), weighted by concealment (cover thickness > 400 m), corroborated by isostatic gravity horizontal gradient, pruned by B=2 (200 m) off-catalogue exclusion, and priority-thinned at r=2.8 px Poisson-disk spacing.",
+  "non_fault_mimic": "Paleochannel fill incision or lacustrine sediment deposition step (e.g. Pleistocene Lake Lahontan beaches) producing basement depth contrasts under flat topography.",
+  "holdout_dti_mean": 0.0030240075354421255,
+  "holdout_dti_ci95": [
+    0.0018552836997798416,
+    0.004186602704385591
+  ],
+  "holdout_dti_per_fold": [
+    0.0019182054932680604,
+    0.0027382545945065133,
+    0.001792361906291623,
+    0.0049427351080914336
+  ],
+  "n_withheld_positives": 12088,
+  "evaluator_version": "v0.2-segments (whole-segment hide-and-recover, 4 quadrants, pooled DTI alpha 0.2 beta 0.8 R 300m)",
+  "evidence_label": "HOLDOUT-DTI (v0.2-segments, 12088 withheld positives, 95% CI [0.00186, 0.00419])",
+  "leakage_canary": [
+    {
+      "feature": "mag_norm_depth_to_base_surf",
+      "auc": 0.5247216471874481,
+      "flag_leakage": false
+    }
+  ],
+  "correlation_vs_registry": -0.006343404982407291,
+  "overlap_within_3px_pct": 4.057142857142857,
+  "raster_sha256": "5f0375217a45362991f455f7139b4f6efde0de927879529a6b97cf38fb835c2f",
+  "raster_shape": [
+    3730,
+    3292
+  ],
+  "raster_crs": "EPSG:32611",
+  "validator_passed": true,
+  "validator_output": {
+    "single_band": true,
+    "dtype_float32": true,
+    "dimensions_3730x3292": true,
+    "crs_epsg_32611": true,
+    "transform": true,
+    "in_footprint_all_finite": true,
+    "in_footprint_zero_nan": true,
+    "in_footprint_range_0_1": true,
+    "in_footprint_zero_sentinel": true,
+    "zero_on_catalogue_leakage": true,
+    "validator_range_0_1_guaranteed": true
+  },
+  "submission_name": "GEMSDOE74-H74-1-BASEMENT-STEP",
+  "submission_note": "GEMSDOE74 H74-1 basement-step B=2 d2.8 38500 dots; all-finite 0-1; zeros-outside",
+  "verdict": "negative",
+  "slot_decision": "HOLD",
+  "emitted_dots": 38500,
+  "on_catalogue_dots": 0,
+  "min_dist_to_catalogue_px": 2.23606797749979,
+  "primary_file": "gemsdoe74-h74-1-basement-step-38500-20261021T042148Z-7bae2038-zeros.tif",
+  "nan_file": "gemsdoe74-h74-1-basement-step-38500-20261021T042148Z-7bae2038-nan.tif",
+  "zip_file": "gemsdoe74-h74-1-basement-step-38500-20261021T042148Z-7bae2038-zeros.zip"
+}
