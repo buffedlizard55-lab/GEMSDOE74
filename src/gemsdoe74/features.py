@@ -180,3 +180,83 @@ def build_h74_1_field(shape, valid_mask, seed=74):
         "conceal": conceal,
         "field": field,
     }
+
+
+def extract_real_h74_1_field(data_dir, foot, cat=None):
+    """Extract real H74-1 basement-step field from real training_features.tif bands.
+
+    Uses:
+    - Band 15: depth_to_base_surf (cover thickness)
+    - Band 19: det_elev_slope (surface topographic slope)
+    - Band 18: iso_grav_anom_hg (isostatic gravity horizontal gradient)
+
+    Physical signature:
+    Multi-scale Gaussian gradient magnitude of depth_to_base_surf, gated by
+    surface quiescence (low topographic slope < 6°), weighted by concealment
+    (alluvial cover thickness), corroborated by gravity horizontal gradient,
+    and masked strictly to footprint with B=2 (200m) catalogue exclusion.
+    """
+    from pathlib import Path
+    import rasterio
+
+    data_dir = Path(data_dir)
+    feat_path = data_dir / "training_features.tif"
+    with rasterio.open(feat_path) as s:
+        b15 = s.read(15)
+        b19 = s.read(19)
+        b18 = s.read(18)
+
+    # Clean sentinels (-3.4e38)
+    b15_clean = np.where(foot & (b15 > -1000), b15, np.nan)
+    med15 = float(np.nanmedian(b15_clean))
+    b15_filled = np.where(np.isnan(b15_clean), med15, b15_clean)
+
+    b19_clean = np.where(foot & (b19 > -1000), b19, np.nan)
+    med19 = float(np.nanmedian(b19_clean))
+    b19_filled = np.where(np.isnan(b19_clean), med19, b19_clean)
+
+    b18_clean = np.where(foot & (b18 > -1000), b18, np.nan)
+    med18 = float(np.nanmedian(b18_clean))
+    b18_filled = np.where(np.isnan(b18_clean), med18, b18_clean)
+
+    # Multi-scale gradient magnitude on depth_to_base_surf
+    gy1 = gaussian_filter(b15_filled, sigma=1.5, order=[1, 0])
+    gx1 = gaussian_filter(b15_filled, sigma=1.5, order=[0, 1])
+    mag1 = np.hypot(gy1, gx1)
+
+    gy2 = gaussian_filter(b15_filled, sigma=3.0, order=[1, 0])
+    gx2 = gaussian_filter(b15_filled, sigma=3.0, order=[0, 1])
+    mag2 = np.hypot(gy2, gx2)
+
+    mag = 0.6 * mag1 + 0.4 * mag2
+    p99 = float(np.percentile(mag[foot], 99))
+    mag_norm = np.clip(mag / (p99 + 1e-6), 0.0, 1.0)
+
+    # Surface quiescence gate: low topographic slope (<6 deg)
+    w_quiescence = 1.0 / (1.0 + (b19_filled / 6.0) ** 2)
+
+    # Concealment: deeper basement -> more likely unmapped
+    w_conceal = np.clip(b15_filled / 400.0, 0.1, 1.0)
+
+    # Gravity horizontal gradient corroboration
+    p95_grav = float(np.percentile(np.abs(b18_filled)[foot], 95))
+    w_grav = np.clip(np.abs(b18_filled) / (p95_grav + 1e-6), 0.0, 1.0)
+
+    score = mag_norm * w_quiescence * w_conceal * (1.0 + 0.4 * w_grav)
+    score[~foot] = 0.0
+
+    if cat is not None:
+        from scipy.ndimage import distance_transform_edt
+        d_cat = distance_transform_edt(~cat)
+        score[d_cat <= 2.0] = 0.0
+
+    return {
+        "field": score,
+        "mag_norm": mag_norm,
+        "w_quiescence": w_quiescence,
+        "w_conceal": w_conceal,
+        "w_grav": w_grav,
+        "depth_filled": b15_filled,
+        "slope_filled": b19_filled,
+    }
+

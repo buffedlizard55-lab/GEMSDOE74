@@ -17,7 +17,7 @@ def poisson_disk_select(field: np.ndarray, valid_mask: np.ndarray, min_distance_
     valid_mask: bool where emission allowed
     exclusion_mask: bool where dots forbidden (e.g., on-catalogue)
     """
-    H,W = field.shape
+    H, W = field.shape
     candidate = valid_mask.copy()
     if exclusion_mask is not None:
         candidate = candidate & (~exclusion_mask)
@@ -26,28 +26,26 @@ def poisson_disk_select(field: np.ndarray, valid_mask: np.ndarray, min_distance_
     vals = field[ys, xs]
     order = np.argsort(vals)[::-1]
     ys, xs = ys[order], xs[order]
-    vals = vals[order]
 
-    picked_y, picked_x = [], []
-    # Use kdtree incremental: maintain list and check distance via brute for small sets, cKDTree for large
-    picked = []
-    # For efficiency, create grid of suppression radius in pixel space
     r = float(min_distance_px)
-    # We'll use a boolean suppression mask updated incrementally
-    suppressed = np.zeros_like(valid_mask, dtype=bool)
+    ri = int(np.ceil(r))
+    stamp_y, stamp_x = np.ogrid[-ri:ri+1, -ri:ri+1]
+    stamp = (stamp_y**2 + stamp_x**2) <= (r**2)
 
-    for y,x,v in zip(ys, xs, vals):
-        if suppressed[y,x]: continue
-        if candidate[y,x]==False: continue  # already excluded
-        # pick it
-        picked_y.append(y); picked_x.append(x); picked.append((y,x))
-        # suppress neighbors within r
-        y0 = max(0, int(y - r -1)); y1 = min(H, int(y + r +2))
-        x0 = max(0, int(x - r -1)); x1 = min(W, int(x + r +2))
-        yy, xx = np.mgrid[y0:y1, x0:x1]
-        dist = np.sqrt((yy - y)**2 + (xx - x)**2)
-        suppressed[y0:y1, x0:x1] |= dist <= r
-        if max_dots and len(picked) >= max_dots:
+    suppressed = np.zeros((H, W), dtype=bool)
+    picked_y, picked_x = [], []
+
+    for y, x in zip(ys, xs):
+        if suppressed[y, x]:
+            continue
+        picked_y.append(y)
+        picked_x.append(x)
+        y0, y1 = max(0, y - ri), min(H, y + ri + 1)
+        x0, x1 = max(0, x - ri), min(W, x + ri + 1)
+        sy0, sy1 = y0 - (y - ri), y1 - (y - ri)
+        sx0, sx1 = x0 - (x - ri), x1 - (x - ri)
+        suppressed[y0:y1, x0:x1] |= stamp[sy0:sy1, sx0:sx1]
+        if max_dots and len(picked_y) >= max_dots:
             break
 
     out = np.zeros_like(field, dtype=np.float32)
