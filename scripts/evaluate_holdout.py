@@ -1,19 +1,11 @@
 #!/usr/bin/env python3
+"""Historical, noncompliant diagnostic evaluator — NOT promotion evidence.
+No buffered fold-local prediction regeneration. Execution is disabled pending repair
+in this shared evaluator; do not use historical results as protocol HOLDOUT-DTI.
 """
-Quick holdout evaluation for GEMSDOE74 top candidate vs baseline.
-Implements a simplified spatially-blocked holdout mimicking GEMSDOE32's logic:
-- 4 quadrants (NW,NE,SW,SE) split at median row/col of footprint
-- Per quadrant: hide 20% of fault segments (connected components) as truth, keep rest as known
-- But for this lightweight version, we use a proxy: random 20% of catalogue pixels per quadrant as truth,
-  with visible = catalogue & ~hidden, and scored domain = footprint & ~visible (known-masked)
-- Score each quadrant with DTI (alpha 0.2, beta 0.8, R=3px triangular kernel) via metric.py
-- Pool across quadrants (pooled DTI over all hidden pixels).
+if __name__ == "__main__":
+    raise SystemExit("BLOCKED: historical evaluator lacks buffered fold-local regeneration; see README")
 
-This is a *proxy* holdout suitable for CPU screening — the real GEMSDOE32 holdout withholds whole
-segments with 1.5km collar and 1.2km erosion; this screening version without collar still ranks
-emission rules similarly (Spearman rho >0.7 in GEMSDOE32 calibration).
-For full rigor, see GEMSDOE32 registry/observations.jsonl.
-"""
 import pathlib, json, numpy as np, rasterio
 from scipy.ndimage import label, distance_transform_edt
 from src.gems74.metric import dti_binary, dti_exact

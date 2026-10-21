@@ -7,7 +7,7 @@ Protocol (per brief):
 
 Leakage canary: test each feature alone on holdout; AUC>0.90 flagged as leakage until proven otherwise.
 
-This module provides synthetic holdout when official training_features.tif is not on disk; when it is, the same splits run on real data (scripts/prepare_data.py populates data/).
+These are legacy diagnostic helpers, NOT a buffered whole-segment evaluator. No automatic real-data pipeline exists.
 """
 from __future__ import annotations
 import numpy as np
@@ -38,7 +38,7 @@ def hide_and_recover_scores(predictions, catalogue, hidden_truth, valid_mask, fo
     """
     results = []
     for f in folds:
-        vm = f["val"]
+        vm = f["val"] & valid_mask & ~np.asarray(catalogue, dtype=bool)
         # mask catalogue inside val (catalogue faults not counted)
         comp = compute_dti_components(predictions, hidden_truth, valid_mask=vm)
         # Also compute catalogue-masked version (FP on catalogue not penalized per staff clarification)
@@ -67,14 +67,13 @@ def leakage_canary(feature_stack: dict, labels: np.ndarray, valid_mask: np.ndarr
     y = labels.ravel()[flat_valid]
     for name, feat in feature_stack.items():
         x = feat.ravel()[flat_valid]
-        # Need both classes present
-        if y.sum()==0 or y.sum()==len(y):
-            auc = 0.5
-        else:
-            try:
-                auc = roc_auc_score(y, x)
-            except Exception:
-                auc = 0.5
-        flag = auc > 0.90
-        canary.append({"feature":name,"auc":float(auc),"flag_leakage":bool(flag)})
+        # Missing classes/nonfinite values are not evidence of a safe feature.
+        if len(y) == 0 or np.unique(y).size != 2 or not np.isfinite(x).all():
+            canary.append({"feature": name, "auc": None, "flag_leakage": True,
+                           "status": "invalid"})
+            continue
+        auc = float(roc_auc_score(y, x))
+        canary.append({"feature": name, "auc": auc,
+                       "flag_leakage": max(auc, 1 - auc) > 0.90,
+                       "status": "measured"})
     return canary
