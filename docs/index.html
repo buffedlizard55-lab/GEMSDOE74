@@ -41,6 +41,43 @@ footer{max-width:1080px;margin:40px auto;padding:0 20px 40px;color:var(--muted);
 </style>
 </head>
 <body>
+<!-- BEGIN:SUBMISSION_STATUS -->
+<style>
+.gstat{font:15px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;border-radius:12px;padding:16px 18px;margin:16px 0;border:2px solid;color:#111;background:#fff}
+.gstat h2{font-size:18px;margin:0 0 6px}
+.gstat.hold{border-color:#b00020;background:#fff3f3}
+.gstat.ready{border-color:#0a7a0a;background:#f1fbf1}
+.gstat.notready{border-color:#b35c00;background:#fff8ef}
+.gstat ul{margin:6px 0 6px 18px;padding:0}
+.gstat code{font-size:13px}
+.gstat table{border-collapse:collapse;font-size:13px;margin:6px 0}
+.gstat td,.gstat th{border:1px solid #ddd;padding:4px 7px;text-align:left;vertical-align:top}
+.gstat .lab{display:inline-block;font-size:11px;font-weight:700;border-radius:999px;padding:2px 8px;margin-right:4px;background:#e8eefc;color:#123}
+.gstat .no{color:#b00020;font-weight:700}
+.gstat .yes{color:#0a7a0a;font-weight:700}
+.gstat .btn{display:inline-block;margin-top:6px;padding:9px 14px;border-radius:9px;font-weight:700;text-decoration:none;border:1px solid #888;color:#111;background:#fff}
+.gstat .btn.go{background:#0a7a0a;border-color:#0a7a0a;color:#fff}
+.gstat .btn.review{background:#fff;border-color:#b35c00;color:#7a3e00}
+.gstat .nav{font-size:13px;margin-top:8px}
+</style>
+<div class="gstat hold">
+<h2>HOLD: DO NOT SUBMIT. Candidates exist, and none is cleared.</h2>
+<p><b>Submit: NO.</b> <b>Download:</b> review copies only. This project's gate requires all five checks below. None of the candidates meets all five.</p>
+<h2>H74-A alt-spring (other session)</h2>
+<p><a class="btn review" href="downloads/gems74-h74-alt-spring-39500-20261021T000000Z-52f76038-zeros.tif">Download for review only (not cleared)</a> <code>gems74-h74-alt-spring-39500-20261021T000000Z-52f76038-zeros.tif</code></p>
+<table><tr><th>Holdout</th><th>Candidate</th><th>Random control</th><th>Result</th></tr><tr><td>v0.1 4-quadrant</td><td><span class="lab">HOLDOUT-DTI</span> 0.00144</td><td>0.03399</td><td class="no">FAILS random control</td></tr><tr><td>v0.2 segments</td><td><span class="lab">HOLDOUT-DTI</span> 0.00162</td><td>0.03103</td><td class="no">FAILS random control</td></tr></table>
+<table><tr><th>Gate</th><th>Met?</th></tr><tr><td>Beats random control on its holdout</td><td class="no">NO</td></tr><tr><td>Beats the incumbent H33-2-B2 on the same holdout</td><td class="no">NO</td></tr><tr><td>Holdout truth independent of the catalogue</td><td class="no">NO</td></tr><tr><td>Input rights and provenance recorded</td><td class="no">NO</td></tr><tr><td>Organiser receipt and READY promotion</td><td class="no">NO</td></tr></table>
+<p class="mut">Provenance: inputs fetched from a sibling mirror (scripts/fetch_data.sh); rights unverified (IR-74-04). Incumbent comparison: not shown.</p>
+<h2>H74-1 basement-step (other session)</h2>
+<p><a class="btn review" href="downloads/gemsdoe74-h74-1-basement-step-35641-20261021T000000Z-100b4b19-zeros.tif">Download for review only (not cleared)</a> <code>gemsdoe74-h74-1-basement-step-35641-20261021T000000Z-100b4b19-zeros.tif</code></p>
+<table><tr><th>Holdout</th><th>Candidate</th><th>Random control</th><th>Result</th></tr><tr><td>4-quadrant, catalogue + scatter</td><td><span class="lab">HOLDOUT-DTI</span> 0.19370</td><td>0.04047</td><td class="yes">passes random control</td></tr></table>
+<table><tr><th>Gate</th><th>Met?</th></tr><tr><td>Beats random control on its holdout</td><td class="yes">yes</td></tr><tr><td>Beats the incumbent H33-2-B2 on the same holdout</td><td class="no">NO</td></tr><tr><td>Holdout truth independent of the catalogue</td><td class="no">NO</td></tr><tr><td>Input rights and provenance recorded</td><td class="no">NO</td></tr><tr><td>Organiser receipt and READY promotion</td><td class="no">NO</td></tr></table>
+<p class="mut">Provenance: not recorded in its run card (IR-74-25). Incumbent comparison: not shown: its arms are H74-1, a random control and a uniform 2.8 lattice; H33-2-B2 is not in the run card.</p>
+<p class="mut">leakage canary AUC 0.68; uniqueness rho 0.42, overlap 38.2%; verdict field &#x27;promote&#x27;</p>
+<p class="mut">HOLDOUT-DTI numbers are from local evaluators on catalogue-based truth. None is an organiser score. The 0.2778 figure is self-reported for the GEMSDOE32 file. The only 0.2778 on the public board is extradr19 (IR-74-03).</p>
+<div class="nav">Review pages: <a href="review/submit-checklist.html">submit checklist</a> · <a href="review/analysis-0-2778.html">0.2778 analysis</a> · <a href="review/hypotheses.html">hypotheses</a> · <a href="review/irregularities.html">irregularities</a> · <a href="review/sources.html">sources</a> · <a href="review/leaderboard.html">leaderboard</a> · <a href="review/run-card.html">run card</a></div>
+</div>
+<!-- END:SUBMISSION_STATUS -->
 <header>
   <div class="badge">DOE GEMS Prize · DrivenData #306 · NW Nevada GeoDAWN</div>
   <nav style="margin-top:12px">

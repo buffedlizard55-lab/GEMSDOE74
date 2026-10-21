@@ -2,13 +2,15 @@
 
 > **Core Values:** Maximize P(Win) — every weekly submission slot is an experiment. Own the Outcome — every number carries an evidence class, every defect is measured and published.
 
+> **HOLD: do not submit any file from this repo yet.** Two candidates are on `main`, both UNSCORED. H74-A fails the random control. H74-1 passes it, but has no comparison against the incumbent H33-2-B2 on the same holdout, and its input rights are not recorded. Full status: `docs/index.html` (top panel). Review pages: `docs/review/`.
+
 This repository is a **clean, auditable submission generator** for the DOE GEMS Prize (DrivenData #306). It produces a portal-safe single-band GeoTIFF (EPSG:32611, 100 m, 3292×3730, float32, all values in [0,1], no nodata sentinel) and a GitHub Pages site that makes the submission file obvious and verifiable.
 
 **Live site:** `https://buffedlizard55-lab.github.io/GEMSDOE74/` (GitHub Pages from `main`, `docs/` folder, `.nojekyll`)
 
 ## One-click submission
 
-- **Primary (portal-safe, zeros outside):** `docs/downloads/gemsdoe74-h74-1-basement-step-38900-20261021T000000Z-*.tif` — [download on the site](docs/index.html)
+- **Primary (portal-safe, zeros outside):** `docs/downloads/gemsdoe74-h74-1-basement-step-35641-20261021T000000Z-100b4b19-zeros.tif` (this README said 38900; the file on disk has 35641, see IR-74-31) — [download on the site](docs/index.html)
 - **Alternate (NaN outside, spec-literal):** same values inside footprint, `nodata=NaN` outside
 - **Validator:** every file is re-opened from bytes, checked for CRS/shape/transform/dtype/range/finiteness; sidecar `*.json` is the receipt
 - **Submit:** use the “Note” string from the sidecar (≤140 chars) in the DrivenData form; see [Executive Summary](docs/executive-summary.html)
@@ -93,3 +95,23 @@ All claims link to official verified sources. See [sources.html](docs/sources.ht
 - GeoDAWN: [USGS GeoDAWN airborne surveys](https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and)
 - CRS: [EPSG:32611](https://epsg.io/32611)
 - Metric: [Tversky index](https://en.wikipedia.org/wiki/Tversky_index)
+
+---
+
+## Review layer (added by the 2026-10-21 review session)
+
+This session's pages are in `docs/review/` so they do not overwrite the other sessions' pages:
+
+| Page | What it answers |
+|---|---|
+| `docs/review/submit-checklist.html` | How to submit, format rules, and troubleshooting for "Predicted values must be in range [0, 1]". |
+| `docs/review/analysis-0-2778.html` | Why a sparse file can score high, the break-even rule (credit > 0.2·DTI), and each candidate on main (sections 7 and 8). |
+| `docs/review/hypotheses.html` | Ranked candidate lanes with overlap checks against the sibling GEMSDOE32 repo. |
+| `docs/review/irregularities.html` | Every inconsistency found, with severity and a reviewer action (IR-74-01 onward). |
+| `docs/review/sources.html` | Official links, what was read, what was not reachable. |
+| `docs/review/leaderboard.html`, `docs/review/run-card.html` | Generated from `docs/review/data/`. |
+
+Rebuild the generated parts with `python scripts/build_site.py`. The status panel is built from disk. READY needs a `*.receipt.json` in `docs/downloads/` whose `release_status` is exactly `READY`.
+
+Tests: `pytest -q tests`. The metric reference is `src/gems74/metric.py`, which matches the official formula. `src/gemsdoe74/metric.py` does not (IR-74-30).
+

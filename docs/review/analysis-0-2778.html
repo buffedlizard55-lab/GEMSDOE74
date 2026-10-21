@@ -2,9 +2,9 @@
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>The 0.2778 question · GEMSDOE74</title>
-<link rel="stylesheet" href="assets/site.css">
+<link rel="stylesheet" href="../assets/site.css">
 </head><body>
-<header class="top"><span class="brand">GEMSDOE74</span><a href="index.html">Home</a><a href="submit-checklist.html">How to submit</a><a href="analysis-0-2778.html" aria-current="page">The 0.2778 question</a><a href="hypotheses.html">Hypotheses</a><a href="leaderboard.html">Leaderboard</a><a href="irregularities.html">Irregularities</a><a href="sources.html">Sources</a><a href="run-card.html">Run card</a></header>
+<header class="top"><span class="brand">GEMSDOE74</span><a href="../index.html">Site home</a><a href="submit-checklist.html">How to submit</a><a href="analysis-0-2778.html" aria-current="page">The 0.2778 question</a><a href="hypotheses.html">Hypotheses</a><a href="leaderboard.html">Leaderboard</a><a href="irregularities.html">Irregularities</a><a href="sources.html">Sources</a><a href="run-card.html">Run card</a></header>
 <main>
 
 <h1>The 0.2778 question</h1>
@@ -95,6 +95,24 @@
 <tr><td>Their ranked-list claim</td><td>Their hypothesis file says H74-A shows "+0.0031 over D2.8" on a drift-corrected holdout. The evidence files above show a failure against the random control. The two disagree (IR-74-20).</td><td><span class="pill p-cl">CLAIM</span></td></tr>
 </table>
 <p><span class="pill p-no">VERDICT</span> Unique by the uniqueness check, and not cleared for submission. Its holdout fails the random control, so it does not meet the gate in this project's own protocol. Do not submit it, and do not treat its "YES" on its page as an approval. See <a href="irregularities.html">IR-74-18</a>.</p>
+</div>
+
+
+<h2>8. The H74-1 candidate on main (parallel lane)</h2>
+<div class="card">
+<p>A third session put H74-1, a basement-step lane, on <code>main</code>. Its site says "OK to download and submit". Its run card gives the figures below. We re-measured what could be re-measured from the files here.</p>
+<table>
+<tr><th>Check</th><th>Result</th><th>Label</th></tr>
+<tr><td>Holdout (4 quadrants, its evaluator)</td><td>Candidate 0.1937 vs random 0.0405; delta +0.153; 4 of 4 folds positive; CI [0.122, 0.266]; 12,923 withheld positives. Uniform 2.8 lattice arm 0.090.</td><td><span class="pill p-hd">HOLDOUT-DTI</span> (their run card and site)</td></tr>
+<tr><td>Incumbent comparison (H33-2-B2 on the same holdout)</td><td><b>Not in the run card, and not on the site.</b> Its arms are H74-1, random and a uniform lattice.</td><td>Gate not met (IR-74-26)</td></tr>
+<tr><td>Holdout truth</td><td>Visible catalogue plus synthetic scatter (σ≈1.85 px). Its own note says this cannot reward a genuinely new fault.</td><td><span class="pill p-cl">CLAIM</span> (their note)</td></tr>
+<tr><td>Leakage canary</td><td>Single-feature AUC 0.68 (below 0.90). Their run card's flag is false.</td><td><span class="pill p-cl">CLAIM</span> (not re-run here)</td></tr>
+<tr><td>sha256 and format</td><td>sha256 <code>af4afc84…7aef27</code> matches its run card. 3730 × 3292, float32, single band, EPSG:32611, values only 0 and 1, no NaN. Passes our validator and theirs (exit 0).</td><td><span class="pill p-ml">MEASURED-LOCAL</span></td></tr>
+<tr><td>Uniqueness vs the GEMSDOE32 primary (0.2778 file)</td><td>Spearman ρ = 0.000074; overlap 8.2% (reference dots within 3 px of candidate) and 7.4% (other direction). Passes both thresholds. Its run card reports ρ = 0.42 and overlap 38.2% against a reference it does not name, which we could not reproduce (IR-74-22).</td><td><span class="pill p-ml">MEASURED-LOCAL</span></td></tr>
+<tr><td>Provenance and rights of inputs</td><td>Not recorded in the run card. Its site says the data are "licensed for this challenge and shareable". No licence record is in the repo (IR-74-25).</td><td><span class="pill p-cl">CLAIM</span></td></tr>
+<tr><td>Metric used for its holdout</td><td>Its file is binary, so the probability-weighting defect in <code>gemsdoe74/metric.py</code> does not change its number. That defect affects any probabilistic file (IR-74-30).</td><td><span class="pill p-ml">MEASURED-LOCAL</span></td></tr>
+</table>
+<p><span class="pill p-no">VERDICT</span> Passes the random control and the uniqueness check. Not cleared: it has no incumbent comparison on the same holdout, its truth cannot show new faults, and its input rights are unrecorded. Its run-card field <code>verdict: "promote"</code> is a lane-internal label, and no slot has been picked. Ask the user before any promotion.</p>
 </div>
 
 </main>
