@@ -1,117 +1,47 @@
-# GEMSDOE74 — DOE GEMS Prize Fault Discovery (NW Nevada GeoDAWN)
+# GEMSDOE74 — DOE GEMS Prize review and submission pipeline
 
-> **Core Values:** Maximize P(Win) — every weekly submission slot is an experiment. Own the Outcome — every number carries an evidence class, every defect is measured and published.
+> **Read `PROMPT.md` before every project session.** Core values: **Maximize P(Win)** by preserving experimental slots for evidence-backed candidates; **Own the Outcome** by publishing defects and refusing unsupported release claims.
 
-> **HOLD: do not submit any file from this repo yet.** Two candidates are on `main`, both UNSCORED. H74-A fails the random control. H74-1 passes it, but has no comparison against the incumbent H33-2-B2 on the same holdout, and its input rights are not recorded. Full status: `docs/index.html` (top panel). Review pages: `docs/review/`.
+## Status: HOLD — no submission is cleared
 
-This repository is a **clean, auditable submission generator** for the DOE GEMS Prize (DrivenData #306). It produces a portal-safe single-band GeoTIFF (EPSG:32611, 100 m, 3292×3730, float32, all values in [0,1], no nodata sentinel) and a GitHub Pages site that makes the submission file obvious and verifiable.
+There is currently **no scientifically validated, competition-ready TIF in this repository**. Do **not** submit any downloadable file from this site. The GeoTIFFs under `docs/downloads/` are inherited review artifacts, not an approved candidate: the feature inputs and footprint were synthesized or mirrored without verified provenance, and the available holdouts do not establish discovery of faults absent from the catalogue. Format validity is not scientific validation.
 
-**Live site:** `https://buffedlizard55-lab.github.io/GEMSDOE74/` (GitHub Pages from `main`, `docs/` folder, `.nojekyll`)
+The current session's only allowed method lane is **C1: flight-line-artifact-suppressed magnetic edge detection**. It has **not** been run. The official competition feature stack, sample submission, labels and cached feature stack are not present under `data/`; this environment has no DrivenData login. Therefore no legitimate new raster can be built, no holdout score or confidence interval can be reported, and no submission slot should be spent. Details, ranked variants, source links, and irregularities are in [the session review](docs/review/session-review-2026-10-21.html) and [run card](docs/review/run-card.html).
 
-## One-click submission
+### Existing files are review-only
 
-- **Primary (portal-safe, zeros outside):** `docs/downloads/gemsdoe74-h74-1-basement-step-35641-20261021T000000Z-100b4b19-zeros.tif` (this README said 38900; the file on disk has 35641, see IR-74-31) — [download on the site](docs/index.html)
-- **Alternate (NaN outside, spec-literal):** same values inside footprint, `nodata=NaN` outside
-- **Validator:** every file is re-opened from bytes, checked for CRS/shape/transform/dtype/range/finiteness; sidecar `*.json` is the receipt
-- **Submit:** use the “Note” string from the sidecar (≤140 chars) in the DrivenData form; see [Executive Summary](docs/executive-summary.html)
+The TIFs in [`docs/downloads/`](docs/downloads/) were generated in earlier parallel work. They are retained for audit and reproducibility, **not as submissions**. Their sidecars assert format properties; they do not prove inputs, provenance, geospatial footprint, official acceptance, or a valid novelty holdout. The review page links to them only as historical artifacts.
 
-**Portal error fixed:** `Predicted values must be in range [0, 1]` — two mechanisms (float32 sentinel `-3.402823e38` and NaN outside) measured in GEMSDOE30; both engineered out here (zeros outside, `nodata=None`, clip to [0,1], re-read assert).
+## Why the reported 0.2778 is not explained by available evidence
 
-## Prompt
+The public leaderboard page reports public DW-Tversky scores; a leaderboard row does not identify a GeoTIFF by filename or hash. The public leaderboard row 0.2778 (**PUBLIC-LEADERBOARD**) is associated with participant `extradr19`, not verifiably with the GEMSDOE32 artifact. GEMSDOE32's own page describes its H33-2-B2 as a 0.2708 base pruned of dots within 2 pixels of known faults, leaving 37,654 dots; it reports an internal live-mirror uplift of 0.00487 and projected 0.2747, while explicitly saying there is no organizer score. Treat those as **SIBLING-REPO CLAIM / PROJECTION**, not an organizer result. The repository contains no organizer receipt that ties that file hash to the public leaderboard's 0.2778. Accordingly, **why that exact file scored 0.2778 cannot be established here**.
 
-The full task prompt that defines a successful project is stored in `PROMPT.md` and read on every work session. It requires:
+The official metric makes sparse, well-located predictions a plausible strategy: the distance-weighted Tversky index uses α=0.2, β=0.8 and a 300 m triangular kernel. Pruning low expected-credit predictions may reduce false-positive mass, but this is a mechanism-based hypothesis, not a causal explanation or a measured score for the named file. The current official public page fetched on 2026-10-21 shows 0.4413 at rank 1 (**PUBLIC-LEADERBOARD**); this differs from the user's cited 0.3195 and should be rechecked later because the board changes. That leaderboard number is not evidence that this project can beat it.
 
-- a unique TIF submission (not a copy), obviously downloadable, with executive-summary how-to-submit
-- 3–5 geological hypotheses naming layer, signature, off-catalogue reason, and difference from prior work; ranked by expected DTI and cost; top validated on spatially-blocked holdout before spending a weekly slot
-- line-by-line verified sources with links, no hallucinations, irregularities flagged
-- parallel-run protocol: lane, reuse, label numbers (HOLDOUT-DTI vs ORGANIZER-CONFIRMED), leakage canary, run card, budget 3 experiments / 2 h
-- PhD-level answer to why `h33-h33-2-b2` (0.2778) scored highest and whether we can beat it
+Official references: [problem description, metric and submission format](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/), [competition rules](https://www.drivendata.org/competitions/306/competition-doe-gems/rules/), [official GeoDAWN data page](https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and), [DrivenData reference solution](https://github.com/drivendataorg/gems-prize-reference-solution), [INGENIOUS](https://gbcge.org/current-projects/ingenious/), [EPSG:32611](https://epsg.io/32611).
 
-## Why 0.2778 scored highest (summary)
+## Safe workflow
 
-The metric is a distance-weighted Tversky index with α=0.2 (FP cheap), β=0.8 (FN expensive), triangular kernel R=300 m [1](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/). A dot is worth emitting only if its expected kernel credit `k > 0.2·DTI` (~0.054 at DTI≈0.27) [2](https://buffedlizard55-lab.github.io/GEMSDOE32/docs/index.html). Thinning a thick fault surface to Poisson-spaced dots removes mass already covered within the same kernel footprint, raising credit per dot while preserving TP. The 0.2778 file (`h33-h33-2-b2`) combines:
+1. Read `PROMPT.md` and the session review. Do not spend a slot on an unvalidated idea.
+2. On an authorized machine, download the official competition files from the [DrivenData data page](https://www.drivendata.org/competitions/306/competition-doe-gems/data/) into `data/`. Respect competition rules and input-license terms; do not use an unverified mirror.
+3. Run `python scripts/prepare_data.py`, then build and cache the verified feature stack. The current generation command intentionally fails closed: its synthetic feature code is not a competition model.
+4. Implement and test C1 using only the cached stack; withhold whole fault segments plus buffer, derive catalogue-based features only from visible faults, pixel-mask visible faults, run per-feature leakage canaries, and compare candidate with incumbent and controls under the same evaluator.
+5. Record pooled HOLDOUT-DTI, evaluator version, withheld-positive count, and confidence interval. Stop on duplicate thresholds or leakage. Promotion to a real slot is a separate selector decision.
+6. Only after all scientific, provenance, uniqueness and byte-level format gates pass, write a submission with `src/gemsdoe74/submission.py`, re-open/validate it, hash it, and publish a receipt. The site must say plainly **OK to submit** or **DO NOT SUBMIT**.
 
-- **d2.8 Poisson disk (280 m)** — matches the 300 m kernel; dots just far enough to avoid overlapping kernel support, so each covers new truth
-- **Off-catalogue enforcement (B=2 prune, 0 dots within 2 px of known faults)** — per staff clarification known faults are masked from scoring [3](https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516/4), so mass on catalogue is pure waste; pruning to 0% on-catalogue reallocates budget to where hidden faults are inferred to be (≈0.24% truth density from the blind lattice 0.0904, GEMSDOE24 [4](https://buffedlizard55-lab.github.io/GEMSDOE24/))
-- **37,654 dots** — at the empirical break-even bar (≈0.052 from `0.2·0.26`, measured 0.0548) where marginal dot credit equals cost
+The official submission format is one float32 GeoTIFF in EPSG:32611, 100 m, same bounds/shape/transform as the competition data, one band, and values in [0,1]; the official problem description says values outside bounds should be null or NaN. Use the official sample submission for geometry and null mask. Do not infer the official footprint from a synthetic mask. A zeros-outside raster may satisfy a portal range validator but can violate the stated outside-bounds requirement; verify the organizer's validator behavior rather than assuming.
 
-Beating it requires raising **credit density at fixed mass** by ~25% (0.26→0.3262 leader [5](https://buffedlizard55-lab.github.io/GEMSDOE32/docs/leaderboard.html)), which no public fault compilation can supply (59,065 px GDR QFaults v2, only 1 px beyond 300 m of the catalogue [6](https://github.com/buffedlizard55-lab/GEMSDOE30/blob/main/data/external/derived_gdr_qfaults_v2_100m_u8.tif)). The path is a better detector + the two-round objective (hidden faults become Final Round truth).
+## Repository map
 
-This repo’s lane **H74-1 Basement-step ridge gated by quiescence** changes *where* mass goes (concealed block boundaries under cover) rather than re-packing the same surface.
-
-## Hypotheses (ranked)
-
-1. **H74-1 Basement-step ridge + quiescence gate** — depth_to_base_surf gradient-magnitude ridge, gated by low surface slope/curvature (concealed faults under basin fill) — *implemented as lane*
-2. **H74-2 Tilt-angle zero-crossing** — tc + tmi_vg zero-crossing (depth-independent magnetic contact)
-3. **H74-3 Seismicity coherence ridge** — ieq/d eq density structure-tensor coherence + detrended elevation inflection
-4. **H74-4 Conductivity clay-cap breach** — cond_surf gradient + depth-to-conductive-base thinning
-5. **H74-5 Radiometric K/Th ratio edge** — K/Th domain boundary persistence
-
-See [hypotheses.html](docs/hypotheses.html) for layer, signature, off-catalogue rationale, difference from prior work, expected DTI and cost per hypothesis.
-
-## Layout
-
-- `docs/` — GitHub Pages (index, executive-summary, hypotheses, research, sources, downloads + audit JSON)
-- `src/gemsdoe74/` — metric, holdout, emission, submission writer, validation, synthetic feature generators
-- `scripts/generate_submission.py` — builds the TIF from the template profile (no competition login needed; template constants are pinned and hash-verified)
-- `tests/` — metric identity, validator, emission tests (run `pytest -q`)
-- `data/` — placeholder; `scripts/download_competition_data.sh` fetches official data on an unrestricted machine
-
-## Quickstart (no login)
-
-```bash
-pip install --break-system-packages -r requirements.txt
-python scripts/generate_submission.py --out docs/downloads --lane h74-1
-pytest -q
-```
-
-On an unrestricted machine with DrivenData login:
-
-```bash
-bash scripts/download_competition_data.sh   # → data/sample_submission.tif, data/training_features.tif, …
-python scripts/prepare_data.py
-python scripts/generate_submission.py --template data/sample_submission.tif
-```
+- `PROMPT.md` — session operating contract, including the parallel-run protocol.
+- `docs/` — GitHub Pages, review, evidence, and legacy downloads.
+- `docs/review/session-review-2026-10-21.html` — current, evidence-based status and research slate.
+- `docs/review/data/run-card.json` — current negative run card; no score is fabricated.
+- `src/gemsdoe74/submission.py` — GeoTIFF writer/validator helper; its pinned constants are not a substitute for the official template.
+- `scripts/generate_submission.py` — fails closed until official input data and a real model are implemented.
+- `scripts/evaluate_holdout.py` — fails closed rather than reporting the old random-pixel proxy as segment holdout.
+- `data/` — intentionally empty in this checkout (except README and `.gitkeep`).
 
 ## Verification
 
-- Every number is labeled **HOLDOUT-DTI** or **ORGANIZER-CONFIRMED**
-- Leakage canary (AUC per feature) is run before any holdout score is trusted; AUC>0.90 flagged as leakage
-- No NaN inside footprint, values in [0,1], CRS/shape/transform match checked byte-wise; SHA-256 pinned
-
-## Sources
-
-All claims link to official verified sources. See [sources.html](docs/sources.html) for 20+ entries with status and fetch date.
-
-## Irregularities
-
-35 flagged in the group register [7](https://buffedlizard55-lab.github.io/GEMSDOE32/docs/irregularities.html); this repo re-checks each that touches the submission path and logs new ones in `docs/irregularities.html`.
-
-## Competition
-
-- Problem + metric: [DrivenData 306 page 967](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/)
-- Rules PDF: [GEMS 96647](https://docs.nlr.gov/docs/fy26osti/96647.pdf)
-- Reference solution: [gems-prize-reference-solution](https://github.com/drivendataorg/gems-prize-reference-solution)
-- GeoDAWN: [USGS GeoDAWN airborne surveys](https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and)
-- CRS: [EPSG:32611](https://epsg.io/32611)
-- Metric: [Tversky index](https://en.wikipedia.org/wiki/Tversky_index)
-
----
-
-## Review layer (added by the 2026-10-21 review session)
-
-This session's pages are in `docs/review/` so they do not overwrite the other sessions' pages:
-
-| Page | What it answers |
-|---|---|
-| `docs/review/submit-checklist.html` | How to submit, format rules, and troubleshooting for "Predicted values must be in range [0, 1]". |
-| `docs/review/analysis-0-2778.html` | Why a sparse file can score high, the break-even rule (credit > 0.2·DTI), and each candidate on main (sections 7 and 8). |
-| `docs/review/hypotheses.html` | Ranked candidate lanes with overlap checks against the sibling GEMSDOE32 repo. |
-| `docs/review/irregularities.html` | Every inconsistency found, with severity and a reviewer action (IR-74-01 onward). |
-| `docs/review/sources.html` | Official links, what was read, what was not reachable. |
-| `docs/review/leaderboard.html`, `docs/review/run-card.html` | Generated from `docs/review/data/`. |
-
-Rebuild the generated parts with `python scripts/build_site.py`. The status panel is built from disk. READY needs a `*.receipt.json` in `docs/downloads/` whose `release_status` is exactly `READY`.
-
-Tests: `pytest -q tests`. The metric reference is `src/gems74/metric.py`, which matches the official formula. `src/gemsdoe74/metric.py` does not (IR-74-30).
-
+Run `pytest -q`. Tests that require competition inputs must be reported as **skipped**, not silently passed. No organizer-confirmed result exists for any artifact here. Report public leaderboard values as **PUBLIC-LEADERBOARD**, local holdout values as **HOLDOUT-DTI (evaluator version, withheld positives, 95% CI)**, and copied submission receipts as **ORGANIZER-CONFIRMED**. Never present a projection as a score.

@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Session review 2026-10-21 · GEMSDOE74</title><link rel="stylesheet" href="../assets/site.css"></head>
+<body><header class="top"><span class="brand">GEMSDOE74</span><a href="../index.html">Site home</a><a href="run-card.html">Run card</a><a href="hypotheses.html">Hypotheses</a><a href="sources.html">Sources</a></header>
+<main>
+<h1>Session review — 2026-10-21</h1>
+<div class="status hold"><p class="big">HOLD — DO NOT SUBMIT ANY FILE FROM THIS REPOSITORY</p><p>No new competition GeoTIFF was generated. The official stack and template are absent; the only downloadable rasters are inherited synthetic/review artifacts. Format metadata alone does not make their predictions scientifically valid.</p></div>
+
+<h2>What was inspected and verified locally</h2>
+<ul>
+<li><code>data/</code> contains only <code>README.md</code> and <code>.gitkeep</code>; there is no official sample submission, training feature stack, label raster, or cached feature stack.</li>
+<li>The DrivenData data URL redirected to the login form when fetched. This is a direct observation, not a claim about whether the account owner can access the page.</li>
+<li>The previous <code>scripts/generate_submission.py</code> synthesized geological-looking feature fields and a synthetic footprint when competition data were absent. Those are not observations from the study area, so the file could not be represented as a genuine model submission.</li>
+<li>The previous <code>scripts/evaluate_holdout.py</code> randomly withheld catalogue pixels, not whole segments with buffer. The previous leakage canary returned normally when data were missing. These paths did not satisfy the requested protocol.</li>
+<li>Historical TIFs remain in <code>docs/downloads/</code> for audit. Their sidecars and local metadata cannot establish input provenance, compliance with official bounds/null mask, correct holdout performance, or organizer acceptance.</li>
+<li>The current session used zero experiments and no submission slot. The old evidence is not reused as new experimental evidence.</li>
+</ul>
+
+<h2>Why `h33-h33-2-b2` is not causally explained by the score claim</h2>
+<p>The official problem page defines a distance-weighted Tversky score with α=0.2, β=0.8 and a linear triangular kernel with 300 m support. This makes sparse predictions with high expected proximity to hidden faults a plausible strategy: low-credit predicted mass contributes false-positive cost, while missing truth contributes false-negative cost. That is a metric-based rationale, not proof of why a particular raster scored as reported.</p>
+<p>The public leaderboard is a participant-level display and does not provide a file hash for the 0.2778 entry. The official page fetched on 2026-10-21 shows 0.2778 at rank 47 for <code>extradr19</code> (<strong>PUBLIC-LEADERBOARD</strong>); its rank-1 row is 0.4413 (<strong>PUBLIC-LEADERBOARD</strong>), not the user's cited 0.3195. The GEMSDOE32 site describes a 0.2708 base with dots within 2 pixels of the catalogue pruned, leaving 37,654 dots and zero catalogue-overlapping dots; it reports an internal “live-mirror” uplift of 0.00487, projects 0.2747, and explicitly says no organizer score exists (<strong>SIBLING-REPO CLAIM / PROJECTION</strong>, not an organizer result). That is a plausible sparse-packing mechanism, but it does not account for a 0.2778 organizer score. No organizer receipt linking the named artifact hash to that score is present here. Therefore the causal question “why did this exact file score 0.2778?” is <strong>unresolved</strong>. We can explain the metric and inspect the sibling site's method as an unverified account, but cannot claim a score mechanism from attribution alone. A score above 0.2778 is possible in principle; this session did not demonstrate one. Public-leaderboard scores are not holdout scores or final-prize guarantees.</p>
+
+<h2>Research slate — one lane, four ordered tests</h2>
+<p>The lane is C1: survey-artifact-suppressed magnetic edge analysis. These are variants of the same method family, not four parallel lanes. Rankings are qualitative priors and implementation cost, <strong>not predicted scores</strong>. C1 requires the official GeoDAWN feature stack. Its public page describes total magnetic intensity (TMI), reduced-to-pole magnetic anomaly (RTP), vertical and horizontal TMI slopes, and other features; it does not expose the local raster data in this environment.</p>
+<table><thead><tr><th>Rank</th><th>Specific layer(s)</th><th>Signature and rationale for off-catalogue faults</th><th>Difference / cost / status</th></tr></thead><tbody>
+<tr><td>1</td><td>TMI and RTP magnetic grids (use the organizer-provided bands, exact band indices to be read from metadata)</td><td>Estimate directional periodicity from the grids, apply a narrowly targeted oriented spectral suppression, then detect multi-scale edge persistence. A buried structure can create a magnetic contrast without a surface scarp, unlike a geomorphic fault inventory; however, a magnetic contact is not itself proof of fault displacement.</td><td>New artifact-control stage before magnetic edge detection; unlike simple re-packing, catalogue-distance masks, or uncorrected gradient magnitude. Medium cost. Not run: official stack absent.</td></tr>
+<tr><td>2</td><td>TMI, RTP, and organizer-provided magnetic derivative layers</td><td>Cross-layer directional structure-tensor agreement after estimating the survey orientation. A coherent subsurface contact can persist across related magnetic products; requiring independent layer agreement may reject isolated acquisition stripes.</td><td>Different from a single-band edge response; risks filtering out genuine contacts because products are correlated. Low–medium cost once the official cache is available. Not run.</td></tr>
+<tr><td>3</td><td>TMI/RTP magnetic grids</td><td>Compare edge locations across multiple spatial scales and retain stable lineaments after artifact-frequency diagnostics. Stable concealed contacts are candidates for faults omitted from surface-based catalogues.</td><td>Different from fixed-scale gradient peaks; edge persistence can still select lithologic boundaries. Low cost after caching. Not run.</td></tr>
+<tr><td>4</td><td>Organizer magnetic grids, with the official acquisition metadata if supplied</td><td>Use along-/across-survey directional residual diagnostics to identify line-oriented residuals, then require candidate edges not to be explained by those residuals.</td><td>Different from global notch filtering; depends on verified flight-line orientation metadata. Medium cost. Not run; no metadata checked in this checkout.</td></tr>
+</tbody></table>
+<p><strong>Top-candidate validation gate:</strong> no candidate has been validated. Before any promotion, compare each single feature alone on a spatially blocked, whole-segment-with-buffer holdout; derive every catalogue-based feature from visible faults only, pixel-mask visible faults exactly, report pooled HOLDOUT-DTI with evaluator version, withheld positives and 95% CI, and compare the incumbent on identical folds. Run the leakage canary first. Because the competition's hidden labels are not available locally, this catalogue holdout is only a necessary diagnostic and cannot establish discovery of faults absent from the catalogue.</p>
+
+<h2>Access limitation and needed inputs</h2>
+<p>The specific source needed for this lane is the official <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/data/">DrivenData competition data page</a>: <code>training_features.tif</code>, <code>labels.tif</code>, and <code>sample_submission.tif</code>. The page redirected to login during this review. The <a href="https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and">official USGS GeoDAWN survey page</a> is relevant public source documentation, but no alternate copy was fetched or substituted. The DrivenData competition rules require rights that permit use and sharing of external data with the sponsor; no third-party mirror is used here.</p>
+
+<h2>Code changes made in this review</h2>
+<ul>
+<li>The submission-generation entry point now fails closed and writes no TIF until official inputs and the C1 model/validation gates exist.</li>
+<li>The old quadrant/random-pixel evaluator is replaced with an explicit no-score guard; it will not overwrite evidence with a non-protocol proxy.</li>
+<li><code>prepare_data.py</code> now refuses missing files and no longer writes a false <code>{"checked":true}</code> manifest. Its manifest records hashes and grid metadata, and explicitly does not claim download provenance or feature caching.</li>
+<li>The leakage-canary test reports a real skip when required data are absent rather than passing without checking anything.</li>
+<li>A regression test checks these fail-closed behaviors.</li>
+</ul>
+
+<h2>Run-card verdict</h2>
+<p>The machine-readable card is <a href="data/run-card.json">here</a>. HOLDOUT-DTI, CI, withheld-positive count, raster hash, registry similarity, and validator output are <strong>not available</strong> because no new candidate raster exists. Proposed submission name: <code>GEMSDOE74-C1-MAG-EDGE-ARTIFACT-SUPPRESSION</code>; note (96 characters): <code>C1 magnetic edge artifact suppression; HOLD pending official-data holdout and format validation.</code> This is a naming proposal only, not an upload instruction. Verdict: <strong>negative</strong>; do not use a weekly slot.</p>
+
+<h2>Primary sources for review</h2>
+<ol>
+<li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">DrivenData problem page</a> — task, datasets, metric and submission format.</li>
+<li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/data/">DrivenData data page</a> — authorized competition inputs; login redirect observed.</li>
+<li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/rules/">Competition rules</a> — data and submission terms.</li>
+<li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">Public leaderboard</a> — participant public scores, not artifact receipts.</li>
+<li><a href="https://github.com/drivendataorg/gems-prize-reference-solution">Organizer reference solution</a>.</li>
+<li><a href="https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and">USGS GeoDAWN survey description</a>.</li>
+<li><a href="https://gbcge.org/current-projects/ingenious/">Great Basin Center for Geothermal Energy INGENIOUS project</a>.</li>
+</ol>
+</main><footer>GEMSDOE74 · evidence class is stated for every score; this session reports no holdout score and no organizer receipt.</footer></body></html>

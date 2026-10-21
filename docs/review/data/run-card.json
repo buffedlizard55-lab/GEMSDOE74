@@ -1,188 +1,95 @@
 {
-  "schema": "gems74-run-card/1",
-  "session_branch": "arena/5bb16675-gemsdoe74",
+  "schema": "gemsdoe74-run-card/2",
+  "session_branch": "arena/78b9ef56-gemsdoe74",
   "date_utc": "2026-10-21",
-  "status": "HOLD. No candidate is cleared for submission. Two candidates are on main (H74-A and H74-1). Both are UNSCORED. H74-A fails the random control. H74-1 passes it on a catalogue-based holdout, but has no incumbent comparison and no recorded input rights.",
-  "blocker": "Competition feature stack and labels are login-gated on DrivenData and cannot be downloaded here. The inputs used on main come from a sibling mirror whose rights are unverified (IR-74-04). Sandbox egress allows github.com, codeload, api.github.com, registry.npmjs.org, pypi.org and files.pythonhosted.org only.",
-  "state_of_main": {
-    "commit": "cef22bb (merge of PR #4 from arena/c28c4f14-gemsdoe74, which carries the H74-1 lane)",
-    "earlier_merges": [
-      "d190f27 (PR #2, this branch)",
-      "5fb4213 (PR #1, arena/af8a6393-gemsdoe74, H74-A lane)"
-    ],
-    "note": "Three sessions have written to this repo. This session's pages live in docs/review/ to avoid overwriting the others (IR-74-29)."
-  },
-  "lane": {
-    "method": "One method lane: holdout gate (hide-and-recover, exact metric in src/gems74/metric.py dti_exact) applied to the existing main-branch candidate, plus the registry uniqueness check. No new candidate was built.",
-    "lane_status": "EXECUTED on existing evidence. Holdout values are the other session's HOLDOUT-DTI results. Uniqueness and format were re-measured here."
-  },
-  "hypothesis": {
-    "top_candidate_this_session": "C1 - flight-line-artifact-suppressed magnetic edge detection (GeoDAWN magnetics, 90-degree flight-line geometry). Not built, not run.",
-    "main_candidate": "H74-A - hydrothermal spring chain plus potassic alteration halo. Built, UNSCORED, fails its holdout against the random control.",
-    "status": "C1 UNVALIDATED. H74-A FAILS its holdout."
-  },
-  "mechanism": "Remove any remaining survey-line periodicity (200 m line spacing in Area 1, 400 m in Area 2, flight azimuth 90 degrees, per the USGS summary) with an oriented notch filter before computing horizontal-gradient edges, so that magnetic contacts from fault-related contrast are not masked or mimicked by residual leveling. Whether any residue remains after the contractor's corrections is untested.",
-  "named_non_fault_process_that_could_mimic_it": "Residual line-periodic leveling artifacts after the contractor's tie-line and micro-leveling (USGS summary), plus lithologic contacts (intrusive and volcanic margins) that produce edges without displacement.",
-  "holdout_dti": {
-    "label": "HOLDOUT-DTI",
-    "evaluator": "Other session's holdout scripts on main (v0.1 4-quadrant, pooled DTI; v0.2 segment-based). Exact metric: src/gems74/metric.py dti_exact, which this session verified to match its own components() to 0 difference on random grids.",
-    "candidate": "docs/downloads/gems74-h74-alt-spring-39500-20261021T000000Z-52f76038-zeros.tif",
-    "v0_1_4_quadrant": {
-      "candidate_pooled_dti_catalogue_hidden": 0.0014446337043921085,
-      "random_control": 0.033985054137437985,
-      "delta_vs_random": -0.03254042043304588,
-      "passes_random": false
-    },
-    "v0_2_segments": {
-      "candidate_pooled_dti_catalogue": 0.001619363628814761,
-      "random_control": 0.031034354606390223,
-      "delta_vs_random": -0.02941499097757546,
-      "passes_random": false
-    },
-    "withheld_positives": "about 12k hidden truth pixels in total (per the evidence note)",
-    "ci95": null,
-    "caveat": "Holdout truth is catalogue-only, so it cannot reward genuinely new faults (IR-74-21)."
-  },
-  "correlation_and_overlap_vs_registry": {
-    "label": "MEASURED-LOCAL",
-    "reference": "GEMSDOE32 primary zeros.tif, sha256 c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9 (GEMSDOE32 commit 98901f3)",
-    "candidate_sha256": "f745fdb0bcc7b09c73e9ca5460ec81b3628421d3516d514e63720bd547d14597",
-    "spearman_rho_full_grid": 0.001453,
-    "dot_overlap_reference_within_3px_of_candidate": 0.0623,
-    "dot_overlap_candidate_within_3px_of_reference": 0.0936,
-    "thresholds": {
-      "rho_copy_above": 0.9,
-      "overlap_copy_above": 0.7
-    },
-    "pass_uniqueness": true,
-    "method_note": "Spearman over all 12,279,160 cells (mostly zeros, so ties dominate). Dots are cells > 0. The other session reported rho = -0.0009 with an unrecorded method (IR-74-22)."
-  },
-  "leakage_canary": {
-    "status": "NOT VALID",
-    "rule": "A single feature alone should not reach AUC > 0.90 on the holdout. Above 0.90 means leakage.",
-    "result": "No AUC was computed here. tests/test_canary.py on main returns early when its data is absent and so passes without asserting (IR-74-24). A green test in this environment is not evidence of no leakage."
-  },
-  "raster_sha256": "f745fdb0bcc7b09c73e9ca5460ec81b3628421d3516d514e63720bd547d14597",
-  "validator_output": {
-    "main_script_zeros": "exit 0 (ALL CHECKS PASS) for H74-A and H74-1",
-    "main_script_nan_twin": "exit 1 for H74-A (IR-74-17)",
-    "this_session_module_zeros": "passed for H74-A and H74-1"
-  },
-  "candidate_file": {
-    "path": "docs/downloads/gems74-h74-alt-spring-39500-20261021T000000Z-52f76038-zeros.tif",
-    "bytes": 136942,
-    "sha256": "f745fdb0bcc7b09c73e9ca5460ec81b3628421d3516d514e63720bd547d14597",
-    "release_status": "HOLD"
-  },
-  "submission": {
-    "name_h74_1": "GEMSDOE74-H74-1-BASEMENT-STEP",
-    "note_h74_1_chars": 80,
-    "name_h74a": "GEMSDOE74-H74A-ALT-SPRING",
-    "note_limit_brief": 200,
-    "note_planned_limit": 140,
-    "release_status": "HOLD. Not cleared for submission.",
-    "note_h74_1": "GEMSDOE74 H74-1 basement-step B=2 d2.8 35641 dots; all-finite 0-1; zeros-outside"
-  },
-  "verdict": "NEGATIVE for submission. No candidate is cleared. H74-A fails the random control. H74-1 passes it, but has no incumbent comparison on the same holdout, a truth set that cannot show new faults, and no recorded input rights. This session spent no slot and built no new candidate.",
-  "budget": {
-    "experiments_limit": 3,
-    "experiments_used_this_session": 0,
-    "time_limit_hours": 2,
-    "note": "Verification runs only: uniqueness, format, metric check, and the official page re-read. Other sessions' experiment counts are not recorded here."
-  },
-  "labels_key": {
-    "HOLDOUT-DTI": "Score computed by a local evaluator on a spatially-blocked or segment-based holdout. The evaluator version and withheld count are given above.",
-    "MEASURED-LOCAL": "Computed in this session from files in this repo or pinned sibling files. Not an organiser result.",
-    "ORGANIZER-CONFIRMED": "Copied from a DrivenData submission receipt. None exists for any file reviewed here.",
-    "PUBLIC-LEADERBOARD": "Row on the public DrivenData board. Public test only.",
-    "PROJECTION": "Model arithmetic. Never written as a score.",
-    "CLAIM": "Owner or site statement without a receipt."
-  },
-  "candidates": [
+  "status": "HOLD — negative run card; no candidate file was generated or cleared.",
+  "blocker": "Official competition rasters and sample template are absent, and the data page redirected to login. The required C1 holdout cannot be run.",
+  "hypothesis": "C1: suppress survey-oriented magnetic acquisition artifacts before detecting persistent magnetic edges that may mark buried fault-related contrasts.",
+  "mechanism": "Estimate directional survey-line periodicity from the official GeoDAWN magnetic grids; test a narrowly targeted oriented spectral suppression followed by multi-scale magnetic edge extraction and persistence. Keep this as one method lane; do not promote a contact edge without independent fault-support evidence.",
+  "named_non_fault_process_that_could_mimic_it": "Lithologic or intrusive contacts can generate magnetic edges without fault displacement; residual acquisition, leveling, or gridding artifacts can mimic lineaments.",
+  "candidate_slate": [
     {
-      "id": "H74-A",
-      "file": "docs/downloads/gems74-h74-alt-spring-39500-20261021T000000Z-52f76038-zeros.tif",
-      "sha256": "f745fdb0bcc7b09c73e9ca5460ec81b3628421d3516d514e63720bd547d14597",
-      "holdout_v0_1": {
-        "label": "HOLDOUT-DTI",
-        "candidate_pooled_dti_catalogue_hidden": 0.0014446337043921085,
-        "random_control": 0.033985054137437985,
-        "passes_random": false
-      },
-      "holdout_v0_2": {
-        "label": "HOLDOUT-DTI",
-        "candidate_pooled_dti_catalogue": 0.001619363628814761,
-        "random_control": 0.031034354606390223,
-        "passes_random": false
-      },
-      "gate": {
-        "beats_random": false,
-        "beats_incumbent_same_holdout": "not shown",
-        "truth_independent_of_catalogue": false,
-        "input_rights_recorded": false,
-        "organiser_receipt_and_READY": false
-      },
-      "release_status": "HOLD"
+      "rank": 1,
+      "variant": "Data-estimated oriented notch suppression, then multi-scale TMI/RTP edge persistence.",
+      "expected_improvement": "Highest relative prior within lane; no numeric score forecast. Targets systematic false lineaments before edge detection.",
+      "cost": "Medium: needs full-resolution magnetic stack, directional spectrum diagnostics, and carefully matched ablations.",
+      "status": "not run"
     },
     {
-      "id": "H74-1",
-      "file": "docs/downloads/gemsdoe74-h74-1-basement-step-35641-20261021T000000Z-100b4b19-zeros.tif",
-      "sha256": "af4afc84b6ff758ccae86dc116c1b14dd1b66de48462899eebc4d5b43d7aef27",
-      "holdout_4_quadrant": {
-        "label": "HOLDOUT-DTI (their run card)",
-        "candidate_mean": 0.1936974645821394,
-        "random_control": 0.040465170248097905,
-        "delta_vs_random": 0.1532322943340415,
-        "folds_positive": "4/4",
-        "ci95": [
-          0.122,
-          0.266
-        ],
-        "withheld_positives": 12923,
-        "uniform_2_8_lattice_arm": 0.09,
-        "truth": "visible catalogue + synthetic scatter (sigma 1.85 px)"
-      },
-      "leakage_canary_auc": 0.68,
-      "gate": {
-        "beats_random": true,
-        "beats_incumbent_same_holdout": "not shown (H33-2-B2 not in its run card)",
-        "truth_independent_of_catalogue": false,
-        "input_rights_recorded": false,
-        "organiser_receipt_and_READY": false
-      },
-      "their_verdict_field": "promote (lane-internal; no slot picked)",
-      "release_status": "HOLD"
+      "rank": 2,
+      "variant": "Directional structure-tensor concordance across TMI, RTP, and provided magnetic derivative layers after artifact estimation.",
+      "expected_improvement": "Lower relative prior; cross-layer agreement may reject artifacts but can also reject genuine faults with weak magnetic expression.",
+      "cost": "Low to medium after the feature stack is cached.",
+      "status": "not run"
+    },
+    {
+      "rank": 3,
+      "variant": "Edge persistence across spatial scales with explicit orientation veto only for periodic spectral peaks.",
+      "expected_improvement": "Lower relative prior; reduces one artifact family, but edge persistence alone is not evidence of faulting.",
+      "cost": "Low after the feature stack is cached.",
+      "status": "not run"
+    },
+    {
+      "rank": 4,
+      "variant": "Along-/across-survey directional residual diagnostics, gated by verified acquisition metadata.",
+      "expected_improvement": "Lowest current prior: metadata are not present, and an orientation veto can erase true faults aligned with acquisition direction.",
+      "cost": "Medium; requires verified survey geometry metadata.",
+      "status": "not run"
     }
   ],
-  "uniqueness_measured_here": {
-    "label": "MEASURED-LOCAL",
-    "reference": "GEMSDOE32 primary zeros.tif",
-    "H74-A": {
-      "spearman_rho": 0.001453,
-      "overlap_ref_within_3px_of_cand": 0.0623,
-      "overlap_cand_within_3px_of_ref": 0.0936
-    },
-    "H74-1": {
-      "spearman_rho": 7.4e-05,
-      "overlap_ref_within_3px_of_cand": 0.0817,
-      "overlap_cand_within_3px_of_ref": 0.0736
-    },
-    "thresholds": {
-      "rho_copy_above": 0.9,
-      "overlap_copy_above": 0.7
-    },
-    "pass": true,
-    "note": "Their H74-1 run card reports rho 0.42 and overlap 38.2% against an unnamed reference; not reproduced here (IR-74-22)."
+  "data_access": {
+    "official_data_page": "https://www.drivendata.org/competitions/306/competition-doe-gems/data/",
+    "observed_response": "Redirected to DrivenData login page during this review.",
+    "local_state": "No data/sample_submission.tif, data/training_features.tif, data/labels.tif, or cached feature stack exists in this checkout.",
+    "result": "C1 cannot be evaluated here. No external replacement data were used."
   },
-  "metric_check": {
-    "label": "MEASURED-LOCAL",
-    "finding": "src/gemsdoe74/metric.py binarises predictions and does not weight by p; official formula weights by p (IR-74-30).",
-    "example": {
-      "single_truth_pixel_p": 0.5,
-      "official_formula_dti": 0.5555555555555556,
-      "gemsdoe74_dti": 1.0
-    },
-    "binary_grids_max_abs_diff": 1.3e-10,
-    "candidates_binary": true
+  "holdout_dti": {
+    "label": "HOLDOUT-DTI",
+    "status": "NOT RUN",
+    "evaluator_version": null,
+    "withheld_positive_count": null,
+    "pooled_score": null,
+    "ci95": null,
+    "reason": "Official rasters and a valid segment-buffered evaluator are absent. Existing random-pixel proxy results are not valid for this protocol."
+  },
+  "leakage_canary": {
+    "status": "NOT RUN",
+    "reason": "No official feature stack or valid segment-buffered holdout is present. A missing-data test is now reported as skipped, not passed."
+  },
+  "correlation_and_overlap_vs_registry": {
+    "status": "NOT RUN",
+    "rank_correlation": null,
+    "dot_overlap_within_3px": null,
+    "reason": "No C1 candidate raster or registry raster is present in this checkout. Do not substitute comparisons between unrelated inherited artifacts."
+  },
+  "raster": {
+    "generated": false,
+    "sha256": null,
+    "reason": "No new TIF was generated: only synthetic inputs are available, so a generated TIF would misrepresent a scientific prediction."
+  },
+  "validator_output": {
+    "status": "NOT RUN — no C1 GeoTIFF exists",
+    "no_nan_inside_footprint": null,
+    "values_in_0_1": null,
+    "crs_shape_transform_match": null,
+    "note": "Legacy TIF sidecars are format claims for inherited files only; the official sample template is absent."
+  },
+  "submission": {
+    "name": "GEMSDOE74-C1-MAG-EDGE-ARTIFACT-SUPPRESSION",
+    "note": "C1 magnetic edge artifact suppression; HOLD pending official-data holdout and format validation.",
+    "note_characters": 96,
+    "status": "PROPOSED NAME ONLY — no submission file generated"
+  },
+  "verdict": "negative",
+  "budget": {
+    "experiments_limit": 3,
+    "experiments_used": 0,
+    "time_limit_hours": 2,
+    "weekly_submission_slot_used": false
+  },
+  "score_labels": {
+    "HOLDOUT-DTI": "Not run in this session; no value is asserted.",
+    "ORGANIZER-CONFIRMED": "No receipt exists for a file created by this session.",
+    "PUBLIC-LEADERBOARD": "A public leaderboard value, not a holdout or organizer receipt."
   }
 }

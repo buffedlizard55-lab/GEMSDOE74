@@ -1,18 +1,36 @@
-# Full task prompt — read every session
+# GEMSDOE74 session operating contract — read before each session
 
-See README.md for the condensed version. This file stores the verbatim prompt requirements for auditability.
+This file is the durable project brief distilled from the user's long request. It is a requirements summary, **not a verbatim transcript**. The latest user request and any Arena parallel-run instructions remain authoritative.
 
-- Generate a **unique TIF submission** (not a copy) with obvious download, executive summary, and portal-safe validation (values in [0,1], no sentinel, no NaN inside footprint, CRS/shape/transform match).
-- Fix `Predicted values must be in range [0, 1]` by engineering out both failure modes: float32 sentinel `-3.402823e38` and NaN/nodata handling; verify by re-reading bytes.
-- Provide unique submission name + short note (≤140 chars) for the DrivenData form.
-- Create a clean GitHub Pages site (docs/) that is user-friendly, organized, with verified official links, no hallucinations, line-by-line verification.
-- Answer why `h33-h33-2-b2` (0.2778) scored highest and whether we can beat it, with PhD-level judgement.
-- Generate 3–5 candidate geological hypotheses we haven’t tried, each naming: specific layer(s), physical signature (edge/curvature transform), why it should catch a fault missing from the USGS/INGENIOUS catalogue rather than one already in it, and how it differs from anything already implemented; rank by expected DTI improvement and implementation cost; validate top on spatially-blocked holdout before spending a weekly slot.
-- PARALLEL-RUN PROTOCOL: lane, reuse (cached feature stack, evaluate_holdout.py, submission_writer.py; hide-and-recover with buffer, pooled DTI α0.2 β0.8 300m kernel), label every number as HOLDOUT-DTI or ORGANIZER-CONFIRMED, leakage canary (AUC>0.90 flagged), run card (hypothesis, mechanism, non-fault mimic, holdout DTI+CI, correlation/overlap vs registry, raster sha256, validator output, submission name+note ≤140 chars, verdict promote/negative), budget 3 experiments / 2 h, no private fork, promotion is separate selector step.
-- Core Values: Maximize P(Win), Own the Outcome.
-- Understand the problem via problem description, about page, data page, reference solution, metric, and submission format; list limitations and needed access; use only free, official, shareable external data.
-- Run 3 passes: implement, review/fix, re-check against request; verify line by line, provide links, flag irregularities.
-- The site must be able to generate the TIF required for submission and provide an easy download in the executive summary/first fold; it must be obvious whether it is OK to download and submit.
-- No DrivenData auth available in sandbox → cannot auto-download training_features.tif, labels.tif, sample_submission.tif, 1m_DEM_links.csv; `scripts/download_competition_data.sh` must be run on an unrestricted machine into data/ then `scripts/prepare_data.py`.
+## Objective and integrity
 
-Trust date: 2026-10-21 UTC. Verify all live numbers against the official leaderboard snapshot (human-read, not scraped per Terms of Use).
+- Build an auditable project for the DOE GEMS Prize (DrivenData #306) that can generate a unique, correctly formatted GeoTIFF submission and make its status unmistakable at the top of the site.
+- Maximize P(Win), own the outcome, and keep research grounded in official, free, licensed/shareable data. Link primary sources and flag uncertainty. Do not invent input data, scores, receipts, or scientific results.
+- A file is **OK to download and submit** only when both scientific and format gates pass. A format-valid file can still be a bad or unproven prediction. Keep review-only artifacts distinct from candidates.
+- Review the official problem/rules/data pages, organizer reference solution, relevant USGS/INGENIOUS data, metric, and submission format. Track access limitations and next steps.
+- The user's target examples include `h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros` and score 0.2778; different parts of the request cite 0.3195 and 0.4413 as current leaderboard highs. Verify the live official board and label the capture date. Verify artifact attribution against primary receipts; do not infer a file-score link from a leaderboard row.
+
+## Research and experiment requirements
+
+- Before implementation, list 3–5 candidate hypotheses where the lane permits. Each must name input layer(s), physical signature/transform, why it may reveal faults absent from the USGS/INGENIOUS catalogue, difference from repository methods, expected value/rank and implementation cost. If official external data are needed, name the free official source and verify accessibility in this environment.
+- The parallel-run protocol defines one method lane per session. Stay in that lane. Before placement, check rank-correlation and 3-pixel dot overlap against registry rasters; if ρ > 0.90 or >70% of dots are within 3 px of a registry raster, log a duplicate and stop. Repeat on final dots. Never claim a check that was not computed against the actual registry raster.
+- Reuse the template's cached feature stack, shared `evaluate_holdout.py`, and shared submission writer. Holdout is hide-and-recover: withhold whole fault segments with a buffer; derive all catalogue-based features from visible faults only; pixel-mask visible faults exactly; score pooled DTI with α=0.2, β=0.8, 300 m triangular kernel. If a shared tool is wrong, fix it in the shared template rather than keeping a private fork.
+- Test every feature alone on the holdout before trusting it. AUC >0.90 is a leakage warning until disproved. Missing inputs mean not run—not an assumed pass.
+- Budget: at most 3 experiments or 2 hours. Do not spend a weekly submission slot on an idea that has not beaten the current holdout best. Promotion to a real slot is a separate selector decision within the then-current weekly cap.
+
+## Evidence labels and run card
+
+- Every reported score is labelled either **HOLDOUT-DTI** (include evaluator version, withheld-positive count and 95% CI) or **ORGANIZER-CONFIRMED** (copied from the submission-page receipt). Public board values must be separately labelled **PUBLIC-LEADERBOARD**. Projections are never scores.
+- End each run with one JSON card containing: hypothesis; mechanism; named non-fault mimic; holdout DTI and CI; correlation/overlap vs registry; raster SHA-256; validator output (no NaN inside footprint, values in [0,1], CRS/shape/transform match); unique submission name and note ≤140 characters; verdict `promote` or `negative`.
+- Negative results are deliverables. Never promote a file because it is merely format-valid or distinct.
+
+## Data, site, and verification
+
+- DrivenData competition files require authorized access. Do not use third-party mirrors unless rights are verified. When official files are absent, do not synthesize a GeoTIFF and represent it as a competition prediction. Ask for no credentials in chat.
+- Use official sample submission for exact CRS, shape, transform, and outside-bounds mask. Submission must be a single-band float32 GeoTIFF in EPSG:32611, 100 m, matching bounds/shape/transform, values in [0,1]; official page says values outside bounds should be null or NaN. Re-read output bytes and validate.
+- Site must put the download and unambiguous release status in the first view and include an executive-summary submission guide, unique short note, audit receipt, and official-source links.
+- Keep this brief in README navigation and review it each work session. Run three passes: implement; review and fix; re-check against the complete request. Flag irregularities and state limitations.
+
+## Current lane recorded on 2026-10-21
+
+The current session lane is **C1: flight-line-artifact-suppressed magnetic edge detection** (see `docs/review/session-review-2026-10-21.html`). The official feature stack is absent in this checkout; C1 is therefore **not run**, no TIF is cleared, and no score/CI is available. Do not substitute the inherited synthetic artifacts or their proxy holdouts.
