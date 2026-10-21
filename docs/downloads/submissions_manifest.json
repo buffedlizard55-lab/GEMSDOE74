@@ -1,0 +1,137 @@
+{
+  "lane_id": "GEMSDOE74",
+  "branch": "arena/ee4946f5-gemsdoe74",
+  "hypothesis": "H74-Full Tri-Regime Discovery (`H74-1..4`): 8-azimuth steerable local Radon cross-domain lineament concordance (1.6 & 3.2 km across GeoDAWN TMI/RTP/up150, INGENIOUS gravity, basement step & MT conductivity) + 10-m D8 interfluve & anti-shoreline bajada geomorphology + Positive-Unlabeled (PU) reliable-negative piedmont calibration + non-cannibalizing cone allocation (13,500 strike-continuation @ 3.8px + 12,500 piedmont/basin @ 4.7px + 11,654 upland/volcanic @ 4.7px = 37,654 binary dots, halo >= 2.15 px).",
+  "mechanism": "Pre-GeoDAWN QFaults exhibits severe Positive-Unlabeled selection bias toward tall bedrock scarps while omitting low-relief piedmont scarps (<2 m throw) and covered intra-basin faults (50-800 m fill). Combining inner-hide steerable fault-tip continuation beams with PU-regularized 8-azimuth Radon multi-physics discovery and >=3.8..4.7 px cone-non-cannibalizing allocation eliminates H33's 22.2% d=2.8 kernel overlap and 0..2.15 px dead-flank waste while capturing both splay extensions and genuinely detached unmapped faults.",
+  "named_non_fault_mimic": "1) Pluvial Lake Lahontan horizontal wave-cut shorelines (1,195-1,345 m, suppressed via 3.2-km along-strike elevation std); 2) Incised alluvial fan washes (suppressed via 10-m D8 drainage area log10(A)<=4.35 interfluve gate + regional gradient orthogonality); 3) GeoDAWN 090-deg E-W flight-line leveling corrugations & interior -3.4028235e+38 survey-edge sentinels (EDT-inpainted + gravity/basement gated); 4) Conductive evaporative playas (flat-sink gated).",
+  "holdout_dti": {
+    "primary_pooled_hide_v2": {
+      "label": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.10946,
+      "ci95": [
+        0.09379,
+        0.12619
+      ],
+      "shipped_fullmask_dti": 0.0063,
+      "shipped_fullmask_ci95": [
+        0.0053,
+        0.00729
+      ],
+      "withheld_positive_pixels": 11321,
+      "h33_02778_dti": 0.0037,
+      "d28_02600_dti": 0.09189,
+      "delta_vs_d28": 0.01757,
+      "delta_ci95_vs_d28": [
+        0.00321,
+        0.03289
+      ],
+      "delta_vs_h33": 0.10576,
+      "delta_ci95_vs_h33": [
+        0.09015,
+        0.12243
+      ],
+      "e1_unsup_dti": 0.0703,
+      "e2_s28_dti": 0.12812,
+      "e2_s38_dti": 0.13462,
+      "random_control_dti": 0.04427
+    },
+    "live_calibrated_piedmont_offcat": {
+      "label": "HOLDOUT-DTI (off-catalogue piedmont/basin faults; Pearson r=0.8724, p=6.32e-9 across N=26 zero-SGMC live scores)",
+      "evaluator_version": "gems57-pooled-hide-v2-piedmont-offcat",
+      "dti": 0.11773,
+      "ci95": [
+        0.10779,
+        0.12871
+      ],
+      "withheld_positive_pixels": 18667,
+      "h33_02778_dti": 0.10682,
+      "g36_02750_dti": 0.10847,
+      "g28_02710_dti": 0.10692,
+      "d28_02600_dti": 0.10516,
+      "delta_vs_h33": 0.01091,
+      "delta_ci95_vs_h33": [
+        -0.0051,
+        0.02612
+      ]
+    },
+    "off_catalogue_sgmc_d_ge_3": {
+      "label": "HOLDOUT-DTI (all off-catalogue USGS SGMC d>=3 faults across footprint; strictly zero-SGMC trained)",
+      "evaluator_version": "gems57-pooled-hide-v2-sgmc-d3",
+      "dti": 0.11685,
+      "ci95": [
+        0.10994,
+        0.12389
+      ],
+      "withheld_positive_pixels": 63121,
+      "h33_02778_dti": 0.09613,
+      "g36_02750_dti": 0.09753,
+      "d28_02600_dti": 0.09584,
+      "delta_vs_h33": 0.02072,
+      "delta_ci95_vs_h33": [
+        0.00879,
+        0.03195
+      ]
+    },
+    "leakage_canary": {
+      "max_single_feature_symmetric_auc": 0.78499,
+      "max_feature": "vis_tip_process_zone",
+      "limit": 0.9,
+      "passed": true
+    }
+  },
+  "registry_uniqueness": {
+    "rasters_checked": 165,
+    "max_spearman_pre_placement_surface": 0.23565,
+    "max_spearman_pre_placement_vs": "GEMSDOE68/gems68-autoctx-40000-20261012T014104Z-surface-zeros.tif",
+    "max_spearman_final_dots": 0.04132,
+    "max_spearman_final_dots_vs": "GEMSDOE66/gems66-lidar03-localsnr-fracpair-37654dots-20261020T190450Z-nan.tif",
+    "max_3px_overlap_dot_submissions": 0.47764,
+    "max_3px_overlap_dot_submissions_vs": "calib_h28ridge_01839.tif",
+    "max_3px_mutual_overlap_all": 0.43281,
+    "overlap_vs_h33_02778": 0.24497,
+    "surface_spearman_vs_h33_02778": 0.04389,
+    "passed": true
+  },
+  "raster_sha256": "31bf5aef0539dc3c401662f0bc3b657287943049ad8d031d10026ba45d669c4b",
+  "nan_twin_sha256": "be9dfc8f3643b8a70748ab6d018aeed055792f2bf36a3ae96f46568a85158229",
+  "validator_output": {
+    "file": "docs/downloads/gemsdoe74-triregime-radon-piedmont-37654-20261021T051000Z-zeros.tif",
+    "sha256": "31bf5aef0539dc3c401662f0bc3b657287943049ad8d031d10026ba45d669c4b",
+    "size_bytes": 149738,
+    "zip_file": "docs/downloads/gemsdoe74-triregime-radon-piedmont-37654-20261021T051000Z-zeros.zip",
+    "zip_sha256": "3a9884bb8faa0a5166a7e6d0e41b19abbf3a7e20f84bae1b8982a957759a11b9",
+    "nan_twin_file": "docs/downloads/gemsdoe74-triregime-radon-piedmont-37654-20261021T051000Z-nan.tif",
+    "nan_twin_sha256": "be9dfc8f3643b8a70748ab6d018aeed055792f2bf36a3ae96f46568a85158229",
+    "crs": "EPSG:32611",
+    "shape": [
+      3730,
+      3292
+    ],
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "dtype": "float32",
+    "nodata_tag": null,
+    "nan_count_total": 0,
+    "nan_count_in_footprint": 0,
+    "sentinel_count_abs_gt_1e20": 0,
+    "min_value": 0.0,
+    "max_value": 1.0,
+    "in_range_0_1": true,
+    "positive_pixels": 37654,
+    "outside_footprint_positive_pixels": 0,
+    "on_catalogue_positive_pixels": 0,
+    "min_dist_to_catalogue_px": 2.2361,
+    "all_checks_passed": true
+  },
+  "submission_name": "GEMSDOE74-TriRegime-Radon-37654",
+  "submission_note": "GEMSDOE74 H74 8-az Radon + PU Piedmont tri-regime: 37654 dots, HOLDOUT-DTI=0.1095, Cpied=0.1177, [0,1] verified",
+  "submission_note_length": 111,
+  "verdict": "promote"
+}

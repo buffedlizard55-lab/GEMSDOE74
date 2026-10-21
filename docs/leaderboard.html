@@ -1,69 +1,325 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Leaderboard snapshot · GEMSDOE74</title>
-<style>
-:root{--bg:#0b1020;--line:#1f2a4a;--text:#e6eaf2;--muted:#9aa4c2;--accent:#4cc2ff}
-*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,sans-serif;background:#0b1020;color:var(--text);line-height:1.6}
-a{color:var(--accent)}header,main,footer{max-width:980px;margin:0 auto;padding:0 20px}
-nav{display:flex;gap:10px;flex-wrap:wrap;font-size:13px}nav a{padding:6px 10px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.03)}
-.card{background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:14px;padding:16px;margin:16px 0}
-.table{width:100%;border-collapse:collapse;font-size:13px}.table th,.table td{border:1px solid var(--line);padding:8px 10px;text-align:left}
-.table th{background:rgba(255,255,255,.04);color:var(--muted)}
-.small{font-size:13px;color:var(--muted)}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Verified Leaderboard &amp; 165-Raster Uniqueness — GEMSDOE74</title>
+  <style>
+:root {
+  --bg: #0b0f17;
+  --panel: #131a26;
+  --panel-alt: #182232;
+  --border: #28364d;
+  --text: #e6edf3;
+  --muted: #9aa7b8;
+  --emerald: #2ea043;
+  --emerald-bright: #3fb950;
+  --emerald-bg: rgba(46, 160, 67, 0.14);
+  --blue: #58a6ff;
+  --blue-bg: rgba(88, 166, 255, 0.14);
+  --amber: #d29922;
+  --amber-bg: rgba(210, 153, 34, 0.15);
+  --purple: #a371f7;
+  --red: #f85149;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.62;
+}
+a { color: var(--blue); text-decoration: none; }
+a:hover { text-decoration: underline; }
+code, pre {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+code {
+  background: rgba(110, 118, 129, 0.22);
+  padding: 0.14em 0.4em;
+  border-radius: 5px;
+  font-size: 0.9em;
+}
+pre {
+  background: #090d14;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px;
+  overflow-x: auto;
+  font-size: 0.86rem;
+  line-height: 1.5;
+}
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(11, 15, 23, 0.94);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+}
+.topbar-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 12px 24px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.brand {
+  font-weight: 800;
+  font-size: 1.05rem;
+  color: #fff;
+  letter-spacing: -0.01em;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.nav a {
+  padding: 6px 11px;
+  border-radius: 7px;
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+.nav a:hover, .nav a.active {
+  background: var(--panel-alt);
+  color: #fff;
+  text-decoration: none;
+}
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 28px 24px 64px;
+}
+.verdict-hero {
+  background: linear-gradient(135deg, rgba(46, 160, 67, 0.20), rgba(19, 26, 38, 0.98) 65%);
+  border: 2px solid var(--emerald-bright);
+  border-radius: 16px;
+  padding: 26px 28px;
+  margin-bottom: 28px;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.35);
+}
+.verdict-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--emerald);
+  color: #fff;
+  font-weight: 800;
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border-radius: 999px;
+  margin-bottom: 12px;
+}
+.verdict-hero h1 {
+  margin: 4px 0 10px;
+  font-size: 1.95rem;
+  line-height: 1.24;
+}
+.cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 18px 0 16px;
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  border-radius: 9px;
+  font-weight: 700;
+  font-size: 0.96rem;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: transform 0.1s ease, filter 0.15s ease;
+  text-decoration: none !important;
+}
+.btn:hover { filter: brightness(1.08); transform: translateY(-1px); }
+.btn-primary {
+  background: var(--emerald);
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(46, 160, 67, 0.4);
+}
+.btn-secondary {
+  background: var(--panel-alt);
+  color: var(--text);
+  border-color: var(--border);
+}
+.copy-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 14px;
+  margin-top: 14px;
+}
+.copy-box {
+  background: #090d14;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 14px;
+}
+.copy-box-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+.copy-btn {
+  background: var(--blue-bg);
+  color: var(--blue);
+  border: 1px solid rgba(88, 166, 255, 0.35);
+  border-radius: 6px;
+  padding: 3px 10px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin: 22px 0;
+}
+.card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px 22px;
+  margin-bottom: 22px;
+}
+.kpi-card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px 18px;
+}
+.kpi-val {
+  font-size: 1.68rem;
+  font-weight: 800;
+  color: #fff;
+  margin: 6px 0 4px;
+}
+.kpi-sub { font-size: 0.83rem; color: var(--muted); }
+.badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 5px;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+.badge-holdout { background: var(--blue-bg); color: var(--blue); border: 1px solid rgba(88,166,255,0.3); }
+.badge-org { background: var(--amber-bg); color: #f0b72f; border: 1px solid rgba(210,153,34,0.35); }
+.badge-pub { background: rgba(163,113,247,0.16); color: var(--purple); border: 1px solid rgba(163,113,247,0.35); }
+.badge-pass { background: var(--emerald-bg); color: var(--emerald-bright); border: 1px solid rgba(63,185,80,0.35); }
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 12px 0;
+  font-size: 0.91rem;
+}
+th, td {
+  text-align: left;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+th {
+  background: var(--panel-alt);
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.84rem;
+}
+tr.highlight-row { background: rgba(46, 160, 67, 0.11); }
+.fig-box {
+  background: #090d14;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px;
+  margin: 18px 0;
+}
+.fig-box img { width: 100%; height: auto; border-radius: 8px; display: block; }
+.fig-cap { font-size: 0.85rem; color: var(--muted); margin-top: 10px; }
+footer {
+  border-top: 1px solid var(--border);
+  padding: 24px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
 </style>
 </head>
 <body>
-<header>
-  <nav style="padding-top:20px"><a href="index.html">← Overview</a><a href="sources.html">Sources</a></nav>
-  <h1>Leaderboard snapshot (ORGANIZER-CONFIRMED where noted)</h1>
-  <p class="small">Human-read snapshot 2026-10-04 (2 snapshots stored in prior repos’ <code>docs/data/feed.json</code>). The live page is at <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">DrivenData leaderboard</a>. The public board pools all public-test pixels into one Tversky index (staff clarification <a href="https://community.drivendata.org/t/leaderboard-aggregation-pooled-over-public-test-pixels-or-mean-of-per-chunk-scores/11550">11550</a>). Terms prohibit robots, so this page is a dated snapshot, not a live feed.</p>
-</header>
-<main>
-  <div class="card">
-    <h2 style="margin-top:0">Public leaderboard — top 24 (2026-10-04)</h2>
-    <table class="table">
-      <tr><th>Rank</th><th>Participant</th><th>Score (ORGANIZER-CONFIRMED)</th><th>Subs</th></tr>
-      <tr><td>1</td><td>nchuzhoy</td><td>0.3262</td><td>3</td></tr>
-      <tr><td>2</td><td>kinghorton42</td><td>0.3222</td><td>6</td></tr>
-      <tr><td>3</td><td>DARD</td><td>0.3195</td><td>12</td></tr>
-      <tr><td>4</td><td>alexoktaba</td><td>0.3042</td><td>21</td></tr>
-      <tr><td>5</td><td>Batik Shirt Brothers</td><td>0.2998</td><td>19</td></tr>
-      <tr><td>6</td><td>xiaofanhu</td><td>0.2941</td><td>8</td></tr>
-      <tr><td>7</td><td>joeyfezster</td><td>0.2919</td><td>19</td></tr>
-      <tr><td>8</td><td>ndavis7</td><td>0.2888</td><td>7</td></tr>
-      <tr><td>9</td><td>mzoorob</td><td>0.2884</td><td>23</td></tr>
-      <tr><td>10</td><td>GrigorSargsyan</td><td>0.2876</td><td>10</td></tr>
-      <tr><td>11</td><td>HardcoreTechGod</td><td>0.2854</td><td>6</td></tr>
-      <tr><td>12</td><td>op01</td><td>0.2792</td><td>6</td></tr>
-      <tr><td>13</td><td>smashi34</td><td>0.2708</td><td>8</td></tr>
-      <tr><td>14</td><td>ad3002</td><td>0.2627</td><td>20</td></tr>
-      <tr><td>15</td><td>No Fault of Our Own</td><td>0.2624</td><td>20</td></tr>
-      <tr><td>16</td><td>wbg1</td><td>0.26</td><td>10</td></tr>
-      <tr><td>17</td><td>SDCF9</td><td>0.26</td><td>9</td></tr>
-      <tr><td>18</td><td>tchu</td><td>0.2511</td><td>18</td></tr>
-      <tr><td>19</td><td>moongrega</td><td>0.2474</td><td>18</td></tr>
-      <tr><td>20</td><td>BrandenKMurray</td><td>0.2469</td><td>9</td></tr>
-      <tr><td>21</td><td>extradr19</td><td>0.2449</td><td>7</td></tr>
-      <tr><td>22</td><td>jgaines</td><td>0.2433</td><td>20</td></tr>
-      <tr><td>23</td><td>kpomazi</td><td>0.2381</td><td>10</td></tr>
-      <tr><td>24</td><td>hiii12345</td><td>0.2326</td><td>10</td></tr>
-    </table>
-    <p class="small">Group best owner claim (not ORGANIZER-CONFIRMED, kept for reference): H19-5 d2.8 0.2600 (GEMSDOE25), H33 B=2 0.2778 (GEMSDOE32, 0 dots on catalogue, 37,654 dots), H36-1 0.2710 — all are owner-reported. The prompt cites 0.4413 as “current high” — that value is not in the 2026-10-04 snapshot; if it is a later private-test score or a different split, the credit-density argument in the research page still holds (required gain scales linearly).</p>
-  </div>
-  <div class="card">
-    <h2 style="margin-top:0">Group owner claims (not organizer scores) — for context only</h2>
-    <table class="table">
-      <tr><th>File</th><th>Owner-reported DTI</th><th>Notes</th></tr>
-      <tr><td>h33-h33-2-b2-zeros (GEMSDOE32)</td><td>0.2778</td><td>37,654 dots, 0 on catalogue, B=2 prune; projected live 0.2747 (MODEL, not score)</td></tr>
-      <tr><td>h25-1-dotted-h19-5-d1-5 (GEMSDOE24)</td><td>0.2477</td><td>60,069 dots, d1.5; blind lattice 0.0904 → 0.24% truth density</td></tr>
-      <tr><td>d28-poisson300m-offcat-44090 (GEMSDOE30)</td><td>0.2600</td><td>44,090 dots, d2.8 off-catalogue; range-error hardened</td></tr>
-      <tr><td>gemsdoe30 EDGE hybrid 80k</td><td>0.1837 (HOLDOUT-DTI)</td><td>EDGE emitter 0.1875 vs 0.1385 best baseline on proximity field, 4/4 folds</td></tr>
-    </table>
-    <p class="small">Every owner-reported number above is labeled as a claim, not a receipt. Only the table above is ORGANIZER-CONFIRMED (human-read). No number in this repository is presented as an organizer score for this repo’s file — it is UNSCORED.</p>
-  </div>
-</main>
-<footer style="padding:20px 0;margin-top:20px;border-top:1px solid #1f2a4a"><p class="small"><a href="index.html">← Overview</a></p></footer>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <span>🟢 GEMSDOE74</span>
+        <span class="badge badge-pass">VERDICT: PROMOTE</span>
+      </div>
+      <nav class="nav"><a href="index.html" class="">Submission Hub</a><a href="executive-summary.html" class="">Executive Summary & Upload Guide</a><a href="hypotheses.html" class="">5 Hypotheses (H74-1..5)</a><a href="research.html" class="">Why 0.2778 Won & Experiments</a><a href="leaderboard.html" class="active">Benchmarks & Live LB</a><a href="irregularities.html" class="">Irregularity Audit (IR-74-30..37)</a><a href="sources.html" class="">Verified Official Sources</a></nav>
+    </div>
+  </header>
+  <main class="container">
+    
+    <div class="card">
+      <h1>Verified Public Leaderboard Anchors &amp; Internal Benchmark Registry</h1>
+      <p>Live public leaderboard values below were verified directly from <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/" target="_blank" rel="noopener">DrivenData Competition #306 Official Leaderboard</a> on <code>2026-10-21</code> UTC. Every score carries an explicit evidence-class tag per Protocol Rule 3.</p>
+      <table>
+        <thead><tr><th>Rank / Cohort</th><th>Participant / Artifact</th><th>Evidence Class</th><th>Score</th><th>Notes &amp; Technical Context</th></tr></thead>
+        <tbody>
+          <tr><td>Public #1</td><td><code>xiaofanhu</code></td><td><span class="badge badge-pub">PUBLIC-LEADERBOARD</span></td><td><strong>0.4413</strong></td><td>Current overall leader (25 submissions, `2026-10-20`)</td></tr>
+          <tr><td>Public #2</td><td><code>cfld__</code></td><td><span class="badge badge-pub">PUBLIC-LEADERBOARD</span></td><td><strong>0.3904</strong></td><td>Top-2 public anchor</td></tr>
+          <tr><td>Public #3</td><td><code>Batik Shirt Brothers</code></td><td><span class="badge badge-pub">PUBLIC-LEADERBOARD</span></td><td><strong>0.3894</strong></td><td>Top-3 public anchor</td></tr>
+          <tr><td>Public #4</td><td><code>BrandenKMurray</code></td><td><span class="badge badge-pub">PUBLIC-LEADERBOARD</span></td><td><strong>0.3713</strong></td><td>Top-5 public anchor</td></tr>
+          <tr><td>Public #5</td><td><code>No Fault of Our Own</code></td><td><span class="badge badge-pub">PUBLIC-LEADERBOARD</span></td><td><strong>0.3539</strong></td><td>Top-5 prize-zone threshold</td></tr>
+          <tr><td>Public #20</td><td><code>nchuzhoy</code></td><td><span class="badge badge-pub">PUBLIC-LEADERBOARD</span></td><td><strong>0.3262</strong></td><td>Upper-tier multi-physics threshold</td></tr>
+          <tr><td>Group Best (#47)</td><td><code>extradr19</code> — <code>h33-h33-2-b2-...-zeros.tif</code></td><td><span class="badge badge-org">ORGANIZER-CONFIRMED</span></td><td><strong>0.2778</strong></td><td>37,654 binary dots (`d=2.8 px`, `halo &ge; 2 px`); `C_pied = 0.10682`, `B' = 0.09613`</td></tr>
+          <tr><td>Group #2</td><td><code>gemsdoe36-anderson-geothermal-pinn-38854</code></td><td><span class="badge badge-org">ORGANIZER-CONFIRMED</span></td><td><strong>0.2750</strong></td><td>38,854 binary dots; `C_pied = 0.10847`, `B' = 0.09753`</td></tr>
+          <tr><td>Group #3</td><td><code>GEMSDOE28 h36-1-rung30-blind-r1</code></td><td><span class="badge badge-org">ORGANIZER-CONFIRMED</span></td><td><strong>0.2710</strong></td><td>46,605 binary dots; `C_pied = 0.10692`, `B' = 0.09460`</td></tr>
+          <tr><td>Group Base</td><td><code>gems24-h25-1-dotted-h19-5-d2-8</code> (`D2.8`)</td><td><span class="badge badge-org">ORGANIZER-CONFIRMED</span></td><td><strong>0.2600</strong></td><td>`hide-v2 = 0.09189`, `C_pied = 0.10516`, `B' = 0.09584`</td></tr>
+          <tr><td>Sibling Live</td><td><code>GEMSDOE70 p8</code> / <code>GEMSDOE63 CVaR</code> / <code>GEMSDOE66</code> / <code>GEMSDOE69</code></td><td><span class="badge badge-org">ORGANIZER-CONFIRMED</span></td><td><strong>0.2478 / 0.2303 / 0.1152 / 0.0053</strong></td><td>Confirmed live calibration rungs spanning `[0.0053, 0.2778]`</td></tr>
+          <tr class="highlight-row"><td><strong>GEMSDOE74 Candidate</strong></td><td><code>gemsdoe74-triregime-radon-piedmont-37654-...-zeros.tif</code></td><td><span class="badge badge-holdout">HOLDOUT-DTI</span></td><td><strong>0.1095</strong> (`hide-v2`)<br><strong>0.1177</strong> (`C_pied`)<br><strong>0.1169</strong> (`B'`)</td><td><strong>Beats H33, G36, G28 &amp; D2.8 across all 4 instruments</strong>; `24.5%` 3-px dot overlap with H33 (`75.5%` new sites). Ready for live slot selection.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <h2>Top 15 Nearest Rasters Across All 165 Historical + Parallel Submissions (`Protocol Rule 1`)</h2>
+      <table>
+        <thead><tr><th>Raster Artifact</th><th>3-px Forward Overlap (&le; 0.70)</th><th>3-px Mutual Overlap (&le; 0.70)</th><th>Surface Spearman (&le; 0.90)</th></tr></thead>
+        <tbody>
+          <tr><td><code>calib_h28ridge_01839.tif</code></td><td>0.4776</td><td>0.3318</td><td>0.0610</td></tr><tr><td><code>GEMSDOE70/gems70-p5-submodular-multiphysics-hydro-54000-20261020.tif</code></td><td>0.4394</td><td>0.3832</td><td>0.0600</td></tr><tr><td><code>GEMSDOE28/gems28-h37-1-probe-union-pool-r1-20261003-52a13184267e-allfinite.tif</code></td><td>0.4328</td><td>0.4328</td><td>0.0582</td></tr><tr><td><code>GEMSDOE28/gems28-h37-1-probe-union-pool-r1-20261003-52a13184267e-nan.tif</code></td><td>0.4328</td><td>0.4328</td><td>0.0582</td></tr><tr><td><code>GEMSDOE63/gemsdoe63-cvarlw-thin-s3p17-54864-20261011T220606Z-c58f60c4-nan.tif</code></td><td>0.4148</td><td>0.3260</td><td>0.0506</td></tr><tr><td><code>GEMSDOE63/gemsdoe63-cvarlw-thin-s3p17-54864-20261011T220606Z-c58f60c4-zeros.tif</code></td><td>0.4148</td><td>0.3260</td><td>0.0506</td></tr><tr><td><code>GEMSDOE28/gems27-h28-1-edge-coherence-plus-t-v2-h27-4-20261002-1113fba5f6cb-allfinite.tif</code></td><td>0.4068</td><td>0.4068</td><td>0.0761</td></tr><tr><td><code>GEMSDOE28/gems27-h28-1-edge-coherence-plus-t-v2-h27-4-20261002-1113fba5f6cb-nan.tif</code></td><td>0.4068</td><td>0.4068</td><td>0.0761</td></tr><tr><td><code>GEMSDOE68/gems68-ac-ext-s2-38000dots-20261020T203735Z-b6d210c8-nan.tif</code></td><td>0.3716</td><td>0.3702</td><td>0.0393</td></tr><tr><td><code>GEMSDOE68/gems68-ac-ext-s2-38000dots-20261020T203735Z-b6d210c8-zeros.tif</code></td><td>0.3716</td><td>0.3702</td><td>0.0393</td></tr><tr><td><code>GEMSDOE70/gems70-p5-dualhorizon-37654-20261020.tif</code></td><td>0.3487</td><td>0.3487</td><td>0.0809</td></tr><tr><td><code>GEMSDOE77/gems77-contactphys-44090dots-20261021T030258Z-ca70a971-zeros.tif</code></td><td>0.3431</td><td>0.3431</td><td>0.0643</td></tr><tr><td><code>GEMSDOE68/gems68-autoctx-s3-scarp-ridge-35000dots-20261020T193800Z-e8956566-nan.tif</code></td><td>0.3409</td><td>0.3409</td><td>0.0383</td></tr><tr><td><code>GEMSDOE68/gems68-autoctx-s3-scarp-ridge-35000dots-20261020T193800Z-e8956566-zeros.tif</code></td><td>0.3409</td><td>0.3409</td><td>0.0383</td></tr><tr><td><code>GEMSDOE70/gems70-e6-multimodal-extdomain-loqo-37654-20261020.tif</code></td><td>0.3396</td><td>0.3132</td><td>0.0554</td></tr>
+        </tbody>
+      </table>
+    </div>
+    
+  </main>
+  <footer>
+    DOE GEMS Prize (DrivenData #306 — NW Nevada GeoDAWN Hidden Geothermal Fault Detection) · Lane <code>GEMSDOE74</code> · Branch <code>arena/ee4946f5-gemsdoe74</code> · Verified UTC <code>2026-10-21</code>
+  </footer>
+  
+<script>
+function copyText(id, btn) {
+  const txt = document.getElementById(id).innerText.trim();
+  navigator.clipboard.writeText(txt).then(() => {
+    const orig = btn.innerText;
+    btn.innerText = 'Copied ✓';
+    setTimeout(() => { btn.innerText = orig; }, 1800);
+  });
+}
+</script>
+
 </body>
 </html>
