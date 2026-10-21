@@ -1,0 +1,10 @@
+{
+  "primary": "gems74-h74-alt-spring-39500-20261021T000000Z-52f76038-zeros.tif",
+  "primary_sha256": "f745fdb0bcc7b09c73e9ca5460ec81b3628421d3516d514e63720bd547d14597",
+  "primary_size": 136942,
+  "nan_twin": "gems74-h74-alt-spring-39500-20261021T000000Z-52f76038-nan.tif",
+  "emitted_pixels": 39500,
+  "on_catalogue": 0,
+  " submission_note": "GEMSDOE74 H74-ALT-SPRING | hydrothermal spring alignment + K-Th alteration halos, 39500 dots, 0 on-catalogue, blind-spring PCA strike + alteration lineaments; spring-mean-dist 12px vs H33-2-B2 67px, K-high distinct lane; UNSCORED",
+  "all_checks_passed": true
+}
