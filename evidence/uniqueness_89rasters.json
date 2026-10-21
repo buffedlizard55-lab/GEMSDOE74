@@ -1,0 +1,1093 @@
+{
+  "n_rasters_audited": 89,
+  "gate_thresholds": {
+    "max_abs_spearman_rho": 0.9,
+    "max_mutual_3px_overlap": 0.7,
+    "max_real_model_forward_3px_overlap": 0.7
+  },
+  "gate_passed": true,
+  "max_mutual_3px_overlap": {
+    "raster": "GEMSDOE70__gems70-p5-multiphysics-submodular-37654-20261020.tif",
+    "is_synthetic_lattice": false,
+    "their_dots": 37654,
+    "mutual_3px_overlap": 0.670898,
+    "forward_3px_overlap": 0.670898,
+    "reverse_3px_overlap": 0.885298,
+    "spearman_dots": 0.051141,
+    "spearman_surface": 0.124412
+  },
+  "max_real_model_forward_3px_overlap": {
+    "raster": "GEMSDOE70__gems70-p5-multiphysics-submodular-37654-20261020.tif",
+    "is_synthetic_lattice": false,
+    "their_dots": 37654,
+    "mutual_3px_overlap": 0.670898,
+    "forward_3px_overlap": 0.670898,
+    "reverse_3px_overlap": 0.885298,
+    "spearman_dots": 0.051141,
+    "spearman_surface": 0.124412
+  },
+  "max_abs_spearman_dots": {
+    "raster": "GEMSDOE70__gems70-p5-multiphysics-submodular-37654-20261020.tif",
+    "is_synthetic_lattice": false,
+    "their_dots": 37654,
+    "mutual_3px_overlap": 0.670898,
+    "forward_3px_overlap": 0.670898,
+    "reverse_3px_overlap": 0.885298,
+    "spearman_dots": 0.051141,
+    "spearman_surface": 0.124412
+  },
+  "max_abs_spearman_surface": {
+    "raster": "calib_h161_01855.tif",
+    "is_synthetic_lattice": false,
+    "their_dots": 123939,
+    "mutual_3px_overlap": 0.503957,
+    "forward_3px_overlap": 0.503957,
+    "reverse_3px_overlap": 0.505337,
+    "spearman_dots": 0.0298,
+    "spearman_surface": 0.140487
+  },
+  "top_15_by_mutual_overlap": [
+    {
+      "raster": "GEMSDOE70__gems70-p5-multiphysics-submodular-37654-20261020.tif",
+      "is_synthetic_lattice": false,
+      "their_dots": 37654,
+      "mutual_3px_overlap": 0.670898,
+      "forward_3px_overlap": 0.670898,
+      "reverse_3px_overlap": 0.885298,
+      "spearman_dots": 0.051141,
+      "spearman_surface": 0.124412
+    },
+    {
+      "raster": "GEMSDOE70__gems70-p5-submodular-multiphysics-hydro-54000-20261020.tif",
+      "is_synthetic_lattice": false,
+      "their_dots": 54000,
+      "mutual_3px_overlap": 0.509241,
+      "forward_3px_overlap": 0.637515,
+      "reverse_3px_overlap": 0.509241,
+      "spearman_dots": 0.018225,
+      "spearman_surface": 0.097609
+    },
+    {
+      "raster": "calib_h161_01855.tif",
+      "is_synthetic_lattice": false,
+      "their_dots": 123939,
+      "mutual_3px_overlap": 0.503957,
+      "forward_3px_overlap": 0.503957,
+      "reverse_3px_overlap": 0.505337,
+      "spearman_dots": 0.0298,
+      "spearman_surface": 0.140487
+    },
+    {
+      "raster": "19GEMSDOE__h19-4-multiline-corroborated.tif",
+      "is_synthetic_lattice": false,
+      "their_dots": 123779,
+      "mutual_3px_overlap": 0.485393,
+      "forward_3px_overlap": 0.485393,
+      "reverse_3px_overlap": 0.500198,
+      "spearman_dots": 0.02942,
+      "spearman_surface": 0.140198
+    },
+    {
+      "raster": "calib_h194_01894.tif",
+      "is_synthetic_lattice": false,
+      "their_dots": 123779,
+      "mutual_3px_overlap": 0.485393,
+      "forward_3px_overlap": 0.485393,
+      "reverse_3px_overlap": 0.500198,
+      "spearman_dots": 0.02942,
+      "spearman_surface": 0.140198
+    },
+    {
+      "raster": "19GEMSDOE__h19-5-powerlaw-budget-multiline.tif",
+      "is_synthetic_lattice": false,
+      "their_dots": 121131,
+      "mutual_3px_overlap": 0.468821,
+      "forward_3px_overlap": 0.468821,
+      "reverse_3px_overlap": 0.499245,
+      "spearman_dots": 0.028653,
+      "spearman_surface": 0.137977
+    },
+    {
+      "raster": "calib_h195_01922.tif",
+      "is_synthetic_lattice": false,
+      "their_dots": 121131,
+      "mutual_3px_overlap": 0.468821,
+      "forward_3px_overlap": 0.468821,
+      "reverse_3px_overlap": 0.499245,
+      "spearman_dots": 0.028653,
+      "spearman_surface": 0.137977
+    },
+    {
+      "raster": "GEMSDOE27__topo-gap-closure-t-v2-on-d1-5.tif",
+      "is_synthetic_lattice": false,
+      "their_dots": 61328,
+      "mutual_3px_overlap": 0.446779,
+      "forward_3px_overlap": 0.446779,
+      "reverse_3px_overlap": 0.473128,
+      "spearman_dots": 0.01866,
+      "spearman_surface": 0.093083
+    },
+    {
+      "raster": "GEMSDOE24__h25-1-dotted-h19-5-d1-5.tif",
+      "is_synthetic_lattice": false,
+      "their_dots": 60069,
+      "mutual_3px_overlap": 0.441998,
+      "forward_3px_overlap": 0.441998,
+      "reverse_3px_overlap": 0.478749,
+      "spearman_dots": 0.018877,
+      "spearman_surface": 0.093741
+    },
+    {
+      "raster": "calib_d15_02477.tif",
+      "is_synthetic_lattice": false,
+      "their_dots": 60069,
+      "mutual_3px_overlap": 0.441998,
+      "forward_3px_overlap": 0.441998,
+      "reverse_3px_overlap": 0.478749,
+      "spearman_dots": 0.018877,
+      "spearman_surface": 0.093741
+    },
+    {
+      "raster": "gemsdoe32-h32a-dip-projected-step-46090-20261004T183200Z-838fcd84-nan.tif",
+      "is_synthetic_lattice": false,
+      "their_dots": 46090,
+      "mutual_3px_overlap": 0.4416,
+      "forward_3px_overlap": 0.4416,
+      "reverse_3px_overlap": 0.466978,
+      "spearman_dots": 0.014863,
+      "spearman_surface": 0.080102
+    },
+    {
+      "raster": "gemsdoe32-h32a-dip-projected-step-46090-20261004T183200Z-838fcd84-zeros.tif",
+      "is_synthetic_lattice": false,
+      "their_dots": 46090,
+      "mutual_3px_overlap": 0.4416,
+      "forward_3px_overlap": 0.4416,
+      "reverse_3px_overlap": 0.466978,
+      "spearman_dots": 0.014863,
+      "spearman_surface": 0.080102
+    },
+    {
+      "raster": "gemsdoe32-h32d-submodular-multipysics-46090-20261004T183200Z-4de30601-nan.tif",
+      "is_synthetic_lattice": false,
+      "their_dots": 46090,
+      "mutual_3px_overlap": 0.437377,
+      "forward_3px_overlap": 0.437377,
+      "reverse_3px_overlap": 0.463984,
+      "spearman_dots": 0.014717,
+      "spearman_surface": 0.079363
+    },
+    {
+      "raster": "gemsdoe32-h32d-submodular-multipysics-46090-20261004T183200Z-4de30601-zeros.tif",
+      "is_synthetic_lattice": false,
+      "their_dots": 46090,
+      "mutual_3px_overlap": 0.437377,
+      "forward_3px_overlap": 0.437377,
+      "reverse_3px_overlap": 0.463984,
+      "spearman_dots": 0.014717,
+      "spearman_surface": 0.079363
+    },
+    {
+      "raster": "gemsdoe32-h32b-transtensional-swarm-45890-20261004T183200Z-27b7c9e6-nan.tif",
+      "is_synthetic_lattice": false,
+      "their_dots": 45890,
+      "mutual_3px_overlap": 0.435173,
+      "forward_3px_overlap": 0.435173,
+      "reverse_3px_overlap": 0.462345,
+      "spearman_dots": 0.01476,
+      "spearman_surface": 0.078916
+    }
+  ],
+  "all_rasters": [
+    {
+      "raster": "19GEMSDOE__h19-4-multiline-corroborated.tif",
+      "is_synthetic_lattice": false,
+      "their_dots": 123779,
+      "mutual_3px_overlap": 0.485393,
+      "forward_3px_overlap": 0.485393,
+      "reverse_3px_overlap": 0.500198,
+      "spearman_dots": 0.02942,
+      "spearman_surface": 0.140198
+    },
+    {
+      "raster": "19GEMSDOE__h19-5-powerlaw-budget-multiline.tif",
+      "is_synthetic_lattice": false,
+      "their_dots": 121131,
+      "mutual_3px_overlap": 0.468821,
+      "forward_3px_overlap": 0.468821,
+      "reverse_3px_overlap": 0.499245,
+      "spearman_dots": 0.028653,
+      "spearman_surface": 0.137977
+    },
+    {
+      "raster": "57GEMSDOE__faultzone-anatomy-60000px-prev.tif",
+      "is_synthetic_lattice": false,
+      "their_dots": 60000,
+      "mutual_3px_overlap": 0.184177,
+      "forward_3px_overlap": 0.184177,
+      "reverse_3px_overlap": 0.3059,
+      "spearman_dots": 0.004243,
+      "spearman_surface": 0.041175
+    },
+    {
+      "raster": "57GEMSDOE__h57-anatomy-enechelon-zeros.tif",
+      "is_synthetic_lattice": false,
+      "their_dots": 35341,
+      "mutual_3px_overlap": 0.054921,
+      "forward_3px_overlap": 0.054921,
+      "reverse_3px_overlap": 0.286551,
+      "spearman_dots": 0.006059,
+      "spearman_surface": 0.029936
+    },
+    {
+      "raster": "57GEMSDOE__h57r2-shipped8-all-flank0-20261009T180433Z-90e532947353-zeros.tif",
+      "is_synthetic_lattice": false,
+      "their_dots": 40000,
+      "mutual_3px_overlap": 0.082143,
+      "forward_3px_overlap": 0.082143,
+      "reverse_3px_overlap": 0.275275,
+      "spearman_dots": 0.00531,
+      "spearman_surface": 0.0288
+    },
+    {
+      "raster": "57GEMSDOE__parallel-12000dots-zeros.tif",
+      "is_synthetic_lattice": false,
+      "their_dots": 12000,
+      "mutual_3px_overlap": 0.030621,
+      "forward_3px_overlap": 0.030621,
+      "reverse_3px_overlap": 0.336833,
+      "spearman_dots": 0.00343,
+      "spearman_surface": 0.031391
+    },
+    {
+      "raster": "GEMSDOE24__h25-1-dotted-h19-5-d1-5.tif",
+      "is_synthetic_lattice": false,
+      "their_dots": 60069,
+      "mutual_3px_overlap": 0.441998,
+      "forward_3px_overlap": 0.441998,
+      "reverse_3px_overlap": 0.478749,
+      "spearman_dots": 0.018877,
+      "spearman_surface": 0.093741
+    },
+    {
+      "raster": "GEMSDOE25__dotted-h19-5-d2-8.tif",
+      "is_synthetic_lattice": false,
+      "their_dots": 44090,
+      "mutual_3px_overlap": 0.424523,
+      "forward_3px_overlap": 0.424523,
+      "reverse_3px_overlap": 0.469948,
+      "spearman_dots": 0.014787,
+      "spearman_surface": 0.078918
+    },
+    {
+      "raster": "GEMSDOE27__topo-gap-closure-t-v2-on-d1-5.tif",
+      "is_synthetic_lattice": false,
+      "their_dots": 61328,
+      "mutual_3px_overlap": 0.446779,
+      "forward_3px_overlap": 0.446779,
+      "reverse_3px_overlap": 0.473128,
+      "spearman_dots": 0.01866,
+      "spearman_surface": 0.093083
+    },
+    {
+      "raster": "GEMSDOE28__h27-4-r1-solo-d2-8.tif",
+      "is_synthetic_lattice": false,
+      "their_dots": 40199,
+      "mutual_3px_overlap": 0.404632,
+      "forward_3px_overlap": 0.404632,
+      "reverse_3px_overlap": 0.478942,
+      "spearman_dots": 0.016214,
+      "spearman_surface": 0.074558
+    },
+    {
+      "raster": "GEMSDOE28__h32-1-prethin-tip-euler-d2-8.tif",
+      "is_synthetic_lattice": false,
+      "their_dots": 42294,
+      "mutual_3px_overlap": 0.417193,
+      "forward_3px_overlap": 0.417193,
+      "reverse_3px_overlap": 0.475458,
+      "spearman_dots": 0.015627,
+      "spearman_surface": 0.076941
+    },
+    {
+      "raster": "GEMSDOE28__h36-1-rung30-blind-r1.tif",
+      "is_synthetic_lattice": false,
+      "their_dots": 37660,
+      "mutual_3px_overlap": 0.399825,
+      "forward_3px_overlap": 0.399825,
+      "reverse_3px_overlap": 0.476261,
+      "spearman_dots": 0.015156,
+      "spearman_surface": 0.071964
+    },
+    {
+      "raster": "GEMSDOE28__h38-1-hf-euler-r30-r1.tif",
+      "is_synthetic_lattice": false,
+      "their_dots": 37860,
+      "mutual_3px_overlap": 0.401923,
+      "forward_3px_overlap": 0.401923,
+      "reverse_3px_overlap": 0.476255,
+      "spearman_dots": 0.015184,
+      "spearman_surface": 0.072106
+    },
+    {
+      "raster": "GEMSDOE29__wormrank-d28.tif",
+      "is_synthetic_lattice": false,
+      "their_dots": 41338,
+      "mutual_3px_overlap": 0.419584,
+      "forward_3px_overlap": 0.419584,
+      "reverse_3px_overlap": 0.461416,
+      "spearman_dots": 0.014323,
+      "spearman_surface": 0.075535
+    },
+    {
+      "raster": "GEMSDOE30__d28-poisson300m-offcat-44090.tif",
+      "is_synthetic_lattice": false,
+      "their_dots": 44090,
+      "mutual_3px_overlap": 0.424523,
+      "forward_3px_overlap": 0.424523,
+      "reverse_3px_overlap": 0.469948,
+      "spearman_dots": 0.014787,
+      "spearman_surface": 0.078918
+    },
+    {
+      "raster": "GEMSDOE32__h33-2-b2-zeros.tif",
+      "is_synthetic_lattice": false,
+      "their_dots": 37654,
+      "mutual_3px_overlap": 0.384952,
+      "forward_3px_overlap": 0.384952,
+      "reverse_3px_overlap": 0.476045,
+      "spearman_dots": 0.017245,
+      "spearman_surface": 0.071324
+    },
+    {
+      "raster": "GEMSDOE33__h33d-analog-tip-stepover-r30.tif",
+      "is_synthetic_lattice": false,
+      "their_dots": 41865,
+      "mutual_3px_overlap": 0.415148,
+      "forward_3px_overlap": 0.415148,
+      "reverse_3px_overlap": 0.473928,
+      "spearman_dots": 0.015329,
+      "spearman_surface": 0.075845
+    },
+    {
+      "raster": "GEMSDOE36__anderson-geothermal-pinn-38854.tif",
+      "is_synthetic_lattice": false,
+      "their_dots": 38854,
+      "mutual_3px_overlap": 0.390025,
+      "forward_3px_overlap": 0.390025,
+      "reverse_3px_overlap": 0.470325,
+      "spearman_dots": 0.017223,
+      "spearman_surface": 0.071419
+    },
+    {
+      "raster": "GEMSDOE49__gate_ortho_w0.25-40k.tif",
+      "is_synthetic_lattice": false,
+      "their_dots": 40000,
+      "mutual_3px_overlap": 0.336219,
+      "forward_3px_overlap": 0.336219,
+      "reverse_3px_overlap": 0.399875,
+      "spearman_dots": 0.010087,
+      "spearman_surface": 0.059027
+    },
+    {
+      "raster": "GEMSDOE70__gems70-discordance-corridor-v1-20261020-7f3a9c2e.tif",
+      "is_synthetic_lattice": false,
+      "their_dots": 24872,
+      "mutual_3px_overlap": 0.046635,
+      "forward_3px_overlap": 0.046635,
+      "reverse_3px_overlap": 0.209794,
+      "spearman_dots": 0.001669,
+      "spearman_surface": -0.001361
+    },
+    {
+      "raster": "GEMSDOE70__gems70-e2-alluvialstep-38000-20261020T221218Z-zeros-DO-NOT-SUBMIT.tif",
+      "is_synthetic_lattice": false,
+      "their_dots": 38000,
+      "mutual_3px_overlap": 0.257317,
+      "forward_3px_overlap": 0.257317,
+      "reverse_3px_overlap": 0.422895,
+      "spearman_dots": 0.012679,
+      "spearman_surface": 0.066426
+    },
+    {
+      "raster": "GEMSDOE70__gems70-e5-supervised-loqo-37654-20261020.tif",
+      "is_synthetic_lattice": false,
+      "their_dots": 37654,
+      "mutual_3px_overlap": 0.278483,
+      "forward_3px_overlap": 0.331386,
+      "reverse_3px_overlap": 0.278483,
+      "spearman_dots": 0.007053,
+      "spearman_surface": 0.027433
+    },
+    {
+      "raster": "GEMSDOE70__gems70-e6-multimodal-extdomain-loqo-37654-20261020.tif",
+      "is_synthetic_lattice": false,
+      "their_dots": 37654,
+      "mutual_3px_overlap": 0.283556,
+      "forward_3px_overlap": 0.337361,
+      "reverse_3px_overlap": 0.283556,
+      "spearman_dots": 0.00732,
+      "spearman_surface": 0.039762
+    },
+    {
+      "raster": "GEMSDOE70__gems70-fusion-dotted-37654-20261020.tif",
+      "is_synthetic_lattice": false,
+      "their_dots": 37654,
+      "mutual_3px_overlap": 0.24178,
+      "forward_3px_overlap": 0.24178,
+      "reverse_3px_overlap": 0.55755,
+      "spearman_dots": 0.031183,
+      "spearman_surface": 0.082026
+    },
+    {
+      "raster": "GEMSDOE70__gems70-h70-conductive-breach-37654-20261020.tif",
+      "is_synthetic_lattice": false,
+      "their_dots": 37654,
+      "mutual_3px_overlap": 0.238726,
+      "forward_3px_overlap": 0.279306,
+      "reverse_3px_overlap": 0.238726,
+      "spearman_dots": 0.009915,
+      "spearman_surface": 0.019609
+    },
+    {
+      "raster": "GEMSDOE70__gems70-p4-stratified-halo-37654-20261020.tif",
+      "is_synthetic_lattice": false,
+      "their_dots": 37654,
+      "mutual_3px_overlap": 0.241701,
+      "forward_3px_overlap": 0.281351,
+      "reverse_3px_overlap": 0.241701,
+      "spearman_dots": 0.008979,
+      "spearman_surface": 0.02061
+    },
+    {
+      "raster": "GEMSDOE70__gems70-p5-analytic-halo-37654-20261020.tif",
+      "is_synthetic_lattice": false,
+      "their_dots": 37654,
+      "mutual_3px_overlap": 0.247039,
+      "forward_3px_overlap": 0.264806,
+      "reverse_3px_overlap": 0.247039,
+      "spearman_dots": 0.007935,
+      "spearman_surface": 0.02154
+    },
+    {
+      "raster": "GEMSDOE70__gems70-p5-cover-magnetic-loqo-20261020-DO-NOT-SUBMIT.tif",
+      "is_synthetic_lattice": false,
+      "their_dots": 0,
+      "mutual_3px_overlap": 0.0,
+      "forward_3px_overlap": 0.0,
+      "reverse_3px_overlap": 0.0,
+      "spearman_dots": 0.001942,
+      "spearman_surface": 0.048077
+    },
+    {
+      "raster": "GEMSDOE70__gems70-p5-dual-submod300-oof38k-20261020.tif",
+      "is_synthetic_lattice": false,
+      "their_dots": 37654,
+      "mutual_3px_overlap": 0.393849,
+      "forward_3px_overlap": 0.393849,
+      "reverse_3px_overlap": 0.596776,
+      "spearman_dots": 0.024468,
+      "spearman_surface": 0.091019
+    },
+    {
+      "raster": "GEMSDOE70__gems70-p5-dualhorizon-37654-20261020.tif",
+      "is_synthetic_lattice": false,
+      "their_dots": 37654,
+      "mutual_3px_overlap": 0.357492,
+      "forward_3px_overlap": 0.377437,
+      "reverse_3px_overlap": 0.357492,
+      "spearman_dots": 0.015319,
+      "spearman_surface": 0.057015
+    },
+    {
+      "raster": "GEMSDOE70__gems70-p5-halo-rank-hgb-37654-20261020.tif",
+      "is_synthetic_lattice": false,
+      "their_dots": 37654,
+      "mutual_3px_overlap": 0.26539,
+      "forward_3px_overlap": 0.315079,
+      "reverse_3px_overlap": 0.26539,
+      "spearman_dots": 0.006089,
+      "spearman_surface": 0.026147
+    },
+    {
+      "raster": "GEMSDOE70__gems70-p5-loqo-halo-37654-20261020.tif",
+      "is_synthetic_lattice": false,
+      "their_dots": 37654,
+      "mutual_3px_overlap": 0.298003,
+      "forward_3px_overlap": 0.35218,
+      "reverse_3px_overlap": 0.298003,
+      "spearman_dots": 0.009166,
+      "spearman_surface": 0.044118
+    },
+    {
+      "raster": "GEMSDOE70__gems70-p5-multiphysics-submodular-37654-20261020.tif",
+      "is_synthetic_lattice": false,
+      "their_dots": 37654,
+      "mutual_3px_overlap": 0.670898,
+      "forward_3px_overlap": 0.670898,
+      "reverse_3px_overlap": 0.885298,
+      "spearman_dots": 0.051141,
+      "spearman_surface": 0.124412
+    },
+    {
+      "raster": "GEMSDOE70__gems70-p5-submodular-multiphysics-hydro-54000-20261020.tif",
+      "is_synthetic_lattice": false,
+      "their_dots": 54000,
+      "mutual_3px_overlap": 0.509241,
+      "forward_3px_overlap": 0.637515,
+      "reverse_3px_overlap": 0.509241,
+      "spearman_dots": 0.018225,
+      "spearman_surface": 0.097609
+    },
+    {
+      "raster": "GEMSDOE70__gems70-s3-proxyrank-h33spacing-37654-20261020-DO-NOT-SUBMIT.tif",
+      "is_synthetic_lattice": false,
+      "their_dots": 37654,
+      "mutual_3px_overlap": 0.262363,
+      "forward_3px_overlap": 0.262363,
+      "reverse_3px_overlap": 0.415706,
+      "spearman_dots": 0.012269,
+      "spearman_surface": 0.068485
+    },
+    {
+      "raster": "GEMSDOE70__gems70-s3e2-marginmatched-proxyrank-37654-20261020-DO-NOT-SUBMIT.tif",
+      "is_synthetic_lattice": false,
+      "their_dots": 37654,
+      "mutual_3px_overlap": 0.307484,
+      "forward_3px_overlap": 0.307484,
+      "reverse_3px_overlap": 0.441467,
+      "spearman_dots": 0.013473,
+      "spearman_surface": 0.072122
+    },
+    {
+      "raster": "GEMSDOE70__gems70-stepperamp-relay-diagnostic-BLOCKED-DO-NOT-SUBMIT.tif",
+      "is_synthetic_lattice": false,
+      "their_dots": 1,
+      "mutual_3px_overlap": 0.0,
+      "forward_3px_overlap": 0.0,
+      "reverse_3px_overlap": 0.0,
+      "spearman_dots": 0.010128,
+      "spearman_surface": 0.080601
+    },
+    {
+      "raster": "GEMSDOE70__gems70e3-scarpcurv-60k-ex3-20261020-zeros.tif",
+      "is_synthetic_lattice": false,
+      "their_dots": 60000,
+      "mutual_3px_overlap": 0.3366,
+      "forward_3px_overlap": 0.411563,
+      "reverse_3px_overlap": 0.3366,
+      "spearman_dots": 0.008066,
+      "spearman_surface": 0.069645
+    },
+    {
+      "raster": "GEMSDOE73__gems73-h73-1-piedmont-scarpchain-e1-37654dots-20261021.tif",
+      "is_synthetic_lattice": false,
+      "their_dots": 37654,
+      "mutual_3px_overlap": 0.272242,
+      "forward_3px_overlap": 0.272242,
+      "reverse_3px_overlap": 0.351145,
+      "spearman_dots": 0.009648,
+      "spearman_surface": 0.047141
+    },
+    {
+      "raster": "GEMSDOE73__gems73-h73a-blind-stepover-20261021T022620Z-c111bb0f-nan.tif",
+      "is_synthetic_lattice": false,
+      "their_dots": 30762,
+      "mutual_3px_overlap": 0.039279,
+      "forward_3px_overlap": 0.039279,
+      "reverse_3px_overlap": 0.170568,
+      "spearman_dots": -0.000212,
+      "spearman_surface": -0.000329
+    },
+    {
+      "raster": "GEMSDOE73__gems73-h73a-blind-stepover-20261021T022620Z-c111bb0f-zeros.tif",
+      "is_synthetic_lattice": false,
+      "their_dots": 30762,
+      "mutual_3px_overlap": 0.039279,
+      "forward_3px_overlap": 0.039279,
+      "reverse_3px_overlap": 0.170568,
+      "spearman_dots": -0.000212,
+      "spearman_surface": -0.000329
+    },
+    {
+      "raster": "GEMSDOE73__gems73-h73f-curvature-lineament-37654-20261021T040043Z-4acc39d2-nan.tif",
+      "is_synthetic_lattice": false,
+      "their_dots": 37654,
+      "mutual_3px_overlap": 0.137462,
+      "forward_3px_overlap": 0.137462,
+      "reverse_3px_overlap": 0.17868,
+      "spearman_dots": 0.000659,
+      "spearman_surface": -0.003415
+    },
+    {
+      "raster": "GEMSDOE73__gems73-h73f-curvature-lineament-37654-20261021T040043Z-4acc39d2-zeros.tif",
+      "is_synthetic_lattice": false,
+      "their_dots": 37654,
+      "mutual_3px_overlap": 0.137462,
+      "forward_3px_overlap": 0.137462,
+      "reverse_3px_overlap": 0.17868,
+      "spearman_dots": 0.000659,
+      "spearman_surface": -0.003415
+    },
+    {
+      "raster": "GEMSDOE73__gems73-hydro-permeability-corridor-37654-20261021T000000Z-2bbb79d4-zeros.tif",
+      "is_synthetic_lattice": false,
+      "their_dots": 16180,
+      "mutual_3px_overlap": 0.068439,
+      "forward_3px_overlap": 0.068439,
+      "reverse_3px_overlap": 0.231088,
+      "spearman_dots": 0.002203,
+      "spearman_surface": 0.00957
+    },
+    {
+      "raster": "calib_d15_02477.tif",
+      "is_synthetic_lattice": false,
+      "their_dots": 60069,
+      "mutual_3px_overlap": 0.441998,
+      "forward_3px_overlap": 0.441998,
+      "reverse_3px_overlap": 0.478749,
+      "spearman_dots": 0.018877,
+      "spearman_surface": 0.093741
+    },
+    {
+      "raster": "calib_h161_01855.tif",
+      "is_synthetic_lattice": false,
+      "their_dots": 123939,
+      "mutual_3px_overlap": 0.503957,
+      "forward_3px_overlap": 0.503957,
+      "reverse_3px_overlap": 0.505337,
+      "spearman_dots": 0.0298,
+      "spearman_surface": 0.140487
+    },
+    {
+      "raster": "calib_h194_01894.tif",
+      "is_synthetic_lattice": false,
+      "their_dots": 123779,
+      "mutual_3px_overlap": 0.485393,
+      "forward_3px_overlap": 0.485393,
+      "reverse_3px_overlap": 0.500198,
+      "spearman_dots": 0.02942,
+      "spearman_surface": 0.140198
+    },
+    {
+      "raster": "calib_h195_01922.tif",
+      "is_synthetic_lattice": false,
+      "their_dots": 121131,
+      "mutual_3px_overlap": 0.468821,
+      "forward_3px_overlap": 0.468821,
+      "reverse_3px_overlap": 0.499245,
+      "spearman_dots": 0.028653,
+      "spearman_surface": 0.137977
+    },
+    {
+      "raster": "calib_h25ctx_01280.tif",
+      "is_synthetic_lattice": false,
+      "their_dots": 174232,
+      "mutual_3px_overlap": 0.329578,
+      "forward_3px_overlap": 0.472566,
+      "reverse_3px_overlap": 0.329578,
+      "spearman_dots": 0.013556,
+      "spearman_surface": 0.068539
+    },
+    {
+      "raster": "calib_h28ridge_01839.tif",
+      "is_synthetic_lattice": false,
+      "their_dots": 69281,
+      "mutual_3px_overlap": 0.308829,
+      "forward_3px_overlap": 0.47068,
+      "reverse_3px_overlap": 0.308829,
+      "spearman_dots": 0.008708,
+      "spearman_surface": 0.040139
+    },
+    {
+      "raster": "calib_hedgev2_01563_sample.tif",
+      "is_synthetic_lattice": false,
+      "their_dots": 227507,
+      "mutual_3px_overlap": 0.333484,
+      "forward_3px_overlap": 0.548361,
+      "reverse_3px_overlap": 0.333484,
+      "spearman_dots": 0.012623,
+      "spearman_surface": 0.00916
+    },
+    {
+      "raster": "calib_r13lattice_00904.tif",
+      "is_synthetic_lattice": true,
+      "their_dots": 206895,
+      "mutual_3px_overlap": 0.17942,
+      "forward_3px_overlap": 1.0,
+      "reverse_3px_overlap": 0.17942,
+      "spearman_dots": -0.000321,
+      "spearman_surface": -0.00031
+    },
+    {
+      "raster": "dotted_b2_prune_02778.tif",
+      "is_synthetic_lattice": false,
+      "their_dots": 37654,
+      "mutual_3px_overlap": 0.384952,
+      "forward_3px_overlap": 0.384952,
+      "reverse_3px_overlap": 0.476045,
+      "spearman_dots": 0.017245,
+      "spearman_surface": 0.071324
+    },
+    {
+      "raster": "dotted_d2_8_02600.tif",
+      "is_synthetic_lattice": false,
+      "their_dots": 44090,
+      "mutual_3px_overlap": 0.424523,
+      "forward_3px_overlap": 0.424523,
+      "reverse_3px_overlap": 0.469948,
+      "spearman_dots": 0.014787,
+      "spearman_surface": 0.078918
+    },
+    {
+      "raster": "dotted_d2_8_02708.tif",
+      "is_synthetic_lattice": false,
+      "their_dots": 40199,
+      "mutual_3px_overlap": 0.404632,
+      "forward_3px_overlap": 0.404632,
+      "reverse_3px_overlap": 0.478942,
+      "spearman_dots": 0.016214,
+      "spearman_surface": 0.074558
+    },
+    {
+      "raster": "gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+      "is_synthetic_lattice": false,
+      "their_dots": 44090,
+      "mutual_3px_overlap": 0.424523,
+      "forward_3px_overlap": 0.424523,
+      "reverse_3px_overlap": 0.469948,
+      "spearman_dots": 0.014787,
+      "spearman_surface": 0.078918
+    },
+    {
+      "raster": "gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-zeros.tif",
+      "is_synthetic_lattice": false,
+      "their_dots": 44090,
+      "mutual_3px_overlap": 0.424523,
+      "forward_3px_overlap": 0.424523,
+      "reverse_3px_overlap": 0.469948,
+      "spearman_dots": 0.014787,
+      "spearman_surface": 0.078918
+    },
+    {
+      "raster": "gems32-bayesopt-dilation-scarp-d28-20261004-nan.tif",
+      "is_synthetic_lattice": false,
+      "their_dots": 45000,
+      "mutual_3px_overlap": 0.345807,
+      "forward_3px_overlap": 0.345807,
+      "reverse_3px_overlap": 0.3466,
+      "spearman_dots": 0.006957,
+      "spearman_surface": 0.059041
+    },
+    {
+      "raster": "gems32-bayesopt-dilation-scarp-d28-20261004-zeros.tif",
+      "is_synthetic_lattice": false,
+      "their_dots": 45000,
+      "mutual_3px_overlap": 0.345807,
+      "forward_3px_overlap": 0.345807,
+      "reverse_3px_overlap": 0.3466,
+      "spearman_dots": 0.006957,
+      "spearman_surface": 0.059041
+    },
+    {
+      "raster": "gems32-lazygreedy-maxcov-44090-supconfined-zeros.tif",
+      "is_synthetic_lattice": false,
+      "their_dots": 44090,
+      "mutual_3px_overlap": 0.408775,
+      "forward_3px_overlap": 0.408775,
+      "reverse_3px_overlap": 0.477705,
+      "spearman_dots": 0.016296,
+      "spearman_surface": 0.079906
+    },
+    {
+      "raster": "gems32-probe-S1-ANCHOR-identical-to-live-02600.tif",
+      "is_synthetic_lattice": false,
+      "their_dots": 44090,
+      "mutual_3px_overlap": 0.424523,
+      "forward_3px_overlap": 0.424523,
+      "reverse_3px_overlap": 0.469948,
+      "spearman_dots": 0.014787,
+      "spearman_surface": 0.078918
+    },
+    {
+      "raster": "gems32-probe-S2-SCALE-lambda-0.5.tif",
+      "is_synthetic_lattice": false,
+      "their_dots": 0,
+      "mutual_3px_overlap": 0.0,
+      "forward_3px_overlap": 0.0,
+      "reverse_3px_overlap": 0.0,
+      "spearman_dots": 0.014787,
+      "spearman_surface": 0.078918
+    },
+    {
+      "raster": "gems32-probe-S3-NULLADD-2000px.tif",
+      "is_synthetic_lattice": false,
+      "their_dots": 46090,
+      "mutual_3px_overlap": 0.424709,
+      "forward_3px_overlap": 0.424709,
+      "reverse_3px_overlap": 0.449707,
+      "spearman_dots": 0.014112,
+      "spearman_surface": 0.072795
+    },
+    {
+      "raster": "gemsdoe32-d28-ref02600-repro-44090-20261004T183200Z-426073b6-nan.tif",
+      "is_synthetic_lattice": false,
+      "their_dots": 44090,
+      "mutual_3px_overlap": 0.424523,
+      "forward_3px_overlap": 0.424523,
+      "reverse_3px_overlap": 0.469948,
+      "spearman_dots": 0.014787,
+      "spearman_surface": 0.078918
+    },
+    {
+      "raster": "gemsdoe32-d28-ref02600-repro-44090-20261004T183200Z-426073b6-zeros.tif",
+      "is_synthetic_lattice": false,
+      "their_dots": 44090,
+      "mutual_3px_overlap": 0.424523,
+      "forward_3px_overlap": 0.424523,
+      "reverse_3px_overlap": 0.469948,
+      "spearman_dots": 0.014787,
+      "spearman_surface": 0.078918
+    },
+    {
+      "raster": "gemsdoe32-h32a-dip-projected-step-46090-20261004T183200Z-838fcd84-nan.tif",
+      "is_synthetic_lattice": false,
+      "their_dots": 46090,
+      "mutual_3px_overlap": 0.4416,
+      "forward_3px_overlap": 0.4416,
+      "reverse_3px_overlap": 0.466978,
+      "spearman_dots": 0.014863,
+      "spearman_surface": 0.080102
+    },
+    {
+      "raster": "gemsdoe32-h32a-dip-projected-step-46090-20261004T183200Z-838fcd84-zeros.tif",
+      "is_synthetic_lattice": false,
+      "their_dots": 46090,
+      "mutual_3px_overlap": 0.4416,
+      "forward_3px_overlap": 0.4416,
+      "reverse_3px_overlap": 0.466978,
+      "spearman_dots": 0.014863,
+      "spearman_surface": 0.080102
+    },
+    {
+      "raster": "gemsdoe32-h32b-transtensional-swarm-45890-20261004T183200Z-27b7c9e6-nan.tif",
+      "is_synthetic_lattice": false,
+      "their_dots": 45890,
+      "mutual_3px_overlap": 0.435173,
+      "forward_3px_overlap": 0.435173,
+      "reverse_3px_overlap": 0.462345,
+      "spearman_dots": 0.01476,
+      "spearman_surface": 0.078916
+    },
+    {
+      "raster": "gemsdoe32-h32b-transtensional-swarm-45890-20261004T183200Z-27b7c9e6-zeros.tif",
+      "is_synthetic_lattice": false,
+      "their_dots": 45890,
+      "mutual_3px_overlap": 0.435173,
+      "forward_3px_overlap": 0.435173,
+      "reverse_3px_overlap": 0.462345,
+      "spearman_dots": 0.01476,
+      "spearman_surface": 0.078916
+    },
+    {
+      "raster": "gemsdoe32-h32c-mt-claycap-breach-45890-20261004T183200Z-a5963d0a-nan.tif",
+      "is_synthetic_lattice": false,
+      "their_dots": 45890,
+      "mutual_3px_overlap": 0.433712,
+      "forward_3px_overlap": 0.433712,
+      "reverse_3px_overlap": 0.461538,
+      "spearman_dots": 0.014639,
+      "spearman_surface": 0.07841
+    },
+    {
+      "raster": "gemsdoe32-h32c-mt-claycap-breach-45890-20261004T183200Z-a5963d0a-zeros.tif",
+      "is_synthetic_lattice": false,
+      "their_dots": 45890,
+      "mutual_3px_overlap": 0.433712,
+      "forward_3px_overlap": 0.433712,
+      "reverse_3px_overlap": 0.461538,
+      "spearman_dots": 0.014639,
+      "spearman_surface": 0.07841
+    },
+    {
+      "raster": "gemsdoe32-h32d-equalbudget-44090-20261004T183200Z-350cdc3f-nan.tif",
+      "is_synthetic_lattice": false,
+      "their_dots": 44090,
+      "mutual_3px_overlap": 0.426887,
+      "forward_3px_overlap": 0.426887,
+      "reverse_3px_overlap": 0.468882,
+      "spearman_dots": 0.014638,
+      "spearman_surface": 0.078592
+    },
+    {
+      "raster": "gemsdoe32-h32d-equalbudget-44090-20261004T183200Z-350cdc3f-zeros.tif",
+      "is_synthetic_lattice": false,
+      "their_dots": 44090,
+      "mutual_3px_overlap": 0.426887,
+      "forward_3px_overlap": 0.426887,
+      "reverse_3px_overlap": 0.468882,
+      "spearman_dots": 0.014638,
+      "spearman_surface": 0.078592
+    },
+    {
+      "raster": "gemsdoe32-h32d-submodular-multipysics-46090-20261004T183200Z-4de30601-nan.tif",
+      "is_synthetic_lattice": false,
+      "their_dots": 46090,
+      "mutual_3px_overlap": 0.437377,
+      "forward_3px_overlap": 0.437377,
+      "reverse_3px_overlap": 0.463984,
+      "spearman_dots": 0.014717,
+      "spearman_surface": 0.079363
+    },
+    {
+      "raster": "gemsdoe32-h32d-submodular-multipysics-46090-20261004T183200Z-4de30601-zeros.tif",
+      "is_synthetic_lattice": false,
+      "their_dots": 46090,
+      "mutual_3px_overlap": 0.437377,
+      "forward_3px_overlap": 0.437377,
+      "reverse_3px_overlap": 0.463984,
+      "spearman_dots": 0.014717,
+      "spearman_surface": 0.079363
+    },
+    {
+      "raster": "gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-nan.tif",
+      "is_synthetic_lattice": false,
+      "their_dots": 37654,
+      "mutual_3px_overlap": 0.384952,
+      "forward_3px_overlap": 0.384952,
+      "reverse_3px_overlap": 0.476045,
+      "spearman_dots": 0.017245,
+      "spearman_surface": 0.071324
+    },
+    {
+      "raster": "gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+      "is_synthetic_lattice": false,
+      "their_dots": 37654,
+      "mutual_3px_overlap": 0.384952,
+      "forward_3px_overlap": 0.384952,
+      "reverse_3px_overlap": 0.476045,
+      "spearman_dots": 0.017245,
+      "spearman_surface": 0.071324
+    },
+    {
+      "raster": "gemsdoe32-h33-h33-2b2-plus-h33-1-20261004T220000Z-31588dc7-nan.tif",
+      "is_synthetic_lattice": false,
+      "their_dots": 38554,
+      "mutual_3px_overlap": 0.385802,
+      "forward_3px_overlap": 0.385802,
+      "reverse_3px_overlap": 0.466981,
+      "spearman_dots": 0.016897,
+      "spearman_surface": 0.07035
+    },
+    {
+      "raster": "gemsdoe32-h33-h33-2b2-plus-h33-1-20261004T220000Z-31588dc7-zeros.tif",
+      "is_synthetic_lattice": false,
+      "their_dots": 38554,
+      "mutual_3px_overlap": 0.385802,
+      "forward_3px_overlap": 0.385802,
+      "reverse_3px_overlap": 0.466981,
+      "spearman_dots": 0.016897,
+      "spearman_surface": 0.07035
+    },
+    {
+      "raster": "h52_coincidence8_80k.tif",
+      "is_synthetic_lattice": false,
+      "their_dots": 80000,
+      "mutual_3px_overlap": 0.25755,
+      "forward_3px_overlap": 0.352287,
+      "reverse_3px_overlap": 0.25755,
+      "spearman_dots": 0.005327,
+      "spearman_surface": 0.020831
+    },
+    {
+      "raster": "h60_officialstack_50k.tif",
+      "is_synthetic_lattice": false,
+      "their_dots": 50000,
+      "mutual_3px_overlap": 0.21818,
+      "forward_3px_overlap": 0.240293,
+      "reverse_3px_overlap": 0.21818,
+      "spearman_dots": 0.001154,
+      "spearman_surface": 0.036497
+    },
+    {
+      "raster": "h60_union_d2_75308.tif",
+      "is_synthetic_lattice": false,
+      "their_dots": 75308,
+      "mutual_3px_overlap": 0.105673,
+      "forward_3px_overlap": 0.193764,
+      "reverse_3px_overlap": 0.105673,
+      "spearman_dots": -0.004343,
+      "spearman_surface": -0.011164
+    },
+    {
+      "raster": "hedge_v2_01563.tif",
+      "is_synthetic_lattice": false,
+      "their_dots": 227507,
+      "mutual_3px_overlap": 0.333484,
+      "forward_3px_overlap": 0.548361,
+      "reverse_3px_overlap": 0.333484,
+      "spearman_dots": 0.012623,
+      "spearman_surface": 0.00916
+    },
+    {
+      "raster": "r11_greedy_mp.tif",
+      "is_synthetic_lattice": false,
+      "their_dots": 272853,
+      "mutual_3px_overlap": 0.207247,
+      "forward_3px_overlap": 0.897435,
+      "reverse_3px_overlap": 0.207247,
+      "spearman_dots": -0.002587,
+      "spearman_surface": -0.043175
+    },
+    {
+      "raster": "r13_lattice_s5_00904.tif",
+      "is_synthetic_lattice": true,
+      "their_dots": 206895,
+      "mutual_3px_overlap": 0.17942,
+      "forward_3px_overlap": 1.0,
+      "reverse_3px_overlap": 0.17942,
+      "spearman_dots": -0.000321,
+      "spearman_surface": -0.00031
+    },
+    {
+      "raster": "r14_union_tips10_lat6.tif",
+      "is_synthetic_lattice": true,
+      "their_dots": 192231,
+      "mutual_3px_overlap": 0.203708,
+      "forward_3px_overlap": 0.770224,
+      "reverse_3px_overlap": 0.203708,
+      "spearman_dots": 0.001217,
+      "spearman_surface": 0.021429
+    },
+    {
+      "raster": "tip_stepover_r30_02632.tif",
+      "is_synthetic_lattice": false,
+      "their_dots": 41865,
+      "mutual_3px_overlap": 0.415148,
+      "forward_3px_overlap": 0.415148,
+      "reverse_3px_overlap": 0.473928,
+      "spearman_dots": 0.015329,
+      "spearman_surface": 0.075845
+    },
+    {
+      "raster": "gems74-h74-alt-spring-39500-20261021T000000Z-52f76038-zeros.tif",
+      "is_synthetic_lattice": false,
+      "their_dots": 39500,
+      "mutual_3px_overlap": 0.073379,
+      "forward_3px_overlap": 0.073379,
+      "reverse_3px_overlap": 0.12838,
+      "spearman_dots": -0.002686,
+      "spearman_surface": -0.015473
+    },
+    {
+      "raster": "gemsdoe74-h74-1-basement-step-35641-20261021T000000Z-100b4b19-zeros.tif",
+      "is_synthetic_lattice": false,
+      "their_dots": 15628,
+      "mutual_3px_overlap": 0.078186,
+      "forward_3px_overlap": 0.078186,
+      "reverse_3px_overlap": 0.187612,
+      "spearman_dots": -0.000575,
+      "spearman_surface": 0.004038
+    }
+  ]
+}

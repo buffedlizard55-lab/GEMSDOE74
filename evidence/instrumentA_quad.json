@@ -1,0 +1,133 @@
+{
+  "evidence_class": "HOLDOUT-DTI",
+  "evaluator_version": "gems57-pooled-hide-v2",
+  "alpha": 0.2,
+  "beta": 0.8,
+  "triangular_radius_m": 300.0,
+  "pooled": true,
+  "scores": {
+    "candidate": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.15690667914250564,
+      "ci95": [
+        0.14009652865454114,
+        0.17189735339418616
+      ],
+      "withheld_positive_pixels": 56411,
+      "tpw": 8426.627009751015,
+      "fpw": 34452.900981616134,
+      "fnw": 47984.37299024897
+    },
+    "exp74_2_loqo_nms": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.10511021407271826,
+      "ci95": [
+        0.1005831720102987,
+        0.10987599339923824
+      ],
+      "withheld_positive_pixels": 56411,
+      "tpw": 5608.503688224773,
+      "fpw": 35539.06065701801,
+      "fnw": 50802.49631177524
+    },
+    "exp74_1_unsupervised": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.07334617420784482,
+      "ci95": [
+        0.06749275901245695,
+        0.0794809765301185
+      ],
+      "withheld_positive_pixels": 56411,
+      "tpw": 3854.979011029018,
+      "fpw": 33294.48313363343,
+      "fnw": 52556.02098897099
+    },
+    "h19_5_oof_reference": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.1614167651314824,
+      "ci95": [
+        0.1473473490597109,
+        0.1746392556301419
+      ],
+      "withheld_positive_pixels": 56411,
+      "tpw": 10977.03610272297,
+      "fpw": 103400.52528161016,
+      "fnw": 45433.96389727706
+    },
+    "random_control": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.003398639680088206,
+      "ci95": [
+        0.0030767278362019415,
+        0.0037241936466084055
+      ],
+      "withheld_positive_pixels": 56411,
+      "tpw": 177.6165297041222,
+      "fpw": 35483.70916388695,
+      "fnw": 56233.38347029588
+    }
+  },
+  "best_comparable_control": "h19_5_oof_reference",
+  "paired_differences": {
+    "exp74_2_loqo_nms": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "delta": 0.051796465069787384,
+      "ci95": [
+        0.036632283625572554,
+        0.06597412305455708
+      ],
+      "withheld_positive_pixels": 56411
+    },
+    "exp74_1_unsupervised": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "delta": 0.08356050493466081,
+      "ci95": [
+        0.06760799839698083,
+        0.09865264159952968
+      ],
+      "withheld_positive_pixels": 56411
+    },
+    "h19_5_oof_reference": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "delta": -0.004510085988976759,
+      "ci95": [
+        -0.019479041496208646,
+        0.011453842426163314
+      ],
+      "withheld_positive_pixels": 56411
+    },
+    "random_control": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "delta": 0.15350803946241742,
+      "ci95": [
+        0.1367864242366865,
+        0.16849089982957274
+      ],
+      "withheld_positive_pixels": 56411
+    }
+  },
+  "bootstrap": {
+    "method": "paired physical spatial-cluster percentile",
+    "clusters": 159,
+    "draws": 1000,
+    "seed": 74520,
+    "confidence": 0.95,
+    "caveat": "Conditional on fitted folds, catalogue labels and fixed budgets; not a leaderboard interval."
+  },
+  "implementation_sha256": {
+    "evaluate_holdout.py": "ad86640b46f3c5fc6b1aceec4c4bfc82d03e35008b37ab2a8ad6076e6810ff3a",
+    "holdout.py": "7a0a84176986190b527aa9c6a84216c2dab4b599f25b1143db5f420e85020ab1",
+    "metric.py": "4afe10cbaa229948520c75194b1ebc32676e72544f05582f0725092b097b4d7f",
+    "spatial.py": "fad7b09db9efc512247b9a176a7e7ce8631e287592b4e07902d0b9c38bed00f8"
+  },
+  "instrument": "A_quad: Pure 4-quadrant out-of-fold zero-catalogue holdout (entire quadrants blind)"
+}

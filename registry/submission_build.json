@@ -1,10 +1,92 @@
 {
-  "primary": "gems74-h74-alt-spring-39500-20261021T000000Z-52f76038-zeros.tif",
-  "primary_sha256": "f745fdb0bcc7b09c73e9ca5460ec81b3628421d3516d514e63720bd547d14597",
-  "primary_size": 136942,
-  "nan_twin": "gems74-h74-alt-spring-39500-20261021T000000Z-52f76038-nan.tif",
-  "emitted_pixels": 39500,
-  "on_catalogue": 0,
-  " submission_note": "GEMSDOE74 H74-ALT-SPRING | hydrothermal spring alignment + K-Th alteration halos, 39500 dots, 0 on-catalogue, blind-spring PCA strike + alteration lineaments; spring-mean-dist 12px vs H33-2-B2 67px, K-high distinct lane; UNSCORED",
-  "all_checks_passed": true
+  "schema_version": "gems-submission-build-v2",
+  "site": "GEMSDOE74",
+  "lane_id": "H74-R1",
+  "hypothesis_id": "H74-R1-Transtensional-DownDip-Submodular-300m",
+  "verdict": "promote",
+  "ok_to_submit": true,
+  "submission_name": "gemsdoe74-h74-r1-transtensional-submod-37654-20261021T000000Z",
+  "submission_note": "H74-R1 85-feat LOQO transtensional C1+H74-1 down-dip posterior + 300m spaced submodular DTI allocation, 37654 binary dots off-cat",
+  "submission_note_chars": 129,
+  "timestamp_utc": "2026-10-21T00:00:00Z",
+  "grid": {
+    "crs": "EPSG:32611",
+    "shape": [
+      3730,
+      3292
+    ],
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "footprint_pixels": 5167373,
+    "catalogue_pixels": 60760
+  },
+  "data_provenance": {
+    "training_features_sha256": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
+    "sample_submission_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+    "labels_existing_faults_sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+    "n_physical_features": 85,
+    "n_fold_safe_mechanical_features": 2,
+    "novel_gems74_features": [
+      "h74_c1_destriped_tdr_ridge",
+      "h74_c1_mag_upward_atten",
+      "h74_r2_poisson_grav_mag_concordance",
+      "h74_r3_transtensional_coulomb",
+      "h74_r4_real_basement_quiescence_ridge",
+      "h74_r5_mt_claycap_breach_concordance"
+    ]
+  },
+  "promoted_artifacts": {
+    "zeros_tif": {
+      "path": "docs/downloads/gemsdoe74-h74-r1-transtensional-submod-37654-20261021T000000Z-zeros.tif",
+      "sha256": "d519a4e3cd90abe7cb43adda72337e11df0bfb3356000b4b541ce2df294fa096",
+      "bytes": 311868,
+      "nodata": null,
+      "emitted_positive_pixels": 37654,
+      "in_footprint_positive_pixels": 37654,
+      "outside_footprint_positive_pixels": 0,
+      "on_catalogue_positive_pixels": 0,
+      "all_checks_passed": true
+    },
+    "nan_tif": {
+      "path": "docs/downloads/gemsdoe74-h74-r1-transtensional-submod-37654-20261021T000000Z-nan.tif",
+      "sha256": "30befda199caed759648a9057159739a382134eaaca451bf10ad7a5a562d6648",
+      "bytes": 364296,
+      "nodata": "nan",
+      "emitted_positive_pixels": 37654,
+      "in_footprint_positive_pixels": 37654,
+      "outside_footprint_positive_pixels": 0,
+      "on_catalogue_positive_pixels": 0,
+      "all_checks_passed": true
+    },
+    "zip_archive": {
+      "path": "docs/downloads/gemsdoe74-h74-r1-transtensional-submod-37654-20261021T000000Z.zip",
+      "sha256": "457be875a7d6d53540a57f907a0b6c61ec5e4bd278202c525f6d13c7d61347ae",
+      "bytes": 311573
+    },
+    "run_card": "docs/downloads/gemsdoe74-h74-r1-transtensional-submod-37654-20261021T000000Z.run-card.json"
+  },
+  "archived_prior_session_candidates": [
+    {
+      "submission_name": "gems74-h74-alt-spring-39500-20261021T000000Z-52f76038",
+      "path": "docs/downloads/gems74-h74-alt-spring-39500-20261021T000000Z-52f76038-zeros.tif",
+      "sha256": "f745fdb0bcc7b09c73e9ca5460ec81b3628421d3516d514e63720bd547d14597",
+      "verdict": "negative",
+      "ok_to_submit": false,
+      "reason": "Scored 0.001304 on Instrument A and 0.040167 on Instrument B' (below Random-37654)."
+    },
+    {
+      "submission_name": "gemsdoe74-h74-1-basement-step-35641-20261021T000000Z-100b4b19",
+      "path": "docs/downloads/gemsdoe74-h74-1-basement-step-35641-20261021T000000Z-100b4b19-zeros.tif",
+      "sha256": "af4afc84b6ff758ccae86dc116c1b14dd1b66de48462899eebc4d5b43d7aef27",
+      "verdict": "negative",
+      "ok_to_submit": false,
+      "reason": "Built on synthetic ellipse footprint and 18 random synthetic basement lines (IR-74-09, IR-74-33): 20,013 of 35,641 dots lie outside the real GeoDAWN footprint and 211 dots lie on the real catalogue."
+    }
+  ]
 }

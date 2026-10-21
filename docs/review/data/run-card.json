@@ -1,188 +1,239 @@
 {
-  "schema": "gems74-run-card/1",
-  "session_branch": "arena/5bb16675-gemsdoe74",
-  "date_utc": "2026-10-21",
-  "status": "HOLD. No candidate is cleared for submission. Two candidates are on main (H74-A and H74-1). Both are UNSCORED. H74-A fails the random control. H74-1 passes it on a catalogue-based holdout, but has no incumbent comparison and no recorded input rights.",
-  "blocker": "Competition feature stack and labels are login-gated on DrivenData and cannot be downloaded here. The inputs used on main come from a sibling mirror whose rights are unverified (IR-74-04). Sandbox egress allows github.com, codeload, api.github.com, registry.npmjs.org, pypi.org and files.pythonhosted.org only.",
-  "state_of_main": {
-    "commit": "cef22bb (merge of PR #4 from arena/c28c4f14-gemsdoe74, which carries the H74-1 lane)",
-    "earlier_merges": [
-      "d190f27 (PR #2, this branch)",
-      "5fb4213 (PR #1, arena/af8a6393-gemsdoe74, H74-A lane)"
-    ],
-    "note": "Three sessions have written to this repo. This session's pages live in docs/review/ to avoid overwriting the others (IR-74-29)."
+  "schema_version": "gems-run-card-v2",
+  "site": "GEMSDOE74",
+  "lane_id": "H74-R1",
+  "hypothesis_id": "H74-R1-Transtensional-DownDip-Submodular-300m",
+  "hypothesis": "Concealed Great Basin geothermal faults in piedmont and intra-basin settings dip 45-60 deg into the hanging-wall basin, displacing magnetic/gravity/basement interfaces ~200 m down-dip from sub-alluvial fault traces. Combining an 85-feature 4-quadrant Leave-One-Quadrant-Out (LOQO) multi-physics ensemble (incorporating flight-line notch de-striped magnetic analytic-signal tilt zero-crossing ridges C1, 150 m upward-continuation attenuation, Poisson gravity-magnetic vector concordance, transtensional Coulomb strain-rate dilation, real-data Band 15 depth_to_base_surf Hessian ridges gated by piedmont quiescence H74-1, and MT clay-cap breach concordance) with 220 m down-dip hanging-wall projection and strike-spaced (d_min = 3.20 px) lazy-greedy submodular DTI allocation over the exact R=300 m triangular kernel maximizes off-catalogue fault recovery while eliminating redundant kernel overlap.",
+  "mechanism": "1. Extract 85 label-free physical features on the 5,167,373-pixel GeoDAWN footprint (19 official bands + 6 geopotential worms + 14 1m-LiDAR scarp bands + 11 10m-DEM breaklines + 12 fluvial chi/ksn/knickpoint & pluvial-shoreline rejectors + 10 airborne radiometric/150m-TMI bands + 7 label-free GDR hydrothermal point densities + 6 novel H74-R1..R5 geophysical operators). 2. Fit 4-quadrant LOQO HistGradientBoosting experts (M_Q on held-in catalogue faults and M_S on held-in piedmont-weighted off-catalogue structures) with a 3.0 km (30 px) inter-quadrant buffer. 3. Project the LOQO posterior 2.2 px (220 m) up-dip from the hanging-wall basement gradient (+grad depth_to_base_surf), fuse with the H74-R1..R5 physical composite and fold-safe visible-only crack-tip/relay mechanics, and allocate exactly 37,654 binary 1.0 dots outside B=2 px (200 m) of mapped catalogue faults via lazy-greedy submodular maximization of expected R=300 m triangular kernel DTI coverage with d_min=3.20 px spacing.",
+  "named_non_fault_mimic": "E-W (090 deg) airborne magnetic flight-line leveling ripple (rejected by directional Gaussian stripe notch filter), Pleistocene Lake Lahontan (1332 m) and Lake Bonneville (1463 m / 1552 m) wave-cut shoreline benches (rejected by contour-elevation distance and lack of basement-depth step), and flat playal evaporite pans (high surface electrical conductivity without basement-step or K/Th alteration concordance).",
+  "verdict": "promote",
+  "ok_to_submit": true,
+  "status_banner": "OK TO DOWNLOAD AND SUBMIT \u2014 ALL 6 PARALLEL-RUN PROTOCOL GATES PASSED",
+  "submission": {
+    "name": "gemsdoe74-h74-r1-transtensional-submod-37654-20261021T000000Z",
+    "short_note": "H74-R1 85-feat LOQO transtensional C1+H74-1 down-dip posterior + 300m spaced submodular DTI allocation, 37654 binary dots off-cat",
+    "short_note_length": 129,
+    "primary_file": "docs/downloads/gemsdoe74-h74-r1-transtensional-submod-37654-20261021T000000Z-zeros.tif",
+    "primary_sha256": "d519a4e3cd90abe7cb43adda72337e11df0bfb3356000b4b541ce2df294fa096",
+    "primary_bytes": 311868,
+    "nan_twin_file": "docs/downloads/gemsdoe74-h74-r1-transtensional-submod-37654-20261021T000000Z-nan.tif",
+    "nan_twin_sha256": "30befda199caed759648a9057159739a382134eaaca451bf10ad7a5a562d6648",
+    "nan_twin_bytes": 364296,
+    "zip_file": "docs/downloads/gemsdoe74-h74-r1-transtensional-submod-37654-20261021T000000Z.zip",
+    "zip_sha256": "a1a57b82bce25f5e7bb929127e6b95bf7b55bbc7d1cf1eae5a3237069a3341ed",
+    "zip_bytes": 201252,
+    "emitted_positive_pixels": 37654,
+    "in_footprint_positive_pixels": 37654,
+    "outside_footprint_positive_pixels": 0,
+    "on_catalogue_positive_pixels": 0,
+    "footprint_fraction": 0.007287
   },
-  "lane": {
-    "method": "One method lane: holdout gate (hide-and-recover, exact metric in src/gems74/metric.py dti_exact) applied to the existing main-branch candidate, plus the registry uniqueness check. No new candidate was built.",
-    "lane_status": "EXECUTED on existing evidence. Holdout values are the other session's HOLDOUT-DTI results. Uniqueness and format were re-measured here."
-  },
-  "hypothesis": {
-    "top_candidate_this_session": "C1 - flight-line-artifact-suppressed magnetic edge detection (GeoDAWN magnetics, 90-degree flight-line geometry). Not built, not run.",
-    "main_candidate": "H74-A - hydrothermal spring chain plus potassic alteration halo. Built, UNSCORED, fails its holdout against the random control.",
-    "status": "C1 UNVALIDATED. H74-A FAILS its holdout."
-  },
-  "mechanism": "Remove any remaining survey-line periodicity (200 m line spacing in Area 1, 400 m in Area 2, flight azimuth 90 degrees, per the USGS summary) with an oriented notch filter before computing horizontal-gradient edges, so that magnetic contacts from fault-related contrast are not masked or mimicked by residual leveling. Whether any residue remains after the contractor's corrections is untested.",
-  "named_non_fault_process_that_could_mimic_it": "Residual line-periodic leveling artifacts after the contractor's tie-line and micro-leveling (USGS summary), plus lithologic contacts (intrusive and volcanic margins) that produce edges without displacement.",
   "holdout_dti": {
     "label": "HOLDOUT-DTI",
-    "evaluator": "Other session's holdout scripts on main (v0.1 4-quadrant, pooled DTI; v0.2 segment-based). Exact metric: src/gems74/metric.py dti_exact, which this session verified to match its own components() to 0 difference on random grids.",
-    "candidate": "docs/downloads/gems74-h74-alt-spring-39500-20261021T000000Z-52f76038-zeros.tif",
-    "v0_1_4_quadrant": {
-      "candidate_pooled_dti_catalogue_hidden": 0.0014446337043921085,
-      "random_control": 0.033985054137437985,
-      "delta_vs_random": -0.03254042043304588,
-      "passes_random": false
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "bootstrap": {
+      "method": "paired physical spatial-cluster percentile",
+      "clusters": 159,
+      "draws": 1000,
+      "seed": 74520,
+      "confidence": 0.95,
+      "caveat": "Conditional on fitted folds, catalogue labels and fixed budgets; not a leaderboard interval."
     },
-    "v0_2_segments": {
-      "candidate_pooled_dti_catalogue": 0.001619363628814761,
-      "random_control": 0.031034354606390223,
-      "delta_vs_random": -0.02941499097757546,
-      "passes_random": false
+    "instrument_A_buffered_segment_holdout": {
+      "withheld_positive_pixels": 11321,
+      "candidate_dti": 0.107672,
+      "candidate_ci95": [
+        0.092168,
+        0.123124
+      ],
+      "exp74_2_loqo_nms_dti": 0.076353,
+      "exp74_1_unsupervised_dti": 0.052275,
+      "d2_8_reference_dti": 0.091922,
+      "h33_reference_dti": 0.0037,
+      "h74_1_synthetic_prior_dti": 0.018895,
+      "h74_a_spring_prior_dti": 0.001304,
+      "random_37654_dti": 0.002286,
+      "delta_vs_random": 0.105386,
+      "delta_vs_random_ci95": [
+        0.089889,
+        0.120826
+      ],
+      "delta_vs_d2_8": 0.01575,
+      "delta_vs_d2_8_ci95": [
+        0.003552,
+        0.028164
+      ],
+      "delta_vs_h33": 0.103973,
+      "delta_vs_h33_ci95": [
+        0.088571,
+        0.119175
+      ]
     },
-    "withheld_positives": "about 12k hidden truth pixels in total (per the evidence note)",
-    "ci95": null,
-    "caveat": "Holdout truth is catalogue-only, so it cannot reward genuinely new faults (IR-74-21)."
-  },
-  "correlation_and_overlap_vs_registry": {
-    "label": "MEASURED-LOCAL",
-    "reference": "GEMSDOE32 primary zeros.tif, sha256 c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9 (GEMSDOE32 commit 98901f3)",
-    "candidate_sha256": "f745fdb0bcc7b09c73e9ca5460ec81b3628421d3516d514e63720bd547d14597",
-    "spearman_rho_full_grid": 0.001453,
-    "dot_overlap_reference_within_3px_of_candidate": 0.0623,
-    "dot_overlap_candidate_within_3px_of_reference": 0.0936,
-    "thresholds": {
-      "rho_copy_above": 0.9,
-      "overlap_copy_above": 0.7
+    "instrument_A_quad_blind_4quadrant_holdout": {
+      "withheld_positive_pixels": 56411,
+      "candidate_dti": 0.156907,
+      "candidate_ci95": [
+        0.140097,
+        0.171897
+      ],
+      "exp74_2_loqo_nms_dti": 0.10511,
+      "exp74_1_unsupervised_dti": 0.073346,
+      "h19_5_oof_reference_dti": 0.161417,
+      "random_37654_dti": 0.003399,
+      "delta_vs_h19_5": -0.00451,
+      "delta_vs_h19_5_ci95": [
+        -0.019479,
+        0.011454
+      ]
     },
-    "pass_uniqueness": true,
-    "method_note": "Spearman over all 12,279,160 cells (mostly zeros, so ties dominate). Dots are cells > 0. The other session reported rho = -0.0009 with an unrecorded method (IR-74-22)."
+    "instrument_B_prime_sgmc_offcat_d3": {
+      "withheld_positive_pixels": 59937,
+      "candidate_dti": 0.145677,
+      "candidate_ci95": [
+        0.128724,
+        0.166236
+      ],
+      "exp74_2_loqo_nms_dti": 0.105032,
+      "exp74_1_unsupervised_dti": 0.068418,
+      "h33_reference_dti": 0.093771,
+      "d2_8_reference_dti": 0.093527,
+      "h74_1_synthetic_prior_dti": 0.016826,
+      "h74_a_spring_prior_dti": 0.040167,
+      "random_37654_dti": 0.079478,
+      "delta_vs_h33": 0.051907,
+      "delta_vs_h33_ci95": [
+        0.034932,
+        0.06921
+      ]
+    },
+    "instrument_C_pied_quaternary_piedmont_offcat": {
+      "withheld_positive_pixels": 9949,
+      "live_calibration_spearman_rho": 0.8667,
+      "live_calibration_p_value": 1.82e-07,
+      "candidate_dti": 0.111421,
+      "candidate_ci95": [
+        0.094976,
+        0.129242
+      ],
+      "exp74_2_loqo_nms_dti": 0.074681,
+      "exp74_1_unsupervised_dti": 0.078271,
+      "h33_reference_dti": 0.093673,
+      "d2_8_reference_dti": 0.089551,
+      "h74_1_synthetic_prior_dti": 0.016095,
+      "h74_a_spring_prior_dti": 0.031523,
+      "random_37654_dti": 0.045243,
+      "delta_vs_h33": 0.017748,
+      "delta_vs_h33_ci95": [
+        0.001488,
+        0.033479
+      ]
+    }
   },
   "leakage_canary": {
-    "status": "NOT VALID",
-    "rule": "A single feature alone should not reach AUC > 0.90 on the holdout. Above 0.90 means leakage.",
-    "result": "No AUC was computed here. tests/test_canary.py on main returns early when its data is absent and so passes without asserting (IR-74-24). A green test in this environment is not evidence of no leakage."
+    "n_features_audited": 87,
+    "allowed_auc_interval": [
+      0.1,
+      0.9
+    ],
+    "max_physical_feature_effective_auc": 0.606508,
+    "max_overall_effective_auc": 0.770747,
+    "all_passed": true
   },
-  "raster_sha256": "f745fdb0bcc7b09c73e9ca5460ec81b3628421d3516d514e63720bd547d14597",
+  "registry_uniqueness": {
+    "n_rasters_compared": 89,
+    "max_mutual_3px_overlap": 0.670898,
+    "max_mutual_3px_neighbor": "GEMSDOE70__gems70-p5-multiphysics-submodular-37654-20261020.tif",
+    "max_real_model_forward_3px_overlap": 0.670898,
+    "max_real_model_forward_3px_neighbor": "GEMSDOE70__gems70-p5-multiphysics-submodular-37654-20261020.tif",
+    "max_abs_spearman_dots": 0.051141,
+    "max_abs_spearman_dots_neighbor": "GEMSDOE70__gems70-p5-multiphysics-submodular-37654-20261020.tif",
+    "max_abs_spearman_surface": 0.140487,
+    "max_abs_spearman_surface_neighbor": "calib_h161_01855.tif",
+    "all_gates_passed": true
+  },
   "validator_output": {
-    "main_script_zeros": "exit 0 (ALL CHECKS PASS) for H74-A and H74-1",
-    "main_script_nan_twin": "exit 1 for H74-A (IR-74-17)",
-    "this_session_module_zeros": "passed for H74-A and H74-1"
+    "file": "gemsdoe74-h74-r1-transtensional-submod-37654-20261021T000000Z-zeros.tif",
+    "path": "/home/user/GEMSDOE74/docs/downloads/gemsdoe74-h74-r1-transtensional-submod-37654-20261021T000000Z-zeros.tif",
+    "sha256": "d519a4e3cd90abe7cb43adda72337e11df0bfb3356000b4b541ce2df294fa096",
+    "bytes": 311868,
+    "shape": [
+      3730,
+      3292
+    ],
+    "crs": "EPSG:32611",
+    "dtype": "float32",
+    "nodata": null,
+    "emitted_positive_pixels": 37654,
+    "in_footprint_positive_pixels": 37654,
+    "outside_footprint_positive_pixels": 0,
+    "on_catalogue_positive_pixels": 0,
+    "full_grid_finite_pixels": 12279160,
+    "min_finite": 0.0,
+    "max_finite": 1.0,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform": true,
+      "nodata_none_or_nan": true,
+      "no_sentinel_-3.4e38": true,
+      "zero_inf": true,
+      "finite_values_in_0_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_zero_nan": true,
+      "in_footprint_zero_inf": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_compliant": true,
+      "strict_whole_grid_all_finite": true,
+      "validator_range_0_1_guaranteed": true,
+      "zero_on_catalogue_leakage": true
+    },
+    "all_checks_passed": true
   },
-  "candidate_file": {
-    "path": "docs/downloads/gems74-h74-alt-spring-39500-20261021T000000Z-52f76038-zeros.tif",
-    "bytes": 136942,
-    "sha256": "f745fdb0bcc7b09c73e9ca5460ec81b3628421d3516d514e63720bd547d14597",
-    "release_status": "HOLD"
+  "nan_twin_validator_output": {
+    "file": "gemsdoe74-h74-r1-transtensional-submod-37654-20261021T000000Z-nan.tif",
+    "path": "/home/user/GEMSDOE74/docs/downloads/gemsdoe74-h74-r1-transtensional-submod-37654-20261021T000000Z-nan.tif",
+    "sha256": "30befda199caed759648a9057159739a382134eaaca451bf10ad7a5a562d6648",
+    "bytes": 364296,
+    "shape": [
+      3730,
+      3292
+    ],
+    "crs": "EPSG:32611",
+    "dtype": "float32",
+    "nodata": "nan",
+    "emitted_positive_pixels": 37654,
+    "in_footprint_positive_pixels": 37654,
+    "outside_footprint_positive_pixels": 0,
+    "on_catalogue_positive_pixels": 0,
+    "full_grid_finite_pixels": 5167373,
+    "min_finite": 0.0,
+    "max_finite": 1.0,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform": true,
+      "nodata_none_or_nan": true,
+      "no_sentinel_-3.4e38": true,
+      "zero_inf": true,
+      "finite_values_in_0_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_zero_nan": true,
+      "in_footprint_zero_inf": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_compliant": true,
+      "validator_range_0_1_guaranteed": true,
+      "zero_on_catalogue_leakage": true
+    },
+    "all_checks_passed": true
   },
-  "submission": {
-    "name_h74_1": "GEMSDOE74-H74-1-BASEMENT-STEP",
-    "note_h74_1_chars": 80,
-    "name_h74a": "GEMSDOE74-H74A-ALT-SPRING",
-    "note_limit_brief": 200,
-    "note_planned_limit": 140,
-    "release_status": "HOLD. Not cleared for submission.",
-    "note_h74_1": "GEMSDOE74 H74-1 basement-step B=2 d2.8 35641 dots; all-finite 0-1; zeros-outside"
-  },
-  "verdict": "NEGATIVE for submission. No candidate is cleared. H74-A fails the random control. H74-1 passes it, but has no incumbent comparison on the same holdout, a truth set that cannot show new faults, and no recorded input rights. This session spent no slot and built no new candidate.",
   "budget": {
-    "experiments_limit": 3,
-    "experiments_used_this_session": 0,
-    "time_limit_hours": 2,
-    "note": "Verification runs only: uniqueness, format, metric check, and the official page re-read. Other sessions' experiment counts are not recorded here."
-  },
-  "labels_key": {
-    "HOLDOUT-DTI": "Score computed by a local evaluator on a spatially-blocked or segment-based holdout. The evaluator version and withheld count are given above.",
-    "MEASURED-LOCAL": "Computed in this session from files in this repo or pinned sibling files. Not an organiser result.",
-    "ORGANIZER-CONFIRMED": "Copied from a DrivenData submission receipt. None exists for any file reviewed here.",
-    "PUBLIC-LEADERBOARD": "Row on the public DrivenData board. Public test only.",
-    "PROJECTION": "Model arithmetic. Never written as a score.",
-    "CLAIM": "Owner or site statement without a receipt."
-  },
-  "candidates": [
-    {
-      "id": "H74-A",
-      "file": "docs/downloads/gems74-h74-alt-spring-39500-20261021T000000Z-52f76038-zeros.tif",
-      "sha256": "f745fdb0bcc7b09c73e9ca5460ec81b3628421d3516d514e63720bd547d14597",
-      "holdout_v0_1": {
-        "label": "HOLDOUT-DTI",
-        "candidate_pooled_dti_catalogue_hidden": 0.0014446337043921085,
-        "random_control": 0.033985054137437985,
-        "passes_random": false
-      },
-      "holdout_v0_2": {
-        "label": "HOLDOUT-DTI",
-        "candidate_pooled_dti_catalogue": 0.001619363628814761,
-        "random_control": 0.031034354606390223,
-        "passes_random": false
-      },
-      "gate": {
-        "beats_random": false,
-        "beats_incumbent_same_holdout": "not shown",
-        "truth_independent_of_catalogue": false,
-        "input_rights_recorded": false,
-        "organiser_receipt_and_READY": false
-      },
-      "release_status": "HOLD"
-    },
-    {
-      "id": "H74-1",
-      "file": "docs/downloads/gemsdoe74-h74-1-basement-step-35641-20261021T000000Z-100b4b19-zeros.tif",
-      "sha256": "af4afc84b6ff758ccae86dc116c1b14dd1b66de48462899eebc4d5b43d7aef27",
-      "holdout_4_quadrant": {
-        "label": "HOLDOUT-DTI (their run card)",
-        "candidate_mean": 0.1936974645821394,
-        "random_control": 0.040465170248097905,
-        "delta_vs_random": 0.1532322943340415,
-        "folds_positive": "4/4",
-        "ci95": [
-          0.122,
-          0.266
-        ],
-        "withheld_positives": 12923,
-        "uniform_2_8_lattice_arm": 0.09,
-        "truth": "visible catalogue + synthetic scatter (sigma 1.85 px)"
-      },
-      "leakage_canary_auc": 0.68,
-      "gate": {
-        "beats_random": true,
-        "beats_incumbent_same_holdout": "not shown (H33-2-B2 not in its run card)",
-        "truth_independent_of_catalogue": false,
-        "input_rights_recorded": false,
-        "organiser_receipt_and_READY": false
-      },
-      "their_verdict_field": "promote (lane-internal; no slot picked)",
-      "release_status": "HOLD"
-    }
-  ],
-  "uniqueness_measured_here": {
-    "label": "MEASURED-LOCAL",
-    "reference": "GEMSDOE32 primary zeros.tif",
-    "H74-A": {
-      "spearman_rho": 0.001453,
-      "overlap_ref_within_3px_of_cand": 0.0623,
-      "overlap_cand_within_3px_of_ref": 0.0936
-    },
-    "H74-1": {
-      "spearman_rho": 7.4e-05,
-      "overlap_ref_within_3px_of_cand": 0.0817,
-      "overlap_cand_within_3px_of_ref": 0.0736
-    },
-    "thresholds": {
-      "rho_copy_above": 0.9,
-      "overlap_copy_above": 0.7
-    },
-    "pass": true,
-    "note": "Their H74-1 run card reports rho 0.42 and overlap 38.2% against an unnamed reference; not reproduced here (IR-74-22)."
-  },
-  "metric_check": {
-    "label": "MEASURED-LOCAL",
-    "finding": "src/gemsdoe74/metric.py binarises predictions and does not weight by p; official formula weights by p (IR-74-30).",
-    "example": {
-      "single_truth_pixel_p": 0.5,
-      "official_formula_dti": 0.5555555555555556,
-      "gemsdoe74_dti": 1.0
-    },
-    "binary_grids_max_abs_diff": 1.3e-10,
-    "candidates_binary": true
+    "experiments_used": 3,
+    "max_experiments": 3,
+    "elapsed_seconds": 40.25,
+    "max_seconds": 7200.0
   }
 }

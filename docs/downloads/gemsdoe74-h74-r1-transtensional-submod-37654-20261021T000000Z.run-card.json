@@ -1,0 +1,239 @@
+{
+  "schema_version": "gems-run-card-v2",
+  "site": "GEMSDOE74",
+  "lane_id": "H74-R1",
+  "hypothesis_id": "H74-R1-Transtensional-DownDip-Submodular-300m",
+  "hypothesis": "Concealed Great Basin geothermal faults in piedmont and intra-basin settings dip 45-60 deg into the hanging-wall basin, displacing magnetic/gravity/basement interfaces ~200 m down-dip from sub-alluvial fault traces. Combining an 85-feature 4-quadrant Leave-One-Quadrant-Out (LOQO) multi-physics ensemble (incorporating flight-line notch de-striped magnetic analytic-signal tilt zero-crossing ridges C1, 150 m upward-continuation attenuation, Poisson gravity-magnetic vector concordance, transtensional Coulomb strain-rate dilation, real-data Band 15 depth_to_base_surf Hessian ridges gated by piedmont quiescence H74-1, and MT clay-cap breach concordance) with 220 m down-dip hanging-wall projection and strike-spaced (d_min = 3.20 px) lazy-greedy submodular DTI allocation over the exact R=300 m triangular kernel maximizes off-catalogue fault recovery while eliminating redundant kernel overlap.",
+  "mechanism": "1. Extract 85 label-free physical features on the 5,167,373-pixel GeoDAWN footprint (19 official bands + 6 geopotential worms + 14 1m-LiDAR scarp bands + 11 10m-DEM breaklines + 12 fluvial chi/ksn/knickpoint & pluvial-shoreline rejectors + 10 airborne radiometric/150m-TMI bands + 7 label-free GDR hydrothermal point densities + 6 novel H74-R1..R5 geophysical operators). 2. Fit 4-quadrant LOQO HistGradientBoosting experts (M_Q on held-in catalogue faults and M_S on held-in piedmont-weighted off-catalogue structures) with a 3.0 km (30 px) inter-quadrant buffer. 3. Project the LOQO posterior 2.2 px (220 m) up-dip from the hanging-wall basement gradient (+grad depth_to_base_surf), fuse with the H74-R1..R5 physical composite and fold-safe visible-only crack-tip/relay mechanics, and allocate exactly 37,654 binary 1.0 dots outside B=2 px (200 m) of mapped catalogue faults via lazy-greedy submodular maximization of expected R=300 m triangular kernel DTI coverage with d_min=3.20 px spacing.",
+  "named_non_fault_mimic": "E-W (090 deg) airborne magnetic flight-line leveling ripple (rejected by directional Gaussian stripe notch filter), Pleistocene Lake Lahontan (1332 m) and Lake Bonneville (1463 m / 1552 m) wave-cut shoreline benches (rejected by contour-elevation distance and lack of basement-depth step), and flat playal evaporite pans (high surface electrical conductivity without basement-step or K/Th alteration concordance).",
+  "verdict": "promote",
+  "ok_to_submit": true,
+  "status_banner": "OK TO DOWNLOAD AND SUBMIT \u2014 ALL 6 PARALLEL-RUN PROTOCOL GATES PASSED",
+  "submission": {
+    "name": "gemsdoe74-h74-r1-transtensional-submod-37654-20261021T000000Z",
+    "short_note": "H74-R1 85-feat LOQO transtensional C1+H74-1 down-dip posterior + 300m spaced submodular DTI allocation, 37654 binary dots off-cat",
+    "short_note_length": 129,
+    "primary_file": "docs/downloads/gemsdoe74-h74-r1-transtensional-submod-37654-20261021T000000Z-zeros.tif",
+    "primary_sha256": "d519a4e3cd90abe7cb43adda72337e11df0bfb3356000b4b541ce2df294fa096",
+    "primary_bytes": 311868,
+    "nan_twin_file": "docs/downloads/gemsdoe74-h74-r1-transtensional-submod-37654-20261021T000000Z-nan.tif",
+    "nan_twin_sha256": "30befda199caed759648a9057159739a382134eaaca451bf10ad7a5a562d6648",
+    "nan_twin_bytes": 364296,
+    "zip_file": "docs/downloads/gemsdoe74-h74-r1-transtensional-submod-37654-20261021T000000Z.zip",
+    "zip_sha256": "a1a57b82bce25f5e7bb929127e6b95bf7b55bbc7d1cf1eae5a3237069a3341ed",
+    "zip_bytes": 201252,
+    "emitted_positive_pixels": 37654,
+    "in_footprint_positive_pixels": 37654,
+    "outside_footprint_positive_pixels": 0,
+    "on_catalogue_positive_pixels": 0,
+    "footprint_fraction": 0.007287
+  },
+  "holdout_dti": {
+    "label": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "bootstrap": {
+      "method": "paired physical spatial-cluster percentile",
+      "clusters": 159,
+      "draws": 1000,
+      "seed": 74520,
+      "confidence": 0.95,
+      "caveat": "Conditional on fitted folds, catalogue labels and fixed budgets; not a leaderboard interval."
+    },
+    "instrument_A_buffered_segment_holdout": {
+      "withheld_positive_pixels": 11321,
+      "candidate_dti": 0.107672,
+      "candidate_ci95": [
+        0.092168,
+        0.123124
+      ],
+      "exp74_2_loqo_nms_dti": 0.076353,
+      "exp74_1_unsupervised_dti": 0.052275,
+      "d2_8_reference_dti": 0.091922,
+      "h33_reference_dti": 0.0037,
+      "h74_1_synthetic_prior_dti": 0.018895,
+      "h74_a_spring_prior_dti": 0.001304,
+      "random_37654_dti": 0.002286,
+      "delta_vs_random": 0.105386,
+      "delta_vs_random_ci95": [
+        0.089889,
+        0.120826
+      ],
+      "delta_vs_d2_8": 0.01575,
+      "delta_vs_d2_8_ci95": [
+        0.003552,
+        0.028164
+      ],
+      "delta_vs_h33": 0.103973,
+      "delta_vs_h33_ci95": [
+        0.088571,
+        0.119175
+      ]
+    },
+    "instrument_A_quad_blind_4quadrant_holdout": {
+      "withheld_positive_pixels": 56411,
+      "candidate_dti": 0.156907,
+      "candidate_ci95": [
+        0.140097,
+        0.171897
+      ],
+      "exp74_2_loqo_nms_dti": 0.10511,
+      "exp74_1_unsupervised_dti": 0.073346,
+      "h19_5_oof_reference_dti": 0.161417,
+      "random_37654_dti": 0.003399,
+      "delta_vs_h19_5": -0.00451,
+      "delta_vs_h19_5_ci95": [
+        -0.019479,
+        0.011454
+      ]
+    },
+    "instrument_B_prime_sgmc_offcat_d3": {
+      "withheld_positive_pixels": 59937,
+      "candidate_dti": 0.145677,
+      "candidate_ci95": [
+        0.128724,
+        0.166236
+      ],
+      "exp74_2_loqo_nms_dti": 0.105032,
+      "exp74_1_unsupervised_dti": 0.068418,
+      "h33_reference_dti": 0.093771,
+      "d2_8_reference_dti": 0.093527,
+      "h74_1_synthetic_prior_dti": 0.016826,
+      "h74_a_spring_prior_dti": 0.040167,
+      "random_37654_dti": 0.079478,
+      "delta_vs_h33": 0.051907,
+      "delta_vs_h33_ci95": [
+        0.034932,
+        0.06921
+      ]
+    },
+    "instrument_C_pied_quaternary_piedmont_offcat": {
+      "withheld_positive_pixels": 9949,
+      "live_calibration_spearman_rho": 0.8667,
+      "live_calibration_p_value": 1.82e-07,
+      "candidate_dti": 0.111421,
+      "candidate_ci95": [
+        0.094976,
+        0.129242
+      ],
+      "exp74_2_loqo_nms_dti": 0.074681,
+      "exp74_1_unsupervised_dti": 0.078271,
+      "h33_reference_dti": 0.093673,
+      "d2_8_reference_dti": 0.089551,
+      "h74_1_synthetic_prior_dti": 0.016095,
+      "h74_a_spring_prior_dti": 0.031523,
+      "random_37654_dti": 0.045243,
+      "delta_vs_h33": 0.017748,
+      "delta_vs_h33_ci95": [
+        0.001488,
+        0.033479
+      ]
+    }
+  },
+  "leakage_canary": {
+    "n_features_audited": 87,
+    "allowed_auc_interval": [
+      0.1,
+      0.9
+    ],
+    "max_physical_feature_effective_auc": 0.606508,
+    "max_overall_effective_auc": 0.770747,
+    "all_passed": true
+  },
+  "registry_uniqueness": {
+    "n_rasters_compared": 89,
+    "max_mutual_3px_overlap": 0.670898,
+    "max_mutual_3px_neighbor": "GEMSDOE70__gems70-p5-multiphysics-submodular-37654-20261020.tif",
+    "max_real_model_forward_3px_overlap": 0.670898,
+    "max_real_model_forward_3px_neighbor": "GEMSDOE70__gems70-p5-multiphysics-submodular-37654-20261020.tif",
+    "max_abs_spearman_dots": 0.051141,
+    "max_abs_spearman_dots_neighbor": "GEMSDOE70__gems70-p5-multiphysics-submodular-37654-20261020.tif",
+    "max_abs_spearman_surface": 0.140487,
+    "max_abs_spearman_surface_neighbor": "calib_h161_01855.tif",
+    "all_gates_passed": true
+  },
+  "validator_output": {
+    "file": "gemsdoe74-h74-r1-transtensional-submod-37654-20261021T000000Z-zeros.tif",
+    "path": "/home/user/GEMSDOE74/docs/downloads/gemsdoe74-h74-r1-transtensional-submod-37654-20261021T000000Z-zeros.tif",
+    "sha256": "d519a4e3cd90abe7cb43adda72337e11df0bfb3356000b4b541ce2df294fa096",
+    "bytes": 311868,
+    "shape": [
+      3730,
+      3292
+    ],
+    "crs": "EPSG:32611",
+    "dtype": "float32",
+    "nodata": null,
+    "emitted_positive_pixels": 37654,
+    "in_footprint_positive_pixels": 37654,
+    "outside_footprint_positive_pixels": 0,
+    "on_catalogue_positive_pixels": 0,
+    "full_grid_finite_pixels": 12279160,
+    "min_finite": 0.0,
+    "max_finite": 1.0,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform": true,
+      "nodata_none_or_nan": true,
+      "no_sentinel_-3.4e38": true,
+      "zero_inf": true,
+      "finite_values_in_0_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_zero_nan": true,
+      "in_footprint_zero_inf": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_compliant": true,
+      "strict_whole_grid_all_finite": true,
+      "validator_range_0_1_guaranteed": true,
+      "zero_on_catalogue_leakage": true
+    },
+    "all_checks_passed": true
+  },
+  "nan_twin_validator_output": {
+    "file": "gemsdoe74-h74-r1-transtensional-submod-37654-20261021T000000Z-nan.tif",
+    "path": "/home/user/GEMSDOE74/docs/downloads/gemsdoe74-h74-r1-transtensional-submod-37654-20261021T000000Z-nan.tif",
+    "sha256": "30befda199caed759648a9057159739a382134eaaca451bf10ad7a5a562d6648",
+    "bytes": 364296,
+    "shape": [
+      3730,
+      3292
+    ],
+    "crs": "EPSG:32611",
+    "dtype": "float32",
+    "nodata": "nan",
+    "emitted_positive_pixels": 37654,
+    "in_footprint_positive_pixels": 37654,
+    "outside_footprint_positive_pixels": 0,
+    "on_catalogue_positive_pixels": 0,
+    "full_grid_finite_pixels": 5167373,
+    "min_finite": 0.0,
+    "max_finite": 1.0,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform": true,
+      "nodata_none_or_nan": true,
+      "no_sentinel_-3.4e38": true,
+      "zero_inf": true,
+      "finite_values_in_0_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_zero_nan": true,
+      "in_footprint_zero_inf": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_compliant": true,
+      "validator_range_0_1_guaranteed": true,
+      "zero_on_catalogue_leakage": true
+    },
+    "all_checks_passed": true
+  },
+  "budget": {
+    "experiments_used": 3,
+    "max_experiments": 3,
+    "elapsed_seconds": 40.25,
+    "max_seconds": 7200.0
+  }
+}

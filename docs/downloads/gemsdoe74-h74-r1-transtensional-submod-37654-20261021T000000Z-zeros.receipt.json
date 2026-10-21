@@ -1,0 +1,39 @@
+{
+  "submission_name": "gemsdoe74-h74-r1-transtensional-submod-37654-20261021T000000Z",
+  "submission_note": "H74-R1 85-feat LOQO transtensional C1+H74-1 down-dip posterior + 300m spaced submodular DTI allocation, 37654 binary dots off-cat",
+  "note_chars": 129,
+  "file": "gemsdoe74-h74-r1-transtensional-submod-37654-20261021T000000Z-zeros.tif",
+  "sha256": "d519a4e3cd90abe7cb43adda72337e11df0bfb3356000b4b541ce2df294fa096",
+  "bytes": 311868,
+  "n_positive": 37654,
+  "validator": {
+    "file": "gemsdoe74-h74-r1-transtensional-submod-37654-20261021T000000Z-zeros.tif",
+    "sha256": "d519a4e3cd90abe7cb43adda72337e11df0bfb3356000b4b541ce2df294fa096",
+    "bytes": 311868,
+    "nodata": null,
+    "n_cells": 12279160,
+    "n_nan": 0,
+    "n_inf": 0,
+    "n_positive": 37654,
+    "n_finite_outside_0_1": 0,
+    "min_finite": 0.0,
+    "max_finite": 1.0,
+    "n_outside_nonzero_finite": 0,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "crs_epsg_32611": true,
+      "shape_3730x3292": true,
+      "transform_100m_origin": true,
+      "nodata_none_or_nan": true,
+      "no_inf": true,
+      "finite_values_in_0_1": true,
+      "no_sentinel_-3.4e38": true,
+      "inside_footprint_all_finite": true,
+      "outside_footprint_nan_or_zero": true
+    },
+    "passed": true
+  },
+  "release_status": "READY",
+  "verdict": "promote"
+}
