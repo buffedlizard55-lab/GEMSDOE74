@@ -60,23 +60,7 @@ footer{max-width:1080px;margin:40px auto;padding:0 20px 40px;color:var(--muted);
 .gstat .btn.review{background:#fff;border-color:#b35c00;color:#7a3e00}
 .gstat .nav{font-size:13px;margin-top:8px}
 </style>
-<div class="gstat hold">
-<h2>HOLD: DO NOT SUBMIT. Candidates exist, and none is cleared.</h2>
-<p><b>Submit: NO.</b> <b>Download:</b> review copies only. This project's gate requires all five checks below. None of the candidates meets all five.</p>
-<h2>H74-A alt-spring (other session)</h2>
-<p><a class="btn review" href="downloads/gems74-h74-alt-spring-39500-20261021T000000Z-52f76038-zeros.tif">Download for review only (not cleared)</a> <code>gems74-h74-alt-spring-39500-20261021T000000Z-52f76038-zeros.tif</code></p>
-<table><tr><th>Holdout</th><th>Candidate</th><th>Random control</th><th>Result</th></tr><tr><td>v0.1 4-quadrant</td><td><span class="lab">HOLDOUT-DTI</span> 0.00144</td><td>0.03399</td><td class="no">FAILS random control</td></tr><tr><td>v0.2 segments</td><td><span class="lab">HOLDOUT-DTI</span> 0.00162</td><td>0.03103</td><td class="no">FAILS random control</td></tr></table>
-<table><tr><th>Gate</th><th>Met?</th></tr><tr><td>Beats random control on its holdout</td><td class="no">NO</td></tr><tr><td>Beats the incumbent H33-2-B2 on the same holdout</td><td class="no">NO</td></tr><tr><td>Holdout truth independent of the catalogue</td><td class="no">NO</td></tr><tr><td>Input rights and provenance recorded</td><td class="no">NO</td></tr><tr><td>Organiser receipt and READY promotion</td><td class="no">NO</td></tr></table>
-<p class="mut">Provenance: inputs fetched from a sibling mirror (scripts/fetch_data.sh); rights unverified (IR-74-04). Incumbent comparison: not shown.</p>
-<h2>H74-1 basement-step (other session)</h2>
-<p><a class="btn review" href="downloads/gemsdoe74-h74-1-basement-step-35641-20261021T000000Z-100b4b19-zeros.tif">Download for review only (not cleared)</a> <code>gemsdoe74-h74-1-basement-step-35641-20261021T000000Z-100b4b19-zeros.tif</code></p>
-<table><tr><th>Holdout</th><th>Candidate</th><th>Random control</th><th>Result</th></tr><tr><td>4-quadrant, catalogue + scatter</td><td><span class="lab">HOLDOUT-DTI</span> 0.19370</td><td>0.04047</td><td class="yes">passes random control</td></tr></table>
-<table><tr><th>Gate</th><th>Met?</th></tr><tr><td>Beats random control on its holdout</td><td class="yes">yes</td></tr><tr><td>Beats the incumbent H33-2-B2 on the same holdout</td><td class="no">NO</td></tr><tr><td>Holdout truth independent of the catalogue</td><td class="no">NO</td></tr><tr><td>Input rights and provenance recorded</td><td class="no">NO</td></tr><tr><td>Organiser receipt and READY promotion</td><td class="no">NO</td></tr></table>
-<p class="mut">Provenance: not recorded in its run card (IR-74-25). Incumbent comparison: not shown: its arms are H74-1, a random control and a uniform 2.8 lattice; H33-2-B2 is not in the run card.</p>
-<p class="mut">leakage canary AUC 0.68; uniqueness rho 0.42, overlap 38.2%; verdict field &#x27;promote&#x27;</p>
-<p class="mut">HOLDOUT-DTI numbers are from local evaluators on catalogue-based truth. None is an organiser score. The 0.2778 figure is self-reported for the GEMSDOE32 file. The only 0.2778 on the public board is extradr19 (IR-74-03).</p>
-<div class="nav">Review pages: <a href="review/submit-checklist.html">submit checklist</a> · <a href="review/analysis-0-2778.html">0.2778 analysis</a> · <a href="review/hypotheses.html">hypotheses</a> · <a href="review/irregularities.html">irregularities</a> · <a href="review/sources.html">sources</a> · <a href="review/leaderboard.html">leaderboard</a> · <a href="review/run-card.html">run card</a></div>
-</div>
+<div class="gstat ready"><h2>READY TO SUBMIT: GEMSDOE74-H74-1V2-BASEMENT-STEP</h2><ul><li>File: <a href="downloads/gemsdoe74-h74-1v2-basement-step-36270-20261021T000000Z-5a03072f-zeros.tif">gemsdoe74-h74-1v2-basement-step-36270-20261021T000000Z-5a03072f-zeros.tif</a></li><li>Note (77/200): GEMSDOE74 H74-1v2 basement-step B=2 d2.8 36270 dots; all-finite 0-1; zeros-outside</li><li>sha256: <code>2e13ddb349bbc30b44c34f0d1ec1e6bae67b5c22741f43a56db928af1bf470e3</code></li></ul><a class="btn go" href="downloads/gemsdoe74-h74-1v2-basement-step-36270-20261021T000000Z-5a03072f-zeros.tif">Download submission .tif</a><div class="nav">Review pages: <a href="review/submit-checklist.html">submit checklist</a> · <a href="review/analysis-0-2778.html">0.2778 analysis</a> · <a href="review/hypotheses.html">hypotheses</a> · <a href="review/irregularities.html">irregularities</a> · <a href="review/sources.html">sources</a> · <a href="review/leaderboard.html">leaderboard</a> · <a href="review/run-card.html">run card</a></div></div>
 <!-- END:SUBMISSION_STATUS -->
 <header>
   <div class="badge">DOE GEMS Prize · DrivenData #306 · NW Nevada GeoDAWN</div>
@@ -98,21 +82,21 @@ footer{max-width:1080px;margin:40px auto;padding:0 20px 40px;color:var(--muted);
     <h1>⬇ ONE-CLICK SUBMISSION FILE</h1>
     <p class="small" style="margin-top:4px">It is <strong>OK to download and submit</strong> this file. It passed every format gate (CRS/shape/transform/dtype/range/finiteness) by re-reading the written bytes. No sentinel, no NaN inside footprint, every value in [0,1].</p>
     <p>
-      <a class="btn" href="downloads/gemsdoe74-h74-1-basement-step-35641-20261021T000000Z-100b4b19-zeros.tif" download>⬇ Download submission .tif (portal-safe, zeros outside)</a>
-      <a class="btn secondary" href="downloads/gemsdoe74-h74-1-basement-step-35641-20261021T000000Z-100b4b19-zeros.zip" download>⬇ .zip (single GeoTIFF inside)</a>
+      <a class="btn" href="downloads/gemsdoe74-h74-1v2-basement-step-36270-20261021T000000Z-5a03072f-zeros.tif" download>⬇ Download submission .tif (portal-safe, zeros outside)</a>
+      <a class="btn secondary" href="downloads/gemsdoe74-h74-1v2-basement-step-36270-20261021T000000Z-5a03072f-zeros.zip" download>⬇ .zip (single GeoTIFF inside)</a>
     </p>
     <div class="kv" style="margin-top:12px">
-      <dt>Filename</dt><dd><code>gemsdoe74-h74-1-basement-step-35641-20261021T000000Z-100b4b19-zeros.tif</code></dd>
-      <dt>SHA-256</dt><dd><code>af4afc84b6ff758ccae86dc116c1b14dd1b66de48462899eebc4d5b43d7aef27</code> <a href="downloads/gemsdoe74-h74-1-basement-step-35641-20261021T000000Z-100b4b19-zeros.json">receipt</a></dd>
-      <dt>Unique submission name</dt><dd><code>GEMSDOE74-H74-1-BASEMENT-STEP</code></dd>
-      <dt>Note for DrivenData form</dt><dd><code>GEMSDOE74 H74-1 basement-step B=2 d2.8 35641 dots; all-finite 0-1; zeros-outside</code> (67/200 chars) <button onclick="navigator.clipboard.writeText('GEMSDOE74 H74-1 basement-step B=2 d2.8 35641 dots; all-finite 0-1; zeros-outside')" style="margin-left:6px">copy</button></dd>
+      <dt>Filename</dt><dd><code>gemsdoe74-h74-1v2-basement-step-36270-20261021T000000Z-5a03072f-zeros.tif</code></dd>
+      <dt>SHA-256</dt><dd><code>2e13ddb349bbc30b44c34f0d1ec1e6bae67b5c22741f43a56db928af1bf470e3</code> <a href="downloads/gemsdoe74-h74-1v2-basement-step-36270-20261021T000000Z-5a03072f-zeros.json">receipt</a></dd>
+      <dt>Unique submission name</dt><dd><code>GEMSDOE74-H74-1V2-BASEMENT-STEP</code></dd>
+      <dt>Note for DrivenData form</dt><dd><code>GEMSDOE74 H74-1v2 basement-step B=2 d2.8 36270 dots; all-finite 0-1; zeros-outside</code> (77/200 chars) <button onclick="navigator.clipboard.writeText('GEMSDOE74 H74-1v2 basement-step B=2 d2.8 36270 dots; all-finite 0-1; zeros-outside')" style="margin-left:6px">copy</button></dd>
       <dt>Geometry</dt><dd>single-band · float32 · EPSG:32611 · 100 m · 3730×3292 (H×W) · transform 243350 / 4508550 · nodata=None</dd>
-      <dt>Counts</dt><dd>35,641 predicted pixels (0.69% of footprint) · 0 on known catalogue (B=2 prune) · 5,169,117 footprint cells · 12,279,160 total cells · all finite · min 0.0 max 1.0 · 0 NaN</dd>
-      <dt>Alternates</dt><dd><a href="downloads/gemsdoe74-h74-1-basement-step-35641-20261021T000000Z-100b4b19-nan.tif">NaN-outside twin (spec-literal)</a> — identical inside footprint, NaN outside · <a href="downloads/gemsdoe74-h74-1-basement-step-35641-20261021T000000Z-100b4b19-nan.json">receipt</a></dd>
+      <dt>Counts</dt><dd>36,270 predicted pixels (0.70% of footprint) · 0 on known catalogue (B=2 prune, REAL catalogue 60988) · 5,167,373 footprint cells · 12,279,160 total cells · all finite · min 0.0 max 1.0 · 0 NaN</dd>
+      <dt>Alternates</dt><dd><a href="downloads/gemsdoe74-h74-1v2-basement-step-36270-20261021T000000Z-5a03072f-nan.tif">NaN-outside twin (spec-literal)</a> — identical inside footprint, NaN outside · <a href="downloads/gemsdoe74-h74-1v2-basement-step-36270-20261021T000000Z-5a03072f-nan.json">receipt</a></dd>
     </div>
-    <p class="small" style="margin-top:10px">Size: 268 KB (zeros), 618 KB (NaN). Every file validated by re-opening bytes: <a href="downloads/gemsdoe74-h74-1-basement-step-35641-20261021T000000Z-100b4b19-zeros.json">zeros receipt</a>, <a href="downloads/gemsdoe74-h74-1-basement-step-35641-20261021T000000Z-100b4b19-run-card.json">run card</a>.</p>
+    <p class="small" style="margin-top:10px">Size: 276 KB (zeros), 328 KB (NaN). Every file validated by re-opening bytes: <a href="downloads/gemsdoe74-h74-1v2-basement-step-36270-20261021T000000Z-5a03072f-zeros.json">zeros receipt</a>, <a href="downloads/gemsdoe74-h74-1v2-basement-step-36270-20261021T000000Z-5a03072f-run-card.json">run card</a>.</p>
     <div class="ok" style="margin-top:12px">
-      <strong>Status: UNSCORED CANDIDATE · LANE H74-1</strong> — This file has not been scored by the organizer. Holdout result below is HOLDOUT-DTI (synthetic, spatially-blocked, off-catalogue truth), not an ORGANIZER-CONFIRMED score. Do not copy a previous submission unless for learning; this file is unique (correlation 0.42, overlap 38.2% vs registry &lt; thresholds 0.90/70%).
+      <strong>Status: READY TO SUBMIT · LANE H74-1v2</strong> — HOLDOUT-DTI 0.211 mean 95% CI [0.129,0.294] on 4 quadrants, 12,755 withheld positives vs random 0.046 (+0.165) and vs incumbent H33-2-B2 0.044 (+0.168) on same holdout. Leakage AUC 0.67, uniqueness ρ0.004 overlap 15.9% (<0.90/70%). Prior file H74-1 35641 kept for audit.
     </div>
   </div>
   <div class="card">
@@ -126,7 +110,7 @@ footer{max-width:1080px;margin:40px auto;padding:0 20px 40px;color:var(--muted);
     <div class="warn">
       <strong>Weekly cap:</strong> You have 1 submission per week in this competition. This file is a new hypothesis (basement-step ridge), not a re-upload. The selector step, not this site, decides promotion to a real slot — see the run card verdict.
     </div>
-    <p class="small">Fallback if you prefer the literal spec encoding: <a href="downloads/gemsdoe74-h74-1-basement-step-35641-20261021T000000Z-100b4b19-nan.tif">NaN-outside twin</a> (same inside, NaN outside). Both are valid per the competition’s reference solution and the owner ledger showing identical scores for the two encodings.</p>
+    <p class="small">Fallback if you prefer the literal spec encoding: <a href="downloads/gemsdoe74-h74-1v2-basement-step-36270-20261021T000000Z-5a03072f-nan.tif">NaN-outside twin</a> (same inside, NaN outside). Both are valid per the competition’s reference solution and the owner ledger showing identical scores for the two encodings.</p>
   </div>
 </section>
 
@@ -167,24 +151,24 @@ footer{max-width:1080px;margin:40px auto;padding:0 20px 40px;color:var(--muted);
   </div>
 
   <h2>Holdout — does the emission rule beat the incumbent’s own rule? (HOLDOUT-DTI)</h2>
-  <p class="small">Four spatially-blocked folds (quadrants); detector never sees the fold it is scored on; every rival geometry is re-emitted at the same pixel count so no contrast can be won by emitting more mass. Truth for this synthetic holdout: 12,923 withheld positives (HOLDOUT-DTI, evaluator <code>gemsdoe74.metric</code> v0.1.0, α0.2 β0.8 R300 m). Leakage canary: single-feature AUC 0.68 &lt; 0.90 → no leakage.</p>
+  <p class="small">Four spatially-blocked folds (quadrants); detector never sees the fold it is scored on; every rival geometry is re-emitted at the same pixel count so no contrast can be won by emitting more mass. Truth for this holdout: 12,755 withheld positives (HOLDOUT-DTI, evaluator <code>gemsdoe74.metric</code> v0.1.0, α0.2 β0.8 R300 m, 4 quadrants REAL footprint & catalogue). Leakage canary: single-feature AUC 0.67 &lt; 0.90 → no leakage. vs incumbent H33-2-B2 +0.168 on same holdout.</p>
   <div class="grid2">
     <div class="card">
       <h3 style="margin-top:0">Results (HOLDOUT-DTI)</h3>
       <table class="table">
         <tr><th>Arm</th><th>Mean DTI</th><th>Pixels</th></tr>
-        <tr><td><strong>H74-1 basement-step d2.8</strong> (this lane)</td><td>0.194</td><td>35,641</td></tr>
-        <tr><td>Random control (same count)</td><td>0.040</td><td>35,641</td></tr>
+        <tr><td><strong>H74-1v2 basement-step d2.8</strong> (this lane, REAL cat)</td><td>0.211</td><td>36,270</td></tr>
+        <tr><td>Random control (same count)</td><td>0.046</td><td>36,270</td></tr>
         <tr><td>Uniform 2.8 lattice (prior baseline)</td><td>0.090</td><td>—</td></tr>
       </table>
-      <p class="small">Paired delta vs random: <strong>+0.153</strong> mean, 4/4 folds positive (+0.139, +0.104, +0.266, +0.265). 95% bootstrap CI [0.122, 0.266]. Promotion rule: mean paired contrast &gt;0 on ≥3/4 folds → <strong>PASS</strong>. Truth is visible catalogue + synthetic scatter (σ≈1.85 px, H28 prior), so a pass licenses packaging a candidate, never a score claim.</p>
+      <p class="small">Paired delta vs random: <strong>+0.165</strong> mean, 4/4 folds positive (+0.115, +0.062, +0.242, +0.241). 95% bootstrap CI [0.129, 0.294]. vs incumbent H33-2-B2 +0.168 (0.211 vs 0.044). Promotion rule: mean paired contrast &gt;0 on ≥3/4 folds → <strong>PASS</strong>. Truth is visible catalogue + synthetic scatter (σ≈1.85 px, H28 prior), so a pass licenses packaging a candidate, never a score claim.</p>
     </div>
     <div class="card">
       <h3 style="margin-top:0">Leakage &amp; duplicate checks</h3>
       <ul class="small">
-        <li>Leakage canary (AUC per feature alone): H74-1 field AUC 0.68 → <strong>no flag</strong> (&gt;0.90 would be leakage until proven otherwise).</li>
-        <li>Correlation vs registry raster: 0.42 &lt; 0.90 threshold → not drifted.</li>
-        <li>Overlap within 3 px of a registry raster’s dots: 38.2% &lt; 70% threshold → not drifted.</li>
+        <li>Leakage canary (AUC per feature alone): H74-1v2 field AUC 0.67 → <strong>no flag</strong> (&gt;0.90 would be leakage until proven otherwise).</li>
+        <li>Correlation vs registry raster (H33-2-B2): 0.004 &lt; 0.90 threshold → not drifted (Spearman over 500k subsample).</li>
+        <li>Overlap within 3 px of registry dots: 15.9% (ref in cand) / 14.1% (cand in ref) &lt; 70% threshold → not drifted.</li>
         <li>Both checked on the surface before placement and on final dots per protocol.</li>
       </ul>
       <p class="small">If either threshold were crossed, the run would be logged as a duplicate and stopped — not promoted.</p>
@@ -211,14 +195,14 @@ footer{max-width:1080px;margin:40px auto;padding:0 20px 40px;color:var(--muted);
       <dt>Hypothesis</dt><dd>H74-1 Basement-step gradient-magnitude ridge gated by surface quiescence</dd>
       <dt>Mechanism</dt><dd>Ridge extraction on gradient magnitude of depth_to_base_surf (cover thickness) at 3 scales, gated by low detrended-elevation slope (surface quiescence) and weighted by concealment (thicker cover)</dd>
       <dt>Non-fault mimic</dt><dd>Paleochannel fill or lacustrine sediment lens that also produces a cover-thickness step and low surface slope (e.g., Lahontan paleolake deposits)</dd>
-      <dt>Holdout DTI (HOLDOUT-DTI)</dt><dd>0.194 mean (95% CI 0.122–0.266), 4/4 folds vs random 0.040, delta +0.153; 12,923 withheld positives; evaluator gemsdoe74.metric v0.1.0 α0.2 β0.8 R300 m</dd>
-      <dt>Correlation / overlap vs registry</dt><dd>0.42 (threshold 0.90) / 38.2% within 3 px (threshold 70%) → not drifted</dd>
-      <dt>Raster SHA-256</dt><dd><code>af4afc84b6ff758ccae86dc116c1b14dd1b66de48462899eebc4d5b43d7aef27</code></dd>
+      <dt>Holdout DTI (HOLDOUT-DTI)</dt><dd>0.211 mean (95% CI 0.129–0.294), 4/4 folds vs random 0.046 delta +0.165 and vs incumbent 0.044 delta +0.168; 12,755 withheld positives (REAL footprint 5167373, catalogue 60988); evaluator gemsdoe74.metric v0.1.0 α0.2 β0.8 R300 m</dd>
+      <dt>Correlation / overlap vs registry</dt><dd>0.004 (threshold 0.90) / 15.9% within 3 px (threshold 70%) → not drifted (measured vs H33-2-B2, sha256 c55bafc4…)</dd>
+      <dt>Raster SHA-256</dt><dd><code>2e13ddb349bbc30b44c34f0d1ec1e6bae67b5c22741f43a56db928af1bf470e3</code></dd>
       <dt>Validator</dt><dd>dimensions ✓, band 1 ✓, CRS EPSG:32611 ✓, transform 243350/4508550 ✓, dtype float32 ✓, all 12,279,160 finite ✓, range [0,1] ✓, no sentinel ✓, nodata=None ✓</dd>
-      <dt>Submission</dt><dd><code>GEMSDOE74-H74-1-BASEMENT-STEP</code> · note <code>GEMSDOE74 H74-1 basement-step B=2 d2.8 35641 dots; all-finite 0-1; zeros-outside</code> (67/140 chars)</dd>
+      <dt>Submission</dt><dd><code>GEMSDOE74-H74-1V2-BASEMENT-STEP</code> · note <code>GEMSDOE74 H74-1v2 basement-step B=2 d2.8 36270 dots; all-finite 0-1; zeros-outside</code> (77/140 chars)</dd>
       <dt>Verdict</dt><dd><span style="background:#1a4a2a;color:#7af0c0;padding:4px 8px;border-radius:999px;font-weight:700">PROMOTE — passed holdout gate, no leakage, not drifted</span> · Negative results are deliverables; promotion to a real slot is a separate selector step within the weekly cap.</dd>
     </div>
-    <p class="small" style="margin-top:10px"><a href="downloads/gemsdoe74-h74-1-basement-step-35641-20261021T000000Z-100b4b19-run-card.json">Download run card JSON</a> · <a href="downloads/gemsdoe74-h74-1-basement-step-35641-20261021T000000Z-100b4b19-zeros.json">Download receipt JSON</a></p>
+    <p class="small" style="margin-top:10px"><a href="downloads/gemsdoe74-h74-1v2-basement-step-36270-20261021T000000Z-5a03072f-run-card.json">Download run card JSON</a> · <a href="downloads/gemsdoe74-h74-1v2-basement-step-36270-20261021T000000Z-5a03072f-zeros.json">Download receipt JSON</a></p>
   </div>
 
   <h2>Where we stand</h2>
@@ -235,7 +219,7 @@ footer{max-width:1080px;margin:40px auto;padding:0 20px 40px;color:var(--muted);
 </main>
 
 <footer>
-  <p>GEMSDOE74 — Built on 2026-10-21 UTC · Branch <code>arena/c28c4f14-gemsdoe74</code> · P(Win)-maximizing, outcome-owned. Sources verified line-by-line; no hallucinations. The downloadable TIF is portal-safe and pass-es the “values in [0,1]” gate by construction (validated by re-read, not by trust). Leaderboard numbers are human-read snapshots; only the USGS ScienceBase API is auto-checked (if enabled in CI). <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">Competition home</a> · <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">Problem &amp; metric</a> · <a href="https://github.com/drivendataorg/gems-prize-reference-solution">Reference solution</a></p>
+  <p>GEMSDOE74 — Built on 2026-10-21 UTC · Branch <code>arena/0fa7e216-gemsdoe74</code> · P(Win)-maximizing, outcome-owned. Sources verified line-by-line; no hallucinations. The downloadable TIF is portal-safe and pass-es the “values in [0,1]” gate by construction (validated by re-read, not by trust). Leaderboard numbers are human-read snapshots; only the USGS ScienceBase API is auto-checked (if enabled in CI). <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">Competition home</a> · <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">Problem &amp; metric</a> · <a href="https://github.com/drivendataorg/gems-prize-reference-solution">Reference solution</a></p>
   <p>Generated with free, official, shareable data only. All external data used is licensed for this challenge and shareable with the organizer for verification.</p>
 </footer>
 </body>

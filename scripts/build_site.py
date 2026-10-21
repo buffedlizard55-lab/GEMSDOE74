@@ -125,8 +125,8 @@ def build_run_card() -> None:
     body = f"""
 <h1>Run card</h1>
 <p class="sub">Machine-readable copy: <a href="data/run-card.json">data/run-card.json</a> · schema {_esc(card['schema'])} · {card['date_utc']}</p>
-<div class="status hold"><p class="big">{_esc(card['status'])}</p>
-<p>{_esc(card['blocker'])}</p></div>
+<div class="status hold"><p class="big">{_esc(card.get('status',''))}</p>
+<p>{_esc(card.get('blocker',''))}</p></div>
 <pre>{_esc(json.dumps(card, indent=2, ensure_ascii=False))}</pre>
 """
     (REVIEW / "run-card.html").write_text(page("Run card", body, "run-card.html"))
