@@ -1,0 +1,45 @@
+{
+  "blockers": [
+    "Required competition input is missing: data/training_features.tif.",
+    "Required competition input is missing: data/labels.tif.",
+    "Required competition input is missing: data/sample_submission.tif.",
+    "Required competition input is missing: data/1m_DEM_links.csv.",
+    "Required shared tool is missing: scripts/evaluate_holdout.py.",
+    "Required shared tool is missing: scripts/submission_writer.py.",
+    "Manifest does not explicitly mark a fully gated artifact READY for download.",
+    "Manifest has no artifact receipt.",
+    "One or more official competition inputs are missing, unhashed, or differ from the manifest.",
+    "The shared cached feature stack has no verified hash receipt.",
+    "A valid HOLDOUT-DTI receipt is missing: it must document whole-segment spatial withholding with a buffer, visible-only catalogue features, exact visible-fault masking, pooled DTI parameters, evaluator version, withheld-positive count, 95% CI, and a beat-best decision.",
+    "The per-feature leakage canary is missing, incomplete, failed, or above the allowed AUC threshold.",
+    "Surface and final-dot registry comparisons are missing, failed, or exceed the duplicate thresholds.",
+    "A passing independent GeoTIFF validation receipt is missing or invalid.",
+    "A unique submission name and a note of at most 140 characters are required."
+  ],
+  "checked_on_utc": "2026-10-21",
+  "download_enabled": false,
+  "download_url": null,
+  "evidence_gates": {
+    "competition_input_hashes": false,
+    "feature_leakage_canary": false,
+    "geotiff_validation": false,
+    "registry_uniqueness": false,
+    "shared_feature_stack_receipt": false,
+    "spatial_holdout": false,
+    "unique_name_and_short_note": false
+  },
+  "input_files_present": {
+    "labels": false,
+    "one_meter_dem_links": false,
+    "sample_submission": false,
+    "training_features": false
+  },
+  "schema_version": "gemsdoe74-readiness-v1",
+  "shared_tools_present": {
+    "holdout_evaluator": false,
+    "submission_writer": false
+  },
+  "status": "BLOCKED",
+  "submission_name": null,
+  "submission_note": null
+}

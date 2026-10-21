@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="GEMSDOE74's auditable GEMS research, holdout, and GeoTIFF submission status.">
+  <title>GEMSDOE74 — GEMS research and submissions</title>
+  <link rel="stylesheet" href="site.css">
+  <script defer src="status.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="index.html">GEMSDOE74<small>GEMS research · holdout · submissions</small></a>
+      <nav aria-label="Primary navigation">
+        <a href="index.html" aria-current="page">Overview</a>
+        <a href="executive-summary.html">Make a submission</a>
+        <a href="hypotheses.html">Research &amp; hypotheses</a>
+        <a href="sources.html">Sources</a>
+        <a href="irregularities.html">Irregularities</a>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <section class="hero" aria-labelledby="page-title">
+      <div class="hero-copy">
+        <p class="eyebrow">Research status · 2026-10-21</p>
+        <h1 id="page-title">Evidence before leaderboard claims.</h1>
+        <p class="lede">GEMSDOE74 is being built as an auditable workflow for testing new geological hypotheses, validating them with a spatial hide-and-recover holdout, and preparing a unique GEMS GeoTIFF only when its evidence is complete.</p>
+        <p>The first priority is a safe, reliable path from research to a valid submission—not a fabricated file, a copied raster, or a model projection presented as a score.</p>
+        <p><a href="executive-summary.html">Read the submission guide</a> · <a href="hypotheses.html">Review the research shortlist</a></p>
+      </div>
+      <aside class="status-card" aria-labelledby="download-title">
+        <p class="eyebrow">Submission gate</p>
+        <div class="status-label" id="status-label">BLOCKED — NOT SUBMITTABLE</div>
+        <h2 id="download-title">No validated TIF is available.</h2>
+        <p class="status-detail" id="status-detail">This repository has no competition rasters, shared holdout evaluator, submission writer, or validated candidate. There is no GEMSDOE74 file to download or submit.</p>
+        <span class="disabled-download" id="disabled-download" aria-disabled="true">Download disabled · no artifact</span>
+        <a class="ready-download" id="ready-download" href="#" download>Download validated submission GeoTIFF</a>
+        <dl class="status-list">
+          <dt>Unique submission name</dt><dd id="submission-name">Not assigned — no validated candidate.</dd>
+          <dt>Submission note</dt><dd id="submission-note">Not available — no artifact.</dd>
+        </dl>
+        <p class="meta">This notice is intentionally explicit so that an unvalidated file cannot be mistaken for a submission.</p>
+      </aside>
+    </section>
+
+    <section aria-labelledby="what-next">
+      <h2 id="what-next">What is needed before a submission can exist?</h2>
+      <div class="grid">
+        <article class="card">
+          <h3>Restore the shared research inputs</h3>
+          <p>Place the official competition feature, label, and sample-submission rasters where the shared template expects them. Restore its cached feature stack and use its evaluator and writer; none is in this checkout.</p>
+          <p><a href="sources.html#competition-data">See data-source and access notes</a></p>
+        </article>
+        <article class="card">
+          <h3>Validate the hypothesis, not just the file</h3>
+          <p>Preregister a single method, run the feature-by-feature leakage canary, and evaluate whole-segment spatial holdouts with the specified buffer and metric. Compare against the current holdout best.</p>
+          <p><a href="hypotheses.html">Read the candidate gates</a></p>
+        </article>
+        <article class="card">
+          <h3>Validate uniqueness and geometry</h3>
+          <p>Compare the proposed surface and its final dots with the registry; verify no forbidden correlation or dot overlap, and validate the output range, CRS, shape, transform, and raster contents.</p>
+          <p><a href="irregularities.html">Review open blockers</a></p>
+        </article>
+      </div>
+    </section>
+
+    <section aria-labelledby="current-evidence">
+      <h2 id="current-evidence">Current evidence boundary</h2>
+      <div class="callout danger">
+        <strong>Do not submit a GEMSDOE74 file.</strong> No candidate was generated and no validation was run. The reported H33 score and the leaderboard highs in the initiating request are not backed by a submission-page receipt in this workspace; the related GEMSDOE32 archive labels its H33 live value as a projection and says no organizer score exists for its artifacts.
+      </div>
+      <p>The archive is useful for method review, not as a source of a file to copy. Its H33 method is described as pruning predictions near the known-fault catalogue. A real score change, if confirmed, would not by itself establish a causal geological explanation. The <a href="irregularities.html#score-claims">score-claim review</a> records the discrepancy and the sources used.</p>
+    </section>
+
+    <section aria-labelledby="workflow">
+      <h2 id="workflow">The path from hypothesis to a real submission</h2>
+      <ol class="steps">
+        <li>Restore verified inputs and the shared template's cache, evaluator, and writer.</li>
+        <li>Register a unique hypothesis and check the candidate surface against the registry before placement.</li>
+        <li>Run the prescribed spatial holdout and single-feature leakage checks. Keep projections separate from holdout DTI.</li>
+        <li>Generate through the shared writer, validate the GeoTIFF and duplicate guard, and archive the hashes and receipts.</li>
+        <li>Only after passing every gate, expose a download, provide a unique competition name and short comment, and record the organizer receipt.</li>
+      </ol>
+      <p><a href="executive-summary.html">Exact portal steps and range-error checklist →</a></p>
+    </section>
+
+    <p class="meta">Last repository review: 2026-10-21. The site does not automatically read the private competition data page or live leaderboard. Any future feed must show its source and retrieval time and must not infer a score from a projection.</p>
+  </main>
+  <footer class="site-footer"><div class="footer-inner">GEMSDOE74 · Evidence first · <a href="../README.md">Project brief and session checklist</a></div></footer>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Open evidence, data, uniqueness, and competition-score discrepancies for GEMSDOE74.">
+  <title>Irregularities and blockers — GEMSDOE74</title>
+  <link rel="stylesheet" href="site.css">
+</head>
+<body>
+  <header class="site-header"><div class="header-inner">
+    <a class="brand" href="index.html">GEMSDOE74<small>GEMS research · holdout · submissions</small></a>
+    <nav aria-label="Primary navigation">
+      <a href="index.html">Overview</a><a href="executive-summary.html">Make a submission</a><a href="hypotheses.html">Research &amp; hypotheses</a><a href="sources.html">Sources</a><a href="irregularities.html" aria-current="page">Irregularities</a>
+    </nav>
+  </div></header>
+  <main>
+    <p class="eyebrow">Transparent issue ledger</p>
+    <h1>Open irregularities and hard blockers</h1>
+    <p class="lede">These items are recorded instead of being silently guessed away. The status only changes when there is evidence in the repository or an accessible primary source.</p>
+
+    <section aria-labelledby="repository">
+      <h2 id="repository">Repository and tooling</h2>
+      <article class="source-card">
+        <span class="source-status">BLOCKER · confirmed locally</span>
+        <h3>No project implementation or input data at the starting revision</h3>
+        <p>The repository started with a single README. There was no <code>data/</code> directory, cached feature stack, holdout evaluator, submission writer, registry raster collection, or TIFF artifact. A readiness script now records that state; it does not substitute for any of those tools.</p>
+      </article>
+      <article class="source-card">
+        <span class="source-status">BLOCKER · missing from the prompt text</span>
+        <h3>The parallel-run lane paragraph is not present</h3>
+        <p>The initiating instructions say to stay inside “the single method paragraph below,” but no method paragraph defining that lane appears in the supplied request. The research page therefore lists hypotheses but does not select an executable lane or create a surface.</p>
+      </article>
+      <article class="source-card">
+        <span class="source-status">BLOCKER · cannot test uniqueness</span>
+        <h3>No pixel-level registry is available in this repository</h3>
+        <p>The historical GEMSDOE URL list names many methods and files, but it is not a raster registry. Without registry surfaces, the specified rank-correlation and dot-proximity duplicate checks cannot be performed. Method-name differences are not sufficient proof of uniqueness.</p>
+      </article>
+    </section>
+
+    <section id="score-claims" aria-labelledby="scores">
+      <h2 id="scores">Score and leaderboard claims</h2>
+      <article class="source-card">
+        <span class="source-status">OPEN · conflicting source records</span>
+        <h3>The H33 score is not confirmed by the related repository record</h3>
+        <p>The initiating request attributes a score to the H33-2-B2 artifact. The linked GEMSDOE32 repository's current README/feed instead describes the value associated with that artifact as a model projection and says it has no organizer score for artifacts in that repository. These statements are not reconciled by an organizer receipt in this workspace. The score claim must remain unverified until the actual submission-page receipt is available.</p>
+        <p>That archive describes H33-2-B2 as pruning catalogue-adjacent dots from a prior emission. This may explain a proxy change; it does not prove a leaderboard result, a true geological discovery, or the cause of any alleged score.</p>
+      </article>
+      <article class="source-card">
+        <span class="source-status">OPEN · internally inconsistent user-provided values</span>
+        <h3>The prompt gives incompatible “current highest” claims</h3>
+        <p>The initiating request states more than one value as the current leaderboard high and gives an additional H33 result. No current official leaderboard response or submission receipt is present here. None of these values is treated as a verified score or a performance target in the site.</p>
+      </article>
+      <article class="source-card">
+        <span class="source-status">OPEN · historical source is not primary</span>
+        <h3>Related-site evidence is owner-generated</h3>
+        <p>The GEMSDOE32 README and evidence JSON are useful for methods review, but are produced by the project owner. They are not a DrivenData receipt. Their own explicit “projection / no organizer score” wording must be preserved when summarizing them.</p>
+      </article>
+    </section>
+
+    <section aria-labelledby="access">
+      <h2 id="access">Data access and current-site feed</h2>
+      <article class="source-card">
+        <span class="source-status">OPEN · access not available to this session</span>
+        <h3>Competition and official data sources were not fetched</h3>
+        <p>The supplied brief reports that competition files require a DrivenData login. The current environment's outbound host allowlist also excludes DrivenData, USGS, NLR, NASA LP DAAC, and GDR. The official reference-solution README was reachable on GitHub, but that does not provide the gated files or prove the current remote availability of the external datasets.</p>
+      </article>
+      <article class="source-card">
+        <span class="source-status">OPEN · automation not implemented</span>
+        <h3>No verified automatic leaderboard or external-data feed exists yet</h3>
+        <p>The pages expose source links and the current local readiness state. They do not scrape or guess the live leaderboard, portal cap, data availability, or external site status. A future feed must use a supported official endpoint or a documented, permitted retrieval method and must publish retrieval time, source, and error state.</p>
+      </article>
+    </section>
+
+    <section aria-labelledby="action">
+      <h2 id="action">Resolution order</h2>
+      <ol class="steps">
+        <li>Restore the official inputs and the shared template's cached feature stack, evaluator, and writer; record hashes and licences.</li>
+        <li>Reconcile the single lane and the H33 claim against actual source receipts. Fetch the live leaderboard from the official page when permitted.</li>
+        <li>Obtain and hash registry rasters before placement; check candidate surface correlation and dot overlap.</li>
+        <li>Run the locked spatial holdout and feature-alone leakage checks before selecting any weekly slot.</li>
+        <li>Generate one unique file through the shared writer and verify its contents, geometry, range, and SHA-256 before exposing a download.</li>
+      </ol>
+    </section>
+    <p><a href="sources.html">Open source ledger →</a> · <a href="index.html">Return to overview</a></p>
+  </main>
+  <footer class="site-footer"><div class="footer-inner">Nothing in this ledger is an organizer-confirmed score unless accompanied by the actual submission-page receipt.</div></footer>
+</body>
+</html>

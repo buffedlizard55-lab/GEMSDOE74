@@ -1,0 +1,31 @@
+{
+  "schema_version": "gemsdoe74-run-card-v1",
+  "hypothesis": "ASTER thermal-infrared surface-emissivity alteration lineaments may expose hydrothermal fluid pathways that are not mapped as faults; candidate only, not tested.",
+  "mechanism": "A spatially coherent spectral-mineral alteration edge can persist where a fault has weak relief; test with a documented official product and a preregistered oriented edge transform.",
+  "named_non_fault_mimic": "Lithologic contacts and mine/industrial surface disturbance can produce spectral edges that resemble hydrothermal alteration.",
+  "holdout_dti": {
+    "label": "HOLDOUT-DTI",
+    "status": "NOT RUN: shared evaluator, feature stack, labels, and candidate raster are absent.",
+    "evaluator_version": null,
+    "withheld_positive_count": null,
+    "point_estimate": null,
+    "confidence_interval_95_percent": null
+  },
+  "correlation_overlap_vs_registry": {
+    "status": "NOT RUN: no registry rasters or candidate dots are present.",
+    "max_rank_correlation": null,
+    "max_dot_overlap_within_3px": null
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "status": "NOT RUN: no TIFF exists.",
+    "no_nan_inside_footprint": null,
+    "all_values_in_allowed_range": null,
+    "crs_match": null,
+    "shape_match": null,
+    "transform_match": null
+  },
+  "submission_name": null,
+  "submission_note": null,
+  "verdict": "negative"
+}

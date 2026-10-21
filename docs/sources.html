@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Source ledger for competition rules, public data, research hypotheses, and historical claims.">
+  <title>Sources and evidence ledger — GEMSDOE74</title>
+  <link rel="stylesheet" href="site.css">
+</head>
+<body>
+  <header class="site-header"><div class="header-inner">
+    <a class="brand" href="index.html">GEMSDOE74<small>GEMS research · holdout · submissions</small></a>
+    <nav aria-label="Primary navigation">
+      <a href="index.html">Overview</a><a href="executive-summary.html">Make a submission</a><a href="hypotheses.html">Research &amp; hypotheses</a><a href="sources.html" aria-current="page">Sources</a><a href="irregularities.html">Irregularities</a>
+    </nav>
+  </div></header>
+  <main>
+    <p class="eyebrow">Evidence ledger · access state is explicit</p>
+    <h1>Sources for manual review</h1>
+    <p class="lede">A hyperlink is not proof. Each entry distinguishes source authority from whether its contents were actually accessed and verified in this session.</p>
+    <div class="callout"><strong>Network limitation:</strong> this environment can reach GitHub and package hosts, but not the competition, USGS, NLR, NASA LP DAAC, or GDR domains. The competition data page is also reported as login-gated in the initiating brief. Those links are retained below for manual review; their current contents, availability, and the study-area coverage have not been fetched here.</div>
+
+    <section id="competition-data" aria-labelledby="competition">
+      <h2 id="competition">Competition and format sources</h2>
+      <article class="source-card">
+        <span class="source-status">Official competition source · not accessed in this session</span>
+        <h3><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">Competition home and rules</a></h3>
+        <p>Use this as the primary authority for eligibility, submission limits, and current competition rules. The current rule text and live weekly cap were not independently checked here.</p>
+      </article>
+      <article class="source-card">
+        <span class="source-status">Official competition source · not accessed in this session</span>
+        <h3><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">Problem description</a> · <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/968/">About page</a></h3>
+        <p>Source links supplied in the brief for the task definition and competition background. No technical claim from these pages is asserted as freshly verified here.</p>
+      </article>
+      <article class="source-card">
+        <span class="source-status">Official competition source · access reported as restricted</span>
+        <h3><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/data/">Competition data page</a></h3>
+        <p>The initiating brief reports that the page redirects to login and that competition data must be downloaded there. This session did not attempt a login, does not have competition credentials, and has no data files. The organizer reference repository also instructs users to download the data from the competition website and put it in <code>data/</code>.</p>
+      </article>
+      <article class="source-card">
+        <span class="source-status">Official competition source · not accessed in this session</span>
+        <h3><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">Live leaderboard</a></h3>
+        <p>Authoritative source to verify current standings. The conflicting leaderboard-high claims in the initiating brief are not repeated as facts because no leaderboard snapshot or submission-page receipt was available in this workspace.</p>
+      </article>
+      <article class="source-card">
+        <span class="source-status">Organizer GitHub repository · README inspected via GitHub API</span>
+        <h3><a href="https://github.com/drivendataorg/gems-prize-reference-solution">GEMS Prize reference solution</a></h3>
+        <p>The repository README states that users download competition data from the competition website and place it in <code>data/</code>. It documents CPU-only as well as GPU environments and says training is faster on a GPU. The <a href="https://github.com/drivendataorg/gems-prize-reference-solution/blob/main/unet-mc-cv-reference-solution.ipynb">reference notebook</a> uses a patch-based U-Net workflow, Tversky loss, and sigmoid predictions; its example writer copies CRS/transform from the label raster and does not independently re-read the file for range or sample-grid validation. These observations describe the reference code only—not the competition's exact scoring implementation, an H33 artifact, or a current score. This repository contains the reference solution, not this project's missing competition data or the requested shared evaluator/writer.</p>
+      </article>
+      <article class="source-card">
+        <span class="source-status">Official-source PDF linked by the user · not accessed in this session</span>
+        <h3><a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">GEMS submission guidance PDF</a></h3>
+        <p>Provided for manual review of submission requirements. The PDF text was not retrieved in this environment; do not treat the link alone as verification of a particular format detail.</p>
+      </article>
+      <article class="source-card">
+        <span class="source-status">CRS reference supplied by the user · not verified against the sample raster</span>
+        <h3><a href="https://epsg.io/32611">EPSG:32611 reference</a></h3>
+        <p>The competition sample-submission raster—not a neighboring project's output—must define the exact CRS, transform, shape, and pixel alignment used by a valid submission.</p>
+      </article>
+    </section>
+
+    <section aria-labelledby="data">
+      <h2 id="data">Public-data sources for research hypotheses</h2>
+      <article class="source-card">
+        <span class="source-status">USGS source link supplied by the user · not accessed in this session</span>
+        <h3><a href="https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and">USGS GeoDawn airborne magnetic and radiometric survey</a></h3>
+        <p>The user identifies this as the official GeoDawn source. Dataset contents, licensing, spatial coverage, and download links were not checked here. Use its metadata and data citation before any feature is derived from it.</p>
+      </article>
+      <article class="source-card">
+        <span class="source-status">GDR source link supplied by the user · not accessed in this session</span>
+        <h3><a href="https://gdr.openei.org/submissions/1391">GDR submission 1391</a></h3>
+        <p>The initiating brief points to this public-data submission. This session did not verify individual resource URLs, file availability, licence terms, or whether any layer covers the study area. It is not evidence that the proposed external-data candidates are obtainable.</p>
+      </article>
+      <article class="source-card">
+        <span class="source-status">Official USGS source · availability not checked</span>
+        <h3><a href="https://earthquake.usgs.gov/data/comcat/">USGS ComCat</a></h3>
+        <p>Candidate source for event locations and focal mechanisms. No query was made; event density, completeness, and mechanism coverage for the target area are unknown.</p>
+      </article>
+      <article class="source-card">
+        <span class="source-status">Official NASA/USGS LP DAAC product catalog · availability not checked</span>
+        <h3><a href="https://lpdaac.usgs.gov/products/ast_05v003/">ASTER Surface Emissivity product</a></h3>
+        <p>Candidate product link for a spectral-mineral alteration hypothesis. Product version, valid band availability, local granule coverage, and access conditions must be confirmed from the product documentation before the method is considered viable.</p>
+      </article>
+      <article class="source-card">
+        <span class="source-status">Official USGS source · availability not checked</span>
+        <h3><a href="https://www.usgs.gov/landsat-missions/landsat-collection-2-surface-temperature">Landsat Collection 2 Surface Temperature</a></h3>
+        <p>Candidate source for a multi-date thermal persistence hypothesis. The study-area scene count, quality masks, acquisition conditions, and allowed processing path were not checked.</p>
+      </article>
+    </section>
+
+    <section aria-labelledby="prior-work">
+      <h2 id="prior-work">Historical project records (owner-generated, not organizer receipts)</h2>
+      <article class="source-card">
+        <span class="source-status">Related project repository · accessed for learning only</span>
+        <h3><a href="https://github.com/buffedlizard55-lab/GEMSDOE32/blob/main/README.md">GEMSDOE32 README</a> · <a href="https://github.com/buffedlizard55-lab/GEMSDOE32/blob/main/docs/data/feed.json">feed</a> · <a href="https://github.com/buffedlizard55-lab/GEMSDOE32/blob/main/evidence/h33_validation.json">H33 evidence</a></h3>
+        <p>These are owner-authored repository records. The README/feed describe the H33 artifact as an existing emission pruned near the catalogue, call its displayed live value a projection, and explicitly state that the repository has no organizer score for its artifacts. This is a statement about the archive's contents, not independent confirmation of the competition leaderboard. No historical TIF was copied into GEMSDOE74.</p>
+      </article>
+      <article class="source-card">
+        <span class="source-status">Not a primary source</span>
+        <h3><a href="https://en.wikipedia.org/wiki/Tversky_index">Tversky index overview</a></h3>
+        <p>The link is included because it appeared in the initial brief. Wikipedia is not authoritative for the competition's exact metric implementation. Use the official rules and organizer reference implementation to establish the actual scoring definition and parameters.</p>
+      </article>
+    </section>
+    <p><a href="irregularities.html">Review claims that need reconciliation →</a></p>
+  </main>
+  <footer class="site-footer"><div class="footer-inner">Source status: accessed means content was read; a linked source marked not accessed remains unverified.</div></footer>
+</body>
+</html>

@@ -1,0 +1,10 @@
+# Competition source rasters, labels, model inputs, and cached feature stacks are local-only.
+/data/*
+!/data/README.md
+
+# Local runs and Python/tooling artifacts.
+/outputs/
+/runs/
+/.venv/
+__pycache__/
+*.py[cod]

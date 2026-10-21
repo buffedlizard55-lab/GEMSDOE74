@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Ranked, unvalidated geothermal and fault hypotheses with explicit data, confounders, costs, and gates.">
+  <title>Research &amp; hypotheses — GEMSDOE74</title>
+  <link rel="stylesheet" href="site.css">
+</head>
+<body>
+  <header class="site-header"><div class="header-inner">
+    <a class="brand" href="index.html">GEMSDOE74<small>GEMS research · holdout · submissions</small></a>
+    <nav aria-label="Primary navigation">
+      <a href="index.html">Overview</a><a href="executive-summary.html">Make a submission</a><a href="hypotheses.html" aria-current="page">Research &amp; hypotheses</a><a href="sources.html">Sources</a><a href="irregularities.html">Irregularities</a>
+    </nav>
+  </div></header>
+  <main>
+    <p class="eyebrow">Research backlog · no experiment promoted</p>
+    <h1>Distinct hypotheses to test—not score promises</h1>
+    <p class="lede">These candidates add independent physical observations rather than another reweighting of an existing prediction raster. They are ranked by qualitative potential to identify off-catalogue structures and by cost. None has been validated here, and no numeric DTI projection is made.</p>
+    <div class="callout danger"><strong>Gate closed.</strong> The repository has no shared feature cache, holdout evaluator, submission writer, raster registry, or competition inputs. Source availability and area-of-interest coverage could not be checked because the required official hosts are outside this environment's network allowlist. Consequently, none of these candidates is currently viable for an experiment or a submission.</div>
+
+    <section aria-labelledby="shortlist">
+      <h2 id="shortlist">Ranked shortlist</h2>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Priority</th><th>Hypothesis, layers, and physical signature</th><th>Why it might find a catalogue-missing fault</th><th>Expected DTI potential / cost</th><th>Availability and novelty gate</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>First research lead</strong></td>
+            <td><strong>Hydrothermal alteration mapped with ASTER TIR.</strong> Layer: NASA/USGS LP DAAC ASTER surface-emissivity bands, with the official competition DEM used only for terrain controls if its licence and geometry allow. Target a scale-matched, band-contrast edge/lineament response associated with hydrothermal alteration; define spectral ratios only after checking the product documentation and local geology.</td>
+            <td>Hydrothermal mineral alteration can preserve a surface trace of fluid circulation where a fault has little or no topographic scarp. A mineralogical signal is physically independent of the known-fault geometry, so it offers a route to discovering structures absent from the catalogue.</td>
+            <td><strong>Relative potential: highest of this shortlist, highly uncertain.</strong> Cost: high—coverage screening, product/quality masking, atmospheric and terrain effects, resampling, and geologic interpretation. This is a research-priority ranking, not a HOLDOUT-DTI result or a live-score projection.</td>
+            <td>Source to check: <a href="https://lpdaac.usgs.gov/products/ast_05v003/">ASTER Surface Emissivity product catalog (LP DAAC)</a>. Public availability for the study area, complete acquisition coverage, and reuse conditions were not checked here; therefore this candidate is <strong>not cleared as viable</strong>. Exact ASTER product versions and usable bands must be confirmed before any run. No ASTER-emissivity product is named in the supplied result list, and the starting GEMSDOE74 tree had no implementation. This is only a comparison against the supplied history; registry-wide uniqueness is unproven.</td>
+          </tr>
+          <tr>
+            <td><strong>Second</strong></td>
+            <td><strong>Earthquake-supported, otherwise unmapped structures.</strong> Layers: USGS ComCat event hypocenters and, where present, focal-mechanism solutions; compute event-cluster lineaments, migration, and mechanism-orientation coherence rather than a static count-only raster.</td>
+            <td>Small or buried faults that lack a clear surface scarp may still host seismicity. A spatially coherent sequence or compatible focal mechanisms could expose structure not represented in a surface-mapping catalogue.</td>
+            <td><strong>Relative potential: medium; likely sparse and biased.</strong> Cost: medium-high—API query, completeness/time-window analysis, duplicate-event handling, spatial uncertainty, mechanism filtering, and sensitivity tests.</td>
+            <td>Source to check: <a href="https://earthquake.usgs.gov/data/comcat/">USGS ComCat</a>. The event count, focal-mechanism coverage, and API accessibility for the study area were not checked here; the method is <strong>not cleared as viable</strong>. No ComCat/focal-mechanism layer is named in the supplied history, and GEMSDOE74 started without an implementation, but uniqueness across all sites is unproven. Non-fault mimics include aftershock clusters, catalog completeness changes, and geothermal/volcanic seismicity not tied to a mappable fault.</td>
+          </tr>
+          <tr>
+            <td><strong>Third</strong></td>
+            <td><strong>Persistent satellite surface-heat lineaments.</strong> Layers: USGS Landsat Collection 2 Level-2 surface temperature (ST), QA/cloud masks, and competition terrain covariates if available. Target repeated, season-normalized warm residuals and an oriented ridge/edge response that recurs across independent clear scenes.</td>
+            <td>Persistent shallow thermal anomalies can indicate fluid upflow over a fault or fracture zone even when the structure has no obvious relief. Requiring temporal recurrence would reject some transient weather and illumination artifacts.</td>
+            <td><strong>Relative potential: low-to-medium; confounding is substantial.</strong> Cost: high—scene selection, cloud and emissivity QA, seasonal normalization, topographic correction, and temporal resampling.</td>
+            <td>Source to check: <a href="https://www.usgs.gov/landsat-missions/landsat-collection-2-surface-temperature">USGS Landsat Collection 2 Surface Temperature</a>. Area coverage and usable scenes were not checked here; the method is <strong>not cleared as viable</strong>. The supplied history already mentions a thermal/population hypothesis, so this candidate has an explicit overlap risk and requires registry review before it can be called new. Non-fault mimics include aspect-driven solar heating, wildfire, vegetation, wetness, and land-cover transitions.</td>
+          </tr>
+        </tbody>
+      </table></div>
+    </section>
+
+    <section aria-labelledby="decision">
+      <h2 id="decision">Decision and next validation step</h2>
+      <p>The first research lead is ASTER TIR alteration mapping because it adds a different physical measurement—spectral mineralogy—rather than another variant of the existing prediction surface. That is a rationale for studying it, not a claim that its input exists or that it will improve DTI. The official product page and study-area granules must first be obtainable and documented. Until then, this is a blocked research lead, not a viable candidate.</p>
+      <p>Before a holdout run, restore the shared template and document its exact cached-stack path, evaluator version, and writer. Confirm a single selected lane; the initiating text does not contain the method paragraph it references. Then freeze the feature set, derive every catalogue-dependent layer from visible faults only, run the single-feature leakage canary, and evaluate the candidate against the current holdout best. No weekly submission slot should be considered unless the holdout gate is passed.</p>
+      <div class="callout"><strong>Uniqueness is not established.</strong> The branch contains no registry rasters, and the provided historical site list is not a pixel-level registry. A method's name sounding different is insufficient: the surface correlation and dot-overlap checks must be run before placement and on the final dots.</div>
+    </section>
+
+    <section aria-labelledby="learning">
+      <h2 id="learning">Learning from the H33 archive without copying it</h2>
+      <p>The H33-2-B2 entry in the related GEMSDOE32 archive is described as suppressing predictions close to the known-fault catalogue on top of an existing emission. That is a different operation from adding an independent sensor-derived physical feature. The archive's own site/readme labels its displayed live value a projection and says it has no organizer score for its artifacts. We use that record only to understand the approach and its evidence limitations; no raster or private fork was copied.</p>
+      <p>A catalogue-distance ablation is scientifically interpretable only if the holdout hides whole fault segments with a buffer, computes all catalogue-derived features from the visible catalogue, and masks visible-fault pixels exactly. Otherwise it can reward leakage or the spatial structure of the target rather than discovery of new faults.</p>
+      <p>Pruning a near-catalogue belt is a precision/recall policy, not a geological observation: it can remove false-positive mass, but it can also delete true withheld faults. Its effect depends on the exact pooled DTI implementation and spatial kernel. The prescribed HOLDOUT-DTI parameters are alpha 0.2, beta 0.8, and a 300 m triangular kernel; these protocol settings are not a result. Convention differences in Tversky implementations make it unsafe to infer which error term dominates without checking the competition evaluator.</p>
+    </section>
+
+    <section aria-labelledby="reference">
+      <h2 id="reference">What the organizer reference solution does—and does not show</h2>
+      <p>The organizer's public reference notebook trains a U-Net on raster patches over repeated random splits, uses a Tversky loss with greater penalty weight on false negatives than false positives, and converts logits to probabilities with sigmoid. Its example output writer copies georeferencing from the fault-label raster. This is a baseline implementation, not evidence that the H33 candidate was scored or that its method caused a score change.</p>
+      <p>Random patch splits can leave nearby or spatially correlated examples on both sides of a split; that risk is why GEMSDOE74's required decision gate is a spatial holdout that hides complete fault segments. The example notebook also does not re-read and validate the written output's range and does not compare its grid with the official sample-submission raster. A mathematically bounded sigmoid output is not a substitute for post-write file validation.</p>
+      <p><a href="https://github.com/drivendataorg/gems-prize-reference-solution/blob/main/unet-mc-cv-reference-solution.ipynb">Review the organizer reference notebook</a>.</p>
+    </section>
+    <p><a href="sources.html">Review the source ledger →</a> · <a href="irregularities.html">Open irregularities →</a></p>
+  </main>
+  <footer class="site-footer"><div class="footer-inner">No candidate in this shortlist has been run or promoted.</div></footer>
+</body>
+</html>

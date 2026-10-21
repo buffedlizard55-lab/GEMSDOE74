@@ -1,0 +1,20 @@
+{
+  "schema_version": "gemsdoe74-submission-manifest-v1",
+  "status": "BLOCKED",
+  "download_enabled": false,
+  "input_hashes": null,
+  "feature_stack": null,
+  "holdout": null,
+  "leakage_canary": null,
+  "registry_check": null,
+  "validator": null,
+  "artifact": null,
+  "submission_name": null,
+  "submission_note": null,
+  "organizer_receipt": null,
+  "blockers": [
+    "Competition inputs are absent.",
+    "Shared cached feature stack, holdout evaluator, and submission writer are absent.",
+    "No candidate raster, registry comparison, or validator receipt exists."
+  ]
+}
