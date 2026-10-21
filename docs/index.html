@@ -42,6 +42,36 @@ footer{border-top:1px solid var(--border);background:#fff;margin-top:28px}
 </style>
 </head>
 <body>
+<!-- BEGIN:SUBMISSION_STATUS -->
+<style>
+.gstat{font:15px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;border-radius:12px;padding:16px 18px;margin:16px 0;border:2px solid;color:#111;background:#fff}
+.gstat h2{font-size:18px;margin:0 0 6px}
+.gstat.hold{border-color:#b00020;background:#fff3f3}
+.gstat.ready{border-color:#0a7a0a;background:#f1fbf1}
+.gstat.notready{border-color:#b35c00;background:#fff8ef}
+.gstat ul{margin:6px 0 6px 18px;padding:0}
+.gstat code{font-size:13px}
+.gstat .lab{display:inline-block;font-size:11px;font-weight:700;border-radius:999px;padding:2px 8px;margin-right:4px;background:#e8eefc;color:#123}
+.gstat .btn{display:inline-block;margin-top:6px;padding:9px 14px;border-radius:9px;font-weight:700;text-decoration:none;border:1px solid #888;color:#111;background:#fff}
+.gstat .btn.go{background:#0a7a0a;border-color:#0a7a0a;color:#fff}
+.gstat .btn.review{background:#fff;border-color:#b35c00;color:#7a3e00}
+.gstat .nav{font-size:13px;margin-top:8px}
+</style>
+<div class="gstat hold">
+<h2>HOLD: DO NOT SUBMIT. Downloadable files exist but none is cleared.</h2>
+<p><b>Submit: NO.</b> <b>Download:</b> for review only, not cleared for submission.</p>
+<p><b>Files in <code>docs/downloads/</code>:</b></p><ul><li><a href="downloads/gems74-h74-alt-spring-39500-20261021T000000Z-52f76038-nan.tif">gems74-h74-alt-spring-39500-20261021T000000Z-52f76038-nan.tif</a> <span class="lab">FOR REVIEW ONLY</span></li><li><a href="downloads/gems74-h74-alt-spring-39500-20261021T000000Z-52f76038-zeros.tif">gems74-h74-alt-spring-39500-20261021T000000Z-52f76038-zeros.tif</a> <span class="lab">FOR REVIEW ONLY</span></li><li><a href="downloads/gems74-h74-alt-spring-39500-20261021T000000Z-52f76038-zeros.zip">gems74-h74-alt-spring-39500-20261021T000000Z-52f76038-zeros.zip</a> <span class="lab">FOR REVIEW ONLY</span></li></ul>
+<p><b>Why it is on hold:</b></p>
+<ul>
+<li>No <code>*.receipt.json</code> in <code>docs/downloads/</code> has <code>release_status</code> set to READY. Promotion is a separate step and has not been done.</li>
+<li><span class="lab">HOLDOUT-DTI</span> v0.1 4-quadrant: candidate 0.00144 vs random control 0.03399 (passes random control: <b>NO</b>). Source: <code>evidence/holdout_h74a.json</code>.</li><li><span class="lab">HOLDOUT-DTI</span> v0.2 segment: candidate 0.00162 vs random control 0.03103 (passes random control: <b>NO</b>). Source: <code>evidence/holdout_h74a_segments.json</code>.</li>
+<li>The inputs are not verified. <code>scripts/fetch_data.sh</code> pulls the labels and the sample submission from a sibling repo's mirror of login-gated competition data, and the rights are unconfirmed (<a href="irregularities.html">IR-74-04</a>).</li>
+<li>The holdout truth is catalogue-only, so it cannot reward genuinely new faults (the candidate's own evidence note).</li>
+</ul>
+<a class="btn review" href="downloads/gems74-h74-alt-spring-39500-20261021T000000Z-52f76038-zeros.tif">Download for review only (not cleared)</a>
+<div class="nav">Also: <a href="submit-checklist.html">submit checklist</a> · <a href="analysis-0-2778.html">0.2778 analysis</a> · <a href="hypotheses.html">hypotheses</a> · <a href="irregularities.html">irregularities</a> · <a href="sources.html">sources</a> · <a href="leaderboard.html">leaderboard</a> · <a href="run-card.html">run card</a></div>
+</div>
+<!-- END:SUBMISSION_STATUS -->
 <header>
   <div class="wrap">
     <div class="brand">GEMSDOE74 <span class="small">— DOE GEMS Prize (DrivenData #306) · EPSG:32611 · 100 m · 3730 × 3292</span></div>

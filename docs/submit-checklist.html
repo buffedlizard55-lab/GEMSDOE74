@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>How to submit · GEMSDOE74</title>
+<link rel="stylesheet" href="assets/site.css">
+</head><body>
+<header class="top"><span class="brand">GEMSDOE74</span><a href="index.html">Home</a><a href="executive-summary.html" aria-current="page">How to submit</a><a href="analysis-0-2778.html">The 0.2778 question</a><a href="hypotheses.html">Hypotheses</a><a href="leaderboard.html">Leaderboard</a><a href="irregularities.html">Irregularities</a><a href="sources.html">Sources</a><a href="run-card.html">Run card</a></header>
+<main>
+
+<h1>How to submit: checklist</h1>
+<p class="sub">Everything here is taken from the competition's own problem page and the official rules, both linked on the <a href="sources.html">Sources</a> page. Where a point is not in those documents, it is marked.</p>
+
+<!-- BEGIN:SUBMISSION_STATUS -->
+<style>
+.gstat{font:15px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;border-radius:12px;padding:16px 18px;margin:16px 0;border:2px solid;color:#111;background:#fff}
+.gstat h2{font-size:18px;margin:0 0 6px}
+.gstat.hold{border-color:#b00020;background:#fff3f3}
+.gstat.ready{border-color:#0a7a0a;background:#f1fbf1}
+.gstat.notready{border-color:#b35c00;background:#fff8ef}
+.gstat ul{margin:6px 0 6px 18px;padding:0}
+.gstat code{font-size:13px}
+.gstat .lab{display:inline-block;font-size:11px;font-weight:700;border-radius:999px;padding:2px 8px;margin-right:4px;background:#e8eefc;color:#123}
+.gstat .btn{display:inline-block;margin-top:6px;padding:9px 14px;border-radius:9px;font-weight:700;text-decoration:none;border:1px solid #888;color:#111;background:#fff}
+.gstat .btn.go{background:#0a7a0a;border-color:#0a7a0a;color:#fff}
+.gstat .btn.review{background:#fff;border-color:#b35c00;color:#7a3e00}
+.gstat .nav{font-size:13px;margin-top:8px}
+</style>
+<div class="gstat hold">
+<h2>HOLD: DO NOT SUBMIT. Downloadable files exist but none is cleared.</h2>
+<p><b>Submit: NO.</b> <b>Download:</b> for review only, not cleared for submission.</p>
+<p><b>Files in <code>docs/downloads/</code>:</b></p><ul><li><a href="downloads/gems74-h74-alt-spring-39500-20261021T000000Z-52f76038-nan.tif">gems74-h74-alt-spring-39500-20261021T000000Z-52f76038-nan.tif</a> <span class="lab">FOR REVIEW ONLY</span></li><li><a href="downloads/gems74-h74-alt-spring-39500-20261021T000000Z-52f76038-zeros.tif">gems74-h74-alt-spring-39500-20261021T000000Z-52f76038-zeros.tif</a> <span class="lab">FOR REVIEW ONLY</span></li><li><a href="downloads/gems74-h74-alt-spring-39500-20261021T000000Z-52f76038-zeros.zip">gems74-h74-alt-spring-39500-20261021T000000Z-52f76038-zeros.zip</a> <span class="lab">FOR REVIEW ONLY</span></li></ul>
+<p><b>Why it is on hold:</b></p>
+<ul>
+<li>No <code>*.receipt.json</code> in <code>docs/downloads/</code> has <code>release_status</code> set to READY. Promotion is a separate step and has not been done.</li>
+<li><span class="lab">HOLDOUT-DTI</span> v0.1 4-quadrant: candidate 0.00144 vs random control 0.03399 (passes random control: <b>NO</b>). Source: <code>evidence/holdout_h74a.json</code>.</li><li><span class="lab">HOLDOUT-DTI</span> v0.2 segment: candidate 0.00162 vs random control 0.03103 (passes random control: <b>NO</b>). Source: <code>evidence/holdout_h74a_segments.json</code>.</li>
+<li>The inputs are not verified. <code>scripts/fetch_data.sh</code> pulls the labels and the sample submission from a sibling repo's mirror of login-gated competition data, and the rights are unconfirmed (<a href="irregularities.html">IR-74-04</a>).</li>
+<li>The holdout truth is catalogue-only, so it cannot reward genuinely new faults (the candidate's own evidence note).</li>
+</ul>
+<a class="btn review" href="downloads/gems74-h74-alt-spring-39500-20261021T000000Z-52f76038-zeros.tif">Download for review only (not cleared)</a>
+<div class="nav">Also: <a href="submit-checklist.html">submit checklist</a> · <a href="analysis-0-2778.html">0.2778 analysis</a> · <a href="hypotheses.html">hypotheses</a> · <a href="irregularities.html">irregularities</a> · <a href="sources.html">sources</a> · <a href="leaderboard.html">leaderboard</a> · <a href="run-card.html">run card</a></div>
+</div>
+<!-- END:SUBMISSION_STATUS -->
+
+<h2>The file you upload</h2>
+<div class="card">
+<p>The submission is a <b>single-layer GeoTIFF</b> that must meet the rules below. The problem page sets the format.</p>
+<div class="kv">
+<div>CRS</div><div>EPSG:32611, WGS 84 / UTM zone 11N (<a href="https://epsg.io/32611">epsg.io/32611</a>; central meridian −117°, false easting 500 000, scale 0.9996, metres)</div>
+<div>Resolution</div><div>100 m</div>
+<div>Bounds</div><div>Same as the training data. Data outside the bounds is null or NaN.</div>
+<div>Layers</div><div>One band</div>
+<div>Type</div><div>float32</div>
+<div>Values</div><div>Between 0 and 1, the confidence or probability of fault presence</div>
+<div>Shape</div><div>3730 rows × 3292 columns. <span class="mut">Taken from GEMSDOE32's receipts; to be confirmed against the official header.</span></div>
+</div>
+<p class="mut">Source: <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">problem page, "Submission format"</a>.</p>
+</div>
+
+<h2>Steps</h2>
+<ol class="steps">
+<li><b>Check eligibility first.</b> Individuals must be U.S. citizens or permanent residents. DOE and FFRDC staff have restrictions, and FCOC-owned entities are excluded. Read rules §1.3 before you register. <span class="mut">Source: <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">official rules</a>.</span></li>
+<li><b>Register on DrivenData and accept the rules.</b> You need an account to download the training features and labels.</li>
+<li><b>Get the training features.</b> They are login-gated. Download them yourself and place them in <code>data/</code>, which is git-ignored. Do not commit them.</li>
+<li><b>Produce a prediction raster on the competition grid.</b> The generator on <code>main</code> is <code>scripts/generate_submission.py</code>. Its inputs come from a sibling mirror (see <a href="irregularities.html">IR-74-04</a>), so its output is not cleared for submission.</li>
+<li><b>Validate the file.</b> Run <code>python scripts/validate_submission.py your_file.tif</code>. It exits with status 0 only when every check passes. Confirm the grid against the official header first.</li>
+<li><b>Name it and write a note.</b> Use a unique name, for example <code>gems74-&lt;method&gt;-&lt;YYYYMMDD&gt;-&lt;hash8&gt;</code>, which the writer enforces by regex. Write a short note (the repo keeps it under 140 characters). <span class="mut">The form's real note limit is not confirmed (<a href="irregularities.html">IR-74-13</a>).</span></li>
+<li><b>Disclose AI use in the narrative.</b> The rules require you to state in the narrative the extent to which generative AI was used and how, <i>not</i> counted in the word count. <span class="mut">Rules §3.2.</span></li>
+<li><b>Upload and submit.</b> Use the upload control on the DrivenData submission page. You may submit up to three times per week. <span class="mut">Rules §3.2.</span></li>
+<li><b>Choose one final submission before the deadline.</b> Each entity gets one final submission, selected before the deadline. <span class="mut">Rules §3.4.</span></li>
+</ol>
+
+<h2>Troubleshooting the error "Predicted values must be in range [0, 1]"</h2>
+<div class="card">
+<table>
+<tr><th>Cause</th><th>How to see it</th><th>Fix</th></tr>
+<tr><td>A nodata sentinel such as <code>-3.4028e+38</code> inside the footprint, carried over from the training raster</td><td><code>python scripts/validate_submission.py file.tif</code> exits 1 and reports <code>in_footprint_range_0_1: false</code>. Our stricter module <code>src/gems74/submission.py</code> reports <code>finite_values_in_0_1: false</code> and <code>no_sentinel_-3.4e38: false</code>.</td><td>Write the footprint cells as finite numbers in [0, 1]. Outside the footprint, write 0 or NaN.</td></tr>
+<tr><td>A nodata tag that is not NaN or none</td><td><code>nodata_none_or_nan: false</code></td><td>Write with <code>write_submission(..., nodata="none")</code> or <code>nodata="nan"</code>.</td></tr>
+<tr><td>Values above 1 or below 0</td><td><code>finite_values_in_0_1: false</code></td><td>Calibrate or clip the scores before writing. The writer refuses out-of-range values rather than clipping them silently.</td></tr>
+<tr><td>Wrong CRS, shape or transform</td><td><code>crs_epsg_32611</code>, <code>dimensions_3730x3292</code> or <code>transform</code> is false (main script). Our module: <code>crs_epsg_32611</code>, <code>shape_3730x3292</code>, <code>transform_100m_origin</code>.</td><td>Reproject or regrid onto the official template grid.</td></tr>
+</table>
+<p class="mut">Source of the cause: the sibling repository's documented diagnosis of the same error (<a href="https://buffedlizard55-lab.github.io/GEMSDOE32/docs/index.html">GEMSDOE32 page</a>), which we confirmed for the sentinel case in our own validator tests. The organiser's message was not reproduced in this environment.</p>
+</div>
+
+<h2>Checklist before you press submit</h2>
+<div class="card">
+<ul>
+<li>&#9744; <code>validate_submission.py</code> passes, <b>and</b> our module (<code>src/gems74/submission.py</code>) passes too. Note: the main-branch script rejects a valid NaN-nodata file (<a href="irregularities.html">IR-74-17</a>), so read its output before trusting either.</li>
+<li>&#9744; The grid is confirmed against the official header (not yet done; see <a href="irregularities.html">IR-74-09</a>).</li>
+<li>&#9744; Name and note are written. The note is under the form's limit.</li>
+<li>&#9744; The narrative discloses generative-AI use (rules §3.2).</li>
+<li>&#9744; The file's sha256 is recorded in the run card.</li>
+<li>&#9744; The submission is <b>not</b> a copy of another team's file (the brief requires a unique submission).</li>
+<li>&#9744; The file does not contain any third-party data you are not licensed to share (rules A.5). Public-domain and CC BY 4.0 inputs need attribution in the narrative.</li>
+<li>&#9744; Submission materials may become public (rules A.4), so the note contains nothing confidential.</li>
+</ul>
+</div>
+
+</main>
+<footer>Not affiliated with DrivenData, NLR, DOE or USGS. Snapshot 2026-10-21.</footer>
+</body></html>

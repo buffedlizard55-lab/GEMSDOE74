@@ -1,5 +1,8 @@
 # GEMSDOE74 — Hydrothermal Spring-Chain + Potassic Alteration Halo Fault Detector for the DOE GEMS Prize
 
+> **HOLD: do not submit any file from this repo yet.** The downloadable file in `docs/downloads/` is UNSCORED, its holdout does not beat the random control (see `evidence/holdout_h74a*.json`), and its inputs come from an unverified mirror (IR-74-04). Live status: `docs/index.html`. Review pages: `docs/submit-checklist.html`, `docs/analysis-0-2778.html`, `docs/irregularities.html`.
+
+
 **Competition:** [DOE GEMS Prize](https://www.drivendata.org/competitions/306/competition-doe-gems/) (DrivenData #306, GeoDAWN / NW Nevada) — find geothermal-indicative faults **not** in the USGS/INGENIOUS catalogue, ship as legal GeoTIFF.  
 **Live site:** https://buffedlizard55-lab.github.io/GEMSDOE74/  
 **Branch:** `arena/af8a6393-gemsdoe74` · **Weekly budget:** 3 scored submissions; one file scored in both rounds.
@@ -90,3 +93,23 @@ Competition [overview](https://www.drivendata.org/competitions/306/competition-d
 - Holdout truth is catalogue (cannot reward new faults). Only organizer board is truth.
 - External bands (InSAR, Sentinel-2, ComCat) need fetch on unrestricted runner — scripts provided.
 - Training requires DrivenData login data + GPU — `bash scripts/download_competition_data.sh` on unrestricted machine → `data/`.
+
+---
+
+## Review layer (added by the 2026-10-21 review session)
+
+Pages in `docs/` that this session added:
+
+| Page | What it answers |
+|---|---|
+| `docs/submit-checklist.html` | How to submit, the format rules, and troubleshooting for "Predicted values must be in range [0, 1]". |
+| `docs/analysis-0-2778.html` | Why a sparse file can score high, the break-even rule (credit > 0.2·DTI), and what the record does and does not show. |
+| `docs/hypotheses.html` | Ranked candidate lanes with overlap checks against the sibling GEMSDOE32 repo. |
+| `docs/irregularities.html` | Every inconsistency found, with severity and a reviewer action. |
+| `docs/sources.html` | Official links, what was read, what was not reachable, and why. |
+| `docs/leaderboard.html`, `docs/run-card.html` | Generated from `docs/data/`. |
+
+Rebuild the generated parts with `python scripts/build_site.py`. The script decides the status panel from disk: READY needs a `*.receipt.json` with `release_status` exactly `READY`.
+
+Tests: `pytest -q tests` (uses `src/gems74/metric.py` as the single metric implementation).
+
