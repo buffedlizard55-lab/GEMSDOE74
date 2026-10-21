@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GEMSDOE74 — Positive-Tile PU Multi-Scale 2D ResUNet-DiffDTI &amp; Fluvial-Neotectonic Synthesis</title>
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --ink: #0f172a;
+      --muted: #475569;
+      --border: #e2e8f0;
+      --emerald: #059669;
+      --emerald-dark: #047857;
+      --emerald-bg: #ecfdf5;
+      --blue: #0284c7;
+      --red: #dc2626;
+      --red-bg: #fef2f2;
+      --code-bg: #f1f5f9;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.62;
+    }
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 12px 24px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      border-bottom: 3px solid var(--emerald);
+    }
+    .topbar a {
+      color: #cbd5e1;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: 6px;
+    }
+    .topbar a:hover, .topbar a.active {
+      background: rgba(255,255,255,0.14);
+      color: #ffffff;
+    }
+    .brand {
+      font-weight: 800;
+      font-size: 1rem;
+      color: #ffffff;
+    }
+    .container {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 32px 24px 80px;
+    }
+    .hero-ready {
+      background: var(--emerald-bg);
+      border: 2px solid var(--emerald);
+      border-radius: 14px;
+      padding: 28px 30px;
+      margin-bottom: 28px;
+      box-shadow: 0 8px 28px rgba(5, 150, 105, 0.09);
+    }
+    .ready-pill {
+      display: inline-block;
+      background: var(--emerald);
+      color: #ffffff;
+      font-weight: 800;
+      font-size: 0.8rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 999px;
+      margin-bottom: 12px;
+    }
+    .hero-ready h1 {
+      margin: 0 0 10px;
+      font-size: 1.82rem;
+      line-height: 1.25;
+      color: #064e3b;
+    }
+    .hero-ready p {
+      margin: 0 0 16px;
+      color: #065f46;
+      font-size: 1.01rem;
+    }
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 14px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 11px 18px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.93rem;
+      text-decoration: none;
+      cursor: pointer;
+      border: 1px solid transparent;
+    }
+    .btn-primary { background: var(--emerald); color: #ffffff; }
+    .btn-primary:hover { background: var(--emerald-dark); }
+    .btn-secondary { background: #ffffff; color: var(--ink); border-color: #cbd5e1; }
+    .btn-secondary:hover { background: #f1f5f9; }
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-bottom: 30px;
+    }
+    .kpi {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px 20px;
+    }
+    .kpi .label {
+      font-size: 0.76rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+    }
+    .kpi .val {
+      font-size: 1.56rem;
+      font-weight: 800;
+      margin: 6px 0 4px;
+    }
+    .kpi .sub { font-size: 0.83rem; color: var(--muted); }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 26px 28px;
+      margin-bottom: 28px;
+    }
+    .card h2 {
+      margin-top: 0;
+      font-size: 1.35rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 10px;
+      margin-bottom: 18px;
+    }
+    .card h3 { margin-top: 22px; margin-bottom: 8px; font-size: 1.06rem; }
+    .copy-box {
+      background: var(--code-bg);
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 11px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin: 8px 0 14px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.86rem;
+      word-break: break-all;
+    }
+    .copy-btn {
+      background: #0f172a;
+      color: #ffffff;
+      border: none;
+      border-radius: 6px;
+      padding: 7px 12px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.89rem;
+      margin: 14px 0;
+    }
+    th, td {
+      text-align: left;
+      padding: 9px 11px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    th {
+      background: #f8fafc;
+      font-weight: 700;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: #334155;
+    }
+    .badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 5px;
+      font-size: 0.73rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .b-holdout { background: #dbeafe; color: #1e40af; }
+    .b-live { background: #fef3c7; color: #92400e; }
+    .b-pass { background: #dcfce7; color: #166534; }
+    .b-crit { background: #fee2e2; color: #991b1b; }
+    figure {
+      margin: 22px 0;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px;
+    }
+    figure img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 6px;
+    }
+    figcaption {
+      margin-top: 10px;
+      font-size: 0.84rem;
+      color: var(--muted);
+    }
+    pre {
+      background: #0f172a;
+      color: #e2e8f0;
+      padding: 18px;
+      border-radius: 10px;
+      overflow-x: auto;
+      font-size: 0.82rem;
+      line-height: 1.5;
+    }
+    code {
+      background: var(--code-bg);
+      padding: 2px 5px;
+      border-radius: 4px;
+      font-size: 0.86em;
+    }
+    pre code { background: transparent; padding: 0; color: inherit; }
+    .alert-danger {
+      background: var(--red-bg);
+      border-left: 4px solid var(--red);
+      padding: 15px 18px;
+      border-radius: 8px;
+      margin: 16px 0;
+    }
+    footer {
+      margin-top: 44px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      font-size: 0.85rem;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+  </style>
+</head>
+<body>
+  <nav class="topbar">
+    <div class="brand">GEMSDOE74 &middot; DOE Geothermal GEMS Prize Research Monograph</div>
+    <div>
+      <a href="index.html" class="active">Full Monograph</a>
+      <a href="executive-summary.html">Executive Summary &amp; Upload Guide</a>
+      <a href="downloads/gems74-puresunet-diffdti-submod300-37654-20261021T030000Z-7deb4f76-zeros.tif" download>Download .TIF</a>
+      <a href="evidence/run_card.json">Run Card JSON</a>
+    </div>
+  </nav>
+
+  <main class="container">
+    <!-- OBVIOUS TOP SUBMISSION READINESS BANNER -->
+    <section class="hero-ready" aria-label="Download and Submit Readiness">
+      <div class="ready-pill">VERDICT: PROMOTE &mdash; SAFE &amp; READY TO DOWNLOAD AND SUBMIT TO DRIVENDATA</div>
+      <h1>GEMSDOE74: Positive-Tile PU Multi-Scale 2D ResUNet-DiffDTI &amp; Fluvial-Neotectonic Synthesis</h1>
+      <p>
+        <strong>Yes &mdash; download and submit this file now:</strong>
+        <code>gems74-puresunet-diffdti-submod300-37654-20261021T030000Z-7deb4f76-zeros.tif</code>
+        (<code>SHA-256: 8dbb1bba674f38a15b061601d3b28b8a92d4186896a8ba3ec16a58757daeb38a</code>).
+        Trained 100% on real SHA-256-verified competition + USGS 3DEP 10 m / 1 m LiDAR + DOE GDR #1391 data, achieving
+        <strong>0.11745 HOLDOUT-DTI</strong> vs <strong>0.09609</strong> for group-best <code>GEMSDOE32 H33-2-b2</code>
+        (paired gain <strong>+0.02136</strong>, 95% CI <strong>[+0.00838, +0.03502]</strong>, sweeping all 4 quadrants 4/4),
+        passing pre-fit leakage canary (52/52 &le; 0.6093 AUC), passing uniqueness across all 251 registry GeoTIFFs
+        (<code>|&rho;| = 0.0824 &le; 0.90</code>, mutual 3-px overlap <code>0.5446 &le; 0.70</code>), and passing 15/15 format &amp; <code>[0, 1]</code> checks in both validators.
+      </p>
+      <div class="btn-row">
+        <a class="btn btn-primary" href="downloads/gems74-puresunet-diffdti-submod300-37654-20261021T030000Z-7deb4f76-zeros.tif" download>
+          Download Unique Submission (.tif &middot; 140.4 KB)
+        </a>
+        <a class="btn btn-secondary" href="downloads/gems74-puresunet-diffdti-submod300-37654-20261021T030000Z-7deb4f76-zeros.zip" download>
+          Download Single-TIFF ZIP (.zip &middot; 108.6 KB)
+        </a>
+        <a class="btn btn-secondary" href="executive-summary.html">
+          Open 60-Second Executive Upload Guide &rarr;
+        </a>
+        <a class="btn btn-secondary" href="evidence/run_card.json">
+          Inspect Machine-Readable Run Card (.json)
+        </a>
+      </div>
+
+      <div style="margin-top: 18px;">
+        <strong>Portal Submission Name:</strong>
+        <div class="copy-box">
+          <span id="p-name">GEMSDOE74-PURESUNET-DIFFDTI-37654</span>
+          <button class="copy-btn" onclick="copyText('p-name', this)">Copy Name</button>
+        </div>
+        <strong>Portal Submission Note (121 / 140 chars):</strong>
+        <div class="copy-box">
+          <span id="p-note">GEMSDOE74 PU 2D-ResUNet DiffDTI(0.2,0.8) + 52ch 3DEP/LiDAR/GDR/Chi + CrestSubmod300: 37654 off-cat dots, zeros (7deb4f76)</span>
+          <button class="copy-btn" onclick="copyText('p-note', this)">Copy Note</button>
+        </div>
+      </div>
+    </section>
+
+    <div class="kpi-grid">
+      <div class="kpi">
+        <div class="label">Promoted Pooled Score</div>
+        <div class="val">0.11745</div>
+        <div class="sub"><span class="badge b-holdout">HOLDOUT-DTI</span> <code>gems57-pooled-hide-v2</code>, <code>n=11,321</code>, CI <code>[0.09655, 0.13995]</code></div>
+      </div>
+      <div class="kpi">
+        <div class="label">Paired Gain vs H33 (0.2778 Live)</div>
+        <div class="val" style="color: var(--emerald);">+0.02136</div>
+        <div class="sub">95% Paired CI <code>[+0.00838, +0.03502]</code> (+208.2 TP, &minus;6,385.3 FP)</div>
+      </div>
+      <div class="kpi">
+        <div class="label">Detached-Strand Transfer</div>
+        <div class="val">0.12303</div>
+        <div class="sub"><span class="badge b-holdout">HOLDOUT-DTI</span> <code>n=11,307</code> detached px vs <code>0.10336</code> for D28/H33</div>
+      </div>
+      <div class="kpi">
+        <div class="label">Registry Uniqueness (251 Files)</div>
+        <div class="val">0.08240</div>
+        <div class="sub">Max <code>|Spearman &rho;|</code> &le; 0.90 &middot; Max 3-px mutual overlap <code>0.5446 &le; 0.70</code></div>
+      </div>
+    </div>
+
+    <!-- PART I: LINE BY LINE FORENSIC AUTOPSY -->
+    <section class="card">
+      <h2>Part I. Line-by-Line Forensic Autopsy of <code>h33-h33-2-b2</code> (0.2778) &amp; Prior Runs</h2>
+      <p>
+        We inspected the source repositories and verified byte-for-byte decoded pixel arrays across all <code>12,279,160</code> cells (<code>3730 &times; 3292</code>, <code>EPSG:32611</code>) of <code>GEMSDOE32</code>, <code>GEMSDOE36</code>, <code>GEMSDOE28</code>, <code>19GEMSDOE</code>, <code>60GEMSDOE</code>, and <code>GEMSDOE70..73</code>:
+      </p>
+      <ol>
+        <li>
+          <strong>Exact Genealogical Identity of <code>h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif</code> (0.2778 <span class="badge b-live">ORGANIZER-CONFIRMED</span>):</strong>
+          Computing <code>EDT(~existing_faults)</code> across all <code>12,279,160</code> cells proves with <strong>zero differing pixels</strong> (<code>XOR_DIFF_PIXELS = 0</code>) that <code>h33-h33-2-b2</code> in <code>GEMSDOE32/scripts/build_h33.py</code> is literally:
+          <code>h33_2_b2 = np.where(d_cat &gt; 2.0, d28, 0.0)</code> (reducing <code>44,090</code> dots to <code>37,654</code> dots).
+          <ul>
+            <li><strong>Why <code>d28</code> reached 0.2600 <span class="badge b-live">ORGANIZER-CONFIRMED</span>:</strong> <code>19GEMSDOE</code> computed multi-azimuth <code>3.1 km</code> line-minus-flank strike worms across square-root-dequantized <code>1 m</code> 3DEP LiDAR scarps, <code>10 m</code> 3DEP slopes, gravity/magnetic gradients, and DOE GDR #1391 thermal springs, calibrated via isotonic regression and subsampled on a <code>4 &times; 4</code> stride grid.</li>
+            <li><strong>Why <code>GEMSDOE28</code> reached 0.2710 / 0.2708 <span class="badge b-live">ORGANIZER-CONFIRMED</span> and <code>GEMSDOE36</code> reached 0.2750 <span class="badge b-live">ORGANIZER-CONFIRMED</span>:</strong> Replacing grid subsampling with greedy disk non-maximum suppression and Andersonian stress-orientation priors eliminated wasted duplicate dots inside overlapping <code>300 m</code> kernels.</li>
+            <li><strong>Why <code>GEMSDOE32</code>'s <code>d_cat &gt; 2.0</code> collar jumped from 0.2600 to 0.2778 (+0.0178 live DTI):</strong> DrivenData masks only exact <code>d_cat = 0</code> mapped catalogue pixels, leaving adjacent <code>1 &le; d_cat &le; 2</code> pixels unmasked as <code>y = 0</code>. Because USGS Quaternary fault polylines carry <code>100&ndash;250 m</code> digitization offset, scarp peaks along already-mapped faults peak 1&ndash;2 pixels away from <code>d_cat = 0</code> and incur pure false-positive penalty <code>&alpha; = 0.2</code>. Stripping those <code>6,436</code> halo pixels removed ~<code>1,287</code> weighted FP units from the denominator.</li>
+          </ul>
+        </li>
+        <li>
+          <strong>Why <code>GEMSDOE70</code> (0.2478 <span class="badge b-live">ORGANIZER-CONFIRMED</span>) and <code>GEMSDOE71</code> (0.0558 <span class="badge b-live">ORGANIZER-CONFIRMED</span>) Regressed Live:</strong>
+          <code>GEMSDOE70</code> fed visible-catalogue proximity <code>d_vis</code> into its primary tabular model; when evaluated without <code>d_vis</code>, its pure-physics score was only <code>0.06610</code> <span class="badge b-holdout">HOLDOUT-DTI</span> (<code>&minus;0.0300</code> below fold-fair <code>H33</code>'s <code>0.09609</code>!), mirroring its exact <code>&minus;0.0300</code> live drop (<code>0.2478</code> vs <code>0.2778</code>)! Meanwhile, <code>GEMSDOE71</code> applied a <code>30 km</code> boundary erosion that wiped out peripheral test chunks.
+        </li>
+        <li>
+          <strong>Can <code>0.2778</code> Be Beaten, and Why?</strong>
+          <strong>Unequivocally yes:</strong> DrivenData's public leaderboard top score is <strong>0.4413</strong> <span class="badge b-live">ORGANIZER-CONFIRMED</span> (<code>xiaofanhu</code>) and DrivenData's own Positive-Tile U-Net benchmark scores <strong>0.3195</strong> <span class="badge b-live">ORGANIZER-CONFIRMED</span> (<a href="https://github.com/drivendataorg/gems-prize-reference-solution" target="_blank" rel="noopener">Lipor, 2026</a>; <a href="https://pangea.stanford.edu/ERE/db/GeoConf/papers/SGW/2025/Hermant.pdf" target="_blank" rel="noopener">Hermant et al., 2025</a>). <code>H33</code> was trained pixel-by-pixel without positive-tile PU filtering (treating thousands of unmapped faults as <code>y = 0</code> negatives!), without a 2D spatial convolutional encoder trained on the asymmetric <code>300 m</code> DW-Tversky loss, without fluvial channel steepness $k_{sn}$, and with isotropic pre-blur instead of unblurred <code>300 m</code> submodular max-cover.
+        </li>
+      </ol>
+      <div class="alert-danger">
+        <strong>CRITICAL SIBLING AUDIT WARNING (IRR-01):</strong> <code>buffedlizard55-lab/GEMSDOE73</code> generated its <code>.tif</code> on synthetic random arrays without downloading competition data. Do <strong>not</strong> upload <code>GEMSDOE73</code>. All <code>GEMSDOE74</code> artifacts are verified bit-for-bit on real SHA-256-checked competition &amp; USGS/DOE rasters.
+      </div>
+    </section>
+
+    <!-- PART II: 5 HYPOTHESES -->
+    <section class="card">
+      <h2>Part II. Pre-Registered Geological &amp; Physics Hypotheses (Formulated Before Coding)</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>ID &amp; Rank</th>
+            <th>Geological / Physical Mechanism &amp; Layers</th>
+            <th>Why Missing From Catalogue</th>
+            <th>Explicit Non-Fault Mimic &amp; De-Confounder</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>H74-1 (#1)</strong><br/><em>Positive-Tile PU + DiffDTI 2D ResUNet</em></td>
+            <td>All 52 zero-catalogue channels on mapped <code>128&times;128</code> (<code>12.8 km</code>) positive tiles with strict per-tile local z-scoring <code>(x &minus; &mu;)/(&sigma; + 0.35)</code> and exact <code>DifferentiableDTILoss(&alpha;=0.2, &beta;=0.8, R=300 m)</code>.</td>
+            <td>Eliminates false-negative label poisoning across unmapped chunks and basin coordinate memorization (<code>IRR-11</code>).</td>
+            <td><strong>Mimic:</strong> 100 km regional GPS/seismic coordinate memorization &amp; road embankments.<br/><strong>Filter:</strong> Per-tile normalization + 6 km drift subtraction + Census TIGER road attenuation.</td>
+          </tr>
+          <tr>
+            <td><strong>H74-2 (#2)</strong><br/><em>Fluvial $k_{sn}$ &amp; Piedmont Apron Break</em></td>
+            <td>Native <code>10 m</code> 3DEP upstream drainage area $A$, normalized channel steepness $k_{sn} = S \cdot A^{0.45}$, range-front slope jump, and concave piedmont apron Laplacian.</td>
+            <td>Blind/degraded faults eroded across alluvial fans preserve transient upstream $k_{sn}$ knickzones after surface scarps diffuse.</td>
+            <td><strong>Mimic:</strong> Meandering river canyons, resistant caprock ledges, Lake Lahontan shorelines (~1,330 m).<br/><strong>Filter:</strong> $A^{0.45}$ normalization + concave apron break + basement gradient requirement.</td>
+          </tr>
+          <tr>
+            <td><strong>H74-3 (#3)</strong><br/><em>Sqrt-Dequantized 1 m LiDAR &amp; 3 km Flank Worms</em></td>
+            <td>Exact inverse square-root dequantization <code>((q&minus;1)/254)&sup2; &middot; x_max</code> of <code>1 m</code> LiDAR scarp amplitude + <code>3.1 km</code> strike-minus-flank directional worms across 4 physical families.</td>
+            <td>Sub-2 m Holocene intrabasin playa &amp; step-over scarps are invisible at 30&ndash;100 m DEM resolution.</td>
+            <td><strong>Mimic:</strong> Playas, eolian dunes, LiDAR swath boundaries, 24.6% non-LiDAR gap.<br/><strong>Filter:</strong> Flanking subtraction + fold-internal non-LiDAR quantile equalization.</td>
+          </tr>
+          <tr>
+            <td><strong>H74-4 (#4)</strong><br/><em>Cross-Strike Crest + Exact 300 m Submodular Cover</em></td>
+            <td>Structure-tensor cross-strike crest sharpening (zero isotropic blur!) + exact 21-offset lazy-greedy CELF submodular max-cover at <code>d_cat &gt; 2.0 px</code>.</td>
+            <td>Unblurred crest centering preserves 100% of <code>k(0)=1.0</code> kernel weight while maximizing unique <code>300 m</code> fault coverage.</td>
+            <td><strong>Mimic:</strong> Dot clumping in high-relief ranges &amp; 1&ndash;2 px halo around mapped traces.<br/><strong>Filter:</strong> Submodular <code>1 &minus; &prod;(1 &minus; k(d)w_j)</code> saturation + <code>d_cat &gt; 2.0</code> collar.</td>
+          </tr>
+          <tr>
+            <td><strong>H74-5 (#5)</strong><br/><em>Hydrothermal Upflow &amp; Basement Edge Coupling</em></td>
+            <td>DOE GDR #1391 thermal springs/wells, geothermometry, 2 m shallow temperature probes, travertine/opal sinter, and gravity/magnetic basement worms.</td>
+            <td>Quaternary geothermal upflow localizes at unmapped accommodation zones, step-overs, and fault intersections (Faulds et al., 2021).</td>
+            <td><strong>Mimic:</strong> Outflow plumes &amp; non-faulted volcanic pluton margins.<br/><strong>Filter:</strong> Strike-elongated flank worms + multi-domain physical corroboration.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- PART III: EXPERIMENTAL PROGRESSION & FIGURES -->
+    <section class="card">
+      <h2>Part III. Strictly Capped 3-Experiment Progression, Geospatial Map &amp; Uniqueness Audit</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Experiment / Control</th>
+            <th>Evidence Class</th>
+            <th>Pooled Score</th>
+            <th>95% Bootstrap CI</th>
+            <th>Fold NW</th>
+            <th>Fold NE</th>
+            <th>Fold SW</th>
+            <th>Fold SE</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Exp 3: <code>E3-HybridCrestSubmod300</code> (Promoted)</strong></td>
+            <td><span class="badge b-holdout">HOLDOUT-DTI</span></td>
+            <td><strong>0.11745</strong></td>
+            <td><code>[0.09655, 0.13995]</code></td>
+            <td><strong>0.09897</strong></td>
+            <td><strong>0.13230</strong></td>
+            <td><strong>0.08884</strong></td>
+            <td><strong>0.15232</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Exp 2: <code>E2-ResUNetDiffDTI</code> (2D CNN Alone)</strong></td>
+            <td><span class="badge b-holdout">HOLDOUT-DTI</span></td>
+            <td><strong>0.11363</strong></td>
+            <td><code>[0.09463, 0.13412]</code></td>
+            <td>0.09979</td>
+            <td>0.13234</td>
+            <td>0.07947</td>
+            <td>0.14770</td>
+          </tr>
+          <tr>
+            <td><strong>Exp 1: <code>E1-PUDeconfTabOOF</code> (PU LightGBM)</strong></td>
+            <td><span class="badge b-holdout">HOLDOUT-DTI</span></td>
+            <td>0.09263</td>
+            <td><code>[0.07231, 0.11513]</code></td>
+            <td>0.08244</td>
+            <td>0.12208</td>
+            <td>0.07454</td>
+            <td>0.09821</td>
+          </tr>
+          <tr>
+            <td>Control: <code>h33_true_fold_fair</code> (0.2778 Live Record)</td>
+            <td><span class="badge b-holdout">HOLDOUT-DTI</span></td>
+            <td>0.09609</td>
+            <td><code>[0.08334, 0.10934]</code></td>
+            <td>0.08832</td>
+            <td>0.11120</td>
+            <td>0.08292</td>
+            <td>0.10442</td>
+          </tr>
+          <tr>
+            <td>Control: <code>d28_reference</code> (0.2600 Live)</td>
+            <td><span class="badge b-holdout">HOLDOUT-DTI</span></td>
+            <td>0.09189</td>
+            <td><code>[0.07961, 0.10454]</code></td>
+            <td>0.08365</td>
+            <td>0.10527</td>
+            <td>0.08111</td>
+            <td>0.09885</td>
+          </tr>
+          <tr>
+            <td>Control: <code>g49_reference</code> (0.1855 Live)</td>
+            <td><span class="badge b-holdout">HOLDOUT-DTI</span></td>
+            <td>0.03583</td>
+            <td><code>[0.02725, 0.04489]</code></td>
+            <td>0.02431</td>
+            <td>0.05660</td>
+            <td>0.02181</td>
+            <td>0.04579</td>
+          </tr>
+          <tr>
+            <td>Control: Uniform Random Off-Catalogue (37,654 dots)</td>
+            <td><span class="badge b-holdout">HOLDOUT-DTI</span></td>
+            <td>0.04557</td>
+            <td><code>[0.04059, 0.05058]</code></td>
+            <td>0.04420</td>
+            <td>0.03570</td>
+            <td>0.04766</td>
+            <td>0.05331</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <figure>
+        <img src="assets/fig1_holdout_progression.png" alt="Pooled Holdout DTI Progression and Per-Quadrant Results" />
+        <figcaption><strong>Figure 1:</strong> Pooled holdout benchmark ladder and 4-quadrant spatial sweep across Nevada &amp; SE Oregon (<code>n_withheld = 11,321</code> positive fault pixels).</figcaption>
+      </figure>
+
+      <figure>
+        <img src="assets/fig2_spatial_fault_map.png" alt="Spatial Fault Prediction Map and Dixie Valley High-Resolution Inset" />
+        <figcaption><strong>Figure 2:</strong> Real competition grid (<code>3730 &times; 3292</code>, <code>EPSG:32611</code>). Left: 10 m 3DEP slope + mapped <code>existing_faults.tif</code>. Center: Promoted <code>GEMSDOE74</code> submission (<code>37,654</code> dots). Right: 100 m pixel-exact <code>32 &times; 32 km</code> zoom showing unmapped range-front &amp; intrabasin fault strands cleanly respecting <code>d_cat &gt; 2.0 px</code>.</figcaption>
+      </figure>
+
+      <figure>
+        <img src="assets/fig3_canary_uniqueness.png" alt="Pre-Fit Leakage Canary and 251-Raster Uniqueness Scatter" />
+        <figcaption><strong>Figure 3:</strong> Left: Mandatory Rule-4 single-feature holdout AUC test across all 52 channels (max = <code>0.6093 &le; 0.90</code>). Right: Full registry comparison against all <strong>251</strong> SHA-256-verified GeoTIFFs across <code>GEMSDOE01..GEMSDOE73</code> (max <code>|Spearman &rho;| = 0.0824 &le; 0.90</code>; max mutual 3-px overlap = <code>0.5446 &le; 0.70</code>).</figcaption>
+      </figure>
+    </section>
+
+    <!-- PART IV: OFFICIAL VERIFIED LINKS & RUN CARD -->
+    <section class="card">
+      <h2>Part IV. Verified Public Data &amp; Literature Links + Machine-Readable Run Card</h2>
+      <ul>
+        <li><strong>DrivenData Competition Portal &amp; Live Leaderboard:</strong> <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/" target="_blank" rel="noopener">https://www.drivendata.org/competitions/306/competition-doe-gems/</a> &middot; <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/" target="_blank" rel="noopener">Live Leaderboard</a></li>
+        <li><strong>Official DOE / NLR Prize Rules (Sept 2026):</strong> <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf" target="_blank" rel="noopener">https://docs.nlr.gov/docs/fy26osti/96647.pdf</a></li>
+        <li><strong>Official DrivenData U-Net Reference Solution (Lipor, 2026):</strong> <a href="https://github.com/drivendataorg/gems-prize-reference-solution" target="_blank" rel="noopener">https://github.com/drivendataorg/gems-prize-reference-solution</a></li>
+        <li><strong>Stanford Geothermal Workshop Baseline Paper (Hermant et al., 2025):</strong> <a href="https://pangea.stanford.edu/ERE/db/GeoConf/papers/SGW/2025/Hermant.pdf" target="_blank" rel="noopener">https://pangea.stanford.edu/ERE/db/GeoConf/papers/SGW/2025/Hermant.pdf</a></li>
+        <li><strong>USGS GeoDAWN Airborne Magnetic &amp; Radiometric Data Release:</strong> <a href="https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and" target="_blank" rel="noopener">USGS GeoDAWN Data Release (doi:10.5066/P93LGLVQ)</a></li>
+        <li><strong>DOE GDR #1391 INGENIOUS Great Basin Play Fairway Dataset:</strong> <a href="https://gdr.openei.org/submissions/1391" target="_blank" rel="noopener">https://gdr.openei.org/submissions/1391 (doi:10.15121/1881483)</a> &middot; <a href="https://gbcge.org/current-projects/ingenious/" target="_blank" rel="noopener">GBCGE INGENIOUS Project</a></li>
+      </ul>
+
+      <h3>Protocol Rule 5 — Complete Machine-Readable Run Card</h3>
+      <pre><code id="runcard-block">{
+  "project": "GEMSDOE74",
+  "verdict": "promote",
+  "ready_to_download_and_submit": true,
+  "submission_name": "GEMSDOE74-PURESUNET-DIFFDTI-37654",
+  "submission_note": "GEMSDOE74 PU 2D-ResUNet DiffDTI(0.2,0.8) + 52ch 3DEP/LiDAR/GDR/Chi + CrestSubmod300: 37654 off-cat dots, zeros (7deb4f76)",
+  "submission_file": "docs/downloads/gems74-puresunet-diffdti-submod300-37654-20261021T030000Z-7deb4f76-zeros.tif",
+  "raster_sha256": "8dbb1bba674f38a15b061601d3b28b8a92d4186896a8ba3ec16a58757daeb38a",
+  "zip_sha256": "443d1334488205dfe7d2c1304f2fcc19c2ab5ec7b63ef58c8e6a702d26e4ce1a",
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "withheld_positive_pixels": 11321,
+    "winner_experiment": "exp3_hybrid_crest_submod300",
+    "score": 0.117451,
+    "ci95": [0.096547, 0.139947],
+    "paired_delta_vs_h33_true_fold_fair": {
+      "delta": 0.021364,
+      "ci95": [0.008383, 0.035023],
+      "statistically_significant_95pct": true
+    }
+  },
+  "registry_correlation_overlap": {
+    "registry_rasters_checked": 251,
+    "stage1_continuous_surface_max_abs_spearman": 0.173683,
+    "stage2_final_tif_max_abs_spearman": 0.082403,
+    "stage2_final_tif_max_mutual_3px_overlap": 0.544592,
+    "passes_all_uniqueness_gates": true
+  },
+  "validator_output": {
+    "gems57_all_checks_passed": true,
+    "gems71_passed": true,
+    "no_nan_inside_footprint": true,
+    "no_nan_anywhere": true,
+    "values_in_0_1": true,
+    "crs_epsg_32611": true,
+    "dimensions_3730x3292": true,
+    "transform_match": true,
+    "zero_dots_on_mapped_catalogue": true
+  }
+}</code></pre>
+    </section>
+
+    <footer>
+      <div><code>buffedlizard55-lab/GEMSDOE74</code> &middot; Verified SHA-256 Reproducible Geothermal Fault Discovery</div>
+      <div><a href="executive-summary.html">Executive Upload Guide</a> &middot; <a href="evidence/holdout_evaluation.json">Holdout Receipt</a> &middot; <a href="evidence/leakage_canary.json">Leakage Canary</a> &middot; <a href="evidence/irregularities.json">Irregularities (12)</a></div>
+    </footer>
+  </main>
+
+  <script>
+    function copyText(id, btn) {
+      const txt = document.getElementById(id).textContent.trim();
+      navigator.clipboard.writeText(txt).then(() => {
+        const orig = btn.textContent;
+        btn.textContent = 'Copied!';
+        setTimeout(() => { btn.textContent = orig; }, 1600);
+      });
+    }
+  </script>
+</body>
+</html>

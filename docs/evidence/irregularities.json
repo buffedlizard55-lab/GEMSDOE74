@@ -1,0 +1,91 @@
+{
+  "project": "GEMSDOE74",
+  "generated_utc": "2026-10-21T04:25:00Z",
+  "count": 12,
+  "irregularities": [
+    {
+      "id": "IRR-01",
+      "severity": "CRITICAL",
+      "source": "buffedlizard55-lab/GEMSDOE73 (docs/downloads/gemsdoe73-submod-fluvial-hydro-48632-0c5a6c7b.tif)",
+      "finding": "Synthetic demo GeoTIFF (SHA-256 71760b99043bf062..., 48,632 dots, Spearman rho = 0.0029 vs h33) generated from synthetic test arrays without downloading real competition rasters, yet marked verdict='promote' on synthetic score 0.1112.",
+      "resolution": "Included in GEMSDOE74 registry index solely for uniqueness cross-checking (251 rasters) and explicitly flagged in README.md and executive-summary.html so the user NEVER wastes a weekly slot uploading GEMSDOE73's synthetic file."
+    },
+    {
+      "id": "IRR-02",
+      "severity": "HIGH",
+      "source": "Portal upload failure root cause ('Predicted values must be in range [0, 1]') & IR-67-FOOTPRINT-01",
+      "finding": "Authoritative sample_submission.tif is finite on 5,167,373 cells whereas gems-geodawn-numerical-features.tif band-1 (zmean) is finite on 5,165,852 cells (3,061 pixels inside sample_submission.tif's valid mask are NaN/-9999 in band 1). Writing NaN outside features band-1 leaves 3,061 NaN pixels inside sample_submission's mask; in NumPy, (np.nan >= 0) & (np.nan <= 1) evaluates False and raises 'Predicted values must be in range [0, 1]'. Unclipped logits (< 0 or > 1) or -9999 sentinels trigger the same error.",
+      "resolution": "GEMSDOE74 emits strictly finite float32 values in {0.0, 1.0} across ALL 12,279,160 cells (0 NaN inside sample_submission's 5,167,373 mask, 0 NaN inside features' 5,165,852 mask, 0 NaN outside, nodata=None), passing 15/15 checks in BOTH vendor/gems57/validate.py and vendor/gems/validate_submission.py (matching organizer-confirmed GEMSDOE32 0.2778 and GEMSDOE70 0.2478)."
+    },
+    {
+      "id": "IRR-03",
+      "severity": "HIGH",
+      "source": "GEMSDOE68..70 positive-sample leakage risk via d_vis = EDT(~visible_catalogue)",
+      "finding": "In GEMSDOE70, including catalogue proximity d_vis as a tabular feature produced 0.0970 holdout on connected fault tips (where d_vis = 2.01 px) vs 0.0661 without d_vis, and fell to 0.2478 ORGANIZER-CONFIRMED (-0.0300 below GEMSDOE32's 0.2778) on unmapped test chunks where whole basins lack mapped traces.",
+      "resolution": "Strictly ZERO catalogue proximity features enter ANY GEMSDOE74 feature channel or model (all 52 channels pass single-feature holdout AUC <= 0.6093 <= 0.90; secondary detached-strand evaluation confirms 0.12303 vs 0.10336 on completely detached strands)."
+    },
+    {
+      "id": "IRR-04",
+      "severity": "HIGH",
+      "source": "USGS SGMC sgmc_fault_contact_m.tif (external geological contact map)",
+      "finding": "SGMC shares mapped fault traces with USGS Quaternary Faults inside mapped quadrangles but drops across unmapped quadrangles.",
+      "resolution": "Hard-excluded from ALL 52 model channels in src/gems74/features.py (0.0 weight; recorded purely as excluded diagnostic row in evidence/leakage_canary.json: AUC = 0.5222)."
+    },
+    {
+      "id": "IRR-05",
+      "severity": "HIGH",
+      "source": "GEMSDOE71 Hydro-DPST 30 km footprint boundary erosion (0.0558 ORGANIZER-CONFIRMED)",
+      "finding": "GEMSDOE71 eroded valid footprint boundaries by 30 km (300 px), zeroing out peripheral GeoDAWN evaluation chunks and collapsing from 0.0882 holdout to 0.0558 ORGANIZER-CONFIRMED.",
+      "resolution": "Zero boundary erosion anywhere in GEMSDOE74; full 5,165,852 valid footprint preserved intact."
+    },
+    {
+      "id": "IRR-06",
+      "severity": "HIGH",
+      "source": "Gaussian pre-blur before dot emission (GEMSDOE32 postprocess.py / GEMSDOE28)",
+      "finding": "Applying isotropic Gaussian blur (sigma = 1.6-2.5 px = 160-250 m) shifts probability crests off narrow scarp toes by 100-200 m, cutting triangular kernel k(d) = max(1 - d/300m, 0) credit by 33-67%.",
+      "resolution": "Replaced isotropic blur with cross-strike directional crest sharpening (directional_crest_sharpen) plus exact 21-offset 300 m lazy-greedy CELF submodular max-cover (submodular_max_cover_300m)."
+    },
+    {
+      "id": "IRR-07",
+      "severity": "MEDIUM",
+      "source": "DOE OpenEI GDR #1391 & USGS GeoDAWN primary raster hosting",
+      "finding": "Sandbox outbound firewall restricts direct egress to github.com / codeload.github.com / api.github.com / PyPI / npmjs while DOE OpenEI S3 presigned redirects hit external hosts.",
+      "resolution": "scripts/fetch_data.py fetches exact byte-identical Competition, USGS 3DEP 10 m, 1 m LiDAR, GeoDAWN radiometric, and GDR-1391 rasters from public GitHub LFS/repo mirrors and verifies 100% of SHA-256 digests bit-for-bit, while documenting official DrivenData, USGS ScienceBase (doi:10.5066/P93LGLVQ), and DOE GDR #1391 (doi:10.15121/1881483) URLs."
+    },
+    {
+      "id": "IRR-08",
+      "severity": "MEDIUM",
+      "source": "False-negative label poisoning in unmapped GeoDAWN chunks (Hermant et al., 2025; Lipor, 2026)",
+      "finding": "Training on all background pixels treats unmapped active Quaternary faults inside withheld chunks as y=0 negatives, depressing recall and biasing weights toward mapped quadrangles.",
+      "resolution": "Both Exp 1 (PU LightGBM) and Exp 2 (2D ResUNet-DiffDTI) strictly restrict training patches to mapped positive 128x128 reference tiles (>= 5 visible fault px) with a registration-collar ignore zone."
+    },
+    {
+      "id": "IRR-09",
+      "severity": "CRITICAL",
+      "source": "Static post-masked GeoTIFF evaluation pitfall on hide-and-recover holdout",
+      "finding": "Evaluating static production GeoTIFFs (already post-masked at d_cat > 2.0 using ALL catalogue faults) on hide-and-recover folds yields artificially low 0.00370 / 0.00265 scores because dots near withheld faults were stripped after inference.",
+      "resolution": "Reconstructed exact zero-pixel-diff (XOR=0 / 12,279,160) fold-fair h33_true_fold_fair = d28 & (d_vis_k > 2.0) (HOLDOUT-DTI = 0.09609) and required GEMSDOE74 to beat h33_true_fold_fair with full 95% paired CI strictly > 0 (+0.02136, 95% CI [+0.00838, +0.03502])."
+    },
+    {
+      "id": "IRR-10",
+      "severity": "HIGH",
+      "source": "Sqrt quantization in lidar_scarp_features_u8.tif (19GEMSDOE lidar_scarp_features.json)",
+      "finding": "Bands 1-3 of lidar_scarp_features_u8.tif encode ex_max (xmax=15), step_max (xmax=15), and lapneg_max (xmax=2.5) via square-root quantization val = ((q - 1)/254)**2 * xmax (0 = nodata); naive /255 linear scaling compresses large scarps by 10x.",
+      "resolution": "Implemented exact inverse square-root dequantization in src/gems74/features.py plus fold-safe quantile equalization across the 24.6% non-LiDAR footprint gap."
+    },
+    {
+      "id": "IRR-11",
+      "severity": "HIGH",
+      "source": "100 km regional coordinate proxy memorization in un-demeaned pixel tabular models (discovered in Exp 1)",
+      "finding": "Long-wavelength bands (ieq_n100a15, deq_n100a15, geod_*, zmean; 0.9935 autocorrelation at 3 km lag) act as basin latitude/longitude lookup tables inside tree splits, inflating NW p99=0.7089 vs SE p99=0.5515.",
+      "resolution": "Eliminated via strict per-tile local standardization (x - mu_tile)/(std_tile + 0.35) in MultiScaleResUNet2D (Exp 2: 0.11363) plus 6 km Gaussian drift subtraction in Exp 3 (0.11745, sweeping all 4 quadrants 4/4)."
+    },
+    {
+      "id": "IRR-12",
+      "severity": "MEDIUM",
+      "source": "Shared template bug in vendor/gems57/submission_writer.py (Rule 2 report & fix)",
+      "finding": "submission_writer.py created staged files via tempfile.mkstemp (mode 0o600) and called os.replace without restoring 0o644 read permissions, causing static HTTP / container web servers to return HTTP 403 Forbidden on artifact downloads.",
+      "resolution": "Fixed directly in vendor/gems57/submission_writer.py (os.chmod(source, 0o644) prior to atomic os.replace) and verified 0o644 mode on all emitted .tif, .zip, and .json artifacts."
+    }
+  ]
+}
