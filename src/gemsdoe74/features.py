@@ -1,11 +1,11 @@
 """Synthetic feature generators for H74-1 basement-step ridge.
 
-When data/training_features.tif is present, real bands are used (see scripts/prepare_data.py).
+WARNING: this module only generates synthetic test fields; no real-data loading path exists.
 When not, we synthesize physically plausible proxy fields that replicate the statistics and
 spatial fabric of the real bands so the site can still audit the emission rule and produce
 a portal-safe TIF without a DrivenData login.
 
-Real bands involved (official names, per problem page):
+Historical unverified band claims (do not use these indices without real metadata):
 - depth_to_base_surf (band 15): "Depth to basement surface - thickness of sedimentary cover"
 - det_elev, det_elev_slope (bands 12,13)
 - iso_grav_anom, slope (bands 13,14)

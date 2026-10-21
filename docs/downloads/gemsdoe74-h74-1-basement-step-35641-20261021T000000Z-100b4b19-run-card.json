@@ -3,29 +3,15 @@
   "hypothesis": "H74-1 Basement-step gradient-magnitude ridge gated by surface quiescence",
   "mechanism": "Ridge extraction on gradient magnitude of depth_to_base_surf (cover thickness) at 3 scales, gated by low detrended-elevation slope (surface quiescence) and weighted by concealment (thicker cover)",
   "non_fault_mimic": "Paleochannel fill or lacustrine sediment lens that also produces a cover-thickness step and low surface slope (e.g., Lahontan paleolake deposits)",
-  "holdout_dti_mean": 0.1936974645821394,
-  "holdout_dti_per_fold": [
-    0.1391177767401265,
-    0.10446590390234997,
-    0.26572537599871665,
-    0.26548080168736454
-  ],
-  "holdout_dti_ci95": [
-    0.12179184032123823,
-    0.2656030888430406
-  ],
-  "random_baseline_mean": 0.040465170248097905,
-  "delta_vs_random": 0.1532322943340415,
-  "n_withheld_positives": 12923,
-  "leakage_canary": [
-    {
-      "feature": "h74_1_field",
-      "auc": 0.68,
-      "flag_leakage": false
-    }
-  ],
-  "correlation_vs_registry": 0.42,
-  "overlap_within_3px_pct": 38.2,
+  "holdout_dti_mean": null,
+  "holdout_dti_per_fold": null,
+  "holdout_dti_ci95": null,
+  "random_baseline_mean": null,
+  "delta_vs_random": null,
+  "n_withheld_positives": null,
+  "leakage_canary": null,
+  "correlation_vs_registry": null,
+  "overlap_within_3px_pct": null,
   "raster_sha256": "af4afc84b6ff758ccae86dc116c1b14dd1b66de48462899eebc4d5b43d7aef27",
   "raster_shape": [
     3730,
@@ -82,10 +68,12 @@
   "validator_passed": true,
   "submission_name": "GEMSDOE74-H74-1-BASEMENT-STEP",
   "submission_note": "GEMSDOE74 H74-1 basement-step B=2 d2.8 35641 dots; all-finite 0-1; zeros-outside",
-  "verdict": "promote",
+  "verdict": "negative",
   "lane_id": "h74-1",
   "emitted_dots": 35641,
   "on_catalogue_dots": 0,
   "min_distance_px": 2.8,
-  "seed": 74
+  "seed": 74,
+  "retracted": true,
+  "retraction_reason": "Synthetic truth and fields; canary and registry comparisons hard-coded. Not HOLDOUT-DTI evidence."
 }

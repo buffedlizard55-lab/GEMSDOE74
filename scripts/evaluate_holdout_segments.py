@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
+"""Historical, noncompliant diagnostic evaluator — NOT promotion evidence.
+No buffered fold-local prediction regeneration. Execution is disabled pending repair
+in this shared evaluator; do not use historical results as protocol HOLDOUT-DTI.
 """
-Segment-based holdout evaluation (proper hide-and-recover with whole fault segments).
-Mimics GEMSDOE32 holdout.py: per quadrant, hide 20% of fault segments that touch test quadrant,
-with 1.5km collar (disabled in this lightweight version for speed), scorer = DTI pooled.
-"""
+if __name__ == "__main__":
+    raise SystemExit("BLOCKED: historical evaluator lacks buffered fold-local regeneration; see README")
+
 import pathlib, json, numpy as np, rasterio
 from scipy.ndimage import label, distance_transform_edt, binary_dilation
 import sys

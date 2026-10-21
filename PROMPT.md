@@ -1,6 +1,6 @@
-# Full task prompt — read every session
+# Task requirements — read every session
 
-See README.md for the condensed version. This file stores the verbatim prompt requirements for auditability.
+See README.md for the condensed version. This file is a condensed requirements record, NOT a verbatim transcript. The original user message is the authority.
 
 - Generate a **unique TIF submission** (not a copy) with obvious download, executive summary, and portal-safe validation (values in [0,1], no sentinel, no NaN inside footprint, CRS/shape/transform match).
 - Fix `Predicted values must be in range [0, 1]` by engineering out both failure modes: float32 sentinel `-3.402823e38` and NaN/nodata handling; verify by re-reading bytes.
@@ -16,3 +16,12 @@ See README.md for the condensed version. This file stores the verbatim prompt re
 - No DrivenData auth available in sandbox → cannot auto-download training_features.tif, labels.tif, sample_submission.tif, 1m_DEM_links.csv; `scripts/download_competition_data.sh` must be run on an unrestricted machine into data/ then `scripts/prepare_data.py`.
 
 Trust date: 2026-10-21 UTC. Verify all live numbers against the official leaderboard snapshot (human-read, not scraped per Terms of Use).
+
+## Continuing-session requirements (2026-10-21)
+Read README and this record first. Work on the existing Arena branch only. Three passes:
+implementation, bug/edge-case review, full request recheck. Open a PR and merge when tests pass.
+Keep Core Values (Maximize P(Win), Own the Outcome) central; do not spend a competition slot.
+Use the existing H74-1 basement-step/quiescence lane unless the missing method paragraph is supplied.
+Do not claim the user's inconsistent leaderboard figures are organizer-confirmed without receipts.
+Do not replace unavailable measured geology with synthetic fields or invented canaries.
+Do not claim a summarized prompt is verbatim. Preserve historical evidence but label retractions.
