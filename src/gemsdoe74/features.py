@@ -1,18 +1,16 @@
-"""Synthetic feature generators for H74-1 basement-step ridge.
+"""Offline unit-test synthetic fixtures ONLY (never used for competition submissions).
 
-When data/training_features.tif is present, real bands are used (see scripts/prepare_data.py).
-When not, we synthesize physically plausible proxy fields that replicate the statistics and
-spatial fabric of the real bands so the site can still audit the emission rule and produce
-a portal-safe TIF without a DrivenData login.
+All production competition features and GeoTIFF submissions live in
+`src/gems74/radon_discovery.py` + `scripts/run_g74_experiments.py` using SHA-256-verified
+official competition data (`scripts/restore_data.py`).
 
-Real bands involved (official names, per problem page):
-- depth_to_base_surf (band 15): "Depth to basement surface - thickness of sedimentary cover"
-- det_elev, det_elev_slope (bands 12,13)
-- iso_grav_anom, slope (bands 13,14)
-- mag fields: tmi, tmi_vg, tmi_hg, rtp, tc (bands 1-6,9,14)
-
-H74-1 uses: depth_to_base_surf, det_elev_slope, iso_grav_anom
-Signature: multi-scale ridge extraction on gradient-magnitude of depth_to_base_surf, gated by low det_elev_slope.
+Verified 1-based band numbers in official `training_features.tif` (IR-74-36 audit fix):
+- B01: mag_anom | B02: rtp | B03: tmi_hg | B04: geod_2ndinv | B05: iso_grav_anom_slope
+- B06: tc (proved r=0.99961 match to GeoDAWN TC radiometric exposure, flagging IR-74-35)
+- B07: geod_shearrate | B08: geod_dilaterate | B09: tmi_vg | B10: deq_n100a15
+- B11: iso_grav_anom_vg | B12: det_elev | B13: iso_grav_anom | B14: tmi
+- B15: depth_to_base_surf | B16: ieq_n100a15 | B17: cond_surf | B18: iso_grav_anom_hg
+- B19: det_elev_slope (terrain slope in degrees)
 """
 from __future__ import annotations
 import numpy as np

@@ -1,0 +1,348 @@
+{
+  "max_symmetric_auc": 0.78499,
+  "max_feature": "vis_tip_process_zone",
+  "threshold": 0.9,
+  "passed": true,
+  "features": {
+    "core_mag_anom": {
+      "auc_raw": 0.51037,
+      "auc_symmetric": 0.51037,
+      "family": "X_phys"
+    },
+    "core_rtp": {
+      "auc_raw": 0.51795,
+      "auc_symmetric": 0.51795,
+      "family": "X_phys"
+    },
+    "core_tmi_hg": {
+      "auc_raw": 0.52903,
+      "auc_symmetric": 0.52903,
+      "family": "X_phys"
+    },
+    "core_geod_2ndinv": {
+      "auc_raw": 0.5667,
+      "auc_symmetric": 0.5667,
+      "family": "X_phys"
+    },
+    "core_iso_grav_anom_slope": {
+      "auc_raw": 0.523,
+      "auc_symmetric": 0.523,
+      "family": "X_phys"
+    },
+    "core_tc_rad_exposure": {
+      "auc_raw": 0.47023,
+      "auc_symmetric": 0.52977,
+      "family": "X_phys"
+    },
+    "core_geod_shearrate": {
+      "auc_raw": 0.56639,
+      "auc_symmetric": 0.56639,
+      "family": "X_phys"
+    },
+    "core_geod_dilaterate": {
+      "auc_raw": 0.51633,
+      "auc_symmetric": 0.51633,
+      "family": "X_phys"
+    },
+    "core_tmi_vg": {
+      "auc_raw": 0.48727,
+      "auc_symmetric": 0.51273,
+      "family": "X_phys"
+    },
+    "core_deq_n100a15": {
+      "auc_raw": 0.53668,
+      "auc_symmetric": 0.53668,
+      "family": "X_phys"
+    },
+    "core_iso_grav_anom_vg": {
+      "auc_raw": 0.51364,
+      "auc_symmetric": 0.51364,
+      "family": "X_phys"
+    },
+    "core_det_elev": {
+      "auc_raw": 0.51277,
+      "auc_symmetric": 0.51277,
+      "family": "X_phys"
+    },
+    "core_iso_grav_anom": {
+      "auc_raw": 0.45957,
+      "auc_symmetric": 0.54043,
+      "family": "X_phys"
+    },
+    "core_tmi": {
+      "auc_raw": 0.50979,
+      "auc_symmetric": 0.50979,
+      "family": "X_phys"
+    },
+    "core_depth_to_base_surf": {
+      "auc_raw": 0.52453,
+      "auc_symmetric": 0.52453,
+      "family": "X_phys"
+    },
+    "core_ieq_n100a15": {
+      "auc_raw": 0.54257,
+      "auc_symmetric": 0.54257,
+      "family": "X_phys"
+    },
+    "core_cond_surf": {
+      "auc_raw": 0.47921,
+      "auc_symmetric": 0.52079,
+      "family": "X_phys"
+    },
+    "core_iso_grav_anom_hg": {
+      "auc_raw": 0.49181,
+      "auc_symmetric": 0.50819,
+      "family": "X_phys"
+    },
+    "core_det_elev_slope": {
+      "auc_raw": 0.56388,
+      "auc_symmetric": 0.56388,
+      "family": "X_phys"
+    },
+    "phys_mag_analytic_sig": {
+      "auc_raw": 0.51521,
+      "auc_symmetric": 0.51521,
+      "family": "X_phys"
+    },
+    "phys_grav_analytic_sig": {
+      "auc_raw": 0.50841,
+      "auc_symmetric": 0.50841,
+      "family": "X_phys"
+    },
+    "phys_basement_grad_100m": {
+      "auc_raw": 0.51121,
+      "auc_symmetric": 0.51121,
+      "family": "X_phys"
+    },
+    "phys_basement_grad_400m": {
+      "auc_raw": 0.51295,
+      "auc_symmetric": 0.51295,
+      "family": "X_phys"
+    },
+    "phys_cond_grad_200m": {
+      "auc_raw": 0.52344,
+      "auc_symmetric": 0.52344,
+      "family": "X_phys"
+    },
+    "suppressor_playa_sink": {
+      "auc_raw": 0.41052,
+      "auc_symmetric": 0.58948,
+      "family": "X_phys"
+    },
+    "phys_hydrothermal_cond_nonplaya": {
+      "auc_raw": 0.47789,
+      "auc_symmetric": 0.52211,
+      "family": "X_phys"
+    },
+    "rad_K": {
+      "auc_raw": 0.46375,
+      "auc_symmetric": 0.53625,
+      "family": "X_phys"
+    },
+    "rad_Th": {
+      "auc_raw": 0.47924,
+      "auc_symmetric": 0.52076,
+      "family": "X_phys"
+    },
+    "rad_U": {
+      "auc_raw": 0.47251,
+      "auc_symmetric": 0.52749,
+      "family": "X_phys"
+    },
+    "rad_ThK": {
+      "auc_raw": 0.50286,
+      "auc_symmetric": 0.50286,
+      "family": "X_phys"
+    },
+    "rad_UK": {
+      "auc_raw": 0.50904,
+      "auc_symmetric": 0.50904,
+      "family": "X_phys"
+    },
+    "rad_UTh": {
+      "auc_raw": 0.5102,
+      "auc_symmetric": 0.5102,
+      "family": "X_phys"
+    },
+    "phys_deep_mag_up150_grad": {
+      "auc_raw": 0.5298,
+      "auc_symmetric": 0.5298,
+      "family": "X_phys"
+    },
+    "suppressor_shallow_mag_clinker": {
+      "auc_raw": 0.50814,
+      "auc_symmetric": 0.50814,
+      "family": "X_phys"
+    },
+    "topo10_slope_p90": {
+      "auc_raw": 0.56931,
+      "auc_symmetric": 0.56931,
+      "family": "X_phys"
+    },
+    "topo10_relief_local": {
+      "auc_raw": 0.56613,
+      "auc_symmetric": 0.56613,
+      "family": "X_phys"
+    },
+    "topo10_curv_prof_absmax": {
+      "auc_raw": 0.58572,
+      "auc_symmetric": 0.58572,
+      "family": "X_phys"
+    },
+    "topo10_aspect_coherence": {
+      "auc_raw": 0.49853,
+      "auc_symmetric": 0.50147,
+      "family": "X_phys"
+    },
+    "topo10_hs_lineament": {
+      "auc_raw": 0.57712,
+      "auc_symmetric": 0.57712,
+      "family": "X_phys"
+    },
+    "chi10_log10_drainage_area": {
+      "auc_raw": 0.5004,
+      "auc_symmetric": 0.5004,
+      "family": "X_phys"
+    },
+    "chi10_ksn_steepness": {
+      "auc_raw": 0.5004,
+      "auc_symmetric": 0.5004,
+      "family": "X_phys"
+    },
+    "h74_interfluve_scarp_step": {
+      "auc_raw": 0.5004,
+      "auc_symmetric": 0.5004,
+      "family": "X_phys"
+    },
+    "lidar_coverage_mask": {
+      "auc_raw": 0.53218,
+      "auc_symmetric": 0.53218,
+      "family": "X_phys"
+    },
+    "lidar_scarp_step": {
+      "auc_raw": 0.5681,
+      "auc_symmetric": 0.5681,
+      "family": "X_phys"
+    },
+    "lidar_cross_dipole": {
+      "auc_raw": 0.5846,
+      "auc_symmetric": 0.5846,
+      "family": "X_phys"
+    },
+    "lidar_strike_coh100": {
+      "auc_raw": 0.5235,
+      "auc_symmetric": 0.5235,
+      "family": "X_phys"
+    },
+    "h74_radon16_mag_max": {
+      "auc_raw": 0.52766,
+      "auc_symmetric": 0.52766,
+      "family": "X_phys"
+    },
+    "h74_radon16_mag_anisotropy": {
+      "auc_raw": 0.52117,
+      "auc_symmetric": 0.52117,
+      "family": "X_phys"
+    },
+    "h74_radon32_subsurf_concordance": {
+      "auc_raw": 0.54151,
+      "auc_symmetric": 0.54151,
+      "family": "X_phys"
+    },
+    "h74_radon16_joint_lineament": {
+      "auc_raw": 0.54534,
+      "auc_symmetric": 0.54534,
+      "family": "X_phys"
+    },
+    "h74_radon16_lineament_anisotropy": {
+      "auc_raw": 0.51084,
+      "auc_symmetric": 0.51084,
+      "family": "X_phys"
+    },
+    "h74_bajada_contour_orthogonality": {
+      "auc_raw": 0.5047,
+      "auc_symmetric": 0.5047,
+      "family": "X_phys"
+    },
+    "h74_along_strike_elev_std_log": {
+      "auc_raw": 0.55809,
+      "auc_symmetric": 0.55809,
+      "family": "X_phys"
+    },
+    "suppressor_lahontan_shoreline": {
+      "auc_raw": 0.45112,
+      "auc_symmetric": 0.54888,
+      "family": "X_phys"
+    },
+    "h74_wallace_bott_kinematics": {
+      "auc_raw": 0.55446,
+      "auc_symmetric": 0.55446,
+      "family": "X_phys"
+    },
+    "gdr1391_thermal_upflow_2km": {
+      "auc_raw": 0.48565,
+      "auc_symmetric": 0.51435,
+      "family": "X_phys"
+    },
+    "gdr1391_volcanic_vent_3km": {
+      "auc_raw": 0.48737,
+      "auc_symmetric": 0.51263,
+      "family": "X_phys"
+    },
+    "ctx_scarp_600m": {
+      "auc_raw": 0.55613,
+      "auc_symmetric": 0.55613,
+      "family": "X_phys"
+    },
+    "ctx_subsurf_1800m": {
+      "auc_raw": 0.54473,
+      "auc_symmetric": 0.54473,
+      "family": "X_phys"
+    },
+    "zmean_elevation_m": {
+      "auc_raw": 0.52633,
+      "auc_symmetric": 0.52633,
+      "family": "X_phys"
+    },
+    "raw_slope_degrees": {
+      "auc_raw": 0.56388,
+      "auc_symmetric": 0.56388,
+      "family": "X_phys"
+    },
+    "vis_log_dist": {
+      "auc_raw": 0.24498,
+      "auc_symmetric": 0.75502,
+      "family": "X_mech_visible"
+    },
+    "vis_stepover_corridor_1km": {
+      "auc_raw": 0.76389,
+      "auc_symmetric": 0.76389,
+      "family": "X_mech_visible"
+    },
+    "vis_strike_beam_1200m": {
+      "auc_raw": 0.73048,
+      "auc_symmetric": 0.73048,
+      "family": "X_mech_visible"
+    },
+    "vis_strike_beam_2800m": {
+      "auc_raw": 0.76415,
+      "auc_symmetric": 0.76415,
+      "family": "X_mech_visible"
+    },
+    "vis_tip_process_zone": {
+      "auc_raw": 0.78499,
+      "auc_symmetric": 0.78499,
+      "family": "X_mech_visible"
+    },
+    "vis_belt_density_3km": {
+      "auc_raw": 0.73328,
+      "auc_symmetric": 0.73328,
+      "family": "X_mech_visible"
+    },
+    "vis_belt_density_10km": {
+      "auc_raw": 0.64291,
+      "auc_symmetric": 0.64291,
+      "family": "X_mech_visible"
+    }
+  }
+}

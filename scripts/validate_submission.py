@@ -49,6 +49,7 @@ def validate_submission_file(
     if template_path is None:
         template_path = _find_default_file([
             "data/sample_submission.tif",
+            "/tmp/gems_data/sample_submission.tif",
             "/tmp/gems74_data/sample_submission.tif",
             "/tmp/gems74_workspace/data/sample_submission.tif",
         ])
@@ -56,6 +57,8 @@ def validate_submission_file(
         catalogue_path = _find_default_file([
             "data/labels.tif",
             "data/existing_faults.tif",
+            "/tmp/gems_data/labels.tif",
+            "/tmp/gems_data/existing_faults.tif",
             "/tmp/gems74_data/labels.tif",
             "/tmp/gems74_workspace/data/labels.tif",
         ])
