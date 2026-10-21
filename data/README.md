@@ -1,10 +1,12 @@
 # Local competition data (not committed)
 
-Place only the official, licensed competition downloads here. The initiating project brief identifies the required files as:
+Keep raw rasters and derived caches here only when obtained through authorized sources; Git ignores everything under `data/` except this file. The project brief identifies these required official inputs:
 
 - `training_features.tif`
 - `labels.tif`
 - `sample_submission.tif`
 - `1m_DEM_links.csv`
 
-The current checkout contains none of these data files. Access is reported to require a DrivenData login; this repository does not store credentials and must not scrape or bypass that access control. Obtain the inputs through the official competition data page, verify the published metadata and hashes when available, and keep raw rasters/caches out of Git. The shared template's expected cache layout and preparation steps are not present in this repository; do not invent a substitute layout or download script.
+None is currently present in this checkout. Competition access is reported to require a DrivenData login; do not store credentials or bypass that access control. Obtain files through the official competition data page and record provenance, licence, grid metadata, and hashes.
+
+`scripts/fetch_data.sh` is a partial, hash-pinned mirror from another owner repository, not an official download and not the full competition dataset. It was not run. It does not fetch `training_features.tif`, `1m_DEM_links.csv`, or the shared cached feature stack. Do not treat mirror files as official provenance or invent a feature-cache layout in place of the shared template.

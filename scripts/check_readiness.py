@@ -29,7 +29,10 @@ REQUIRED_INPUTS = {
 }
 REQUIRED_SHARED_TOOLS = {
     "holdout_evaluator": Path("scripts/evaluate_holdout.py"),
-    "submission_writer": Path("scripts/submission_writer.py"),
+    "buffered_segment_engine": Path("scripts/evaluate_holdout_segments.py"),
+    "submission_writer": Path("scripts/generate_submission.py"),
+    "independent_validator": Path("scripts/validate_submission.py"),
+    "metric_implementation": Path("src/gems74/metric.py"),
 }
 SHA256_RE = re.compile(r"^[0-9a-f]{64}$")
 
@@ -239,6 +242,7 @@ def _receipt_checks(manifest: dict[str, Any], root: Path) -> tuple[dict[str, boo
         and validator.get("reread_from_disk") is True
         and validator.get("no_nan_inside_footprint") is True
         and validator.get("all_values_in_allowed_range") is True
+        and validator.get("no_nodata_value") is True
         and validator.get("crs_match") is True
         and validator.get("shape_match") is True
         and validator.get("transform_match") is True

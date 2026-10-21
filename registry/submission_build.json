@@ -1,0 +1,29 @@
+{
+  "schema_version": "gemsdoe74-archived-build-record-v1",
+  "artifact_status": "ARCHIVED_EXPERIMENT_NOT_APPROVED",
+  "submission_eligible": false,
+  "download_enabled": false,
+  "primary": "archive/h74-a/gems74-h74-alt-spring-39500-20261021T000000Z-52f76038-zeros.tif",
+  "primary_sha256": "f745fdb0bcc7b09c73e9ca5460ec81b3628421d3516d514e63720bd547d14597",
+  "primary_size_bytes": 136942,
+  "nan_twin": "archive/h74-a/gems74-h74-alt-spring-39500-20261021T000000Z-52f76038-nan.tif",
+  "zip": "archive/h74-a/gems74-h74-alt-spring-39500-20261021T000000Z-52f76038-zeros.zip",
+  "emitted_positive_pixels": 39500,
+  "on_catalogue_positive_pixels": 0,
+  "historical_format_receipt": "archive/h74-a/checks-gems74-h74-alt-spring-39500-20261021T000000Z-52f76038-zeros.json",
+  "holdout": {
+    "label": "HOLDOUT-DTI",
+    "evaluator_version": "v0.2-segment-proxy",
+    "withheld_positive_count": 12088,
+    "candidate_dti": 0.001619363628814761,
+    "random_control_dti": 0.031034354606390223,
+    "confidence_interval_95_percent": null,
+    "buffer_meters": 0,
+    "protocol_compliant": false,
+    "status": "NEGATIVE_NONCOMPLIANT_PROXY_NOT_A_VALID_BASELINE"
+  },
+  "submission_name": null,
+  "submission_note": null,
+  "organizer_confirmed_receipt": null,
+  "source_note": "This is an upstream mainline research artifact, not generated during this branch session. Preserve for audit/educational review only; do not expose or submit it."
+}

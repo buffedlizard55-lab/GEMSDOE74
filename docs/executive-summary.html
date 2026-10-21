@@ -17,42 +17,42 @@
   <main>
     <p class="eyebrow">Executive summary</p>
     <h1>How to submit a GEMS prediction GeoTIFF</h1>
-    <div class="callout danger"><strong>Current state: BLOCKED — there is no GEMSDOE74 TIF to download.</strong> Do not submit a file from this repository. The competition inputs, shared evaluator/writer, validated candidate, and submission receipt are absent.</div>
-    <p class="lede">This page is the safe upload checklist for when a validated artifact exists. The landing page must show a live, auditable <strong>READY TO SUBMIT</strong> state before a download appears. This build intentionally has no download link.</p>
+    <div class="callout danger"><strong>Current state: BLOCKED — no artifact is cleared for submission.</strong> An earlier H74-A experimental TIF is archived in this repository, but its recorded holdout is negative and lacks the required buffer and confidence interval. Its format receipt does not authorize a competition submission. This branch created no new TIF.</div>
+    <p class="lede">This page is the safe upload checklist for when an artifact exists and has passed every gate. The landing page must show a verifiable <strong>READY TO SUBMIT</strong> state before a download appears.</p>
 
     <section aria-labelledby="before">
       <h2 id="before">Before downloading anything</h2>
       <ol class="steps">
-        <li>Open the <a href="index.html">GEMSDOE74 overview</a>. Proceed only if the status is explicitly <strong>READY TO SUBMIT</strong> and a file, SHA-256 digest, validation receipt, and unique name are shown together.</li>
-        <li>Confirm the candidate beat the current spatial-holdout best under the preregistered evaluation. Confirm that feature leakage checks, registry-correlation and dot-overlap checks, and TIFF validation all passed.</li>
-        <li>If the page says <strong>BLOCKED</strong>, <strong>NOT RUN</strong>, <strong>PROJECTED</strong>, or <strong>UNSCORED</strong>, stop. Do not use an older GEMSDOE site's file as a substitute.</li>
+        <li>Open the <a href="index.html">GEMSDOE74 overview</a>. Proceed only if it explicitly says <strong>READY TO SUBMIT</strong> and displays the file, SHA-256, validator receipt, holdout evidence, unique name, and note.</li>
+        <li>Confirm the candidate beat the current spatial-holdout best under the preregistered evaluation. Confirm feature-alone leakage checks and both pre-placement and final-dot registry comparisons passed.</li>
+        <li>If the page says <strong>BLOCKED</strong>, <strong>NOT RUN</strong>, <strong>PROJECTED</strong>, or <strong>UNSCORED</strong>, stop. Do not use a previous GEMSDOE file as a substitute.</li>
       </ol>
     </section>
 
     <section aria-labelledby="portal">
       <h2 id="portal">Upload steps in DrivenData</h2>
-      <p>The requirements below are transcribed from the competition form text included in the project brief. Recheck the <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">official competition rules</a> and the live form before uploading; those pages could not be fetched in this workspace.</p>
+      <p>The requirements below are transcribed from the competition form text included in the project brief. Recheck the <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">official competition rules</a> and live form before uploading; those pages could not be fetched in this workspace.</p>
       <ol class="steps">
         <li>Sign in to the competition on DrivenData and open its <strong>New submission</strong> form.</li>
-        <li>For <strong>File to submit</strong>, select the validated single-band GeoTIFF (<code>.tif</code>) or a ZIP containing exactly one GeoTIFF, if the current form still permits both.</li>
-        <li>Use the unique name shown on the GEMSDOE74 artifact receipt. A naming template—not a real submission name—is <code>GEMSDOE74-&lt;method&gt;-&lt;sha256-first-8-lowercase&gt;</code>.</li>
-        <li>Paste the short, evidence-labelled note shown on the receipt. Project convention: keep it at or below 140 characters and say whether the artifact is unscored; do not call a projection a score.</li>
-        <li>Submit only if the file has already passed the project's independent validation. After submission, save the organizer's submission-page receipt and record its exact score and submission identifier separately from holdout results.</li>
+        <li>For <strong>File to submit</strong>, select the validated single-band GeoTIFF (<code>.tif</code>) or a ZIP containing exactly one GeoTIFF, if the current form permits both.</li>
+        <li>Use the unique name printed on the artifact receipt. Naming convention—not a real submission name—<code>GEMSDOE74-&lt;method&gt;-&lt;sha256-first-8-lowercase&gt;</code>.</li>
+        <li>Paste the short, evidence-labelled note from the receipt. Project convention: keep it at or below 140 characters and mark an unscored artifact as such; never call a projection a score.</li>
+        <li>Submit only after all local gates pass. Save the organizer submission-page receipt and record its exact score and submission identifier separately from holdout results.</li>
       </ol>
-      <p class="meta">The competition form description supplied in the brief says the raster must match the submission format's CRS, shape, and geotransform. Those values must be read from the official sample submission; they are not available in this checkout. Do not infer geometry from another project's file.</p>
+      <p class="meta">The competition form description supplied in the brief says the raster must match the official submission grid's CRS, shape, and geotransform. Read them from the competition's sample raster; do not infer them from a sibling project.</p>
     </section>
 
     <section aria-labelledby="range-error">
       <h2 id="range-error">Preventing “Predicted values must be in range [0, 1]”</h2>
-      <p>The error text is reported by the user in the initiating brief. The project must catch it before upload, not by asking the user to repair a raster manually.</p>
+      <p>The error text is reported by the user in the initiating brief. Catch it before upload, not by asking the user to repair the raster manually.</p>
       <ul class="steps">
-        <li>Use the shared submission writer and validator; do not edit a TIFF in a GIS application as a workaround.</li>
-        <li>Re-read the written file from disk. Check that all prediction values inside the valid footprint are finite and within the allowed closed interval, and that the raster has the expected single band.</li>
-        <li>Check that the CRS, dimensions, pixel size, transform, and footprint match the official sample-submission raster exactly.</li>
+        <li>Use the shared writer and independent validator; do not hand-edit a TIFF in a GIS application as a workaround.</li>
+        <li>Re-read the written file from disk. Verify that values inside the valid footprint are finite and within the allowed closed interval, and verify the raster band count and type.</li>
+        <li>Compare CRS, dimensions, pixel size, transform, and footprint exactly with the official sample-submission raster.</li>
         <li>Keep nodata/NaN handling consistent with the official format. A visually plausible map is not evidence of a valid upload.</li>
-        <li>Archive the validator output, candidate SHA-256, writer version, input hashes, and the exact submission note with the artifact.</li>
+        <li>Archive validator output, candidate SHA-256, writer version, input hashes, and the exact submission note beside the artifact.</li>
       </ul>
-      <div class="callout"><strong>Important:</strong> clipping values into range without examining the model output can hide a scaling, nodata, or mask bug. Fail validation and fix the upstream cause; do not silently clip and declare success.</div>
+      <div class="callout"><strong>Do not silently clip.</strong> Clipping values into range can hide scaling, nodata, or mask bugs. Fail validation, diagnose the upstream cause, and regenerate through the shared writer.</div>
     </section>
 
     <section aria-labelledby="gate">
@@ -60,16 +60,16 @@
       <div class="table-wrap"><table>
         <thead><tr><th>Gate</th><th>Evidence required</th><th>Current GEMSDOE74 state</th></tr></thead>
         <tbody>
-          <tr><td>Data provenance</td><td>Official input files, source/licence record, and verified hashes</td><td>Missing</td></tr>
-          <tr><td>Scientific test</td><td>Preregistered lane, holdout evaluator version, withheld-positive count, DTI estimate, and confidence interval</td><td>Not run</td></tr>
-          <tr><td>Leakage and uniqueness</td><td>Feature-alone canary plus correlation and within-three-pixel registry comparison before and after placement</td><td>Not run; registry rasters missing</td></tr>
-          <tr><td>File validation</td><td>Shared-writer receipt; finite in-range values; matching CRS, shape, transform, and footprint</td><td>No file or validator</td></tr>
-          <tr><td>Portal record</td><td>Unique submission name, concise note, and organizer receipt after actual upload</td><td>No submission</td></tr>
+          <tr><td>Data provenance</td><td>Official input files, licence/source record, and verified hashes</td><td>Full feature stack and official source receipt missing</td></tr>
+          <tr><td>Scientific test</td><td>Buffered whole-segment spatial holdout; visible-only catalogue features; exact visible-fault mask; evaluator version, withheld-positive count, DTI estimate, and confidence interval</td><td>Existing H74-A proxy is negative and lacks the required buffer/CI</td></tr>
+          <tr><td>Leakage and uniqueness</td><td>Feature-alone canary plus surface and final-dot registry comparisons</td><td>Not run for H74-A; complete registry absent</td></tr>
+          <tr><td>File validation</td><td>Shared-writer receipt; finite in-range values; matching CRS, shape, transform, and footprint</td><td>Archived H74-A has a format receipt only; not approved</td></tr>
+          <tr><td>Portal record</td><td>Unique submission name, concise note, and organizer receipt after upload</td><td>No eligible new submission</td></tr>
         </tbody>
       </table></div>
     </section>
     <p><a href="index.html">← Return to status overview</a></p>
   </main>
-  <footer class="site-footer"><div class="footer-inner">A missing download is intentional: this project currently has no validated TIF.</div></footer>
+  <footer class="site-footer"><div class="footer-inner">The archived experimental TIF is intentionally not exposed as a submission download.</div></footer>
 </body>
 </html>

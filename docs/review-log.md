@@ -1,32 +1,33 @@
 # GEMSDOE74 review log
 
-Review date: 2026-10-21. This log records the required implementation passes. It does not record an experiment, a competition score, or an organizer receipt.
+Review date: 2026-10-21. This log records implementation/reconciliation passes and synthetic tests. It does not record a real-data experiment, a valid competition holdout score, or an organizer receipt.
 
-## Pass 1 — implement the safe project foundation
+## Pass 1 — establish the safe project foundation
 
-- Confirmed the starting branch contained only `README.md` and no data/model code.
-- Replaced the one-line README with the durable project brief, session protocol, evidence boundaries, submission checklist, and source links.
-- Added a static site with an explicit blocked state, a submission walkthrough, research hypotheses, a source ledger, and an irregularity ledger.
-- Added a fail-closed readiness manifest and script. It does not implement a private evaluator or writer and cannot produce a TIF.
-- Added GitHub Pages deployment configuration and ignored local competition rasters/caches.
+- Confirmed the branch's starting revision contained only `README.md` and no data/model code.
+- Added the durable project brief, fail-closed static site, executive upload guide, source and irregularity ledgers, run card, readiness audit, and tests.
+- Kept local competition rasters/caches out of Git and enabled a public download only behind the readiness manifest.
 
-## Pass 2 — review sources, assumptions, and edge cases
+## Pass 2 — reconcile upstream main and inspect the H74-A lane
 
-- Inspected the organizer reference-solution README and notebook through the permitted GitHub API. The README documents both CPU and GPU environment choices; the notebook's sample uses patch-based random splits, Tversky loss, sigmoid predictions, and label-raster georeferencing for its example output. These are properties of the reference implementation, not evidence for a past leaderboard score.
-- Inspected the related GEMSDOE32 README, site index, feed, and H33 evidence record for learning only. Its current record labels the H33 value as a projection and states that its repository has no organizer score for its artifacts. No prior raster was copied.
-- Identified and documented the absent method-lane paragraph, absent official rasters/cache/evaluator/writer, missing registry rasters, conflicting user-provided leaderboard claims, and inability to access the external official data pages from this environment.
-- Kept all proposed external-data hypotheses blocked because their official portals and area-of-interest data availability could not be checked.
-- Tightened the readiness gate so it requires hashed inputs, shared-tool presence, protocol-compliant HOLDOUT-DTI evidence, per-feature leakage checks, surface and final-dot registry checks, a validator receipt, an artifact digest, and a hash-derived submission name before a download can appear.
+- Fetched and merged the then-current `origin/main` into the active branch after PR #3 reported conflicts. Resolved `.gitignore`, `README.md`, `docs/index.html`, and `docs/executive-summary.html` to preserve the H74-A context while keeping the status blocked.
+- Read the merged project brief. It selects H74-A (hydrothermal spring chains plus potassic K/Th alteration halos) as the one lane for this project session. Replaced the incoming alternate-lane backlog with four qualitative H74-A ablations; no numeric improvement is forecast.
+- Reviewed the incoming artifact, format receipt, build metadata, and both holdout evidence files. The strongest stored result is **HOLDOUT-DTI v0.2-segment-proxy: candidate 0.001619 versus random-control 0.031034; 12,088 withheld positives; 95% CI unavailable**. It has no buffer and no fold-specific reconstruction of catalogue-derived features, so it is negative/noncompliant and not a valid baseline. The v0.1 pixel proxy also lacks compliant reporting. No organizer-confirmed receipt exists.
+- Moved the unchanged prior TIFF, NaN twin, ZIP, and format receipt from public `docs/downloads/` to `archive/h74-a/`. Updated evidence/build paths and marked the archive not approved; no raster was created during this branch session.
+- Refactored the shared `evaluate_holdout.py` entry point to use one buffered whole-segment engine. The engine uses 8-connected components, four spatial folds, a 1.5 km feature-construction collar, exact visible-fault scoring masks, pooled DTI, repeated draws/percentile CI, fold-aware callbacks, and a strict AUC leakage canary. Fixed-raster CLI evaluation requires an explicit catalogue-independence assertion.
+- Hardened the shared H74-A builder to write only into ignored `outputs/unapproved/`, derive output geometry from the sample raster, emit only one local zero-mode TIFF when explicitly opted in, and mark its own output unapproved. Its full-catalogue spring-distance field remains noncompliant for holdout work; no command was run to generate a TIFF.
+- Replaced the hardcoded submission validator with an explicit candidate/sample-grid validator and updated readiness to check the actual shared tool names. Added reproducible dependency manifests for the raster tools and test runner.
+- Did not fetch competition data, run the mirror, access external portals, or claim verified source coverage; this environment has no competition login and its egress restrictions exclude those sources.
 
-## Pass 3 — verify implementation against the brief
+## Pass 3 — verify code, site, and fail-closed state
 
-- Python syntax checks passed for the readiness tool and tests.
-- Unit tests passed for fail-closed behavior, invalid manifests, leakage gating, internal links/fragments, and the no-download blocked state.
-- Static HTML parsing, local-link checks, JSON parsing, JavaScript syntax check, and `git diff --check` passed.
-- A strict readiness invocation returned its expected blocked status and nonzero exit code.
-- Confirmed no GeoTIFF is present under `docs/` and local competition rasters are ignored by Git.
-- Started the static site preview and verified the landing page serves the explicit blocked status and disabled download control.
+- Python compilation passed for the readiness checker, shared evaluator/entry point, generator, validator, metric, and tests.
+- `python -m unittest discover -s tests -v`: 19 tests passed. This standard-library runner executes the `unittest` classes; the project-wide pytest run below also includes the function-style metric tests.
+- `python -m pytest -q`: **23 passed**. Tests cover synthetic holdout mechanics, exact visible-mask behavior, AUC threshold handling, sample-grid validation, the generator's default safety guard, readiness, site links/fragments, and absence of public raster/ZIP downloads. They do not validate real competition data.
+- `scripts/check_readiness.py --write docs/data/readiness.json` reports **BLOCKED**, with all required inputs absent, no feature-cache or scientific receipts, and all download fields disabled. `--strict` returned the expected exit code `2`.
+- The site-link/fragment test passed, including `irregularities.html#holdout`. The site contains no `.tif`, `.tiff`, or `.zip` under `docs/`; the archived files are outside the public site.
+- No real-data holdout, feature-alone canary, registry comparison, official-grid validator run, new candidate raster, submission slot, or organizer-page receipt was produced.
 
 ## Final verdict
 
-**Negative / blocked.** No candidate surface or TIF was generated, no holdout or registry-correlation test was run, no weekly submission slot was used, and no value is represented as an organizer-confirmed score. The work is a safe, auditable project foundation; the competition modeling task remains blocked until the missing official inputs and shared template tools are available.
+**BLOCKED / NOT RUN.** The selected H74-A lane is documented, but there are no official inputs/cache, no fold-visible-only spring builder, no valid current holdout-best baseline, no complete registry, and no real-data validator receipt. The archived H74-A proxy is negative and noncompliant; it is not a submission. No new GeoTIFF was generated, and the public download gate remains disabled.

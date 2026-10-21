@@ -1,24 +1,40 @@
 {
   "schema_version": "gemsdoe74-run-card-v1",
-  "hypothesis": "ASTER thermal-infrared surface-emissivity alteration lineaments may expose hydrothermal fluid pathways that are not mapped as faults; candidate only, not tested.",
-  "mechanism": "A spatially coherent spectral-mineral alteration edge can persist where a fault has weak relief; test with a documented official product and a preregistered oriented edge transform.",
-  "named_non_fault_mimic": "Lithologic contacts and mine/industrial surface disturbance can produce spectral edges that resemble hydrothermal alteration.",
+  "lane": "H74-A — hydrothermal spring chains plus potassic K/Th alteration halos",
+  "hypothesis": "A fold-visible-only spring-chain orientation feature may recover whole held-out catalogue segments that are not explained by the archived full-catalogue H74-A build; candidate experiment only, not run.",
+  "mechanism": "For each buffered spatial fold, recompute distance-to-visible-fault filtering and spring-chain geometry from that fold's visible catalogue mask; do not use the historical full-catalogue dist_known_fault_px field. Compare the spring-only feature against the current valid holdout best before adding K/Th consensus.",
+  "named_non_fault_mimic": "Spring/well sampling density, road access, lithologic control of spring chemistry, and non-fault geothermal discharge can align or cluster independently of mapped fault segments.",
+  "experiment_budget": {
+    "maximum_experiments": 3,
+    "maximum_hours": 2,
+    "used": 0
+  },
   "holdout_dti": {
     "label": "HOLDOUT-DTI",
-    "status": "NOT RUN: shared evaluator, feature stack, labels, and candidate raster are absent.",
+    "status": "NOT RUN: official inputs, feature cache, fold-aware H74-A builder, and valid baseline are unavailable.",
     "evaluator_version": null,
     "withheld_positive_count": null,
     "point_estimate": null,
     "confidence_interval_95_percent": null
   },
+  "prior_h74a_proxy": {
+    "label": "HOLDOUT-DTI",
+    "evaluator_version": "v0.2-segment-proxy",
+    "withheld_positive_count": 12088,
+    "candidate_dti": 0.0016193636,
+    "random_control_dti": 0.0310343546,
+    "confidence_interval_95_percent": null,
+    "buffer_meters": 0,
+    "status": "NEGATIVE_NONCOMPLIANT_PROXY_NOT_A_VALID_BASELINE"
+  },
   "correlation_overlap_vs_registry": {
-    "status": "NOT RUN: no registry rasters or candidate dots are present.",
+    "status": "NOT RUN: no complete registry rasters or new candidate surface/dots are available.",
     "max_rank_correlation": null,
     "max_dot_overlap_within_3px": null
   },
   "raster_sha256": null,
   "validator_output": {
-    "status": "NOT RUN: no TIFF exists.",
+    "status": "NOT RUN: this session generated no candidate GeoTIFF.",
     "no_nan_inside_footprint": null,
     "all_values_in_allowed_range": null,
     "crs_match": null,
@@ -27,5 +43,6 @@
   },
   "submission_name": null,
   "submission_note": null,
-  "verdict": "negative"
+  "organizer_confirmed_score": null,
+  "verdict": "BLOCKED_NOT_RUN"
 }

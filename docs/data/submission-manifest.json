@@ -13,8 +13,11 @@
   "submission_note": null,
   "organizer_receipt": null,
   "blockers": [
-    "Competition inputs are absent.",
-    "Shared cached feature stack, holdout evaluator, and submission writer are absent.",
-    "No candidate raster, registry comparison, or validator receipt exists."
+    "The official training_features.tif, competition labels, sample-submission grid, and one-meter DEM links are not locally present or hash-verified.",
+    "The shared cached feature stack is absent.",
+    "The existing H74-A generator uses a catalogue-derived spring-distance field and is not fold-visible-only; no compliant prediction builder is available.",
+    "The prior H74-A raster is archived outside the public site. HOLDOUT-DTI (v0.2 noncompliant proxy, 12,088 withheld positives, 95% CI unavailable): candidate 0.001619 versus random 0.031034; no buffer was used, so this is not an eligible baseline.",
+    "No valid current holdout-best baseline, per-feature leakage receipt, complete registry comparison, or independent sample-grid validation receipt exists.",
+    "No organizer-confirmed submission-page receipt exists."
   ]
 }

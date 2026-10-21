@@ -25,23 +25,23 @@
     <section class="hero" aria-labelledby="page-title">
       <div class="hero-copy">
         <p class="eyebrow">Research status · 2026-10-21</p>
-        <h1 id="page-title">Evidence before leaderboard claims.</h1>
-        <p class="lede">GEMSDOE74 is being built as an auditable workflow for testing new geological hypotheses, validating them with a spatial hide-and-recover holdout, and preparing a unique GEMS GeoTIFF only when its evidence is complete.</p>
-        <p>The first priority is a safe, reliable path from research to a valid submission—not a fabricated file, a copied raster, or a model projection presented as a score.</p>
+        <h1>Evidence before leaderboard claims.</h1>
+        <p class="lede">GEMSDOE74 is an auditable workflow for testing unique geological hypotheses, validating them with a spatial hide-and-recover holdout, and preparing a GEMS GeoTIFF only after its scientific and file checks pass.</p>
+        <p>The repository has an archived H74-A experimental GeoTIFF from an earlier branch. It passed a format check, but its recorded holdout is negative and omits the required buffer and confidence interval. It is <strong>not cleared as a submission</strong>. This branch created no new candidate raster.</p>
         <p><a href="executive-summary.html">Read the submission guide</a> · <a href="hypotheses.html">Review the research shortlist</a></p>
       </div>
       <aside class="status-card" aria-labelledby="download-title">
         <p class="eyebrow">Submission gate</p>
         <div class="status-label" id="status-label">BLOCKED — NOT SUBMITTABLE</div>
-        <h2 id="download-title">No validated TIF is available.</h2>
-        <p class="status-detail" id="status-detail">This repository has no competition rasters, shared holdout evaluator, submission writer, or validated candidate. There is no GEMSDOE74 file to download or submit.</p>
-        <span class="disabled-download" id="disabled-download" aria-disabled="true">Download disabled · no artifact</span>
+        <h2 id="download-title">No artifact is approved for download.</h2>
+        <p class="status-detail" id="status-detail">The archived H74-A file is not methodologically cleared. Official inputs and the feature cache are absent; no fold-aware H74-A builder or valid holdout-best baseline is available.</p>
+        <span class="disabled-download" id="disabled-download" aria-disabled="true">Download disabled · no approved artifact</span>
         <a class="ready-download" id="ready-download" href="#" download>Download validated submission GeoTIFF</a>
         <dl class="status-list">
-          <dt>Unique submission name</dt><dd id="submission-name">Not assigned — no validated candidate.</dd>
-          <dt>Submission note</dt><dd id="submission-note">Not available — no artifact.</dd>
+          <dt>Unique submission name</dt><dd id="submission-name">Not assigned — no approved candidate.</dd>
+          <dt>Submission note</dt><dd id="submission-note">Not available — no approved artifact.</dd>
         </dl>
-        <p class="meta">This notice is intentionally explicit so that an unvalidated file cannot be mistaken for a submission.</p>
+        <p class="meta">An archived file in the repository is not automatically a competition-ready submission.</p>
       </aside>
     </section>
 
@@ -49,19 +49,19 @@
       <h2 id="what-next">What is needed before a submission can exist?</h2>
       <div class="grid">
         <article class="card">
-          <h3>Restore the shared research inputs</h3>
-          <p>Place the official competition feature, label, and sample-submission rasters where the shared template expects them. Restore its cached feature stack and use its evaluator and writer; none is in this checkout.</p>
+          <h3>Restore official inputs and the cache</h3>
+          <p>The current mirror script retrieves selected sample/label and external files, but not the full official training feature stack. Obtain the competition inputs through the authorized data page, verify provenance, and use the template's cache layout.</p>
           <p><a href="sources.html#competition-data">See data-source and access notes</a></p>
         </article>
         <article class="card">
-          <h3>Validate the hypothesis, not just the file</h3>
-          <p>Preregister a single method, run the feature-by-feature leakage canary, and evaluate whole-segment spatial holdouts with the specified buffer and metric. Compare against the current holdout best.</p>
-          <p><a href="hypotheses.html">Read the candidate gates</a></p>
+          <h3>Repair the shared holdout in place</h3>
+          <p>The shared evaluator has been repaired for buffered whole-segment folds and percentile confidence intervals. It has not been run on competition data, and the H74-A generator still needs fold-visible-only feature construction.</p>
+          <p><a href="irregularities.html#holdout">Review evaluator issues</a></p>
         </article>
         <article class="card">
-          <h3>Validate uniqueness and geometry</h3>
-          <p>Compare the proposed surface and its final dots with the registry; verify no forbidden correlation or dot overlap, and validate the output range, CRS, shape, transform, and raster contents.</p>
-          <p><a href="irregularities.html">Review open blockers</a></p>
+          <h3>Validate the method and uniqueness</h3>
+          <p>Register one lane, run the feature-by-feature leakage canary, and compare the surface and final dots with every registry raster. The complete registry and new candidate are not present.</p>
+          <p><a href="hypotheses.html">Read the candidate gates</a></p>
         </article>
       </div>
     </section>
@@ -69,24 +69,24 @@
     <section aria-labelledby="current-evidence">
       <h2 id="current-evidence">Current evidence boundary</h2>
       <div class="callout danger">
-        <strong>Do not submit a GEMSDOE74 file.</strong> No candidate was generated and no validation was run. The reported H33 score and the leaderboard highs in the initiating request are not backed by a submission-page receipt in this workspace; the related GEMSDOE32 archive labels its H33 live value as a projection and says no organizer score exists for its artifacts.
+        <strong>Do not submit the archived H74-A file.</strong> Its format receipt is not a holdout or organizer score. The archived v0.2 evaluator used no collar, reported no 95% CI, and did not regenerate catalogue-dependent features from each fold's visible faults; its proxy result was negative. The shared evaluator code is now repaired, but no compliant real-data run or new artifact exists.
       </div>
-      <p>The archive is useful for method review, not as a source of a file to copy. Its H33 method is described as pruning predictions near the known-fault catalogue. A real score change, if confirmed, would not by itself establish a causal geological explanation. The <a href="irregularities.html#score-claims">score-claim review</a> records the discrepancy and the sources used.</p>
+      <p>The H33 claim in the initiating request is also unverified. The related GEMSDOE32 repository labels its H33 live figure as a projection and says it has no organizer score for its artifacts. See the <a href="irregularities.html#score-claims">score-claim review</a>.</p>
     </section>
 
     <section aria-labelledby="workflow">
       <h2 id="workflow">The path from hypothesis to a real submission</h2>
       <ol class="steps">
-        <li>Restore verified inputs and the shared template's cache, evaluator, and writer.</li>
-        <li>Register a unique hypothesis and check the candidate surface against the registry before placement.</li>
-        <li>Run the prescribed spatial holdout and single-feature leakage checks. Keep projections separate from holdout DTI.</li>
-        <li>Generate through the shared writer, validate the GeoTIFF and duplicate guard, and archive the hashes and receipts.</li>
-        <li>Only after passing every gate, expose a download, provide a unique competition name and short comment, and record the organizer receipt.</li>
+        <li>Restore the full official inputs and shared feature cache; document source hashes.</li>
+        <li>Repair and use the shared evaluator and writer; preregister a single method lane.</li>
+        <li>Run feature-alone leakage checks, then the buffered whole-segment spatial holdout against the current holdout best.</li>
+        <li>Check the candidate surface and final dots against the registry before any live slot.</li>
+        <li>Generate through the shared writer; independently validate the GeoTIFF, preserve receipts and SHA-256, and only then expose a download with a unique name and note.</li>
       </ol>
       <p><a href="executive-summary.html">Exact portal steps and range-error checklist →</a></p>
     </section>
 
-    <p class="meta">Last repository review: 2026-10-21. The site does not automatically read the private competition data page or live leaderboard. Any future feed must show its source and retrieval time and must not infer a score from a projection.</p>
+    <p class="meta">Local readiness only; no live leaderboard scrape. Official competition, USGS, NLR, NASA LP DAAC, and GDR pages could not be accessed from this environment. Every future feed must display source, retrieval time, and access/error state.</p>
   </main>
   <footer class="site-footer"><div class="footer-inner">GEMSDOE74 · Evidence first · <a href="../README.md">Project brief and session checklist</a></div></footer>
 </body>

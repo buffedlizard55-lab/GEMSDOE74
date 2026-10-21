@@ -19,7 +19,8 @@ class ReadinessAuditTests(unittest.TestCase):
         self.assertIsNone(report["submission_name"])
         self.assertTrue(report["blockers"])
         self.assertFalse(any(report["input_files_present"].values()))
-        self.assertFalse(any(report["shared_tools_present"].values()))
+        self.assertTrue(all(report["shared_tools_present"].values()))
+        self.assertFalse(report["evidence_gates"].get("spatial_holdout", False))
 
     def test_manifest_cannot_bypass_missing_inputs_and_tools(self):
         with tempfile.TemporaryDirectory() as tmp:

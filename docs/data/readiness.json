@@ -4,8 +4,6 @@
     "Required competition input is missing: data/labels.tif.",
     "Required competition input is missing: data/sample_submission.tif.",
     "Required competition input is missing: data/1m_DEM_links.csv.",
-    "Required shared tool is missing: scripts/evaluate_holdout.py.",
-    "Required shared tool is missing: scripts/submission_writer.py.",
     "Manifest does not explicitly mark a fully gated artifact READY for download.",
     "Manifest has no artifact receipt.",
     "One or more official competition inputs are missing, unhashed, or differ from the manifest.",
@@ -36,8 +34,11 @@
   },
   "schema_version": "gemsdoe74-readiness-v1",
   "shared_tools_present": {
-    "holdout_evaluator": false,
-    "submission_writer": false
+    "buffered_segment_engine": true,
+    "holdout_evaluator": true,
+    "independent_validator": true,
+    "metric_implementation": true,
+    "submission_writer": true
   },
   "status": "BLOCKED",
   "submission_name": null,

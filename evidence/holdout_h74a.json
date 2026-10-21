@@ -1,0 +1,24 @@
+{
+  "label": "HOLDOUT-DTI",
+  "evaluator_version": "v0.1-pixel-proxy",
+  "protocol_compliant": false,
+  "withheld_positive_count": null,
+  "confidence_interval_95_percent": null,
+  "buffer_meters": 0,
+  "status": "NEGATIVE_NONCOMPLIANT_PROXY_NOT_A_VALID_BASELINE",
+  "evaluator": "gems74 metric.py dti_binary, 4-quadrant blocked, 20% catalogue pixels hidden per quadrant, no segment buffering; proxy only",
+  "candidate": {
+    "file": "archive/h74-a/gems74-h74-alt-spring-39500-20261021T000000Z-52f76038-zeros.tif",
+    "pixels": 39500,
+    "pooled_DTI_cat_hidden": 0.0014446337043921085,
+    "pooled_DTI_sgmc": 0.040474831288470396
+  },
+  "random_control": {
+    "pixels": 39500,
+    "pooled_DTI_cat_hidden": 0.033985054137437985,
+    "pooled_DTI_sgmc": 0.07334647167285985
+  },
+  "delta_vs_random": -0.03254042043304588,
+  "passes_random": false,
+  "note": "HOLDOUT-DTI v0.1-pixel-proxy; withheld-positive count and 95% CI were not recorded. Noncompliant: individual pixels, no whole-segment buffer, no fold-specific feature rebuild. No ORGANIZER-CONFIRMED score."
+}

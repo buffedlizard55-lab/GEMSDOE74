@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Open evidence, data, uniqueness, and competition-score discrepancies for GEMSDOE74.">
+  <meta name="description" content="Open evidence, holdout, data, and competition-score discrepancies for GEMSDOE74.">
   <title>Irregularities and blockers — GEMSDOE74</title>
   <link rel="stylesheet" href="site.css">
 </head>
@@ -17,44 +17,73 @@
   <main>
     <p class="eyebrow">Transparent issue ledger</p>
     <h1>Open irregularities and hard blockers</h1>
-    <p class="lede">These items are recorded instead of being silently guessed away. The status only changes when there is evidence in the repository or an accessible primary source.</p>
+    <p class="lede">The ledger separates the starting revision from the current merged checkout, records contradictory upstream claims, and does not treat a format pass or local projection as an organizer score.</p>
 
     <section aria-labelledby="repository">
-      <h2 id="repository">Repository and tooling</h2>
+      <h2 id="repository">Repository and lane</h2>
       <article class="source-card">
-        <span class="source-status">BLOCKER · confirmed locally</span>
-        <h3>No project implementation or input data at the starting revision</h3>
-        <p>The repository started with a single README. There was no <code>data/</code> directory, cached feature stack, holdout evaluator, submission writer, registry raster collection, or TIFF artifact. A readiness script now records that state; it does not substitute for any of those tools.</p>
+        <span class="source-status">RESOLVED · confirmed by merged project brief</span>
+        <h3>The active lane is H74-A</h3>
+        <p>The initiating text's reference to a “single method paragraph” was ambiguous on the starting revision. Current upstream main now names H74-A—hydrothermal spring chains plus potassic K/Th alteration halos—as the chosen lane. The site and research backlog use that lane only; alternate method families are not being proposed as replacements.</p>
       </article>
       <article class="source-card">
-        <span class="source-status">BLOCKER · missing from the prompt text</span>
-        <h3>The parallel-run lane paragraph is not present</h3>
-        <p>The initiating instructions say to stay inside “the single method paragraph below,” but no method paragraph defining that lane appears in the supplied request. The research page therefore lists hypotheses but does not select an executable lane or create a surface.</p>
+        <span class="source-status">BLOCKER · current local state</span>
+        <h3>The starting revision had only a README; main adds code but not the required data/cache</h3>
+        <p>This branch began from a single README. The merge adds shared scripts and evidence, but no local competition rasters, complete official training feature stack, cached feature stack, complete registry, or verified organizer data receipt is present. The pinned mirror is partial and was not run.</p>
       </article>
       <article class="source-card">
-        <span class="source-status">BLOCKER · cannot test uniqueness</span>
-        <h3>No pixel-level registry is available in this repository</h3>
-        <p>The historical GEMSDOE URL list names many methods and files, but it is not a raster registry. Without registry surfaces, the specified rank-correlation and dot-proximity duplicate checks cannot be performed. Method-name differences are not sufficient proof of uniqueness.</p>
+        <span class="source-status">BLOCKER · confirmed by code review</span>
+        <h3>The legacy H74-A generator uses a full-catalogue spring-distance field</h3>
+        <p><code>scripts/generate_submission.py</code> reads the historical <code>dist_known_fault_px</code> field from its spring table. That is catalogue-derived; it is not recomputed from each fold's visible faults. The builder is marked unapproved and guarded from running by default. It must be made fold-aware before its output can be used in a hide-and-recover evaluation.</p>
+      </article>
+      <article class="source-card">
+        <span class="source-status">BLOCKER · no complete registry</span>
+        <h3>Uniqueness has not been established</h3>
+        <p>No complete registry of past rasters is available in this checkout. The archived H74-A raster alone is insufficient for the required surface-correlation and final-dot overlap checks. A method name or a local build hash is not proof of uniqueness.</p>
+      </article>
+    </section>
+
+    <section id="holdout" aria-labelledby="holdout-title">
+      <h2 id="holdout-title">Holdout and archived artifact</h2>
+      <article class="source-card">
+        <span class="source-status">NEGATIVE · noncompliant proxy, not a promotion result</span>
+        <h3>Prior H74-A v0.2 segment proxy</h3>
+        <p><strong>HOLDOUT-DTI v0.2-segment-proxy:</strong> candidate DTI 0.001619 versus random-control DTI 0.031034; 12,088 withheld positives; 95% CI unavailable. The evaluator used no spatial buffer and did not rebuild catalogue-derived features from the fold's visible faults. It is a negative, noncompliant proxy, not a valid current holdout best. No ORGANIZER-CONFIRMED score exists for this artifact.</p>
+      </article>
+      <article class="source-card">
+        <span class="source-status">NEGATIVE · noncompliant proxy, incomplete reporting</span>
+        <h3>Prior H74-A v0.1 pixel proxy</h3>
+        <p><strong>HOLDOUT-DTI v0.1-pixel-proxy:</strong> candidate DTI 0.001445 versus random-control DTI 0.033985; withheld-positive count was not recorded and the 95% CI is unavailable. It sampled individual pixels, not whole buffered segments. It is not a valid promotion result or holdout-best baseline.</p>
+      </article>
+      <article class="source-card">
+        <span class="source-status">RESOLVED · public download removed from site</span>
+        <h3>Archived TIF was previously exposed under <code>docs/downloads/</code></h3>
+        <p>Incoming main labeled the prior H74-A zero-mode TIFF as downloadable despite a negative holdout; the NaN twin and ZIP were also under the public Pages tree. This branch moved the unchanged artifacts to <code>archive/h74-a/</code> outside <code>docs/</code>, updated the build record, and leaves the readiness gate BLOCKED. Do not download or submit any archived file.</p>
+      </article>
+      <article class="source-card">
+        <span class="source-status">REPAIRED IN CODE · not run on competition data</span>
+        <h3>The shared holdout evaluator now fails closed</h3>
+        <p><code>scripts/evaluate_holdout.py</code> delegates to the repaired shared segment engine. It implements whole 8-connected fault-segment draws, a 1.5 km feature-construction buffer, exact pixel masking of visible faults, pooled DTI, repeated-draw 95% intervals, and fold-aware callbacks for catalogue-dependent features. The CLI only accepts an explicitly declared catalogue-independent fixed surface. The real-data evaluator remains unrun because inputs, cache, fold-aware H74-A builder, and valid baseline are missing.</p>
       </article>
     </section>
 
     <section id="score-claims" aria-labelledby="scores">
       <h2 id="scores">Score and leaderboard claims</h2>
       <article class="source-card">
-        <span class="source-status">OPEN · conflicting source records</span>
+        <span class="source-status">OPEN · related project record is not an organizer receipt</span>
         <h3>The H33 score is not confirmed by the related repository record</h3>
-        <p>The initiating request attributes a score to the H33-2-B2 artifact. The linked GEMSDOE32 repository's current README/feed instead describes the value associated with that artifact as a model projection and says it has no organizer score for artifacts in that repository. These statements are not reconciled by an organizer receipt in this workspace. The score claim must remain unverified until the actual submission-page receipt is available.</p>
-        <p>That archive describes H33-2-B2 as pruning catalogue-adjacent dots from a prior emission. This may explain a proxy change; it does not prove a leaderboard result, a true geological discovery, or the cause of any alleged score.</p>
+        <p>The initiating request attributes a score to H33-2-B2. The related GEMSDOE32 README/feed instead label the displayed value as a model projection and state that repository artifacts have no organizer score. No actual submission-page receipt is present here. Do not present the claim as a leaderboard result.</p>
+        <p>The archive describes H33-2-B2 as pruning catalogue-adjacent dots from a prior emission. That can change a proxy metric, but does not prove a new geological observation, the sign of a hidden-target effect, or the cause of an organizer score.</p>
       </article>
       <article class="source-card">
-        <span class="source-status">OPEN · internally inconsistent user-provided values</span>
-        <h3>The prompt gives incompatible “current highest” claims</h3>
-        <p>The initiating request states more than one value as the current leaderboard high and gives an additional H33 result. No current official leaderboard response or submission receipt is present here. None of these values is treated as a verified score or a performance target in the site.</p>
+        <span class="source-status">OPEN · conflicting user-provided values</span>
+        <h3>The initiating prompt gives incompatible “current highest” claims</h3>
+        <p>No official leaderboard response or submission-page receipt was retrieved. Conflicting values from the prompt are not repeated as verified scores or performance targets.</p>
       </article>
       <article class="source-card">
-        <span class="source-status">OPEN · historical source is not primary</span>
-        <h3>Related-site evidence is owner-generated</h3>
-        <p>The GEMSDOE32 README and evidence JSON are useful for methods review, but are produced by the project owner. They are not a DrivenData receipt. Their own explicit “projection / no organizer score” wording must be preserved when summarizing them.</p>
+        <span class="source-status">NO ORGANIZER-CONFIRMED SCORE</span>
+        <h3>A projection is never a score</h3>
+        <p>Report a model result only as <code>HOLDOUT-DTI</code> with evaluator version, withheld-positive count, and 95% CI, or as <code>ORGANIZER-CONFIRMED</code> with the actual submission-page receipt. The archived H74-A format receipt is neither.</p>
       </article>
     </section>
 
@@ -63,23 +92,24 @@
       <article class="source-card">
         <span class="source-status">OPEN · access not available to this session</span>
         <h3>Competition and official data sources were not fetched</h3>
-        <p>The supplied brief reports that competition files require a DrivenData login. The current environment's outbound host allowlist also excludes DrivenData, USGS, NLR, NASA LP DAAC, and GDR. The official reference-solution README was reachable on GitHub, but that does not provide the gated files or prove the current remote availability of the external datasets.</p>
+        <p>The supplied brief reports that competition files require a DrivenData login. The current environment's outbound host allowlist excludes DrivenData, USGS, NLR, NASA LP DAAC, and GDR. The official reference-solution README was reachable on GitHub, but it does not provide the gated data or prove current availability of external resources. The mirror fetcher was not run.</p>
       </article>
       <article class="source-card">
-        <span class="source-status">OPEN · automation not implemented</span>
-        <h3>No verified automatic leaderboard or external-data feed exists yet</h3>
-        <p>The pages expose source links and the current local readiness state. They do not scrape or guess the live leaderboard, portal cap, data availability, or external site status. A future feed must use a supported official endpoint or a documented, permitted retrieval method and must publish retrieval time, source, and error state.</p>
+        <span class="source-status">OPEN · live feed not implemented</span>
+        <h3>No automatic verified leaderboard or portal-cap feed exists</h3>
+        <p>The pages display local readiness. They do not scrape or guess the live leaderboard, weekly cap, data availability, or external-source status. Any future feed must publish its source, retrieval time, and error state.</p>
       </article>
     </section>
 
     <section aria-labelledby="action">
       <h2 id="action">Resolution order</h2>
       <ol class="steps">
-        <li>Restore the official inputs and the shared template's cached feature stack, evaluator, and writer; record hashes and licences.</li>
-        <li>Reconcile the single lane and the H33 claim against actual source receipts. Fetch the live leaderboard from the official page when permitted.</li>
-        <li>Obtain and hash registry rasters before placement; check candidate surface correlation and dot overlap.</li>
-        <li>Run the locked spatial holdout and feature-alone leakage checks before selecting any weekly slot.</li>
-        <li>Generate one unique file through the shared writer and verify its contents, geometry, range, and SHA-256 before exposing a download.</li>
+        <li>Obtain official competition inputs and the shared cache; record provenance, licences, and hashes.</li>
+        <li>Refactor the H74-A spring-distance feature so it is derived only from visible faults in each fold.</li>
+        <li>Establish a valid holdout-best baseline, then test the top H74-A hypothesis with leakage canaries and the repaired evaluator.</li>
+        <li>Compare the candidate surface before placement and final dots with every registry raster; stop at the specified duplicate thresholds.</li>
+        <li>Generate one unique TIF with the shared tool; independently reread and validate its full grid/range before any public download.</li>
+        <li>Only a candidate beating the valid holdout best may reach the separate weekly-slot selector; preserve the organizer receipt if submitted.</li>
       </ol>
     </section>
     <p><a href="sources.html">Open source ledger →</a> · <a href="index.html">Return to overview</a></p>

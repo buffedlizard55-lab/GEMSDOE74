@@ -1,10 +1,14 @@
-# Competition source rasters, labels, model inputs, and cached feature stacks are local-only.
+# Competition rasters, labels, cached stacks, and generated local data stay out of Git.
 /data/*
 !/data/README.md
 
 # Local runs and Python/tooling artifacts.
 /outputs/
 /runs/
+/tmp/
 /.venv/
 __pycache__/
+.pytest_cache/
 *.py[cod]
+*.log
+.DS_Store

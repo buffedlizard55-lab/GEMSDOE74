@@ -73,6 +73,17 @@ class StaticSiteTests(unittest.TestCase):
         self.assertIn("BLOCKED — NOT SUBMITTABLE", home)
         self.assertIn("Download disabled", home)
         self.assertFalse(list((DOCS / "downloads").glob("*.tif")) if (DOCS / "downloads").exists() else False)
+        parser = SiteIndexParser()
+        parser.feed(home)
+        parser.close()
+        self.assertFalse(
+            any(urlsplit(href).path.lower().endswith((".tif", ".tiff", ".zip")) for href in parser.links),
+            "blocked landing page must not link a raster or archive",
+        )
+
+    def test_archived_rasters_are_not_published_under_docs(self):
+        public_rasters = list(DOCS.rglob("*.tif")) + list(DOCS.rglob("*.tiff")) + list(DOCS.rglob("*.zip"))
+        self.assertEqual(public_rasters, [], "experimental rasters must not be exposed by the static site")
 
 
 if __name__ == "__main__":

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Ranked, unvalidated geothermal and fault hypotheses with explicit data, confounders, costs, and gates.">
+  <meta name="description" content="Ranked, untested H74-A research hypotheses with explicit holdout, leakage, data, and cost gates.">
   <title>Research &amp; hypotheses — GEMSDOE74</title>
   <link rel="stylesheet" href="site.css">
 </head>
@@ -15,36 +15,44 @@
     </nav>
   </div></header>
   <main>
-    <p class="eyebrow">Research backlog · no experiment promoted</p>
-    <h1>Distinct hypotheses to test—not score promises</h1>
-    <p class="lede">These candidates add independent physical observations rather than another reweighting of an existing prediction raster. They are ranked by qualitative potential to identify off-catalogue structures and by cost. None has been validated here, and no numeric DTI projection is made.</p>
-    <div class="callout danger"><strong>Gate closed.</strong> The repository has no shared feature cache, holdout evaluator, submission writer, raster registry, or competition inputs. Source availability and area-of-interest coverage could not be checked because the required official hosts are outside this environment's network allowlist. Consequently, none of these candidates is currently viable for an experiment or a submission.</div>
+    <p class="eyebrow">H74-A research backlog · no experiment promoted</p>
+    <h1>Four tests inside the selected H74-A lane</h1>
+    <p class="lede">Current upstream main names H74-A—hydrothermal spring chains plus potassic K/Th alteration halos—as the project lane. The candidates below are ablations and refinements of that one method, not competing method families. Expected value and cost are qualitative research priorities, not DTI forecasts or leaderboard scores.</p>
+    <div class="callout danger"><strong>Blocked.</strong> No official inputs, feature cache, fold-aware H74-A generator, complete raster registry, or valid current holdout-best baseline is available locally. The prior H74-A TIFF is archived outside the public site and is not a new result or approved baseline. Its <strong>HOLDOUT-DTI v0.2 segment proxy</strong> was negative: 0.001619 versus 0.031034 for the random control, with 12,088 withheld positives and no 95% CI; it had no buffer and is noncompliant.</div>
 
     <section aria-labelledby="shortlist">
-      <h2 id="shortlist">Ranked shortlist</h2>
+      <h2 id="shortlist">Ranked shortlist — qualitative only</h2>
+      <p>All items use the H74-A observation family: the GDR spring/well catalogue and GeoDawn K/Th radiometric bands. No new data layer is proposed here. For each holdout fold, any catalogue-derived filtering must be recomputed from that fold's visible-fault mask; the historical full-catalogue <code>dist_known_fault_px</code> field is not acceptable for a hide-and-recover test.</p>
       <div class="table-wrap"><table>
-        <thead><tr><th>Priority</th><th>Hypothesis, layers, and physical signature</th><th>Why it might find a catalogue-missing fault</th><th>Expected DTI potential / cost</th><th>Availability and novelty gate</th></tr></thead>
+        <thead><tr><th>Rank</th><th>Testable H74-A hypothesis and signal</th><th>Why it could recover withheld faults</th><th>Expected DTI improvement / cost</th><th>Principal confounders and gate</th></tr></thead>
         <tbody>
           <tr>
-            <td><strong>First research lead</strong></td>
-            <td><strong>Hydrothermal alteration mapped with ASTER TIR.</strong> Layer: NASA/USGS LP DAAC ASTER surface-emissivity bands, with the official competition DEM used only for terrain controls if its licence and geometry allow. Target a scale-matched, band-contrast edge/lineament response associated with hydrothermal alteration; define spectral ratios only after checking the product documentation and local geology.</td>
-            <td>Hydrothermal mineral alteration can preserve a surface trace of fluid circulation where a fault has little or no topographic scarp. A mineralogical signal is physically independent of the known-fault geometry, so it offers a route to discovering structures absent from the catalogue.</td>
-            <td><strong>Relative potential: highest of this shortlist, highly uncertain.</strong> Cost: high—coverage screening, product/quality masking, atmospheric and terrain effects, resampling, and geologic interpretation. This is a research-priority ranking, not a HOLDOUT-DTI result or a live-score projection.</td>
-            <td>Source to check: <a href="https://lpdaac.usgs.gov/products/ast_05v003/">ASTER Surface Emissivity product catalog (LP DAAC)</a>. Public availability for the study area, complete acquisition coverage, and reuse conditions were not checked here; therefore this candidate is <strong>not cleared as viable</strong>. Exact ASTER product versions and usable bands must be confirmed before any run. No ASTER-emissivity product is named in the supplied result list, and the starting GEMSDOE74 tree had no implementation. This is only a comparison against the supplied history; registry-wide uniqueness is unproven.</td>
+            <td><strong>1 · test first</strong></td>
+            <td><strong>Fold-visible spring-chain geometry.</strong> Use the existing GDR spring/well coordinates and documented thermal classes/temperatures. Recompute each spring's distance to <em>visible faults only</em> for every fold; derive the pre-registered chain/orientation feature from springs beyond that visible-fault threshold.</td>
+            <td>Aligned hydrothermal discharge can trace permeability along a blind structure that has little surface relief. The signal is independently observed at springs, but its use as an off-catalogue prior must be evaluated on whole withheld segments.</td>
+            <td><strong>Relative potential: highest, very uncertain.</strong> Cost: high—fold-aware rebuild, provenance/field checks, fixed parameter preregistration, and repeated spatial holdout. Test this first against the current valid holdout best.</td>
+            <td>Well/spring survey density, road access, sampling bias, non-fault geothermal discharge, and regional hydrology can make false chains. Source coverage and field semantics are unverified in this workspace. Do not reuse the historical full-catalogue distance column in any fold.</td>
           </tr>
           <tr>
-            <td><strong>Second</strong></td>
-            <td><strong>Earthquake-supported, otherwise unmapped structures.</strong> Layers: USGS ComCat event hypocenters and, where present, focal-mechanism solutions; compute event-cluster lineaments, migration, and mechanism-orientation coherence rather than a static count-only raster.</td>
-            <td>Small or buried faults that lack a clear surface scarp may still host seismicity. A spatially coherent sequence or compatible focal mechanisms could expose structure not represented in a surface-mapping catalogue.</td>
-            <td><strong>Relative potential: medium; likely sparse and biased.</strong> Cost: medium-high—API query, completeness/time-window analysis, duplicate-event handling, spatial uncertainty, mechanism filtering, and sensitivity tests.</td>
-            <td>Source to check: <a href="https://earthquake.usgs.gov/data/comcat/">USGS ComCat</a>. The event count, focal-mechanism coverage, and API accessibility for the study area were not checked here; the method is <strong>not cleared as viable</strong>. No ComCat/focal-mechanism layer is named in the supplied history, and GEMSDOE74 started without an implementation, but uniqueness across all sites is unproven. Non-fault mimics include aftershock clusters, catalog completeness changes, and geothermal/volcanic seismicity not tied to a mappable fault.</td>
+            <td><strong>2</strong></td>
+            <td><strong>Spring–alteration consensus rather than a union.</strong> Require a spring-chain orientation signal to coincide, within a preregistered distance, with a spatially coherent K-rich / low-Th-to-K alteration response. Keep the spring and radiometric terms separately measurable.</td>
+            <td>Agreement between discharge alignment and an independent radiometric alteration signature could suppress isolated springs or isolated radiometric edges that do not indicate a shared fluid pathway.</td>
+            <td><strong>Relative potential: medium-high if rank 1 is useful.</strong> Cost: medium—one fixed coincidence/scale rule plus paired ablation on identical folds.</td>
+            <td>Lithologic contacts, radiometric striping/quantization, altered host rock without a fault, and chance coincidence can mimic agreement. Proceed only after the spring-only test and feature-alone leakage canaries.</td>
           </tr>
           <tr>
-            <td><strong>Third</strong></td>
-            <td><strong>Persistent satellite surface-heat lineaments.</strong> Layers: USGS Landsat Collection 2 Level-2 surface temperature (ST), QA/cloud masks, and competition terrain covariates if available. Target repeated, season-normalized warm residuals and an oriented ridge/edge response that recurs across independent clear scenes.</td>
-            <td>Persistent shallow thermal anomalies can indicate fluid upflow over a fault or fracture zone even when the structure has no obvious relief. Requiring temporal recurrence would reject some transient weather and illumination artifacts.</td>
-            <td><strong>Relative potential: low-to-medium; confounding is substantial.</strong> Cost: high—scene selection, cloud and emissivity QA, seasonal normalization, topographic correction, and temporal resampling.</td>
-            <td>Source to check: <a href="https://www.usgs.gov/landsat-missions/landsat-collection-2-surface-temperature">USGS Landsat Collection 2 Surface Temperature</a>. Area coverage and usable scenes were not checked here; the method is <strong>not cleared as viable</strong>. The supplied history already mentions a thermal/population hypothesis, so this candidate has an explicit overlap risk and requires registry review before it can be called new. Non-fault mimics include aspect-driven solar heating, wildfire, vegetation, wetness, and land-cover transitions.</td>
+            <td><strong>3</strong></td>
+            <td><strong>K/Th alteration lineaments alone.</strong> Use only GeoDawn bands whose metadata confirms the K and Th identities/units. Build a scale-controlled lineament response from the documented alteration contrast; do not infer calibrated geochemistry from an undocumented stretched byte raster.</td>
+            <td>Hydrothermal alteration can mark fluid pathways where a geomorphic fault trace is weak. This ablation tests whether the radiometric contribution adds signal independently of spring locations.</td>
+            <td><strong>Relative potential: medium-low.</strong> Cost: medium—source metadata, masking, background normalization, and lineament parameter checks.</td>
+            <td>Lithology, surficial cover, flight-line artifacts, and resampling edges may dominate. No improvement is assumed; verify K and Th provenance, then run one-feature AUC canaries and the spatial holdout.</td>
+          </tr>
+          <tr>
+            <td><strong>4</strong></td>
+            <td><strong>Thermal-class/temperature weighting within spring chains.</strong> Compare a pre-registered hot-only or quality-weighted spring subset with the hot-plus-warm set; do not tune thresholds against the holdout.</td>
+            <td>More reliable, higher-temperature observations might strengthen a genuine hydrothermal conduit signal and reduce low-confidence or non-geothermal spring records.</td>
+            <td><strong>Relative potential: low-to-medium.</strong> Cost: low after rank 1's builder exists; medium if source-field definitions need reconciliation.</td>
+            <td>Season, instrument, measurement date, and survey practice can control reported temperatures. Only test if GDR field semantics and dates are verified, and compare at matched emitted mass.</td>
           </tr>
         </tbody>
       </table></div>
@@ -52,26 +60,35 @@
 
     <section aria-labelledby="decision">
       <h2 id="decision">Decision and next validation step</h2>
-      <p>The first research lead is ASTER TIR alteration mapping because it adds a different physical measurement—spectral mineralogy—rather than another variant of the existing prediction surface. That is a rationale for studying it, not a claim that its input exists or that it will improve DTI. The official product page and study-area granules must first be obtainable and documented. Until then, this is a blocked research lead, not a viable candidate.</p>
-      <p>Before a holdout run, restore the shared template and document its exact cached-stack path, evaluator version, and writer. Confirm a single selected lane; the initiating text does not contain the method paragraph it references. Then freeze the feature set, derive every catalogue-dependent layer from visible faults only, run the single-feature leakage canary, and evaluate the candidate against the current holdout best. No weekly submission slot should be considered unless the holdout gate is passed.</p>
-      <div class="callout"><strong>Uniqueness is not established.</strong> The branch contains no registry rasters, and the provided historical site list is not a pixel-level registry. A method's name sounding different is insufficient: the surface correlation and dot-overlap checks must be run before placement and on the final dots.</div>
+      <p>Rank 1 is the first research test, not a submission choice. The stored H74-A raster is not its result: the archived generator filters springs with a full-catalogue distance field, so it cannot currently produce a valid fold-specific hide-and-recover candidate. The shared evaluator has been repaired to require whole-segment folds, a 1.5 km feature-construction collar, exact pixel masking of visible faults, pooled DTI with the 300 m kernel, repeated draws, and a 95% interval. The local checkout still lacks data and a fold-aware builder; no evaluation was run.</p>
+      <ol class="steps">
+        <li>Obtain the official competition inputs and verify their hashes, grid, licence, and source. The pinned GitHub mirror is partial and was not fetched.</li>
+        <li>Refactor the shared H74-A generator so its spring-distance field is recomputed from the fold's visible faults; do not retain or read the historical full-catalogue distance column for evaluation.</li>
+        <li>Freeze the candidate parameters and evaluate rank 1 against a valid current holdout best using identical segment draws. If no valid baseline exists, remain blocked.</li>
+        <li>Run each feature-alone leakage canary. AUC above 0.90 is leakage until explained; record every feature and fold.</li>
+        <li>Compare the surface before placement and the final dots with every registry raster. Stop if rank correlation exceeds 0.90 or more than 70% of dots fall within 3 px of a registry raster.</li>
+        <li>Only after a candidate beats the holdout best may the separate selector consider a weekly slot. This page does not select or promote a submission.</li>
+      </ol>
+      <div class="callout"><strong>Budget:</strong> no experiment was run in this session. Stop after at most three experiments or two hours. The archived raster is not a baseline, and its format receipt is not an organizer score.</div>
     </section>
 
-    <section aria-labelledby="learning">
-      <h2 id="learning">Learning from the H33 archive without copying it</h2>
-      <p>The H33-2-B2 entry in the related GEMSDOE32 archive is described as suppressing predictions close to the known-fault catalogue on top of an existing emission. That is a different operation from adding an independent sensor-derived physical feature. The archive's own site/readme labels its displayed live value a projection and says it has no organizer score for its artifacts. We use that record only to understand the approach and its evidence limitations; no raster or private fork was copied.</p>
-      <p>A catalogue-distance ablation is scientifically interpretable only if the holdout hides whole fault segments with a buffer, computes all catalogue-derived features from the visible catalogue, and masks visible-fault pixels exactly. Otherwise it can reward leakage or the spatial structure of the target rather than discovery of new faults.</p>
-      <p>Pruning a near-catalogue belt is a precision/recall policy, not a geological observation: it can remove false-positive mass, but it can also delete true withheld faults. Its effect depends on the exact pooled DTI implementation and spatial kernel. The prescribed HOLDOUT-DTI parameters are alpha 0.2, beta 0.8, and a 300 m triangular kernel; these protocol settings are not a result. Convention differences in Tversky implementations make it unsafe to infer which error term dominates without checking the competition evaluator.</p>
+    <section aria-labelledby="sources">
+      <h2 id="sources">Trusted source portals for manual review</h2>
+      <ul class="steps">
+        <li><a href="https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and">USGS GeoDawn magnetic and radiometric survey</a> — verify band identities, physical units, georeferencing, acquisition footprint, and licence.</li>
+        <li><a href="https://gdr.openei.org/submissions/1391">GDR submission 1391</a> — verify the exact spring/well files, field definitions, provenance, and reuse terms.</li>
+        <li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/data/">Official competition data page</a> — the sample grid and all official labels/features must come from the authorized competition source.</li>
+      </ul>
+      <p>These links were not fetched from this environment. A source link is not evidence of current availability or coverage.</p>
     </section>
 
-    <section aria-labelledby="reference">
-      <h2 id="reference">What the organizer reference solution does—and does not show</h2>
-      <p>The organizer's public reference notebook trains a U-Net on raster patches over repeated random splits, uses a Tversky loss with greater penalty weight on false negatives than false positives, and converts logits to probabilities with sigmoid. Its example output writer copies georeferencing from the fault-label raster. This is a baseline implementation, not evidence that the H33 candidate was scored or that its method caused a score change.</p>
-      <p>Random patch splits can leave nearby or spatially correlated examples on both sides of a split; that risk is why GEMSDOE74's required decision gate is a spatial holdout that hides complete fault segments. The example notebook also does not re-read and validate the written output's range and does not compare its grid with the official sample-submission raster. A mathematically bounded sigmoid output is not a substitute for post-write file validation.</p>
-      <p><a href="https://github.com/drivendataorg/gems-prize-reference-solution/blob/main/unet-mc-cv-reference-solution.ipynb">Review the organizer reference notebook</a>.</p>
+    <section aria-labelledby="historical">
+      <h2 id="historical">Historical H74-A artifact — archive only</h2>
+      <p>The prior TIFF, NaN twin, ZIP, and format receipt are stored under <code>archive/h74-a/</code>, outside the public site. The v0.2 segment proxy reports candidate DTI 0.001619 and random-control DTI 0.031034 across four folds; the per-fold withheld-positive total is 12,088. It has no buffer, no 95% CI, and no fold-visible rebuild of the catalogue-derived spring feature, so this is explicitly a <strong>negative, noncompliant proxy</strong>. No organizer-confirmed receipt/score is present. Do not download or submit these files.</p>
+      <p>The earlier pixel-sampled v0.1 record is also retained as an invalid proxy. Neither record establishes performance on the competition's hidden target, and neither is a valid current holdout-best baseline.</p>
     </section>
     <p><a href="sources.html">Review the source ledger →</a> · <a href="irregularities.html">Open irregularities →</a></p>
   </main>
-  <footer class="site-footer"><div class="footer-inner">No candidate in this shortlist has been run or promoted.</div></footer>
+  <footer class="site-footer"><div class="footer-inner">One lane, four research tests, zero current promotion decisions.</div></footer>
 </body>
 </html>
