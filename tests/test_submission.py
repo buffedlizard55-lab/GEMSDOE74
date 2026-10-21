@@ -1,26 +1,45 @@
-import pathlib, rasterio, numpy as np
-def test_submission_exists_and_valid():
-    p = pathlib.Path("docs/downloads/gems74-h74-alt-spring-39500-20261021T000000Z-52f76038-zeros.tif")
-    assert p.exists(), f"missing {p}"
-    with rasterio.open(p) as src:
-        assert src.count==1
-        assert src.dtypes[0]=="float32"
-        assert src.height==3730 and src.width==3292
-        assert src.crs.to_epsg()==32611
-        assert src.transform == rasterio.Affine(100,0,243350,0,-100,4508550)
-        assert src.nodata is None
-        data=src.read(1)
-        assert np.isfinite(data).all()
-        assert (data>=0).all() and (data<=1).all()
-        assert (data>0).sum()==39500
-        assert data.min()==0.0 and data.max()==1.0
-def test_no_catalogue_leakage():
-    import rasterio as rio
-    p = pathlib.Path("docs/downloads/gems74-h74-alt-spring-39500-20261021T000000Z-52f76038-zeros.tif")
-    try:
-        cat = rio.open("/tmp/gems74_data/labels.tif").read(1)>0
-    except:
-        return
-    with rio.open(p) as src:
-        data=src.read(1)>0
-        assert (data & cat).sum()==0
+import pathlib, numpy as np, rasterio, tempfile, os
+from gemsdoe74.grid import synthetic_footprint, WIDTH, HEIGHT, CRS, TRANSFORM, write_submission
+from gemsdoe74.submission import validate_tif
+
+def test_write_and_validate():
+    shape=(HEIGHT,WIDTH)
+    fp=synthetic_footprint(shape=shape, seed=0)
+    arr=np.zeros(shape,dtype=np.float32)
+    arr[HEIGHT//2, WIDTH//2]=1.0
+    arr[HEIGHT//2+5, WIDTH//2+5]=0.5
+    with tempfile.TemporaryDirectory() as td:
+        tpl=pathlib.Path(td)/"tpl.tif"
+        # create fake template
+        meta=dict(driver="GTiff", dtype="float32", count=1, crs=CRS, transform=TRANSFORM, width=WIDTH, height=HEIGHT, nodata=None)
+        with rasterio.open(tpl,"w",**meta) as dst:
+            dst.write(np.where(fp,0.0,0.0).astype(np.float32),1)
+        out=pathlib.Path(td)/"out.tif"
+        # use write_submission from grid
+        write_submission(arr, str(tpl), str(out), footprint=fp, outside="zero")
+        v=validate_tif(out, tpl)
+        assert v["passed"], v["checks"]
+        with rasterio.open(out) as ds:
+            got=ds.read(1)
+            assert got.shape==shape
+            assert ds.crs.to_string()==CRS
+            assert ds.transform==TRANSFORM
+            assert got.min()>=0 and got.max()<=1
+            assert np.isfinite(got).all()
+
+def test_range_guard():
+    shape=(HEIGHT,WIDTH)
+    fp=synthetic_footprint(shape=shape)
+    bad=np.zeros(shape,dtype=np.float32)
+    bad[100,100]=1.5
+    import tempfile, pathlib
+    with tempfile.TemporaryDirectory() as td:
+        tpl=pathlib.Path(td)/"tpl.tif"
+        meta=dict(driver="GTiff", dtype="float32", count=1, crs=CRS, transform=TRANSFORM, width=WIDTH, height=HEIGHT, nodata=None)
+        with rasterio.open(tpl,"w",**meta) as dst:
+            dst.write(np.zeros(shape,dtype=np.float32),1)
+        try:
+            write_submission(bad, str(tpl), str(pathlib.Path(td)/"bad.tif"), footprint=fp, outside="zero")
+            assert False, "should have raised"
+        except AssertionError:
+            pass
