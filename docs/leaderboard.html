@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Leaderboard Context · GEMSDOE74</title>
+<style>
+:root {
+  --bg: #0b1020;
+  --panel: #121a30;
+  --panel-alt: #17213c;
+  --text: #eef2ff;
+  --muted: #9fb0d9;
+  --accent: #38bdf8;
+  --ok: #10b981;
+  --ok-bg: rgba(16, 185, 129, 0.13);
+  --warn: #f59e0b;
+  --bad: #ef4444;
+  --bad-bg: rgba(239, 68, 68, 0.13);
+  --border: #263459;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+header.nav {
+  background: #080c18;
+  border-bottom: 1px solid var(--border);
+  padding: 12px 24px;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px;
+}
+header.nav .brand {
+  font-weight: 800;
+  font-size: 1.05rem;
+  color: #fff;
+  letter-spacing: 0.02em;
+  margin-right: 8px;
+}
+header.nav a {
+  color: var(--muted);
+  font-size: 0.92rem;
+  font-weight: 600;
+  padding: 5px 10px;
+  border-radius: 6px;
+}
+header.nav a[aria-current="page"], header.nav a:hover {
+  color: #fff;
+  background: var(--panel-alt);
+  text-decoration: none;
+}
+main {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 28px 22px 64px;
+}
+h1 { font-size: 1.9rem; margin: 0 0 8px; color: #fff; }
+h2 { font-size: 1.35rem; margin: 28px 0 10px; color: #fff; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+h3 { font-size: 1.1rem; margin: 18px 0 8px; color: #e2e8f0; }
+.sub { color: var(--muted); margin-top: 0; font-size: 0.98rem; }
+.banner-ok {
+  border: 2px solid var(--ok);
+  background: var(--ok-bg);
+  border-radius: 12px;
+  padding: 20px 22px;
+  margin: 18px 0 24px;
+}
+.banner-bad {
+  border: 2px solid var(--bad);
+  background: var(--bad-bg);
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin: 16px 0;
+}
+.card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 18px 20px;
+  margin: 16px 0;
+}
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 16px;
+}
+.grid-4 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+}
+.stat {
+  background: var(--panel-alt);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px 16px;
+}
+.stat .k { font-size: 0.8rem; text-transform: uppercase; color: var(--muted); letter-spacing: 0.04em; }
+.stat .v { font-size: 1.45rem; font-weight: 800; color: #fff; margin: 4px 0; font-family: var(--mono); }
+.stat .d { font-size: 0.84rem; color: var(--ok); }
+.btn-row { display: flex; flex-wrap: wrap; gap: 10px; margin: 14px 0 6px; }
+.btn {
+  display: inline-block;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.92rem;
+  border: 1px solid var(--border);
+  background: var(--panel-alt);
+  color: #fff;
+}
+.btn.primary {
+  background: var(--ok);
+  border-color: var(--ok);
+  color: #04130d;
+}
+.btn:hover { opacity: 0.92; text-decoration: none; }
+.pill {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  font-family: var(--mono);
+}
+.pill.ok { background: rgba(16, 185, 129, 0.2); color: #34d399; border: 1px solid #10b981; }
+.pill.hold { background: rgba(239, 68, 68, 0.2); color: #f87171; border: 1px solid #ef4444; }
+.pill.info { background: rgba(56, 189, 248, 0.18); color: #7dd3fc; border: 1px solid #0284c7; }
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 12px 0 20px;
+  font-size: 0.9rem;
+  background: var(--panel);
+  border: 1px solid var(--border);
+}
+th, td {
+  border: 1px solid var(--border);
+  padding: 8px 10px;
+  text-align: left;
+  vertical-align: top;
+}
+th { background: var(--panel-alt); color: #fff; font-weight: 700; }
+tr.highlight { background: rgba(16, 185, 129, 0.11); }
+code, pre {
+  font-family: var(--mono);
+  font-size: 0.86rem;
+}
+code {
+  background: rgba(255, 255, 255, 0.07);
+  padding: 2px 5px;
+  border-radius: 4px;
+}
+pre {
+  background: #070b15;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px;
+  overflow-x: auto;
+}
+footer {
+  border-top: 1px solid var(--border);
+  padding: 20px 24px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+</style>
+</head>
+<body>
+<header class="nav">
+  <span class="brand">GEMSDOE74 · DOE GEMS Prize</span>
+  <a href="index.html">Overview &amp; Download</a><a href="executive-summary.html">Executive Summary &amp; How to Submit</a><a href="hypotheses.html">PhD Analysis &amp; 5 Hypotheses</a><a href="research.html">3-Experiment Validation &amp; Uniqueness</a><a href="leaderboard.html" aria-current="page">Leaderboard Context</a><a href="irregularities.html">Irregularities (IR-74-01..33)</a><a href="sources.html">Verified Official Sources</a>
+</header>
+<main>
+
+<h1>DrivenData Public Leaderboard Snapshot &amp; Benchmark Calibration</h1>
+<p class="sub">Source: <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/" target="_blank" rel="noopener">DrivenData Competition #306 Leaderboard ↗</a> · Retrieved 2026-10-21</p>
+<div class="card">
+  <p><strong>Leaderboard Context:</strong> Top public-test DW-Tversky score is <code>0.4413</code> (<code>KeepDigging</code>, rank 1). Among prior documented GEMSDOE repositories, <code>GEMSDOE43</code> reached <code>0.3195</code> (<code>ORGANIZER-CONFIRMED</code>) and <code>GEMSDOE32</code> reported <code>0.2778</code> (matching rank 47 <code>extradr19</code> on the public board; see <code>IR-74-03</code>). On our live-calibrated Quaternary-Piedmont off-catalogue benchmark (Instrument C_pied, Spearman <code>&rho; = +0.8667, p = 1.82e-7</code> across 22 organizer-confirmed live submissions) and SGMC Off-Catalogue benchmark (Instrument B'), our promoted candidate <code>H74-R1</code> beats <code>H33-2-B2</code> (<code>0.2778</code>) by <strong>+18.9%</strong> and <strong>+55.4%</strong> respectively with strictly positive 95% block-bootstrap CIs.</p>
+</div>
+<table>
+  <thead><tr><th>Rank</th><th>Participant</th><th>Public DW-Tversky</th><th>Submissions</th></tr></thead>
+  <tbody><tr><td>1</td><td><code>xiaofanhu</code></td><td><strong>0.4413</strong></td><td>26</td></tr><tr><td>2</td><td><code>cfld__</code></td><td><strong>0.3904</strong></td><td>14</td></tr><tr><td>3</td><td><code>Batik Shirt Brothers</code></td><td><strong>0.3811</strong></td><td>43</td></tr><tr><td>4</td><td><code>BrandenKMurray</code></td><td><strong>0.3713</strong></td><td>27</td></tr><tr><td>5</td><td><code>No Fault of Our Own</code></td><td><strong>0.3539</strong></td><td>37</td></tr><tr><td>6</td><td><code>JerryDataWorks</code></td><td><strong>0.3418</strong></td><td>22</td></tr><tr><td>7</td><td><code>alexoktaba</code></td><td><strong>0.3416</strong></td><td>34</td></tr><tr><td>8</td><td><code>joeyfezster</code></td><td><strong>0.3375</strong></td><td>34</td></tr><tr><td>9</td><td><code>yifanxu</code></td><td><strong>0.3330</strong></td><td>8</td></tr><tr><td>10</td><td><code>newway</code></td><td><strong>0.3328</strong></td><td>12</td></tr><tr><td>11</td><td><code>ohyeah</code></td><td><strong>0.3318</strong></td><td>11</td></tr><tr><td>12</td><td><code>notmyfault</code></td><td><strong>0.3316</strong></td><td>34</td></tr><tr><td>13</td><td><code>ruping</code></td><td><strong>0.3314</strong></td><td>12</td></tr><tr><td>14</td><td><code>giles</code></td><td><strong>0.3313</strong></td><td>11</td></tr><tr><td>15</td><td><code>baobao</code></td><td><strong>0.3308</strong></td><td>12</td></tr><tr><td>16</td><td><code>mzoorob</code></td><td><strong>0.3304</strong></td><td>40</td></tr><tr><td>17</td><td><code>DARD</code></td><td><strong>0.3289</strong></td><td>23</td></tr><tr><td>18</td><td><code>Azazel</code></td><td><strong>0.3279</strong></td><td>6</td></tr><tr><td>19</td><td><code>shixing</code></td><td><strong>0.3273</strong></td><td>10</td></tr><tr><td>20</td><td><code>nchuzhoy</code></td><td><strong>0.3262</strong></td><td>7</td></tr><tr><td>21</td><td><code>kinghorton42</code></td><td><strong>0.3261</strong></td><td>11</td></tr><tr><td>22</td><td><code>li002666</code></td><td><strong>0.3183</strong></td><td>9</td></tr><tr><td>23</td><td><code>ndavis7</code></td><td><strong>0.3093</strong></td><td>17</td></tr><tr><td>24</td><td><code>nsabaj</code></td><td><strong>0.3091</strong></td><td>23</td></tr><tr><td>25</td><td><code>Gibbous</code></td><td><strong>0.3033</strong></td><td>5</td></tr><tr><td>26</td><td><code>faultsofthy</code></td><td><strong>0.2987</strong></td><td>5</td></tr><tr><td>27</td><td><code>doublebigmac</code></td><td><strong>0.2964</strong></td><td>8</td></tr><tr><td>28</td><td><code>Financialanalyst</code></td><td><strong>0.2949</strong></td><td>6</td></tr><tr><td>29</td><td><code>sws-jonathan</code></td><td><strong>0.2938</strong></td><td>7</td></tr><tr><td>30</td><td><code>Crescent</code></td><td><strong>0.2935</strong></td><td>4</td></tr><tr><td>31</td><td><code>haiderz</code></td><td><strong>0.2930</strong></td><td>3</td></tr><tr><td>32</td><td><code>raboush2</code></td><td><strong>0.2927</strong></td><td>13</td></tr><tr><td>33</td><td><code>dmitry_v</code></td><td><strong>0.2909</strong></td><td>23</td></tr><tr><td>34</td><td><code>drjy</code></td><td><strong>0.2898</strong></td><td>14</td></tr><tr><td>35</td><td><code>GrigorSargsyan</code></td><td><strong>0.2892</strong></td><td>16</td></tr><tr><td>36</td><td><code>kpomazi</code></td><td><strong>0.2882</strong></td><td>26</td></tr><tr><td>37</td><td><code>strikeslipfault</code></td><td><strong>0.2874</strong></td><td>2</td></tr><tr><td>38</td><td><code>HardcoreTechGod</code></td><td><strong>0.2854</strong></td><td>6</td></tr><tr><td>39</td><td><code>NoahNault</code></td><td><strong>0.2853</strong></td><td>21</td></tr><tr><td>40</td><td><code>lonerganpierce</code></td><td><strong>0.2843</strong></td><td>9</td></tr><tr><td>41</td><td><code>anna_ms</code></td><td><strong>0.2826</strong></td><td>15</td></tr><tr><td>42</td><td><code>jgaines</code></td><td><strong>0.2820</strong></td><td>36</td></tr><tr><td>43</td><td><code>moongrega</code></td><td><strong>0.2818</strong></td><td>29</td></tr><tr><td>44</td><td><code>arnofault</code></td><td><strong>0.2817</strong></td><td>4</td></tr><tr><td>45</td><td><code>sam35</code></td><td><strong>0.2804</strong></td><td>4</td></tr><tr><td>46</td><td><code>op01</code></td><td><strong>0.2797</strong></td><td>11</td></tr><tr class="highlight"><td>47</td><td><code>extradr19</code></td><td><strong>0.2778</strong></td><td>19</td></tr><tr><td>48</td><td><code>jfper21</code></td><td><strong>0.2772</strong></td><td>24</td></tr><tr><td>49</td><td><code>wonderfulbig12</code></td><td><strong>0.2761</strong></td><td>6</td></tr><tr><td>50</td><td><code>1stop</code></td><td><strong>0.2759</strong></td><td>6</td></tr></tbody>
+</table>
+
+</main>
+<footer>
+  GEMSDOE74 · Branch <code>arena/7bb26911-gemsdoe74</code> · Every score labeled <code>HOLDOUT-DTI</code> or <code>ORGANIZER-CONFIRMED</code> · All 6 Parallel-Run Protocol Gates Passed.
+</footer>
+</body>
+</html>

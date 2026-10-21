@@ -1,0 +1,70 @@
+{
+  "evidence_class": "HOLDOUT-DTI (A, A_quad) and OUT-OF-FOLD PROXY-DTI (B, B', C_pied); none organizer-confirmed",
+  "budget_dots": 37654,
+  "experiments_used": 3,
+  "maximum_experiments": 3,
+  "elapsed_seconds": 40.25,
+  "maximum_seconds": 7200.0,
+  "experiments": [
+    {
+      "id": "Exp_74.1",
+      "name": "E1: Unsupervised Real-Data C1+H74-1 Physics Composite + 7x7 Peak NMS",
+      "dots": 37654,
+      "instrument_A_dti": 0.05227529683249237,
+      "instrument_A_quad_dti": 0.07334617420784482,
+      "instrument_B_prime_dti": 0.06841790726399621,
+      "instrument_C_pied_dti": 0.0782713980448642
+    },
+    {
+      "id": "Exp_74.2",
+      "name": "E2: 4-Quadrant LOQO 85-Feature Multi-Physics + Down-Dip + Mechanics + 7x7 Peak NMS",
+      "dots": 37654,
+      "instrument_A_dti": 0.07635316375272316,
+      "instrument_A_quad_dti": 0.10511021407271826,
+      "instrument_B_prime_dti": 0.10503220741543533,
+      "instrument_C_pied_dti": 0.07468136719051219
+    },
+    {
+      "id": "Exp_74.3",
+      "name": "E3 (Promoted): Frozen Exp 74.2 Posterior + Spaced (d_min=3.20px) 300m Submodular DTI Allocation",
+      "dots": 37654,
+      "instrument_A_dti": 0.10767242472608997,
+      "instrument_A_quad_dti": 0.15690667914250564,
+      "instrument_B_prime_dti": 0.14567720999190617,
+      "instrument_C_pied_dti": 0.11142113482226013
+    }
+  ],
+  "controls": {
+    "h33_2_b2_incumbent_02778": {
+      "dots": 37654,
+      "instrument_A_dti": 0.0036997816856295857,
+      "instrument_B_prime_dti": 0.09377056861492461,
+      "instrument_C_pied_dti": 0.09367323299494662
+    },
+    "d2_8_baseline_02600": {
+      "dots": 44090,
+      "instrument_A_dti": 0.09192198709430605,
+      "instrument_B_prime_dti": 0.09352659933526818,
+      "instrument_C_pied_dti": 0.08955120753787148
+    },
+    "h74_1_synthetic_prior_hold": {
+      "dots_in_footprint_offcat": 15417,
+      "instrument_A_dti": 0.018895072803069086,
+      "instrument_B_prime_dti": 0.01682645393893781,
+      "instrument_C_pied_dti": 0.016094731565335994
+    },
+    "h74_a_spring_prior_hold": {
+      "dots": 39500,
+      "instrument_A_dti": 0.0013039701520291772,
+      "instrument_B_prime_dti": 0.040166634209781595,
+      "instrument_C_pied_dti": 0.031522596525281145
+    },
+    "random_37654": {
+      "dots": 37654,
+      "instrument_A_dti": 0.0022864888144698762,
+      "instrument_A_quad_dti": 0.003398639680088206,
+      "instrument_B_prime_dti": 0.0794780971646548,
+      "instrument_C_pied_dti": 0.045242867731087114
+    }
+  }
+}

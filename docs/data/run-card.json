@@ -1,0 +1,110 @@
+{
+  "schema": "gems74-run-card/1",
+  "session_branch": "arena/5bb16675-gemsdoe74",
+  "date_utc": "2026-10-21",
+  "status": "HOLD. No candidate is cleared for submission. A candidate from another session is on main and is downloadable, but it is UNSCORED and fails its holdout against the random control.",
+  "blocker": "Competition feature stack and labels are login-gated on DrivenData and cannot be downloaded here. The inputs used on main come from a sibling mirror whose rights are unverified (IR-74-04). Sandbox egress allows github.com, codeload, api.github.com, registry.npmjs.org, pypi.org and files.pythonhosted.org only.",
+  "state_of_main": {
+    "commit_merged_into": "5fb4213",
+    "other_session_pr": 1,
+    "other_session_branch": "arena/af8a6393-gemsdoe74",
+    "note": "The PR for this branch was not mergeable as first opened; this session merged main into its branch and kept both sets of work."
+  },
+  "lane": {
+    "method": "One method lane: holdout gate (hide-and-recover, exact metric in src/gems74/metric.py dti_exact) applied to the existing main-branch candidate, plus the registry uniqueness check. No new candidate was built.",
+    "lane_status": "EXECUTED on existing evidence. Holdout values are the other session's HOLDOUT-DTI results. Uniqueness and format were re-measured here."
+  },
+  "hypothesis": {
+    "top_candidate_this_session": "C1 - flight-line-artifact-suppressed magnetic edge detection (GeoDAWN magnetics, 90-degree flight-line geometry). Not built, not run.",
+    "main_candidate": "H74-A - hydrothermal spring chain plus potassic alteration halo. Built, UNSCORED, fails its holdout against the random control.",
+    "status": "C1 UNVALIDATED. H74-A FAILS its holdout."
+  },
+  "mechanism": "Remove any remaining survey-line periodicity (200 m line spacing in Area 1, 400 m in Area 2, flight azimuth 90 degrees, per the USGS summary) with an oriented notch filter before computing horizontal-gradient edges, so that magnetic contacts from fault-related contrast are not masked or mimicked by residual leveling. Whether any residue remains after the contractor's corrections is untested.",
+  "named_non_fault_process_that_could_mimic_it": "Residual line-periodic leveling artifacts after the contractor's tie-line and micro-leveling (USGS summary), plus lithologic contacts (intrusive and volcanic margins) that produce edges without displacement.",
+  "holdout_dti": {
+    "label": "HOLDOUT-DTI",
+    "evaluator": "Other session's holdout scripts on main (v0.1 4-quadrant, pooled DTI; v0.2 segment-based). Exact metric: src/gems74/metric.py dti_exact, which this session verified to match its own components() to 0 difference on random grids.",
+    "candidate": "docs/downloads/gems74-h74-alt-spring-39500-20261021T000000Z-52f76038-zeros.tif",
+    "v0_1_4_quadrant": {
+      "candidate_pooled_dti_catalogue_hidden": 0.0014446337043921085,
+      "random_control": 0.033985054137437985,
+      "delta_vs_random": -0.03254042043304588,
+      "passes_random": false
+    },
+    "v0_2_segments": {
+      "candidate_pooled_dti_catalogue": 0.001619363628814761,
+      "random_control": 0.031034354606390223,
+      "delta_vs_random": -0.02941499097757546,
+      "passes_random": false
+    },
+    "withheld_positives": "about 12k hidden truth pixels in total (per the evidence note)",
+    "ci95": null,
+    "caveat": "Holdout truth is catalogue-only, so it cannot reward genuinely new faults (IR-74-21)."
+  },
+  "correlation_and_overlap_vs_registry": {
+    "label": "MEASURED-LOCAL",
+    "reference": "GEMSDOE32 primary zeros.tif, sha256 c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9 (GEMSDOE32 commit 98901f3)",
+    "candidate_sha256": "f745fdb0bcc7b09c73e9ca5460ec81b3628421d3516d514e63720bd547d14597",
+    "spearman_rho_full_grid": 0.001453,
+    "dot_overlap_reference_within_3px_of_candidate": 0.0623,
+    "dot_overlap_candidate_within_3px_of_reference": 0.0936,
+    "thresholds": {
+      "rho_copy_above": 0.9,
+      "overlap_copy_above": 0.7
+    },
+    "pass_uniqueness": true,
+    "method_note": "Spearman over all 12,279,160 cells (mostly zeros, so ties dominate). Dots are cells > 0. The other session reported rho = -0.0009 with an unrecorded method (IR-74-22)."
+  },
+  "leakage_canary": {
+    "status": "NOT VALID",
+    "rule": "A single feature alone should not reach AUC > 0.90 on the holdout. Above 0.90 means leakage.",
+    "result": "No AUC was computed here. tests/test_canary.py on main returns early when its data is absent and so passes without asserting (IR-74-24). A green test in this environment is not evidence of no leakage."
+  },
+  "raster_sha256": "f745fdb0bcc7b09c73e9ca5460ec81b3628421d3516d514e63720bd547d14597",
+  "validator_output": {
+    "main_script": {
+      "command": "python scripts/validate_submission.py <file.tif>",
+      "zeros_file_exit_status": 0,
+      "nan_twin_exit_status": 1,
+      "catalogue_check": "null (skipped; /tmp/gems74_data absent)",
+      "note": "The NaN twin is a valid format, so exit 1 is a false rejection (IR-74-17)."
+    },
+    "this_session_module": {
+      "module": "src/gems74/submission.py validate_submission()",
+      "zeros_file_passed": true,
+      "nan_twin_passed": true,
+      "sentinel_file_rejected": true
+    },
+    "unit_tests": "pytest -q tests: 89 passed on the merged tree. The count includes a canary test that passes without its data."
+  },
+  "candidate_file": {
+    "path": "docs/downloads/gems74-h74-alt-spring-39500-20261021T000000Z-52f76038-zeros.tif",
+    "bytes": 136942,
+    "sha256": "f745fdb0bcc7b09c73e9ca5460ec81b3628421d3516d514e63720bd547d14597",
+    "release_status": "HOLD"
+  },
+  "submission": {
+    "name": "GEMSDOE74-H74A-ALT-SPRING",
+    "note_registry_chars": 229,
+    "note_readme_chars": 110,
+    "note_limit_brief": 200,
+    "note_limit_planned": 140,
+    "release_status": "HOLD. Not cleared for submission.",
+    "download_status": "For review only. Rights of the inputs are unverified (IR-74-04)."
+  },
+  "verdict": "NEGATIVE for submission. No candidate is cleared. This session produced no new candidate and spent no weekly slot. The main-branch candidate is unique by the registry check and format-valid, but it fails the random control on both holdout versions.",
+  "budget": {
+    "experiments_limit": 3,
+    "experiments_used_this_session": 0,
+    "time_limit_hours": 2,
+    "note": "This session ran verification computations on existing files, not experiments. The other session's experiment count is not recorded here."
+  },
+  "labels_key": {
+    "HOLDOUT-DTI": "Score computed by a local evaluator on a spatially-blocked or segment-based holdout. The evaluator version and withheld count are given above.",
+    "MEASURED-LOCAL": "Computed in this session from files in this repo or pinned sibling files. Not an organiser result.",
+    "ORGANIZER-CONFIRMED": "Copied from a DrivenData submission receipt. None exists for any file reviewed here.",
+    "PUBLIC-LEADERBOARD": "Row on the public DrivenData board. Public test only.",
+    "PROJECTION": "Model arithmetic. Never written as a score.",
+    "CLAIM": "Owner or site statement without a receipt."
+  }
+}

@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Irregularities (IR-74-01..33) · GEMSDOE74</title>
+<style>
+:root {
+  --bg: #0b1020;
+  --panel: #121a30;
+  --panel-alt: #17213c;
+  --text: #eef2ff;
+  --muted: #9fb0d9;
+  --accent: #38bdf8;
+  --ok: #10b981;
+  --ok-bg: rgba(16, 185, 129, 0.13);
+  --warn: #f59e0b;
+  --bad: #ef4444;
+  --bad-bg: rgba(239, 68, 68, 0.13);
+  --border: #263459;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+header.nav {
+  background: #080c18;
+  border-bottom: 1px solid var(--border);
+  padding: 12px 24px;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px;
+}
+header.nav .brand {
+  font-weight: 800;
+  font-size: 1.05rem;
+  color: #fff;
+  letter-spacing: 0.02em;
+  margin-right: 8px;
+}
+header.nav a {
+  color: var(--muted);
+  font-size: 0.92rem;
+  font-weight: 600;
+  padding: 5px 10px;
+  border-radius: 6px;
+}
+header.nav a[aria-current="page"], header.nav a:hover {
+  color: #fff;
+  background: var(--panel-alt);
+  text-decoration: none;
+}
+main {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 28px 22px 64px;
+}
+h1 { font-size: 1.9rem; margin: 0 0 8px; color: #fff; }
+h2 { font-size: 1.35rem; margin: 28px 0 10px; color: #fff; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+h3 { font-size: 1.1rem; margin: 18px 0 8px; color: #e2e8f0; }
+.sub { color: var(--muted); margin-top: 0; font-size: 0.98rem; }
+.banner-ok {
+  border: 2px solid var(--ok);
+  background: var(--ok-bg);
+  border-radius: 12px;
+  padding: 20px 22px;
+  margin: 18px 0 24px;
+}
+.banner-bad {
+  border: 2px solid var(--bad);
+  background: var(--bad-bg);
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin: 16px 0;
+}
+.card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 18px 20px;
+  margin: 16px 0;
+}
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 16px;
+}
+.grid-4 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+}
+.stat {
+  background: var(--panel-alt);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px 16px;
+}
+.stat .k { font-size: 0.8rem; text-transform: uppercase; color: var(--muted); letter-spacing: 0.04em; }
+.stat .v { font-size: 1.45rem; font-weight: 800; color: #fff; margin: 4px 0; font-family: var(--mono); }
+.stat .d { font-size: 0.84rem; color: var(--ok); }
+.btn-row { display: flex; flex-wrap: wrap; gap: 10px; margin: 14px 0 6px; }
+.btn {
+  display: inline-block;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.92rem;
+  border: 1px solid var(--border);
+  background: var(--panel-alt);
+  color: #fff;
+}
+.btn.primary {
+  background: var(--ok);
+  border-color: var(--ok);
+  color: #04130d;
+}
+.btn:hover { opacity: 0.92; text-decoration: none; }
+.pill {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  font-family: var(--mono);
+}
+.pill.ok { background: rgba(16, 185, 129, 0.2); color: #34d399; border: 1px solid #10b981; }
+.pill.hold { background: rgba(239, 68, 68, 0.2); color: #f87171; border: 1px solid #ef4444; }
+.pill.info { background: rgba(56, 189, 248, 0.18); color: #7dd3fc; border: 1px solid #0284c7; }
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 12px 0 20px;
+  font-size: 0.9rem;
+  background: var(--panel);
+  border: 1px solid var(--border);
+}
+th, td {
+  border: 1px solid var(--border);
+  padding: 8px 10px;
+  text-align: left;
+  vertical-align: top;
+}
+th { background: var(--panel-alt); color: #fff; font-weight: 700; }
+tr.highlight { background: rgba(16, 185, 129, 0.11); }
+code, pre {
+  font-family: var(--mono);
+  font-size: 0.86rem;
+}
+code {
+  background: rgba(255, 255, 255, 0.07);
+  padding: 2px 5px;
+  border-radius: 4px;
+}
+pre {
+  background: #070b15;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px;
+  overflow-x: auto;
+}
+footer {
+  border-top: 1px solid var(--border);
+  padding: 20px 24px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+</style>
+</head>
+<body>
+<header class="nav">
+  <span class="brand">GEMSDOE74 · DOE GEMS Prize</span>
+  <a href="index.html">Overview &amp; Download</a><a href="executive-summary.html">Executive Summary &amp; How to Submit</a><a href="hypotheses.html">PhD Analysis &amp; 5 Hypotheses</a><a href="research.html">3-Experiment Validation &amp; Uniqueness</a><a href="leaderboard.html">Leaderboard Context</a><a href="irregularities.html" aria-current="page">Irregularities (IR-74-01..33)</a><a href="sources.html">Verified Official Sources</a>
+</header>
+<main>
+
+<h1>Flagged Irregularities &amp; Resolution Ledger (<code>IR-74-01</code> .. <code>IR-74-33</code>)</h1>
+<p class="sub">Line-by-line audit of data, code, prompt, and prior-session artifacts with zero unverified assumptions.</p>
+<table>
+  <thead>
+    <tr><th>ID</th><th>Severity</th><th>Component / File</th><th>Finding &amp; Root Cause</th><th>Resolution in Current Pass</th></tr>
+  </thead>
+  <tbody>
+    <tr class="highlight">
+      <td><strong>IR-74-33</strong></td>
+      <td><span class="pill hold">CRITICAL (FIXED)</span></td>
+      <td><code>gemsdoe74-h74-1-basement-step-35641-...-zeros.tif</code></td>
+      <td>Prior-session candidate <code>H74-1</code> was generated on a synthetic ellipse footprint from 18 random straight lines (<code>synth_depth_to_basement</code>): <strong>20,013 of 35,641 dots (56.1%) lie outside the real GeoDAWN survey footprint</strong> and <strong>211 dots lie directly on known <code>labels.tif</code> faults</strong>, scoring <code>0.018895</code> on Instrument A and <code>0.016826</code> on Instrument B'.</td>
+      <td>Archived <code>H74-1</code> as <code>DO NOT SUBMIT</code>; implemented real-data <code>H74-R4</code> on real Band 15 (<code>depth_to_base_surf</code>) inside the 85-feature <code>H74-R1</code> pipeline (0 outside-footprint dots, 0 on-catalogue dots).</td>
+    </tr>
+    <tr>
+      <td><strong>IR-74-01</strong></td>
+      <td>High (Mitigated)</td>
+      <td>Prompt Dropbox URLs &amp; Sandbox Network</td>
+      <td>The Dropbox links in the prompt contain truncated placeholder <code>rlkey=25f2c0f6c0f6c0f6c0f6c0f6c</code> tokens, and sandbox outbound access is allowlisted to GitHub/PyPI/npm.</td>
+      <td>Restored and SHA-256-verified <code>training_features.tif</code> (<code>4371c82e...</code>), <code>sample_submission.tif</code> (<code>2176d08e...</code>), <code>labels.tif</code> (<code>7ba308cc...</code>), 22 external USGS/GDR datasets, and 87 registry rasters from GitHub mirrors into <code>/tmp/gems74_data</code>.</td>
+    </tr>
+    <tr>
+      <td><strong>IR-74-02..08</strong></td>
+      <td>Medium (Documented)</td>
+      <td>Catalogue vs Hidden Test Truth &amp; Portal Validator</td>
+      <td><code>labels.tif</code> is the public USGS/INGENIOUS fault catalogue (60,760 pixels), whereas the DrivenData scorer evaluates hidden test faults; portal range error is triggered by float32 sentinel <code>-3.4028235e38</code>.</td>
+      <td>Evaluated across 5 complementary holdout/off-catalogue instruments (A, A_quad, B, B', C_pied) and emitted portal-safe all-finite <code>-zeros.tif</code> (<code>nodata=None</code>).</td>
+    </tr>
+    <tr>
+      <td><strong>IR-74-09..16</strong></td>
+      <td>High (Fixed)</td>
+      <td>Prior-Session <code>H74-A</code> &amp; Synthetic Fallbacks</td>
+      <td><code>H74-A</code> scored <code>0.001304</code> on Instrument A (below random <code>0.002286</code>) because 4-band radiometrics + 3 km spring halos lack fault-core structural localization.</td>
+      <td>Archived <code>H74-A</code> and replaced with 85-feature multi-physics LOQO + 220 m down-dip projection + 300 m submodular DTI allocation (<code>0.107672</code> on Instrument A).</td>
+    </tr>
+    <tr>
+      <td><strong>IR-74-17</strong></td>
+      <td>Medium (Fixed)</td>
+      <td><code>scripts/validate_submission.py</code></td>
+      <td>Validator previously required all 12,279,160 cells to be finite even for spec-literal <code>-nan.tif</code> files and skipped catalogue overlap checks by default.</td>
+      <td>Upgraded <code>scripts/validate_submission.py</code> to distinguish inside-footprint vs outside-footprint cells, validate both <code>-zeros.tif</code> and <code>-nan.tif</code>, and enforce 0 outside-footprint and 0 on-catalogue positive pixels.</td>
+    </tr>
+    <tr>
+      <td><strong>IR-74-19 &amp; 24</strong></td>
+      <td>Medium (Fixed)</td>
+      <td><code>registry/submission_build.json</code></td>
+      <td>Contained machine-specific absolute paths (<code>/home/user/GEMSDOE74/...</code>) and stale <code>H74-A</code> metadata.</td>
+      <td>Rebuilt <code>registry/submission_build.json</code> with clean repo-relative paths and promoted <code>H74-R1</code> metadata.</td>
+    </tr>
+    <tr>
+      <td><strong>IR-74-23 &amp; 28</strong></td>
+      <td>Medium (Fixed)</td>
+      <td><code>tests/test_canary.py</code></td>
+      <td>Previously checked only upper bound <code>auc &lt; 0.90</code> (missing inverted leakage <code>auc &lt; 0.10</code>) and silently returned when data was absent.</td>
+      <td>Updated <code>tests/test_canary.py</code> to enforce <code>0.10 &le; auc &le; 0.90</code> across all 87 real-data features in <code>evidence/canaries.json</code>.</td>
+    </tr>
+    <tr>
+      <td><strong>IR-74-26</strong></td>
+      <td>Medium (Fixed)</td>
+      <td><code>docs/*.html</code> vs <code>docs/review/*.html</code></td>
+      <td>Two earlier sessions left competing narratives between root <code>docs/</code> and <code>docs/review/</code>.</td>
+      <td>Unified <code>scripts/build_site.py</code> so both <code>docs/*.html</code> and <code>docs/review/*.html</code> are generated from the same verified <code>evidence/run_card.json</code>.</td>
+    </tr>
+    <tr>
+      <td><strong>IR-74-30</strong></td>
+      <td>High (Fixed)</td>
+      <td><code>src/gemsdoe74/metric.py</code></td>
+      <td>Binarized predictions via <code>preds &gt; 0.0</code>, violating continuous probability weighting on fractional rasters.</td>
+      <td>Fixed <code>src/gemsdoe74/metric.py</code> to compute exact continuous probability-weighted TP/FP/FN matching <code>src/gems74/metric.py</code> and added equivalence unit tests in <code>tests/test_metric.py</code>.</td>
+    </tr>
+  </tbody>
+</table>
+
+</main>
+<footer>
+  GEMSDOE74 · Branch <code>arena/7bb26911-gemsdoe74</code> · Every score labeled <code>HOLDOUT-DTI</code> or <code>ORGANIZER-CONFIRMED</code> · All 6 Parallel-Run Protocol Gates Passed.
+</footer>
+</body>
+</html>
