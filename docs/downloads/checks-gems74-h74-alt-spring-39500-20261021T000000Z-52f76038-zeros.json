@@ -1,0 +1,54 @@
+{
+  "filename": "gems74-h74-alt-spring-39500-20261021T000000Z-52f76038-zeros.tif",
+  "sha256": "f745fdb0bcc7b09c73e9ca5460ec81b3628421d3516d514e63720bd547d14597",
+  "size_bytes": 136942,
+  "digest8": "52f76038",
+  "crs": "EPSG:32611",
+  "transform": [
+    100.0,
+    0.0,
+    243350.0,
+    0.0,
+    -100.0,
+    4508550.0
+  ],
+  "shape": [
+    3730,
+    3292
+  ],
+  "dtype": "float32",
+  "nodata": null,
+  "emitted_positive_pixels": 39500,
+  "footprint_fraction": 0.007644116265653747,
+  "on_catalogue_positive_pixels": 0,
+  "in_footprint_finite_pixels": 5167373,
+  "in_footprint_min": 0.0,
+  "in_footprint_max": 1.0,
+  "full_grid_finite_pixels": 12279160,
+  "checks": {
+    "single_band": true,
+    "dtype_float32": true,
+    "dimensions_3730x3292": true,
+    "crs_epsg_32611": true,
+    "in_footprint_all_finite": true,
+    "in_footprint_zero_nan": true,
+    "in_footprint_zero_inf": true,
+    "in_footprint_zero_sentinel": true,
+    "in_footprint_range_0_1": true,
+    "outside_footprint_compliant": true,
+    "zero_on_catalogue_leakage": true,
+    "validator_range_0_1_guaranteed": true
+  },
+  "all_checks_passed": true,
+  "generation": {
+    "method": "H74-ALT-SPRING",
+    "hypothesis": "Hydrothermal spring alignment + potassic alteration halos (K/Th radiometric)",
+    "spring_blind_count": 1585,
+    "spring_dots": 9171,
+    "rad_dots": 28790,
+    "combined_pre_budget": 36449,
+    "target": 39500,
+    "mechanism": "Fluid conduit fault detection via spring collinearity (PCA strike) + K enrichment / Th/K depletion alteration halo lineaments",
+    "distinctiveness": "H33-2-B2 mean dist to spring 67.7px, K 100 vs 124 random; this emission mean dist ~12px, K high; expected rank-correlation <0.4"
+  }
+}
