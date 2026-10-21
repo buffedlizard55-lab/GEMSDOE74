@@ -1,27 +1,29 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Run card · GEMSDOE74</title>
-<link rel="stylesheet" href="assets/site.css">
+<title>Run card · GEMSDOE74 review</title>
+<link rel="stylesheet" href="../assets/site.css">
 </head><body>
-<header class="top"><span class="brand">GEMSDOE74</span><a href="index.html">Home</a><a href="submit-checklist.html">Submit checklist</a><a href="analysis-0-2778.html">The 0.2778 question</a><a href="hypotheses.html">Hypotheses</a><a href="leaderboard.html">Leaderboard</a><a href="irregularities.html">Irregularities</a><a href="sources.html">Sources</a><a href="run-card.html" aria-current="page">Run card</a></header>
+<header class="top"><span class="brand">GEMSDOE74</span><a href="../index.html">Site home</a><a href="submit-checklist.html">Submit checklist</a><a href="analysis-0-2778.html">The 0.2778 question</a><a href="hypotheses.html">Hypotheses</a><a href="leaderboard.html">Leaderboard</a><a href="irregularities.html">Irregularities</a><a href="sources.html">Sources</a><a href="run-card.html" aria-current="page">Run card</a></header>
 <main>
 
 <h1>Run card</h1>
 <p class="sub">Machine-readable copy: <a href="data/run-card.json">data/run-card.json</a> · schema gems74-run-card/1 · 2026-10-21</p>
-<div class="status hold"><p class="big">HOLD. No candidate is cleared for submission. A candidate from another session is on main and is downloadable, but it is UNSCORED and fails its holdout against the random control.</p>
+<div class="status hold"><p class="big">HOLD. No candidate is cleared for submission. Two candidates are on main (H74-A and H74-1). Both are UNSCORED. H74-A fails the random control. H74-1 passes it on a catalogue-based holdout, but has no incumbent comparison and no recorded input rights.</p>
 <p>Competition feature stack and labels are login-gated on DrivenData and cannot be downloaded here. The inputs used on main come from a sibling mirror whose rights are unverified (IR-74-04). Sandbox egress allows github.com, codeload, api.github.com, registry.npmjs.org, pypi.org and files.pythonhosted.org only.</p></div>
 <pre>{
   &quot;schema&quot;: &quot;gems74-run-card/1&quot;,
   &quot;session_branch&quot;: &quot;arena/5bb16675-gemsdoe74&quot;,
   &quot;date_utc&quot;: &quot;2026-10-21&quot;,
-  &quot;status&quot;: &quot;HOLD. No candidate is cleared for submission. A candidate from another session is on main and is downloadable, but it is UNSCORED and fails its holdout against the random control.&quot;,
+  &quot;status&quot;: &quot;HOLD. No candidate is cleared for submission. Two candidates are on main (H74-A and H74-1). Both are UNSCORED. H74-A fails the random control. H74-1 passes it on a catalogue-based holdout, but has no incumbent comparison and no recorded input rights.&quot;,
   &quot;blocker&quot;: &quot;Competition feature stack and labels are login-gated on DrivenData and cannot be downloaded here. The inputs used on main come from a sibling mirror whose rights are unverified (IR-74-04). Sandbox egress allows github.com, codeload, api.github.com, registry.npmjs.org, pypi.org and files.pythonhosted.org only.&quot;,
   &quot;state_of_main&quot;: {
-    &quot;commit_merged_into&quot;: &quot;5fb4213&quot;,
-    &quot;other_session_pr&quot;: 1,
-    &quot;other_session_branch&quot;: &quot;arena/af8a6393-gemsdoe74&quot;,
-    &quot;note&quot;: &quot;The PR for this branch was not mergeable as first opened; this session merged main into its branch and kept both sets of work.&quot;
+    &quot;commit&quot;: &quot;cef22bb (merge of PR #4 from arena/c28c4f14-gemsdoe74, which carries the H74-1 lane)&quot;,
+    &quot;earlier_merges&quot;: [
+      &quot;d190f27 (PR #2, this branch)&quot;,
+      &quot;5fb4213 (PR #1, arena/af8a6393-gemsdoe74, H74-A lane)&quot;
+    ],
+    &quot;note&quot;: &quot;Three sessions have written to this repo. This session&#x27;s pages live in docs/review/ to avoid overwriting the others (IR-74-29).&quot;
   },
   &quot;lane&quot;: {
     &quot;method&quot;: &quot;One method lane: holdout gate (hide-and-recover, exact metric in src/gems74/metric.py dti_exact) applied to the existing main-branch candidate, plus the registry uniqueness check. No new candidate was built.&quot;,
@@ -75,20 +77,9 @@
   },
   &quot;raster_sha256&quot;: &quot;f745fdb0bcc7b09c73e9ca5460ec81b3628421d3516d514e63720bd547d14597&quot;,
   &quot;validator_output&quot;: {
-    &quot;main_script&quot;: {
-      &quot;command&quot;: &quot;python scripts/validate_submission.py &lt;file.tif&gt;&quot;,
-      &quot;zeros_file_exit_status&quot;: 0,
-      &quot;nan_twin_exit_status&quot;: 1,
-      &quot;catalogue_check&quot;: &quot;null (skipped; /tmp/gems74_data absent)&quot;,
-      &quot;note&quot;: &quot;The NaN twin is a valid format, so exit 1 is a false rejection (IR-74-17).&quot;
-    },
-    &quot;this_session_module&quot;: {
-      &quot;module&quot;: &quot;src/gems74/submission.py validate_submission()&quot;,
-      &quot;zeros_file_passed&quot;: true,
-      &quot;nan_twin_passed&quot;: true,
-      &quot;sentinel_file_rejected&quot;: true
-    },
-    &quot;unit_tests&quot;: &quot;pytest -q tests: 89 passed on the merged tree. The count includes a canary test that passes without its data.&quot;
+    &quot;main_script_zeros&quot;: &quot;exit 0 (ALL CHECKS PASS) for H74-A and H74-1&quot;,
+    &quot;main_script_nan_twin&quot;: &quot;exit 1 for H74-A (IR-74-17)&quot;,
+    &quot;this_session_module_zeros&quot;: &quot;passed for H74-A and H74-1&quot;
   },
   &quot;candidate_file&quot;: {
     &quot;path&quot;: &quot;docs/downloads/gems74-h74-alt-spring-39500-20261021T000000Z-52f76038-zeros.tif&quot;,
@@ -97,20 +88,20 @@
     &quot;release_status&quot;: &quot;HOLD&quot;
   },
   &quot;submission&quot;: {
-    &quot;name&quot;: &quot;GEMSDOE74-H74A-ALT-SPRING&quot;,
-    &quot;note_registry_chars&quot;: 229,
-    &quot;note_readme_chars&quot;: 110,
+    &quot;name_h74_1&quot;: &quot;GEMSDOE74-H74-1-BASEMENT-STEP&quot;,
+    &quot;note_h74_1_chars&quot;: 80,
+    &quot;name_h74a&quot;: &quot;GEMSDOE74-H74A-ALT-SPRING&quot;,
     &quot;note_limit_brief&quot;: 200,
-    &quot;note_limit_planned&quot;: 140,
+    &quot;note_planned_limit&quot;: 140,
     &quot;release_status&quot;: &quot;HOLD. Not cleared for submission.&quot;,
-    &quot;download_status&quot;: &quot;For review only. Rights of the inputs are unverified (IR-74-04).&quot;
+    &quot;note_h74_1&quot;: &quot;GEMSDOE74 H74-1 basement-step B=2 d2.8 35641 dots; all-finite 0-1; zeros-outside&quot;
   },
-  &quot;verdict&quot;: &quot;NEGATIVE for submission. No candidate is cleared. This session produced no new candidate and spent no weekly slot. The main-branch candidate is unique by the registry check and format-valid, but it fails the random control on both holdout versions.&quot;,
+  &quot;verdict&quot;: &quot;NEGATIVE for submission. No candidate is cleared. H74-A fails the random control. H74-1 passes it, but has no incumbent comparison on the same holdout, a truth set that cannot show new faults, and no recorded input rights. This session spent no slot and built no new candidate.&quot;,
   &quot;budget&quot;: {
     &quot;experiments_limit&quot;: 3,
     &quot;experiments_used_this_session&quot;: 0,
     &quot;time_limit_hours&quot;: 2,
-    &quot;note&quot;: &quot;This session ran verification computations on existing files, not experiments. The other session&#x27;s experiment count is not recorded here.&quot;
+    &quot;note&quot;: &quot;Verification runs only: uniqueness, format, metric check, and the official page re-read. Other sessions&#x27; experiment counts are not recorded here.&quot;
   },
   &quot;labels_key&quot;: {
     &quot;HOLDOUT-DTI&quot;: &quot;Score computed by a local evaluator on a spatially-blocked or segment-based holdout. The evaluator version and withheld count are given above.&quot;,
@@ -119,6 +110,93 @@
     &quot;PUBLIC-LEADERBOARD&quot;: &quot;Row on the public DrivenData board. Public test only.&quot;,
     &quot;PROJECTION&quot;: &quot;Model arithmetic. Never written as a score.&quot;,
     &quot;CLAIM&quot;: &quot;Owner or site statement without a receipt.&quot;
+  },
+  &quot;candidates&quot;: [
+    {
+      &quot;id&quot;: &quot;H74-A&quot;,
+      &quot;file&quot;: &quot;docs/downloads/gems74-h74-alt-spring-39500-20261021T000000Z-52f76038-zeros.tif&quot;,
+      &quot;sha256&quot;: &quot;f745fdb0bcc7b09c73e9ca5460ec81b3628421d3516d514e63720bd547d14597&quot;,
+      &quot;holdout_v0_1&quot;: {
+        &quot;label&quot;: &quot;HOLDOUT-DTI&quot;,
+        &quot;candidate_pooled_dti_catalogue_hidden&quot;: 0.0014446337043921085,
+        &quot;random_control&quot;: 0.033985054137437985,
+        &quot;passes_random&quot;: false
+      },
+      &quot;holdout_v0_2&quot;: {
+        &quot;label&quot;: &quot;HOLDOUT-DTI&quot;,
+        &quot;candidate_pooled_dti_catalogue&quot;: 0.001619363628814761,
+        &quot;random_control&quot;: 0.031034354606390223,
+        &quot;passes_random&quot;: false
+      },
+      &quot;gate&quot;: {
+        &quot;beats_random&quot;: false,
+        &quot;beats_incumbent_same_holdout&quot;: &quot;not shown&quot;,
+        &quot;truth_independent_of_catalogue&quot;: false,
+        &quot;input_rights_recorded&quot;: false,
+        &quot;organiser_receipt_and_READY&quot;: false
+      },
+      &quot;release_status&quot;: &quot;HOLD&quot;
+    },
+    {
+      &quot;id&quot;: &quot;H74-1&quot;,
+      &quot;file&quot;: &quot;docs/downloads/gemsdoe74-h74-1-basement-step-35641-20261021T000000Z-100b4b19-zeros.tif&quot;,
+      &quot;sha256&quot;: &quot;af4afc84b6ff758ccae86dc116c1b14dd1b66de48462899eebc4d5b43d7aef27&quot;,
+      &quot;holdout_4_quadrant&quot;: {
+        &quot;label&quot;: &quot;HOLDOUT-DTI (their run card)&quot;,
+        &quot;candidate_mean&quot;: 0.1936974645821394,
+        &quot;random_control&quot;: 0.040465170248097905,
+        &quot;delta_vs_random&quot;: 0.1532322943340415,
+        &quot;folds_positive&quot;: &quot;4/4&quot;,
+        &quot;ci95&quot;: [
+          0.122,
+          0.266
+        ],
+        &quot;withheld_positives&quot;: 12923,
+        &quot;uniform_2_8_lattice_arm&quot;: 0.09,
+        &quot;truth&quot;: &quot;visible catalogue + synthetic scatter (sigma 1.85 px)&quot;
+      },
+      &quot;leakage_canary_auc&quot;: 0.68,
+      &quot;gate&quot;: {
+        &quot;beats_random&quot;: true,
+        &quot;beats_incumbent_same_holdout&quot;: &quot;not shown (H33-2-B2 not in its run card)&quot;,
+        &quot;truth_independent_of_catalogue&quot;: false,
+        &quot;input_rights_recorded&quot;: false,
+        &quot;organiser_receipt_and_READY&quot;: false
+      },
+      &quot;their_verdict_field&quot;: &quot;promote (lane-internal; no slot picked)&quot;,
+      &quot;release_status&quot;: &quot;HOLD&quot;
+    }
+  ],
+  &quot;uniqueness_measured_here&quot;: {
+    &quot;label&quot;: &quot;MEASURED-LOCAL&quot;,
+    &quot;reference&quot;: &quot;GEMSDOE32 primary zeros.tif&quot;,
+    &quot;H74-A&quot;: {
+      &quot;spearman_rho&quot;: 0.001453,
+      &quot;overlap_ref_within_3px_of_cand&quot;: 0.0623,
+      &quot;overlap_cand_within_3px_of_ref&quot;: 0.0936
+    },
+    &quot;H74-1&quot;: {
+      &quot;spearman_rho&quot;: 7.4e-05,
+      &quot;overlap_ref_within_3px_of_cand&quot;: 0.0817,
+      &quot;overlap_cand_within_3px_of_ref&quot;: 0.0736
+    },
+    &quot;thresholds&quot;: {
+      &quot;rho_copy_above&quot;: 0.9,
+      &quot;overlap_copy_above&quot;: 0.7
+    },
+    &quot;pass&quot;: true,
+    &quot;note&quot;: &quot;Their H74-1 run card reports rho 0.42 and overlap 38.2% against an unnamed reference; not reproduced here (IR-74-22).&quot;
+  },
+  &quot;metric_check&quot;: {
+    &quot;label&quot;: &quot;MEASURED-LOCAL&quot;,
+    &quot;finding&quot;: &quot;src/gemsdoe74/metric.py binarises predictions and does not weight by p; official formula weights by p (IR-74-30).&quot;,
+    &quot;example&quot;: {
+      &quot;single_truth_pixel_p&quot;: 0.5,
+      &quot;official_formula_dti&quot;: 0.5555555555555556,
+      &quot;gemsdoe74_dti&quot;: 1.0
+    },
+    &quot;binary_grids_max_abs_diff&quot;: 1.3e-10,
+    &quot;candidates_binary&quot;: true
   }
 }</pre>
 
