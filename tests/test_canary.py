@@ -1,4 +1,5 @@
 """Leakage canary: single feature alone should not get AUC >0.90."""
+import pytest
 import numpy as np
 from sklearn.metrics import roc_auc_score
 import rasterio, pathlib
@@ -10,7 +11,7 @@ def test_canary():
         cat = rasterio.open("/tmp/gems74_data/labels.tif").read(1)>0
         foot = np.isfinite(rasterio.open("/tmp/gems74_data/sample_submission.tif").read(1))
     except Exception:
-        return  # skip if data not available
+        pytest.skip("Optional mirrored data absent; this is not a successful leakage check")
     # Create holdout: hide 20% segments (approximate with random pixels)
     rng=np.random.default_rng(0)
     # Use segment-based truth already computed? Simplify: random 10% of cat as positives, rest as negatives

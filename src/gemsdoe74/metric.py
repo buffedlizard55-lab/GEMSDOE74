@@ -43,35 +43,15 @@ def dti_from_counts(tp: float, fp: float, fn: float, alpha=DEFAULT_ALPHA, beta=D
 def compute_dti_components(predictions: np.ndarray, ground_truth: np.ndarray, valid_mask=None,
                           radius_m=DEFAULT_RADIUS_M, pixel_m=DEFAULT_PIXEL_M,
                           alpha=DEFAULT_ALPHA, beta=DEFAULT_BETA, epsilon=DEFAULT_EPSILON):
-    preds = np.asarray(predictions, dtype=np.float32)
-    truth = np.asarray(ground_truth, dtype=bool)
-    if preds.shape != truth.shape: raise ValueError(f"shape mismatch {preds.shape} != {truth.shape}")
-    if valid_mask is not None:
-        mask = np.asarray(valid_mask, dtype=bool)
-        preds = np.where(mask, preds, 0.0)
-        truth = truth & mask
-    pred_binary = preds > 0.0
-    n_truth = float(np.count_nonzero(truth))
-    n_pred = float(np.count_nonzero(pred_binary))
-    if n_truth == 0 and n_pred == 0:
-        return {"tp":0.0,"fp":0.0,"fn":0.0,"score":1.0}
-    if n_truth == 0:
-        return {"tp":0.0,"fp":n_pred,"fn":0.0,"score":0.0}
-    if n_pred == 0:
-        return {"tp":0.0,"fp":0.0,"fn":n_truth,"score":0.0}
-    # distance to nearest predicted pixel
-    dist_to_pred_px = distance_transform_edt(~pred_binary)
-    dist_to_pred_m = dist_to_pred_px * pixel_m
-    kernel_on_truth = np.maximum(0.0, 1.0 - dist_to_pred_m / radius_m)
-    tp = float(np.sum(kernel_on_truth[truth]))
-    # distance to nearest truth
-    dist_to_truth_px = distance_transform_edt(~truth)
-    dist_to_truth_m = dist_to_truth_px * pixel_m
-    fp_kernel = np.maximum(0.0, 1.0 - dist_to_truth_m / radius_m)
-    fp = float(np.sum((1.0 - fp_kernel)[pred_binary]))
-    fn = float(max(0.0, n_truth - tp))
-    score = dti_from_counts(tp, fp, fn, alpha=alpha, beta=beta, eps=epsilon)
-    return {"tp":tp,"fp":fp,"fn":fn,"score":score}
+    # One canonical implementation; never silently threshold soft probabilities.
+    from gems74.metric import dti_exact
+    if radius_m != DEFAULT_RADIUS_M or pixel_m != DEFAULT_PIXEL_M:
+        raise ValueError("Only the competition 300 m / 100 m kernel is supported")
+    result = dti_exact(predictions, ground_truth, valid=valid_mask, alpha=alpha, beta=beta)
+    tp, fp, fn = result["tp"], result["fp"], result["fn"]
+    # Preserve the historical API's empty/empty convention for compatibility.
+    score = 1.0 if tp == fp == fn == 0 else dti_from_counts(tp, fp, fn, alpha, beta, epsilon)
+    return {"tp": tp, "fp": fp, "fn": fn, "score": score}
 
 def compute_dti(predictions, ground_truth, valid_mask=None, **kw):
     return compute_dti_components(predictions, ground_truth, valid_mask, **kw)["score"]
