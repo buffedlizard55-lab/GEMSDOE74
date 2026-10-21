@@ -24,3 +24,26 @@ def test_empty():
     preds=np.zeros((5,5),np.float32)
     comp=compute_dti_components(preds, truth)
     assert comp["score"]==1.0
+
+def test_fractional_probability_weighting_ir74_30():
+    # Single truth pixel predicted at p=0.5: TP=0.5, FP=0.0, FN=0.5 -> DTI = 0.5 / (0.5 + 0.8*0.5) = 5/9
+    from gems74.metric import dti_exact
+    truth = np.zeros((10, 10), bool)
+    truth[5, 5] = True
+    preds = np.zeros((10, 10), np.float32)
+    preds[5, 5] = 0.5
+    c1 = compute_dti_components(preds, truth, epsilon=1e-12)
+    c2 = dti_exact(preds, truth)
+    assert abs(c1["score"] - 5.0 / 9.0) < 1e-6
+    assert abs(c1["score"] - c2["dti"]) < 1e-9
+
+    # Random fractional grid equivalence between gemsdoe74.metric and gems74.metric
+    rng = np.random.default_rng(74)
+    p_rand = rng.uniform(0.0, 1.0, size=(30, 30)).astype(np.float32)
+    t_rand = rng.random((30, 30)) < 0.08
+    r1 = compute_dti_components(p_rand, t_rand, epsilon=1e-12)
+    r2 = dti_exact(p_rand, t_rand)
+    assert abs(r1["tp"] - r2["tp"]) < 1e-6
+    assert abs(r1["fp"] - r2["fp"]) < 1e-6
+    assert abs(r1["fn"] - r2["fn"]) < 1e-6
+    assert abs(r1["score"] - r2["dti"]) < 1e-7

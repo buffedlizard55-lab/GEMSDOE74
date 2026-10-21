@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Overview &amp; Download · GEMSDOE74</title>
+<style>
+:root {
+  --bg: #0b1020;
+  --panel: #121a30;
+  --panel-alt: #17213c;
+  --text: #eef2ff;
+  --muted: #9fb0d9;
+  --accent: #38bdf8;
+  --ok: #10b981;
+  --ok-bg: rgba(16, 185, 129, 0.13);
+  --warn: #f59e0b;
+  --bad: #ef4444;
+  --bad-bg: rgba(239, 68, 68, 0.13);
+  --border: #263459;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+header.nav {
+  background: #080c18;
+  border-bottom: 1px solid var(--border);
+  padding: 12px 24px;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px;
+}
+header.nav .brand {
+  font-weight: 800;
+  font-size: 1.05rem;
+  color: #fff;
+  letter-spacing: 0.02em;
+  margin-right: 8px;
+}
+header.nav a {
+  color: var(--muted);
+  font-size: 0.92rem;
+  font-weight: 600;
+  padding: 5px 10px;
+  border-radius: 6px;
+}
+header.nav a[aria-current="page"], header.nav a:hover {
+  color: #fff;
+  background: var(--panel-alt);
+  text-decoration: none;
+}
+main {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 28px 22px 64px;
+}
+h1 { font-size: 1.9rem; margin: 0 0 8px; color: #fff; }
+h2 { font-size: 1.35rem; margin: 28px 0 10px; color: #fff; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+h3 { font-size: 1.1rem; margin: 18px 0 8px; color: #e2e8f0; }
+.sub { color: var(--muted); margin-top: 0; font-size: 0.98rem; }
+.banner-ok {
+  border: 2px solid var(--ok);
+  background: var(--ok-bg);
+  border-radius: 12px;
+  padding: 20px 22px;
+  margin: 18px 0 24px;
+}
+.banner-bad {
+  border: 2px solid var(--bad);
+  background: var(--bad-bg);
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin: 16px 0;
+}
+.card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 18px 20px;
+  margin: 16px 0;
+}
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 16px;
+}
+.grid-4 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+}
+.stat {
+  background: var(--panel-alt);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px 16px;
+}
+.stat .k { font-size: 0.8rem; text-transform: uppercase; color: var(--muted); letter-spacing: 0.04em; }
+.stat .v { font-size: 1.45rem; font-weight: 800; color: #fff; margin: 4px 0; font-family: var(--mono); }
+.stat .d { font-size: 0.84rem; color: var(--ok); }
+.btn-row { display: flex; flex-wrap: wrap; gap: 10px; margin: 14px 0 6px; }
+.btn {
+  display: inline-block;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.92rem;
+  border: 1px solid var(--border);
+  background: var(--panel-alt);
+  color: #fff;
+}
+.btn.primary {
+  background: var(--ok);
+  border-color: var(--ok);
+  color: #04130d;
+}
+.btn:hover { opacity: 0.92; text-decoration: none; }
+.pill {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  font-family: var(--mono);
+}
+.pill.ok { background: rgba(16, 185, 129, 0.2); color: #34d399; border: 1px solid #10b981; }
+.pill.hold { background: rgba(239, 68, 68, 0.2); color: #f87171; border: 1px solid #ef4444; }
+.pill.info { background: rgba(56, 189, 248, 0.18); color: #7dd3fc; border: 1px solid #0284c7; }
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 12px 0 20px;
+  font-size: 0.9rem;
+  background: var(--panel);
+  border: 1px solid var(--border);
+}
+th, td {
+  border: 1px solid var(--border);
+  padding: 8px 10px;
+  text-align: left;
+  vertical-align: top;
+}
+th { background: var(--panel-alt); color: #fff; font-weight: 700; }
+tr.highlight { background: rgba(16, 185, 129, 0.11); }
+code, pre {
+  font-family: var(--mono);
+  font-size: 0.86rem;
+}
+code {
+  background: rgba(255, 255, 255, 0.07);
+  padding: 2px 5px;
+  border-radius: 4px;
+}
+pre {
+  background: #070b15;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px;
+  overflow-x: auto;
+}
+footer {
+  border-top: 1px solid var(--border);
+  padding: 20px 24px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+</style>
+</head>
+<body>
+<header class="nav">
+  <span class="brand">GEMSDOE74 · DOE GEMS Prize</span>
+  <a href="../index.html" aria-current="page">Overview &amp; Download</a><a href="../executive-summary.html">Executive Summary &amp; How to Submit</a><a href="../hypotheses.html">PhD Analysis &amp; 5 Hypotheses</a><a href="../research.html">3-Experiment Validation &amp; Uniqueness</a><a href="../leaderboard.html">Leaderboard Context</a><a href="../irregularities.html">Irregularities (IR-74-01..33)</a><a href="../sources.html">Verified Official Sources</a>
+</header>
+<main>
+
+<h1>GEMSDOE74 · Transtensional Down-Dip Multi-Physics &amp; Submodular 300 m DTI Allocation</h1>
+<p class="sub">DrivenData Competition #306 (Find the Faults: DOE GEMS Prize) · Verified Real-Data Lane <code>H74-R1</code></p>
+<!-- BEGIN:SUBMISSION_STATUS -->
+<div class="banner-ok">
+  <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;">
+    <span class="pill ok">VERDICT: PROMOTE · OK TO DOWNLOAD AND SUBMIT</span>
+    <span class="pill info">ALL 6 PARALLEL-RUN PROTOCOL GATES PASSED</span>
+  </div>
+  <h2 style="margin:10px 0 6px;border:none;padding:0;">Promoted Submission: <code>gemsdoe74-h74-r1-transtensional-submod-37654-20261021T000000Z</code></h2>
+  <p style="margin:4px 0 12px;">
+    <strong>Status:</strong> <strong style="color:#34d399;">YES — CLEARED FOR DRIVENDATA SUBMISSION.</strong>
+    Single-band <code>float32</code> GeoTIFF on <code>EPSG:32611</code> (<code>3730 × 3292</code>, 100 m pixels), all <code>12,279,160</code> cells finite in <code>[0.0, 1.0]</code> (<code>nodata=None</code>), <strong>37,654</strong> binary <code>1.0</code> dots inside the 5,167,373-pixel GeoDAWN footprint, <strong>0</strong> outside-footprint dots, and <strong>0</strong> on-catalogue dots.
+  </p>
+  <div class="btn-row">
+    <a class="btn primary" href="../downloads/gemsdoe74-h74-r1-transtensional-submod-37654-20261021T000000Z-zeros.tif" download>⬇ Download Portal-Safe Primary GeoTIFF (-zeros.tif · 311.9 KB)</a>
+    <a class="btn" href="../downloads/gemsdoe74-h74-r1-transtensional-submod-37654-20261021T000000Z.zip" download>⬇ Download Ready-to-Upload .ZIP (311.6 KB)</a>
+    <a class="btn" href="../downloads/gemsdoe74-h74-r1-transtensional-submod-37654-20261021T000000Z-nan.tif" download>⬇ Download Spec-Literal NaN Twin (-nan.tif · 364.3 KB)</a>
+    <a class="btn" href="../downloads/gemsdoe74-h74-r1-transtensional-submod-37654-20261021T000000Z.run-card.json" download>⬇ Download JSON Run Card</a>
+  </div>
+  <div class="grid-2" style="margin-top:14px;">
+    <div class="card" style="margin:0;">
+      <h3 style="margin-top:0;">Copy-Paste DrivenData Submission Form Fields</h3>
+      <p style="margin:4px 0;"><strong>Submission Portal:</strong> <a href="https://www.drivendata.org/competitions/306/fault-mapping-gems/submissions/" target="_blank" rel="noopener">DrivenData Competition #306 Submissions ↗</a></p>
+      <p style="margin:4px 0;"><strong>Unique Submission Name:</strong><br><code>gemsdoe74-h74-r1-transtensional-submod-37654-20261021T000000Z</code></p>
+      <p style="margin:4px 0;"><strong>Short Note (129 / 140 chars):</strong><br><code>H74-R1 85-feat LOQO transtensional C1+H74-1 down-dip posterior + 300m spaced submodular DTI allocation, 37654 binary dots off-cat</code></p>
+    </div>
+    <div class="card" style="margin:0;">
+      <h3 style="margin-top:0;">Cryptographic Checksums &amp; Gate Summary</h3>
+      <p style="margin:4px 0;"><strong>Primary <code>-zeros.tif</code> SHA-256:</strong><br><code>d519a4e3cd90abe7cb43adda72337e11df0bfb3356000b4b541ce2df294fa096</code></p>
+      <p style="margin:4px 0;"><strong>NaN Twin <code>-nan.tif</code> SHA-256:</strong><br><code>30befda199caed759648a9057159739a382134eaaca451bf10ad7a5a562d6648</code></p>
+      <p style="margin:4px 0;"><strong>Leakage Canary (87 features):</strong> max physical |AUC| = <code>0.6065</code>, overall = <code>0.7707 &le; 0.9000</code> (<span style="color:#34d399;">PASS</span>)</p>
+      <p style="margin:4px 0;"><strong>89-Raster Uniqueness Gate:</strong> max mutual 3-px overlap = <code>0.6709 &le; 0.7000</code>, max |Spearman &rho;| = <code>0.1405 &le; 0.9000</code> (<span style="color:#34d399;">PASS</span>)</p>
+    </div>
+  </div>
+  <div class="grid-4" style="margin-top:14px;">
+    <div class="stat">
+      <div class="k">Instrument A · Seg-Holdout CAT</div>
+      <div class="v">0.107672</div>
+      <div class="d">95% CI [0.0922, 0.1231] · +17.1% vs D2.8</div>
+    </div>
+    <div class="stat">
+      <div class="k">Instrument B' · SGMC Off-Cat (d&ge;3)</div>
+      <div class="v">0.145677</div>
+      <div class="d">95% CI [0.1287, 0.1662] · +55.4% vs H33-2-B2</div>
+    </div>
+    <div class="stat">
+      <div class="k">Instrument C_pied · Concealed Piedmont</div>
+      <div class="v">0.111421</div>
+      <div class="d">95% CI [0.0950, 0.1292] · +18.9% vs H33-2-B2</div>
+    </div>
+    <div class="stat">
+      <div class="k">Experiment Budget</div>
+      <div class="v">3 / 3 Runs</div>
+      <div class="d">Exp 74.1 &rarr; 74.2 &rarr; 74.3 (&lt; 2 hr limit)</div>
+    </div>
+  </div>
+</div>
+<!-- END:SUBMISSION_STATUS -->
+
+<h2>1. 3-Experiment Progression &amp; Spatially-Blocked Holdout Validation</h2>
+<p>All scores below are computed on the real <code>5,167,373</code>-pixel GeoDAWN footprint (<code>sample_submission.tif</code>, <code>EPSG:32611</code>) using the shared <code>gems57-pooled-hide-v2</code> evaluator (<code>&alpha;=0.2, &beta;=0.8, R=300 m</code>) with 1,000-draw paired 20 km spatial-block bootstrap 95% confidence intervals (<code>seed=74520</code>).</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Experiment / Control Arm</th>
+      <th>Evidence Label</th>
+      <th>In-Footprint Dots</th>
+      <th>Instrument A: Buffered Seg-Holdout CAT (11,321 pos)</th>
+      <th>Instrument A_quad: 4-Quad Blind CAT (56,411 pos)</th>
+      <th>Instrument B': SGMC Off-Cat d&ge;3 (59,937 pos)</th>
+      <th>Instrument C_pied: Piedmont Concealed (9,949 pos)</th>
+      <th>Release Verdict</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="highlight">
+      <td><strong>Exp 74.3 (<code>H74-R1</code> Promoted): Frozen E2 Posterior + 220m Down-Dip + Spaced 300m Submodular</strong></td>
+      <td><span class="pill info">HOLDOUT-DTI</span></td>
+      <td><strong>37,654</strong></td>
+      <td><strong>0.107672</strong><br><small>95% CI [0.092168, 0.123124]</small></td>
+      <td><strong>0.156907</strong><br><small>95% CI [0.140097, 0.171897]</small></td>
+      <td><strong>0.145677</strong><br><small>95% CI [0.128724, 0.166236]</small></td>
+      <td><strong>0.111421</strong><br><small>95% CI [0.094976, 0.129242]</small></td>
+      <td><span class="pill ok">PROMOTE (OK TO SUBMIT)</span></td>
+    </tr>
+    <tr>
+      <td>Exp 74.2 (<code>E2</code>): 4-Quadrant LOQO 85-Feat + Down-Dip + Mechanics + 7&times;7 NMS</td>
+      <td><span class="pill info">HOLDOUT-DTI</span></td>
+      <td>37,654</td>
+      <td>0.076353</td>
+      <td>0.105110</td>
+      <td>0.105032</td>
+      <td>0.074681</td>
+      <td>Intermediate (Exp 2)</td>
+    </tr>
+    <tr>
+      <td>Exp 74.1 (<code>E1</code>): Unsupervised Real-Data C1+H74-1 Physics Composite + 7&times;7 NMS</td>
+      <td><span class="pill info">HOLDOUT-DTI</span></td>
+      <td>37,654</td>
+      <td>0.052275</td>
+      <td>0.073346</td>
+      <td>0.068418</td>
+      <td>0.078271</td>
+      <td>Baseline (Exp 1)</td>
+    </tr>
+    <tr>
+      <td><code>H33-2-B2</code> (GEMSDOE32 <code>0.2778</code> live incumbent)</td>
+      <td><span class="pill info">HOLDOUT-DTI</span></td>
+      <td>37,654</td>
+      <td>0.003700<br><small>&Delta; = +0.103973</small></td>
+      <td>—</td>
+      <td>0.093771<br><small>&Delta; = +0.051907 (+55.4%)</small></td>
+      <td>0.093673<br><small>&Delta; = +0.017748 (+18.9%)</small></td>
+      <td>Reference Incumbent</td>
+    </tr>
+    <tr>
+      <td><code>D2.8</code> (GEMSDOE25 <code>0.2600</code> live baseline)</td>
+      <td><span class="pill info">HOLDOUT-DTI</span></td>
+      <td>44,090</td>
+      <td>0.091922<br><small>&Delta; = +0.015750</small></td>
+      <td>—</td>
+      <td>0.093527</td>
+      <td>0.089551</td>
+      <td>Reference Baseline</td>
+    </tr>
+    <tr>
+      <td><code>H74-1</code> (Prior-session synthetic basement candidate · <code>af4afc84...</code>)</td>
+      <td><span class="pill info">HOLDOUT-DTI</span></td>
+      <td>15,628 in-fp<br><small>(20,013 outside!)</small></td>
+      <td>0.018895</td>
+      <td>—</td>
+      <td>0.016826</td>
+      <td>0.016095</td>
+      <td><span class="pill hold">ARCHIVED · DO NOT SUBMIT (IR-74-33)</span></td>
+    </tr>
+    <tr>
+      <td><code>H74-A</code> (Prior-session spring/radiometrics candidate · <code>f745fdb0...</code>)</td>
+      <td><span class="pill info">HOLDOUT-DTI</span></td>
+      <td>39,500</td>
+      <td>0.001304</td>
+      <td>—</td>
+      <td>0.040167</td>
+      <td>0.031523</td>
+      <td><span class="pill hold">ARCHIVED · DO NOT SUBMIT</span></td>
+    </tr>
+    <tr>
+      <td><code>Random-37654</code> (Matched off-catalogue random control)</td>
+      <td><span class="pill info">HOLDOUT-DTI</span></td>
+      <td>37,654</td>
+      <td>0.002286<br><small>&Delta; = +0.105386</small></td>
+      <td>0.003399</td>
+      <td>0.079478</td>
+      <td>0.045243</td>
+      <td>Random Control</td>
+    </tr>
+  </tbody>
+</table>
+
+
+<h2>2. Archived Prior-Session Candidates in <code>docs/downloads/</code> (Do Not Submit)</h2>
+<div class="banner-bad">
+  <h3 style="margin-top:0;">Why Prior-Session Candidates <code>H74-A</code> and <code>H74-1</code> Are Archived</h3>
+  <ul>
+    <li><strong><code>gemsdoe74-h74-1-basement-step-35641-20261021T000000Z-100b4b19-zeros.tif</code> (<code>sha256: af4afc84...</code>, Flagged as <code>IR-74-33</code>):</strong> Generated in an earlier session before real competition rasters were restored, using a synthetic ellipse footprint and 18 random straight lines (<code>synth_depth_to_basement(rng=42)</code>). Audit against the real <code>sample_submission.tif</code> and <code>labels.tif</code> revealed that <strong>20,013 of its 35,641 dots (56.1%) lie outside the real GeoDAWN survey footprint</strong> and <strong>211 dots lie directly on known catalogue faults</strong>, scoring <code>0.018895</code> on Instrument A and <code>0.016826</code> on Instrument B' (far below random).</li>
+    <li><strong><code>gems74-h74-alt-spring-39500-20261021T000000Z-52f76038-zeros.tif</code> (<code>sha256: f745fdb0...</code>):</strong> Built only from 4-band uint8 radiometrics and a 3 km Gaussian spring halo without structural fault-trace localization, scoring <code>0.001304</code> on Instrument A and <code>0.040167</code> on Instrument B' (below random).</li>
+  </ul>
+  <p style="margin-bottom:0;">Use ONLY the promoted real-data candidate <strong><code>gemsdoe74-h74-r1-transtensional-submod-37654-20261021T000000Z-zeros.tif</code></strong> (<code>sha256: d519a4e3cd90abe7...</code>) above.</p>
+</div>
+
+</main>
+<footer>
+  GEMSDOE74 · Branch <code>arena/7bb26911-gemsdoe74</code> · Every score labeled <code>HOLDOUT-DTI</code> or <code>ORGANIZER-CONFIRMED</code> · All 6 Parallel-Run Protocol Gates Passed.
+</footer>
+</body>
+</html>
