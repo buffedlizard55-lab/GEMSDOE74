@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Irregularities · GEMSDOE74</title>
+<link rel="stylesheet" href="assets/site.css">
+</head><body>
+<header class="top"><span class="brand">GEMSDOE74</span><a href="index.html">Home</a><a href="executive-summary.html">How to submit</a><a href="analysis-0-2778.html">The 0.2778 question</a><a href="hypotheses.html">Hypotheses</a><a href="leaderboard.html">Leaderboard</a><a href="irregularities.html" aria-current="page">Irregularities</a><a href="sources.html">Sources</a><a href="run-card.html">Run card</a></header>
+<main>
+
+<h1>Irregularities for manual review</h1>
+<p class="sub">Each item says what was found, the evidence, and what needs a human decision. Severity: <b>high</b> = could change a decision or create a legal or entry risk; <b>medium</b> = could mislead a reader; <b>low</b> = housekeeping.</p>
+
+<table>
+<tr><th>ID</th><th>Severity</th><th>What we found</th><th>Evidence</th><th>Action for a reviewer</th></tr>
+
+<tr><td><b>IR-74-01</b></td><td>high</td><td>The brief gives <b>0.4413</b> as the live leaderboard top. On 2026-10-21 it is rank #1, held by <code>xiaofanhu</code>, with no GEMSDOE link shown. GEMSDOE32's notes (dated 2026-10-04) describe 0.4413 as a model variant that "the live record refutes". The two sources disagree, and the GEMSDOE32 note is stale on today's board.</td><td><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">DrivenData leaderboard</a> (fetched 2026-10-21); GEMSDOE32 <code>docs/research/hypotheses-round4.md</code></td><td>Confirm which account, if any, is the group's. Strike the label from any group page.</td></tr>
+
+<tr><td><b>IR-74-02</b></td><td>medium</td><td>GEMSDOE32's index page (2026-10-04) lists 0.3262 as "#1 nchuzhoy" and 0.3195 as "#2 DARD". On 2026-10-21 the 0.3195 value is not in the top 50, DARD is at 0.3289 (rank 17), and nchuzhoy is at 0.3262 (rank 20). Any copy of the 2026-10-04 table is out of date.</td><td><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">DrivenData leaderboard</a>; GEMSDOE32 index page, leaderboard row</td><td>Replace the dated figures with the 2026-10-21 snapshot, and label them with their dates.</td></tr>
+
+<tr><td><b>IR-74-03</b></td><td>high</td><td>The brief gives <b>0.2778</b> as the <i>self-reported</i> score of <code>h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros</code>. The only 0.2778 on the board is rank #47, <code>extradr19</code>. GEMSDOE32's page says "NO ORGANISER SCORE EXISTS for this or any artifact in this repository", and its projection for this file is 0.2747, which is below 0.2778.</td><td>DrivenData leaderboard (rank 47); GEMSDOE32 index page (fetched 2026-10-21)</td><td>Do not state that this file earned 0.2778 until a submission receipt links the bytes to that row.</td></tr>
+
+<tr><td><b>IR-74-04</b></td><td>high (terms and provenance)</td><td>Sibling public repos hold copies of login-gated competition files. GEMSDOE32's manifest lists a 419 MB <code>training_features.tif</code>, split into five parts, from <code>buffedlizard55-lab/GEMSDOE</code>, and a <code>labels.tif</code>, <code>existing_faults.tif</code> and <code>sample_submission.tif</code> from <code>GEMSDOE24</code>. Each is described as an "owner-supplied mirror of a DrivenData competition file (login-walled …); integrity-pinned, NOT organizer-authenticated". The rules (A.5) require the entrant to have rights to any third-party content. We have not read DrivenData's Terms of Use, which are not in the rules.</td><td>GEMSDOE32 <code>registry/data_manifest.json</code> (commit <code>98901f3</code>); rules A.5 (NLR PDF)</td><td><b>Review before any use.</b> GEMSDOE74 does not use these mirrors. Decide whether the public copies should be removed, and whether any use is permitted under the Terms of Use.</td></tr>
+
+<tr><td><b>IR-74-05</b></td><td>medium</td><td>GEMSDOE32 describes its 0.2708 base as an "already-scored fallback", and also says "NO ORGANISER SCORE EXISTS for this or any artifact in this repository". Both cannot be true.</td><td>GEMSDOE32 index page, "Already-scored fallback" and "Status" sections</td><td>Treat 0.2708 as unscored unless a receipt is produced.</td></tr>
+
+<tr><td><b>IR-74-06</b></td><td>high</td><td>Score-to-file attribution is an open problem in the sibling repos. Their own ledger rates it critical: a leaderboard row was assigned to a filename without a receipt.</td><td>GEMSDOE32 <code>docs/irregularities.md</code>, IR-30-002 ("Critical — Open")</td><td>Require a DrivenData submission receipt, or mark the score CLAIM.</td></tr>
+
+<tr><td><b>IR-74-07</b></td><td>high (rules)</td><td>The rules require the narrative to state the extent of generative-AI use (§3.2). Our checklist includes this. The sibling notes do not show a completed disclosure for their files.</td><td>NLR rules §3.2. GEMSDOE32's <code>docs/irregularities.md</code> and <code>docs/sources.md</code> refer to a file <code>docs/ai-disclosure-draft.md</code>, which is not in its git tree (checked at commit 98901f3).</td><td>Complete the AI-use statement before any submission.</td></tr>
+
+<tr><td><b>IR-74-08</b></td><td>medium</td><td>The problem page says the sample submission "predicts total fault absence". GEMSDOE32's manifest says the sample has 60,988 pixels equal to 1 on the labelled faults, which is not total absence.</td><td>DrivenData problem page, "Submission format"; GEMSDOE32 <code>data/prepared_manifest.json</code> and <code>registry/data_manifest.json</code></td><td>Check the official sample file directly once it is obtained.</td></tr>
+
+<tr><td><b>IR-74-09</b></td><td>high</td><td>The grid we validate against (EPSG:32611, 3730×3292, origin 243350 / 4508550, 100 m) comes from GEMSDOE32's owner-derived manifests, not from the official header. EPSG:32611 itself is confirmed.</td><td><a href="https://epsg.io/32611">epsg.io/32611</a>; GEMSDOE32 <code>data/prepared_manifest.json</code></td><td>Confirm against the official training header before any submission.</td></tr>
+
+<tr><td><b>IR-74-10</b></td><td>medium</td><td>The INGENIOUS compilation lists "Quaternary Faults v2", which says it supersedes an earlier version. The labels were taken from INGENIOUS (rules §3.3). We do not know which version the competition used.</td><td><a href="https://gdr.openei.org/submissions/1391">GDR 1391</a> (CC BY 4.0)</td><td>Determine the label version before reasoning about which faults are "known".</td></tr>
+
+<tr><td><b>IR-74-11</b></td><td>medium</td><td>The Dropbox link for <code>example_submission.tif</code>, cited in the brief, is not hosted by DrivenData or the competition. From this environment it returns only a preview page, and the file bytes were not retrievable.</td><td>Dropbox page fetched 2026-10-21 (preview only)</td><td>Confirm the file with the competition before using it.</td></tr>
+
+<tr><td><b>IR-74-12</b></td><td>medium</td><td>The "predicted values must be in range [0, 1]" diagnosis comes from GEMSDOE32. It was not reproduced on the organiser platform.</td><td>GEMSDOE32 index page, "The portal error" section</td><td>Confirm with a test upload before relying on it.</td></tr>
+
+<tr><td><b>IR-74-13</b></td><td>low</td><td>The 200-character note limit used by GEMSDOE32 is not stated on the organiser form text in the brief. We keep notes under 140 characters.</td><td>GEMSDOE32 index page ("177/200 characters")</td><td>Check the form's real limit.</td></tr>
+
+<tr><td><b>IR-74-14</b></td><td>low</td><td>GEMSDOE74 was empty at the start (README only, one commit). The brief refers to next steps from previous sessions, but none are in this repository. The sibling GEMSDOE32 was used as the reference.</td><td>Git history of this repository</td><td>Confirm whether earlier work lives elsewhere.</td></tr>
+
+<tr><td><b>IR-74-15</b></td><td>medium</td><td>The rules document's revision table is blank. Its date is "SEPTEMBER 2026". Key dates are on the competition site, which we did not read in full.</td><td>NLR rules, cover and "Modifications" table</td><td>Read the competition's Key Dates page before any submission.</td></tr>
+
+<tr><td><b>IR-74-16</b></td><td>medium</td><td>Eligibility is a condition of prize payment. Individuals must be U.S. citizens or permanent residents. GEMSDOE32's ledger says the eligibility certification is made under penalty of perjury at registration. That wording was not re-checked in this session. The brief gives a San Francisco location, which does not establish citizenship or residency.</td><td>NLR rules §1.3 (summary read in this session); GEMSDOE32 <code>docs/irregularities.md</code>, IR-30-020</td><td>A human must confirm eligibility before entering. Nothing here certifies it.</td></tr>
+</table>
+
+</main>
+<footer>Not affiliated with DrivenData, NLR, DOE or USGS. Snapshot 2026-10-21.</footer>
+</body></html>

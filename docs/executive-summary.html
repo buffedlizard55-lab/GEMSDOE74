@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>How to submit · GEMSDOE74</title>
+<link rel="stylesheet" href="assets/site.css">
+</head><body>
+<header class="top"><span class="brand">GEMSDOE74</span><a href="index.html">Home</a><a href="executive-summary.html" aria-current="page">How to submit</a><a href="analysis-0-2778.html">The 0.2778 question</a><a href="hypotheses.html">Hypotheses</a><a href="leaderboard.html">Leaderboard</a><a href="irregularities.html">Irregularities</a><a href="sources.html">Sources</a><a href="run-card.html">Run card</a></header>
+<main>
+
+<h1>Executive summary: how to make a submission</h1>
+<p class="sub">Everything here is taken from the competition's own problem page and the official rules, both linked on the <a href="sources.html">Sources</a> page. Where a point is not in those documents, it is marked.</p>
+
+<!-- BEGIN:SUBMISSION_STATUS -->
+<div class="status hold">
+<p class="big">NO SUBMISSION FILE IS READY. DO NOT SUBMIT ANYTHING FROM THIS SITE YET.</p>
+<p>No GeoTIFF has been generated from the competition data, so there is no prediction to submit. A file without a real prediction would use one of the three weekly slots for nothing.</p>
+<p><b>Blocker:</b> the training features and labels are login-gated on DrivenData, and this build environment cannot download them. See <a href="irregularities.html">IR-74-04</a> for the data-source question that has to be cleared before any mirror is used.</p>
+<p><a class="btn dis" aria-disabled="true">Download submission .tif (not available)</a></p>
+</div>
+<!-- END:SUBMISSION_STATUS -->
+
+<h2>The file you upload</h2>
+<div class="card">
+<p>The submission is a <b>single-layer GeoTIFF</b> that must meet the rules below. The problem page sets the format.</p>
+<div class="kv">
+<div>CRS</div><div>EPSG:32611, WGS 84 / UTM zone 11N (<a href="https://epsg.io/32611">epsg.io/32611</a>; central meridian −117°, false easting 500 000, scale 0.9996, metres)</div>
+<div>Resolution</div><div>100 m</div>
+<div>Bounds</div><div>Same as the training data. Data outside the bounds is null or NaN.</div>
+<div>Layers</div><div>One band</div>
+<div>Type</div><div>float32</div>
+<div>Values</div><div>Between 0 and 1, the confidence or probability of fault presence</div>
+<div>Shape</div><div>3730 rows × 3292 columns. <span class="mut">Taken from GEMSDOE32's receipts; to be confirmed against the official header.</span></div>
+</div>
+<p class="mut">Source: <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">problem page, "Submission format"</a>.</p>
+</div>
+
+<h2>Steps</h2>
+<ol class="steps">
+<li><b>Check eligibility first.</b> Individuals must be U.S. citizens or permanent residents. DOE and FFRDC staff have restrictions, and FCOC-owned entities are excluded. Read rules §1.3 before you register. <span class="mut">Source: <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">official rules</a>.</span></li>
+<li><b>Register on DrivenData and accept the rules.</b> You need an account to download the training features and labels.</li>
+<li><b>Get the training features.</b> They are login-gated. Download them yourself and place them in <code>data/</code>, which is git-ignored. Do not commit them.</li>
+<li><b>Produce a prediction raster on the competition grid.</b> The pipeline that does this is not yet built, because it needs the features from step 3.</li>
+<li><b>Validate the file.</b> Run <code>python scripts/validate_submission.py your_file.tif</code>. It exits with status 0 only when every check passes. Confirm the grid against the official header first.</li>
+<li><b>Name it and write a note.</b> Use a unique name, for example <code>gems74-&lt;method&gt;-&lt;YYYYMMDD&gt;-&lt;hash8&gt;</code>, which the writer enforces by regex. Write a short note (the repo keeps it under 140 characters). <span class="mut">The form's real note limit is not confirmed (<a href="irregularities.html">IR-74-13</a>).</span></li>
+<li><b>Disclose AI use in the narrative.</b> The rules require you to state in the narrative the extent to which generative AI was used and how, <i>not</i> counted in the word count. <span class="mut">Rules §3.2.</span></li>
+<li><b>Upload and submit.</b> Use the upload control on the DrivenData submission page. You may submit up to three times per week. <span class="mut">Rules §3.2.</span></li>
+<li><b>Choose one final submission before the deadline.</b> Each entity gets one final submission, selected before the deadline. <span class="mut">Rules §3.4.</span></li>
+</ol>
+
+<h2>Troubleshooting the error "Predicted values must be in range [0, 1]"</h2>
+<div class="card">
+<table>
+<tr><th>Cause</th><th>How to see it</th><th>Fix</th></tr>
+<tr><td>A nodata sentinel such as <code>-3.4028e+38</code> inside the footprint, carried over from the training raster</td><td><code>python scripts/validate_submission.py file.tif</code> reports <code>finite_values_in_0_1: false</code> and <code>no_sentinel_-3.4e38: false</code></td><td>Write the footprint cells as finite numbers in [0, 1]. Outside the footprint, write 0 or NaN.</td></tr>
+<tr><td>A nodata tag that is not NaN or none</td><td><code>nodata_none_or_nan: false</code></td><td>Write with <code>write_submission(..., nodata="none")</code> or <code>nodata="nan"</code>.</td></tr>
+<tr><td>Values above 1 or below 0</td><td><code>finite_values_in_0_1: false</code></td><td>Calibrate or clip the scores before writing. The writer refuses out-of-range values rather than clipping them silently.</td></tr>
+<tr><td>Wrong CRS, shape or transform</td><td><code>crs_epsg_32611</code>, <code>shape_3730x3292</code> or <code>transform_100m_origin</code> is false</td><td>Reproject or regrid onto the official template grid.</td></tr>
+</table>
+<p class="mut">Source of the cause: the sibling repository's documented diagnosis of the same error (<a href="https://buffedlizard55-lab.github.io/GEMSDOE32/docs/index.html">GEMSDOE32 page</a>), which we confirmed for the sentinel case in our own validator tests. The organiser's message was not reproduced in this environment.</p>
+</div>
+
+<h2>Checklist before you press submit</h2>
+<div class="card">
+<ul>
+<li>&#9744; <code>validate_submission.py</code> passes, with the grid confirmed against the official header.</li>
+<li>&#9744; Name and note are written. The note is under the form's limit.</li>
+<li>&#9744; The narrative discloses generative-AI use (rules §3.2).</li>
+<li>&#9744; The file's sha256 is recorded in the run card.</li>
+<li>&#9744; The submission is <b>not</b> a copy of another team's file (the brief requires a unique submission).</li>
+<li>&#9744; The file does not contain any third-party data you are not licensed to share (rules A.5). Public-domain and CC BY 4.0 inputs need attribution in the narrative.</li>
+<li>&#9744; Submission materials may become public (rules A.4), so the note contains nothing confidential.</li>
+</ul>
+</div>
+
+</main>
+<footer>Not affiliated with DrivenData, NLR, DOE or USGS. Snapshot 2026-10-21.</footer>
+</body></html>

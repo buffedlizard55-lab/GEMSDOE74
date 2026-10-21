@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Home · GEMSDOE74</title>
+<link rel="stylesheet" href="assets/site.css">
+</head><body>
+<header class="top"><span class="brand">GEMSDOE74</span><a href="index.html" aria-current="page">Home</a><a href="executive-summary.html">How to submit</a><a href="analysis-0-2778.html">The 0.2778 question</a><a href="hypotheses.html">Hypotheses</a><a href="leaderboard.html">Leaderboard</a><a href="irregularities.html">Irregularities</a><a href="sources.html">Sources</a><a href="run-card.html">Run card</a></header>
+<main>
+
+<h1>GEMSDOE74: fault-prediction workbench for the DOE GEMS Prize</h1>
+<p class="sub">Competition: DrivenData #306, DOE GEMS Prize. Study area: GeoDAWN, northwestern Great Basin, Nevada and California. Date of this snapshot: 2026-10-21.</p>
+
+<!-- BEGIN:SUBMISSION_STATUS -->
+<div class="status hold">
+<p class="big">NO SUBMISSION FILE IS READY. DO NOT SUBMIT ANYTHING FROM THIS SITE YET.</p>
+<p>No GeoTIFF has been generated from the competition data, so there is no prediction to submit. A file without a real prediction would use one of the three weekly slots for nothing.</p>
+<p><b>Blocker:</b> the training features and labels are login-gated on DrivenData, and this build environment cannot download them. See <a href="irregularities.html">IR-74-04</a> for the data-source question that has to be cleared before any mirror is used.</p>
+<p><a class="btn dis" aria-disabled="true">Download submission .tif (not available)</a></p>
+</div>
+<!-- END:SUBMISSION_STATUS -->
+
+<h2>What is on this site</h2>
+<div class="card">
+<ul>
+<li><a href="executive-summary.html"><b>How to submit</b></a>: step-by-step, with the exact fields the organiser form asks for and the format rules a file must pass.</li>
+<li><a href="analysis-0-2778.html"><b>The 0.2778 question</b></a>: why a sparse file can score high, what the public record does and does not show, and the exact break-even rule.</li>
+<li><a href="hypotheses.html"><b>Hypotheses</b></a>: four ranked candidate ideas that are not already in the sibling GEMSDOE repos, each with its named non-fault mimic and validation status.</li>
+<li><a href="leaderboard.html"><b>Leaderboard</b></a>: the public top 50 as read on 2026-10-21.</li>
+<li><a href="irregularities.html"><b>Irregularities</b></a>: every inconsistency found, with severity and what needs manual review.</li>
+<li><a href="sources.html"><b>Sources</b></a>: official links, what was read, what was not, and why.</li>
+<li><a href="run-card.html"><b>Run card</b></a>: the one-page record of this session, with every number labelled.</li>
+</ul>
+</div>
+
+<h2>The answer in brief</h2>
+<div class="card">
+<p><span class="pill p-pl">PUBLIC-LEADERBOARD</span> The public board on 2026-10-21 has #1 <b>0.4413</b> (xiaofanhu), #5 <b>0.3539</b>, #17 <b>0.3289</b> (DARD), and #47 <b>0.2778</b> (extradr19). The 2026-10-04 figures in GEMSDOE32's notes (0.3262 top, 0.3195 for DARD) are out of date: DARD now has 0.3289 and 0.3262 sits at rank 20.</p>
+<p><span class="pill p-no">NOT ESTABLISHED</span> <b>Why did the 0.2778 file score highest?</b> The public record does not link 0.2778 to the GEMSDOE32 file <code>h33-h33-2-b2</code>. The GEMSDOE32 page itself says no organiser score exists for that artifact. The mechanism, which does apply to any sparse file, is in <a href="analysis-0-2778.html">the analysis</a>.</p>
+<p><span class="pill p-no">NOT SHOWN</span> <b>Can we beat 0.2778?</b> Not yet, because nothing has been scored. A dot helps only if its expected kernel credit exceeds 0.2 times the current score, about 0.056 at 0.2778 (verified algebra, tested in <code>tests/test_marginal_rule.py</code>).</p>
+<p><span class="pill p-no">NOT RUN</span> <b>A unique submission file?</b> Not produced. Producing one needs the competition feature stack in this environment. See the decisions below.</p>
+</div>
+
+<h2>Decisions needed before we can produce a file</h2>
+<div class="card">
+<ol>
+<li><b>Get the official feature stack without a third-party copy.</b> The Dropbox link for <code>example_submission.tif</code> returns only a preview page from this environment, and its host is unverified (<a href="irregularities.html">IR-74-11</a>). If you obtain the official feature files yourself and attach them to this workspace, the pipeline can run on them.</li>
+<li><b>Decide on the public GEMSDOE mirrors.</b> Sibling repos (for example <code>buffedlizard55-lab/GEMSDOE32</code>, <code>GEMSDOE</code> and <code>GEMSDOE24</code>) host copies of login-gated competition files, described in their own manifests as mirrors that are "NOT organizer-authenticated". This repo does not use them. See <a href="irregularities.html">IR-74-04</a>.</li>
+<li><b>Confirm the grid.</b> The grid used for validation (EPSG:32611, 3730 × 3292, origin 243350 / 4508550, 100 m) comes from GEMSDOE32's own receipts. It has to be confirmed against the official header.</li>
+</ol>
+</div>
+
+<h2>Repository</h2>
+<div class="card">
+<p>The project brief is in <a href="https://github.com/buffedlizard55-lab/GEMSDOE74/blob/main/README.md">README.md</a>. The metric, the format validator and the writer are in <code>src/gems74/</code>, and their tests are in <code>tests/</code>. Run <code>pytest -q tests</code> to check them. <code>scripts/build_site.py</code> regenerates the leaderboard and run-card pages and this status panel.</p>
+</div>
+
+</main>
+<footer>Every number carries an evidence label. Not affiliated with DrivenData, NLR, DOE or USGS. Snapshot 2026-10-21.</footer>
+</body></html>

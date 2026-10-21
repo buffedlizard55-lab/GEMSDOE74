@@ -1,0 +1,63 @@
+{
+  "schema": "gems74-run-card/1",
+  "session_branch": "arena/5bb16675-gemsdoe74",
+  "date_utc": "2026-10-21",
+  "status": "NO SUBMISSION FILE PRODUCED. Experiments not run. Verdict: NEGATIVE (no candidate validated).",
+  "blocker": "Competition feature stack and labels (training_features.tif, labels, sample_submission) are login-gated on DrivenData; the Dropbox copies return only a preview page or empty bytes from this sandbox; sandbox egress allows github.com, codeload, api.github.com, registry.npmjs.org, pypi.org, files.pythonhosted.org only.",
+  "lane": {
+    "method": "Pre-registered hide-and-recover holdout + exact metric, using the template feature stack (not yet obtained).",
+    "lane_status": "Not executed. No raster exists, so no correlation or overlap check was possible in this session."
+  },
+  "hypothesis": {
+    "top_candidate": "C1 - flight-line-artifact-suppressed magnetic edge detection (GeoDAWN magnetics, 90-degree flight-line geometry).",
+    "status": "UNVALIDATED. No holdout run."
+  },
+  "mechanism": "Remove any remaining survey-line periodicity (200 m line spacing in Area 1, 400 m in Area 2, flight azimuth 90 degrees, per the USGS summary) with an oriented notch filter before computing horizontal-gradient edges, so that magnetic contacts from fault-related contrast are not masked or mimicked by residual leveling. Whether any residue remains after the contractor's corrections is untested.",
+  "named_non_fault_process_that_could_mimic_it": "Residual line-periodic leveling artifacts after the contractor's tie-line and micro-leveling (USGS summary), plus lithologic contacts (intrusive and volcanic margins) that produce edges without displacement.",
+  "holdout_dti": {
+    "value": null,
+    "label": "NOT COMPUTED",
+    "evaluator_version": "gems74 src/gems74/metric.py (unit-tested; see tests/test_metric.py)",
+    "withheld_positives": null,
+    "ci95": null,
+    "reason": "No feature stack and no label raster in this environment."
+  },
+  "correlation_and_overlap_vs_registry": {
+    "rank_correlation_max": null,
+    "dot_overlap_within_3px_max": null,
+    "label": "NOT COMPUTED",
+    "reason": "No candidate raster. The GEMSDOE32 registry rasters were inspected (see docs/irregularities.html) but no candidate was scored against them."
+  },
+  "leakage_canary": {
+    "status": "NOT RUN",
+    "rule": "Each feature alone on the holdout; AUC above 0.90 means leakage until proven otherwise.",
+    "result": null
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "status": "NOT RUN ON A CANDIDATE",
+    "unit_tests": "pytest tests: 82 passed (metric, marginal rule, writer/validator format rules)",
+    "integration_check": "scripts/validate_submission.py run on GEMSDOE32's public file gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif (exit status 0, passed=true): sha256 c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9 (begins with the 8-character prefix on the GEMSDOE32 page), EPSG:32611, 3730x3292, float32, single band, nodata None, 37654 positive cells, min 0.0, max 1.0. This is a format check only. It says nothing about the score or about whether the organiser accepts the file."
+  },
+  "submission": {
+    "name": null,
+    "note": null,
+    "note_max_chars_used": null,
+    "release_status": "HOLD - not produced",
+    "note_limit_planned": 140
+  },
+  "verdict": "NEGATIVE / NOT RUN. Nothing is promoted. No weekly slot is spent.",
+  "budget": {
+    "experiments_limit": 3,
+    "experiments_used": 0,
+    "time_limit_hours": 2,
+    "note": "Time was spent on source verification, metric implementation and tests, and on a site with the evidence labels."
+  },
+  "labels_key": {
+    "HOLDOUT-DTI": "Score computed by this repo's evaluator on the spatially-blocked holdout, with evaluator version, withheld-positive count and 95% CI.",
+    "ORGANIZER-CONFIRMED": "Copied from a submission-page receipt. None exists for any file reviewed here.",
+    "PUBLIC-LEADERBOARD": "Row on the public DrivenData board. Public-test only; not the private or final score.",
+    "PROJECTION": "Model arithmetic. Never written as a score.",
+    "CLAIM": "Owner or site statement without a receipt."
+  }
+}

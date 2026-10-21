@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Run card · GEMSDOE74</title>
+<link rel="stylesheet" href="assets/site.css">
+</head><body>
+<header class="top"><span class="brand">GEMSDOE74</span><a href="index.html">Home</a><a href="executive-summary.html">How to submit</a><a href="analysis-0-2778.html">The 0.2778 question</a><a href="hypotheses.html">Hypotheses</a><a href="leaderboard.html">Leaderboard</a><a href="irregularities.html">Irregularities</a><a href="sources.html">Sources</a><a href="run-card.html" aria-current="page">Run card</a></header>
+<main>
+
+<h1>Run card</h1>
+<p class="sub">Machine-readable copy: <a href="data/run-card.json">data/run-card.json</a> · schema gems74-run-card/1 · 2026-10-21</p>
+<div class="status hold"><p class="big">NO SUBMISSION FILE PRODUCED. Experiments not run. Verdict: NEGATIVE (no candidate validated).</p>
+<p>Competition feature stack and labels (training_features.tif, labels, sample_submission) are login-gated on DrivenData; the Dropbox copies return only a preview page or empty bytes from this sandbox; sandbox egress allows github.com, codeload, api.github.com, registry.npmjs.org, pypi.org, files.pythonhosted.org only.</p></div>
+<pre>{
+  &quot;schema&quot;: &quot;gems74-run-card/1&quot;,
+  &quot;session_branch&quot;: &quot;arena/5bb16675-gemsdoe74&quot;,
+  &quot;date_utc&quot;: &quot;2026-10-21&quot;,
+  &quot;status&quot;: &quot;NO SUBMISSION FILE PRODUCED. Experiments not run. Verdict: NEGATIVE (no candidate validated).&quot;,
+  &quot;blocker&quot;: &quot;Competition feature stack and labels (training_features.tif, labels, sample_submission) are login-gated on DrivenData; the Dropbox copies return only a preview page or empty bytes from this sandbox; sandbox egress allows github.com, codeload, api.github.com, registry.npmjs.org, pypi.org, files.pythonhosted.org only.&quot;,
+  &quot;lane&quot;: {
+    &quot;method&quot;: &quot;Pre-registered hide-and-recover holdout + exact metric, using the template feature stack (not yet obtained).&quot;,
+    &quot;lane_status&quot;: &quot;Not executed. No raster exists, so no correlation or overlap check was possible in this session.&quot;
+  },
+  &quot;hypothesis&quot;: {
+    &quot;top_candidate&quot;: &quot;C1 - flight-line-artifact-suppressed magnetic edge detection (GeoDAWN magnetics, 90-degree flight-line geometry).&quot;,
+    &quot;status&quot;: &quot;UNVALIDATED. No holdout run.&quot;
+  },
+  &quot;mechanism&quot;: &quot;Remove any remaining survey-line periodicity (200 m line spacing in Area 1, 400 m in Area 2, flight azimuth 90 degrees, per the USGS summary) with an oriented notch filter before computing horizontal-gradient edges, so that magnetic contacts from fault-related contrast are not masked or mimicked by residual leveling. Whether any residue remains after the contractor&#x27;s corrections is untested.&quot;,
+  &quot;named_non_fault_process_that_could_mimic_it&quot;: &quot;Residual line-periodic leveling artifacts after the contractor&#x27;s tie-line and micro-leveling (USGS summary), plus lithologic contacts (intrusive and volcanic margins) that produce edges without displacement.&quot;,
+  &quot;holdout_dti&quot;: {
+    &quot;value&quot;: null,
+    &quot;label&quot;: &quot;NOT COMPUTED&quot;,
+    &quot;evaluator_version&quot;: &quot;gems74 src/gems74/metric.py (unit-tested; see tests/test_metric.py)&quot;,
+    &quot;withheld_positives&quot;: null,
+    &quot;ci95&quot;: null,
+    &quot;reason&quot;: &quot;No feature stack and no label raster in this environment.&quot;
+  },
+  &quot;correlation_and_overlap_vs_registry&quot;: {
+    &quot;rank_correlation_max&quot;: null,
+    &quot;dot_overlap_within_3px_max&quot;: null,
+    &quot;label&quot;: &quot;NOT COMPUTED&quot;,
+    &quot;reason&quot;: &quot;No candidate raster. The GEMSDOE32 registry rasters were inspected (see docs/irregularities.html) but no candidate was scored against them.&quot;
+  },
+  &quot;leakage_canary&quot;: {
+    &quot;status&quot;: &quot;NOT RUN&quot;,
+    &quot;rule&quot;: &quot;Each feature alone on the holdout; AUC above 0.90 means leakage until proven otherwise.&quot;,
+    &quot;result&quot;: null
+  },
+  &quot;raster_sha256&quot;: null,
+  &quot;validator_output&quot;: {
+    &quot;status&quot;: &quot;NOT RUN ON A CANDIDATE&quot;,
+    &quot;unit_tests&quot;: &quot;pytest tests: 82 passed (metric, marginal rule, writer/validator format rules)&quot;,
+    &quot;integration_check&quot;: &quot;scripts/validate_submission.py run on GEMSDOE32&#x27;s public file gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif (exit status 0, passed=true): sha256 c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9 (begins with the 8-character prefix on the GEMSDOE32 page), EPSG:32611, 3730x3292, float32, single band, nodata None, 37654 positive cells, min 0.0, max 1.0. This is a format check only. It says nothing about the score or about whether the organiser accepts the file.&quot;
+  },
+  &quot;submission&quot;: {
+    &quot;name&quot;: null,
+    &quot;note&quot;: null,
+    &quot;note_max_chars_used&quot;: null,
+    &quot;release_status&quot;: &quot;HOLD - not produced&quot;,
+    &quot;note_limit_planned&quot;: 140
+  },
+  &quot;verdict&quot;: &quot;NEGATIVE / NOT RUN. Nothing is promoted. No weekly slot is spent.&quot;,
+  &quot;budget&quot;: {
+    &quot;experiments_limit&quot;: 3,
+    &quot;experiments_used&quot;: 0,
+    &quot;time_limit_hours&quot;: 2,
+    &quot;note&quot;: &quot;Time was spent on source verification, metric implementation and tests, and on a site with the evidence labels.&quot;
+  },
+  &quot;labels_key&quot;: {
+    &quot;HOLDOUT-DTI&quot;: &quot;Score computed by this repo&#x27;s evaluator on the spatially-blocked holdout, with evaluator version, withheld-positive count and 95% CI.&quot;,
+    &quot;ORGANIZER-CONFIRMED&quot;: &quot;Copied from a submission-page receipt. None exists for any file reviewed here.&quot;,
+    &quot;PUBLIC-LEADERBOARD&quot;: &quot;Row on the public DrivenData board. Public-test only; not the private or final score.&quot;,
+    &quot;PROJECTION&quot;: &quot;Model arithmetic. Never written as a score.&quot;,
+    &quot;CLAIM&quot;: &quot;Owner or site statement without a receipt.&quot;
+  }
+}</pre>
+
+</main>
+<footer>Generated or edited in repo <code>buffedlizard55-lab/GEMSDOE74</code>. Every number carries an evidence label. Not affiliated with DrivenData, NLR, DOE or USGS.</footer>
+</body></html>

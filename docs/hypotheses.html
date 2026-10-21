@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Hypotheses · GEMSDOE74</title>
+<link rel="stylesheet" href="assets/site.css">
+</head><body>
+<header class="top"><span class="brand">GEMSDOE74</span><a href="index.html">Home</a><a href="executive-summary.html">How to submit</a><a href="analysis-0-2778.html">The 0.2778 question</a><a href="hypotheses.html" aria-current="page">Hypotheses</a><a href="leaderboard.html">Leaderboard</a><a href="irregularities.html">Irregularities</a><a href="sources.html">Sources</a><a href="run-card.html">Run card</a></header>
+<main>
+
+<h1>Candidate hypotheses, ranked</h1>
+<p class="sub">Four ideas, each checked against the sibling GEMSDOE32 pipeline for overlap. None has been validated. No expected-DTI number is given, because no holdout has run. A projection would be a PROJECTION, not a score.</p>
+
+<h2>How overlap was checked</h2>
+<div class="card">
+<p>We cloned <code>buffedlizard55-lab/GEMSDOE32</code> at commit <code>98901f3</code> and ran case-insensitive <code>grep -ril</code> over its working tree (excluding <code>.git</code>). Each count is the number of files containing the term. A term with zero files is treated as not covered. A term with many files is treated as covered, even if its exact method differs. Counts are file counts, not evidence that a method is equivalent.</p>
+<table>
+<tr><th>Term (case-insensitive)</th><th>Files containing it</th><th>Reading</th></tr>
+<tr><td>flight line / line spacing / flight height / Area 1 / Area 2</td><td>0 / 0 / 0 / 0 / 0</td><td>Not covered (survey-geometry artifact removal)</td></tr>
+<tr><td>levelling or leveling / notch</td><td>0 / 0</td><td>Not covered</td></tr>
+<tr><td>hillshade / multi-azimuth / phase congruency</td><td>0 / 0 / 0</td><td>Not covered</td></tr>
+<tr><td>temperature gradient / well log / potassium</td><td>0 / 0 / 0</td><td>Not covered</td></tr>
+<tr><td>scarp / curvature / lineament / Euler</td><td>44 / 22 / 23 / 7</td><td><b>Covered</b>. Our candidates must differ in method, not only in target.</td></tr>
+<tr><td>radiometric</td><td>19</td><td><b>Covered</b></td></tr>
+<tr><td>seismicity / earthquake / ComCat / hypocen</td><td>19 / 17 / 12 / 5</td><td><b>Covered</b> at least in part</td></tr>
+<tr><td>temperature probe / spring / paleo / sinter / tufa</td><td>11 / 16 / 11 / 7 / 8</td><td><b>Covered</b>. Excluded from candidates.</td></tr>
+<tr><td>tmi_edge / rtp_edge</td><td>12 / 8</td><td><b>Covered</b> as gradient-magnitude edges, with no artifact removal (feature code in <code>src/gems32/features.py</code>)</td></tr>
+</table>
+</div>
+
+<h2>The four candidates</h2>
+
+<div class="card">
+<h3>C1. Flight-line-artifact-suppressed magnetic edges &nbsp;<span class="pill p-pr">RANK 1 · LOW COST</span></h3>
+<div class="kv">
+<div>Layers</div><div>Magnetic bands in the official stack (RTP, TMI, and their gradients), with the GeoDAWN acquisition geometry from USGS metadata.</div>
+<div>Physical signature</div><div>Horizontal-gradient maxima that survive after an oriented notch removes the survey-line periodicity. Target: contacts from fault-related magnetic contrast that the periodic artifact masks or imitates.</div>
+<div>Why it should catch an unlisted fault</div><div>The USGS summary gives the geometry: flight lines at azimuth 90° (east–west), spaced 200 m apart in Area 1 and 400 m in Area 2 (<a href="https://www.sciencebase.gov/catalog/item/657e1d85d34e23d3533209f7">ScienceBase</a>). The contractor already applied tie-line leveling and micro-leveling to the magnetic data, so any remaining line-periodic residue is what this test looks for. <b>That residue may be small.</b> The hypothesis is that it is still strong enough to affect edge maps. It is a test to run, not an assumption.</div>
+<div>Named non-fault mimic</div><div>Residual line-periodic leveling artifacts after the contractor's corrections, and lithologic contacts (intrusive or volcanic margins) that give edges with no displacement.</div>
+<div>Difference from GEMSDOE32</div><div>GEMSDOE32 computes gradient-magnitude edges (<code>tmi_edge</code>, <code>rtp_edge</code>) but has no survey-geometry or notch step. <b>Overlap:</b> the edge feature family is shared, so C1 is only new if the notch changes the edges. That is the test.</div>
+<div>Trade-off</div><div>A notch at the line-spacing wavenumber may also remove real signal at the same wavelength. The holdout must check that.</div>
+<div>Expected gain (judgement)</div><div>Medium. Not estimated numerically.</div>
+<div>Implementation cost</div><div>Low. One FFT notch on the magnetic bands, then gradients.</div>
+<div>Data status</div><div>Inside the official stack, once obtained. USGS metadata verified.</div>
+<div>Validation gate</div><div><span class="pill p-no">NOT RUN</span> Run the holdout with and without the notch. Keep the change only if it beats the incumbent holdout score under the same evaluator.</div>
+</div>
+</div>
+
+<div class="card">
+<h3>C2. Survey-coverage prior on where experts can label faults &nbsp;<span class="pill p-pr">RANK 2 · VERY LOW COST, WEAK ALONE</span></h3>
+<div class="kv">
+<div>Layers</div><div>No physical layer. The GeoDAWN survey-area and flight-geometry metadata (Area 1 vs Area 2; flight height 100–150 m vs 150–200 m; line spacing 200 m vs 400 m).</div>
+<div>Physical signature</div><div>None. This is a labelling-process hypothesis: the hidden labels come from expert review of the data, and experts can map faults more reliably where the data resolve them.</div>
+<div>Why it should catch an unlisted fault</div><div>If the expert labels cluster where the survey resolves structure, a prior that weights emission by survey resolution should raise the credit per dot. This is a bet on the labelling process, not on geology.</div>
+<div>Named non-fault mimic</div><div>Sampling bias: lithium and brine exploration around Clayton Valley (Area 1, per USGS) draws both data and attention. That bias would look like a fault prior.</div>
+<div>Difference from GEMSDOE32</div><div>Not covered: no survey-area or line-geometry wording in its code or notes.</div>
+<div>Expected gain (judgement)</div><div>Low to medium, and unsafe alone.</div>
+<div>Implementation cost</div><div>Very low.</div>
+<div>Data status</div><div>USGS metadata verified. The labels' spatial distribution has to be checked against the official data.</div>
+<div>Validation gate</div><div><span class="pill p-no">NOT RUN</span> A catalogue holdout cannot test a labelling-process prior by itself. Use it only as a weight on C1 or on another candidate, and test the weight on a holdout split by survey area.</div>
+</div>
+</div>
+
+<div class="card">
+<h3>C3. Multi-azimuth phase-congruency scarp detection on 1 m DEM &nbsp;<span class="pill p-pr">RANK 3 · MEDIUM-HIGH COST</span></h3>
+<div class="kv">
+<div>Layers</div><div>1 m DEM, which the competition says users may need (rules §3.3). The DEM link list has not been obtained, so its coverage is unverified.</div>
+<div>Physical signature</div><div>A linear step that stays coherent across illumination azimuths. Phase congruency is largely invariant to illumination direction, so a scarp shows at every azimuth and a shadow edge does not.</div>
+<div>Why it should catch an unlisted fault</div><div>Small surface scarps under vegetation can be too weak in 100 m features but still coherent in 1 m data. If the expert labelling used the 1 m lidar (the competition text does not say so, so this is an assumption to check), such scarps are plausible labels.</div>
+<div>Named non-fault mimic</div><div>Roads, canals, fence lines and railway embankments; stream-terrace risers; aeolian dune margins.</div>
+<div>Difference from GEMSDOE32</div><div>Method differs: GEMSDOE32 uses curvature and ridge filters. <b>Target overlaps heavily</b>: "scarp" appears in 44 of its files, so C3 is a method change on a covered target.</div>
+<div>Expected gain (judgement)</div><div>Medium, with high overlap risk.</div>
+<div>Implementation cost</div><div>Medium-high. The 1 m tiles are large and have not been obtained.</div>
+<div>Data status</div><div>The competition refers to USGS 1 m DEM tiles (rules §3.3). The tile list was not obtained in this environment.</div>
+<div>Validation gate</div><div><span class="pill p-no">NOT RUN</span> Only after C1 is tested.</div>
+</div>
+</div>
+
+<div class="card">
+<h3>C4. Hypocentre planes from 3-D earthquake locations &nbsp;<span class="pill p-pr">RANK 4 · MEDIUM COST, PARTIAL OVERLAP</span></h3>
+<div class="kv">
+<div>Layers</div><div>Earthquake locations (USGS Comprehensive Catalog, free and official), used in 3-D rather than as the 2-D density already in the stack.</div>
+<div>Physical signature</div><div>Planar alignments of hypocentres at consistent depth and dip, which can mark active fault planes.</div>
+<div>Why it should catch an unlisted fault</div><div>Microseismicity can locate a fault that shows no surface scarp, so it can reach concealed faults.</div>
+<div>Named non-fault mimic</div><div>Induced seismicity from fluid injection or extraction, and quarry or mine blasts, both of which produce planar clusters with no tectonic fault.</div>
+<div>Difference from GEMSDOE32</div><div>Partial overlap: seismicity (19 files), earthquake (17) and ComCat (12) appear, and hypocentre appears in 5 files. The 3-D planar step is not verified as present.</div>
+<div>Expected gain (judgement)</div><div>Low to medium.</div>
+<div>Implementation cost</div><div>Medium. Needs the ComCat download, which this environment cannot reach.</div>
+<div>Data status</div><div>Official and free, but not obtained here.</div>
+<div>Validation gate</div><div><span class="pill p-no">NOT RUN</span></div>
+</div>
+</div>
+
+<h2>Excluded (already covered in the sibling repos)</h2>
+<div class="card">
+<ul>
+<li>Radiometric alteration halos (covered: the term appears in 19 GEMSDOE32 files).</li>
+<li>Temperature probes, springs, paleo-spring deposits (covered; the term appears in 7–16 GEMSDOE32 files each).</li>
+<li>Scarp, curvature and ridge detection on the 100 m stack (covered by many GEMSDOE pages).</li>
+</ul>
+</div>
+
+<h2>Gate for all candidates</h2>
+<div class="card">
+<p>No submission slot is spent on any candidate until it beats the incumbent on our holdout. Until we have the feature stack, the incumbent is undefined, so the first task is to build it. The holdout must withhold whole fault segments, with a buffer, derive all catalogue-based features from the visible faults only, and mask visible faults pixel-exactly.</p>
+</div>
+
+</main>
+<footer>Not affiliated with DrivenData, NLR, DOE or USGS. Snapshot 2026-10-21.</footer>
+</body></html>
