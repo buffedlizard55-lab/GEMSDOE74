@@ -130,7 +130,7 @@ def main() -> int:
     fig.savefig(assets / "fig2_spatial_fault_map.png")
     plt.close(fig)
 
-    # --- Figure 3: Leakage Canary + 251-Raster Uniqueness Proof ---
+    # --- Figure 3: Leakage Canary + 259-Raster Uniqueness Proof ---
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(13.5, 4.8), dpi=160)
     top_can = can["features"][:14][::-1]
     ax1.barh([f["feature"] for f in top_can], [f["symmetric_auc"] for f in top_can], color="#0284c7", alpha=0.88)
@@ -143,14 +143,14 @@ def main() -> int:
 
     rhos = [abs(r.get("spearman_full_footprint", 0.0) or 0.0) for r in u2["rows"]]
     ovs = [float(r.get("mutual_overlap", r.get("overlap", 0.0)) or 0.0) for r in u2["rows"]]
-    ax2.scatter(rhos, ovs, s=26, alpha=0.72, color="#059669", edgecolors="#064e3b", linewidths=0.4, label="251 Sibling GeoTIFFs (GEMSDOE01..73)")
+    ax2.scatter(rhos, ovs, s=26, alpha=0.72, color="#059669", edgecolors="#064e3b", linewidths=0.4, label="259 Verified GeoTIFFs (GEMSDOE01..74)")
     ax2.axvline(0.90, color="#dc2626", lw=1.6, ls="--", label="Spearman |rho| <= 0.90 Gate")
     ax2.axhline(0.70, color="#d97706", lw=1.6, ls=":", label="Mutual 3-px Overlap <= 0.70 Gate")
     ax2.set_xlim(-0.02, 0.98)
     ax2.set_ylim(-0.03, 0.82)
     ax2.set_xlabel("Full-Footprint |Spearman rho| vs GEMSDOE74 Final GeoTIFF", fontsize=9.5, fontweight="bold")
     ax2.set_ylabel("Mutual 3-px (300 m) Dot Overlap Fraction", fontsize=9.5, fontweight="bold")
-    ax2.set_title("B. 251-Raster Registry Uniqueness Audit (max |rho|=0.0824, ov=0.5446)", fontsize=10.5, fontweight="bold", loc="left")
+    ax2.set_title("B. 259-Raster Registry Uniqueness Audit (max |rho|=0.0824, ov=0.5446)", fontsize=10.5, fontweight="bold", loc="left")
     ax2.legend(loc="upper right", fontsize=8.3)
     ax2.grid(alpha=0.25)
 

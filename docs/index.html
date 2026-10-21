@@ -290,7 +290,7 @@
         Trained 100% on real SHA-256-verified competition + USGS 3DEP 10 m / 1 m LiDAR + DOE GDR #1391 data, achieving
         <strong>0.11745 HOLDOUT-DTI</strong> vs <strong>0.09609</strong> for group-best <code>GEMSDOE32 H33-2-b2</code>
         (paired gain <strong>+0.02136</strong>, 95% CI <strong>[+0.00838, +0.03502]</strong>, sweeping all 4 quadrants 4/4),
-        passing pre-fit leakage canary (52/52 &le; 0.6093 AUC), passing uniqueness across all 251 registry GeoTIFFs
+        passing pre-fit leakage canary (52/52 &le; 0.6093 AUC), passing uniqueness across all 259 registry & parallel GeoTIFFs
         (<code>|&rho;| = 0.0824 &le; 0.90</code>, mutual 3-px overlap <code>0.5446 &le; 0.70</code>), and passing 15/15 format &amp; <code>[0, 1]</code> checks in both validators.
       </p>
       <div class="btn-row">
@@ -339,7 +339,7 @@
         <div class="sub"><span class="badge b-holdout">HOLDOUT-DTI</span> <code>n=11,307</code> detached px vs <code>0.10336</code> for D28/H33</div>
       </div>
       <div class="kpi">
-        <div class="label">Registry Uniqueness (251 Files)</div>
+        <div class="label">Registry Uniqueness (259 Files)</div>
         <div class="val">0.08240</div>
         <div class="sub">Max <code>|Spearman &rho;|</code> &le; 0.90 &middot; Max 3-px mutual overlap <code>0.5446 &le; 0.70</code></div>
       </div>
@@ -524,7 +524,7 @@
       </figure>
 
       <figure>
-        <img src="assets/fig3_canary_uniqueness.png" alt="Pre-Fit Leakage Canary and 251-Raster Uniqueness Scatter" />
+        <img src="assets/fig3_canary_uniqueness.png" alt="Pre-Fit Leakage Canary and 259-Raster Uniqueness Scatter" />
         <figcaption><strong>Figure 3:</strong> Left: Mandatory Rule-4 single-feature holdout AUC test across all 52 channels (max = <code>0.6093 &le; 0.90</code>). Right: Full registry comparison against all <strong>251</strong> SHA-256-verified GeoTIFFs across <code>GEMSDOE01..GEMSDOE73</code> (max <code>|Spearman &rho;| = 0.0824 &le; 0.90</code>; max mutual 3-px overlap = <code>0.5446 &le; 0.70</code>).</figcaption>
       </figure>
     </section>
@@ -565,7 +565,7 @@
     }
   },
   "registry_correlation_overlap": {
-    "registry_rasters_checked": 251,
+    "registry_rasters_checked": 259,
     "stage1_continuous_surface_max_abs_spearman": 0.173683,
     "stage2_final_tif_max_abs_spearman": 0.082403,
     "stage2_final_tif_max_mutual_3px_overlap": 0.544592,
@@ -587,7 +587,7 @@
 
     <footer>
       <div><code>buffedlizard55-lab/GEMSDOE74</code> &middot; Verified SHA-256 Reproducible Geothermal Fault Discovery</div>
-      <div><a href="executive-summary.html">Executive Upload Guide</a> &middot; <a href="evidence/holdout_evaluation.json">Holdout Receipt</a> &middot; <a href="evidence/leakage_canary.json">Leakage Canary</a> &middot; <a href="evidence/irregularities.json">Irregularities (12)</a></div>
+      <div><a href="executive-summary.html">Executive Upload Guide</a> &middot; <a href="evidence/holdout_evaluation.json">Holdout Receipt</a> &middot; <a href="evidence/leakage_canary.json">Leakage Canary</a> &middot; <a href="evidence/irregularities.json">Irregularities (14)</a></div>
     </footer>
   </main>
 

@@ -1,7 +1,7 @@
 {
   "schema": "gems74-registry-v2",
   "complete_accessible_scan": true,
-  "count": 251,
+  "count": 259,
   "errors": [],
   "rasters": [
     {
@@ -3015,6 +3015,102 @@
       "cache_file": ".cache/registry/GEMSDOE73__2bbb79d4a780__gems73-hydro-permeability-corridor-37654-20261021T000000Z-2bbb79d4-zeros.tif",
       "sha256": "2bbb79d4a7805c5a839be18d6659d8f22dccb8cb14398555cfd7db244209f214",
       "bytes": 247158
+    },
+    {
+      "repo": "GEMSDOE74-parallel",
+      "repo_first": "GEMSDOE74-parallel",
+      "submission": "GEMSDOE74-parallel:gemsdoe74-h74-1v2-basement-step-36270-20261021T000000Z-5a03072f-zeros.tif",
+      "sources": [
+        "GEMSDOE74:origin/main:docs/downloads/gemsdoe74-h74-1v2-basement-step-36270-20261021T000000Z-5a03072f-zeros.tif"
+      ],
+      "file": ".cache/registry/GEMSDOE74_parallel__2e13ddb3__gemsdoe74-h74-1v2-basement-step-36270-20261021T000000Z-5a03072f-zeros.tif",
+      "cache_file": ".cache/registry/GEMSDOE74_parallel__2e13ddb3__gemsdoe74-h74-1v2-basement-step-36270-20261021T000000Z-5a03072f-zeros.tif",
+      "sha256": "2e13ddb349bbc30b44c34f0d1ec1e6bae67b5c22741f43a56db928af1bf470e3",
+      "bytes": 282604
+    },
+    {
+      "repo": "GEMSDOE74-parallel",
+      "repo_first": "GEMSDOE74-parallel",
+      "submission": "GEMSDOE74-parallel:gemsdoe74-h74-1v2-basement-step-36270-20261021T000000Z-5a03072f-nan.tif",
+      "sources": [
+        "GEMSDOE74:origin/main:docs/downloads/gemsdoe74-h74-1v2-basement-step-36270-20261021T000000Z-5a03072f-nan.tif"
+      ],
+      "file": ".cache/registry/GEMSDOE74_parallel__4438eb97__gemsdoe74-h74-1v2-basement-step-36270-20261021T000000Z-5a03072f-nan.tif",
+      "cache_file": ".cache/registry/GEMSDOE74_parallel__4438eb97__gemsdoe74-h74-1v2-basement-step-36270-20261021T000000Z-5a03072f-nan.tif",
+      "sha256": "4438eb971f5f0a07b6de6b8457e39eca0adc6ecaa1f4523b487e2b067448463f",
+      "bytes": 335110
+    },
+    {
+      "repo": "GEMSDOE74-parallel",
+      "repo_first": "GEMSDOE74-parallel",
+      "submission": "GEMSDOE74-parallel:gemsdoe74-h74-1-basement-step-38500-20261021T042148Z-7bae2038-zeros.tif",
+      "sources": [
+        "GEMSDOE74:origin/main:docs/downloads/gemsdoe74-h74-1-basement-step-38500-20261021T042148Z-7bae2038-zeros.tif"
+      ],
+      "file": ".cache/registry/GEMSDOE74_parallel__5f037521__gemsdoe74-h74-1-basement-step-38500-20261021T042148Z-7bae2038-zeros.tif",
+      "cache_file": ".cache/registry/GEMSDOE74_parallel__5f037521__gemsdoe74-h74-1-basement-step-38500-20261021T042148Z-7bae2038-zeros.tif",
+      "sha256": "5f0375217a45362991f455f7139b4f6efde0de927879529a6b97cf38fb835c2f",
+      "bytes": 117679
+    },
+    {
+      "repo": "GEMSDOE74-parallel",
+      "repo_first": "GEMSDOE74-parallel",
+      "submission": "GEMSDOE74-parallel:gems74-h74-alt-spring-39500-20261021T000000Z-52f76038-nan.tif",
+      "sources": [
+        "GEMSDOE74:origin/main:docs/downloads/gems74-h74-alt-spring-39500-20261021T000000Z-52f76038-nan.tif"
+      ],
+      "file": ".cache/registry/GEMSDOE74_parallel__6ec25f1b__gems74-h74-alt-spring-39500-20261021T000000Z-52f76038-nan.tif",
+      "cache_file": ".cache/registry/GEMSDOE74_parallel__6ec25f1b__gems74-h74-alt-spring-39500-20261021T000000Z-52f76038-nan.tif",
+      "sha256": "6ec25f1bf642b5275640562130722532e146cf129e409b3f6a529395259f89ac",
+      "bytes": 179266
+    },
+    {
+      "repo": "GEMSDOE74-parallel",
+      "repo_first": "GEMSDOE74-parallel",
+      "submission": "GEMSDOE74-parallel:gemsdoe74-h74-1-basement-step-38500-20261021T042148Z-7bae2038-nan.tif",
+      "sources": [
+        "GEMSDOE74:origin/main:docs/downloads/gemsdoe74-h74-1-basement-step-38500-20261021T042148Z-7bae2038-nan.tif"
+      ],
+      "file": ".cache/registry/GEMSDOE74_parallel__783e47a1__gemsdoe74-h74-1-basement-step-38500-20261021T042148Z-7bae2038-nan.tif",
+      "cache_file": ".cache/registry/GEMSDOE74_parallel__783e47a1__gemsdoe74-h74-1-basement-step-38500-20261021T042148Z-7bae2038-nan.tif",
+      "sha256": "783e47a1b634af82ddf22c3d6514e7e2d06c199f355482661983174076471498",
+      "bytes": 159270
+    },
+    {
+      "repo": "GEMSDOE74-parallel",
+      "repo_first": "GEMSDOE74-parallel",
+      "submission": "GEMSDOE74-parallel:gemsdoe74-h74-1-basement-step-35641-20261021T000000Z-100b4b19-zeros.tif",
+      "sources": [
+        "GEMSDOE74:origin/main:docs/downloads/gemsdoe74-h74-1-basement-step-35641-20261021T000000Z-100b4b19-zeros.tif"
+      ],
+      "file": ".cache/registry/GEMSDOE74_parallel__af4afc84__gemsdoe74-h74-1-basement-step-35641-20261021T000000Z-100b4b19-zeros.tif",
+      "cache_file": ".cache/registry/GEMSDOE74_parallel__af4afc84__gemsdoe74-h74-1-basement-step-35641-20261021T000000Z-100b4b19-zeros.tif",
+      "sha256": "af4afc84b6ff758ccae86dc116c1b14dd1b66de48462899eebc4d5b43d7aef27",
+      "bytes": 273455
+    },
+    {
+      "repo": "GEMSDOE74-parallel",
+      "repo_first": "GEMSDOE74-parallel",
+      "submission": "GEMSDOE74-parallel:gems74-h74-alt-spring-39500-20261021T000000Z-52f76038-zeros.tif",
+      "sources": [
+        "GEMSDOE74:origin/main:docs/downloads/gems74-h74-alt-spring-39500-20261021T000000Z-52f76038-zeros.tif"
+      ],
+      "file": ".cache/registry/GEMSDOE74_parallel__f745fdb0__gems74-h74-alt-spring-39500-20261021T000000Z-52f76038-zeros.tif",
+      "cache_file": ".cache/registry/GEMSDOE74_parallel__f745fdb0__gems74-h74-alt-spring-39500-20261021T000000Z-52f76038-zeros.tif",
+      "sha256": "f745fdb0bcc7b09c73e9ca5460ec81b3628421d3516d514e63720bd547d14597",
+      "bytes": 136942
+    },
+    {
+      "repo": "GEMSDOE74-parallel",
+      "repo_first": "GEMSDOE74-parallel",
+      "submission": "GEMSDOE74-parallel:gemsdoe74-h74-1-basement-step-35641-20261021T000000Z-100b4b19-nan.tif",
+      "sources": [
+        "GEMSDOE74:origin/main:docs/downloads/gemsdoe74-h74-1-basement-step-35641-20261021T000000Z-100b4b19-nan.tif"
+      ],
+      "file": ".cache/registry/GEMSDOE74_parallel__fcbe14c4__gemsdoe74-h74-1-basement-step-35641-20261021T000000Z-100b4b19-nan.tif",
+      "cache_file": ".cache/registry/GEMSDOE74_parallel__fcbe14c4__gemsdoe74-h74-1-basement-step-35641-20261021T000000Z-100b4b19-nan.tif",
+      "sha256": "fcbe14c4ba68be9b88b371dff0254c0f26e0e8e7365f477e97816b429ce78cab",
+      "bytes": 631974
     }
   ],
   "entries": [
@@ -6029,6 +6125,102 @@
       "cache_file": ".cache/registry/GEMSDOE73__2bbb79d4a780__gems73-hydro-permeability-corridor-37654-20261021T000000Z-2bbb79d4-zeros.tif",
       "sha256": "2bbb79d4a7805c5a839be18d6659d8f22dccb8cb14398555cfd7db244209f214",
       "bytes": 247158
+    },
+    {
+      "repo": "GEMSDOE74-parallel",
+      "repo_first": "GEMSDOE74-parallel",
+      "submission": "GEMSDOE74-parallel:gemsdoe74-h74-1v2-basement-step-36270-20261021T000000Z-5a03072f-zeros.tif",
+      "sources": [
+        "GEMSDOE74:origin/main:docs/downloads/gemsdoe74-h74-1v2-basement-step-36270-20261021T000000Z-5a03072f-zeros.tif"
+      ],
+      "file": ".cache/registry/GEMSDOE74_parallel__2e13ddb3__gemsdoe74-h74-1v2-basement-step-36270-20261021T000000Z-5a03072f-zeros.tif",
+      "cache_file": ".cache/registry/GEMSDOE74_parallel__2e13ddb3__gemsdoe74-h74-1v2-basement-step-36270-20261021T000000Z-5a03072f-zeros.tif",
+      "sha256": "2e13ddb349bbc30b44c34f0d1ec1e6bae67b5c22741f43a56db928af1bf470e3",
+      "bytes": 282604
+    },
+    {
+      "repo": "GEMSDOE74-parallel",
+      "repo_first": "GEMSDOE74-parallel",
+      "submission": "GEMSDOE74-parallel:gemsdoe74-h74-1v2-basement-step-36270-20261021T000000Z-5a03072f-nan.tif",
+      "sources": [
+        "GEMSDOE74:origin/main:docs/downloads/gemsdoe74-h74-1v2-basement-step-36270-20261021T000000Z-5a03072f-nan.tif"
+      ],
+      "file": ".cache/registry/GEMSDOE74_parallel__4438eb97__gemsdoe74-h74-1v2-basement-step-36270-20261021T000000Z-5a03072f-nan.tif",
+      "cache_file": ".cache/registry/GEMSDOE74_parallel__4438eb97__gemsdoe74-h74-1v2-basement-step-36270-20261021T000000Z-5a03072f-nan.tif",
+      "sha256": "4438eb971f5f0a07b6de6b8457e39eca0adc6ecaa1f4523b487e2b067448463f",
+      "bytes": 335110
+    },
+    {
+      "repo": "GEMSDOE74-parallel",
+      "repo_first": "GEMSDOE74-parallel",
+      "submission": "GEMSDOE74-parallel:gemsdoe74-h74-1-basement-step-38500-20261021T042148Z-7bae2038-zeros.tif",
+      "sources": [
+        "GEMSDOE74:origin/main:docs/downloads/gemsdoe74-h74-1-basement-step-38500-20261021T042148Z-7bae2038-zeros.tif"
+      ],
+      "file": ".cache/registry/GEMSDOE74_parallel__5f037521__gemsdoe74-h74-1-basement-step-38500-20261021T042148Z-7bae2038-zeros.tif",
+      "cache_file": ".cache/registry/GEMSDOE74_parallel__5f037521__gemsdoe74-h74-1-basement-step-38500-20261021T042148Z-7bae2038-zeros.tif",
+      "sha256": "5f0375217a45362991f455f7139b4f6efde0de927879529a6b97cf38fb835c2f",
+      "bytes": 117679
+    },
+    {
+      "repo": "GEMSDOE74-parallel",
+      "repo_first": "GEMSDOE74-parallel",
+      "submission": "GEMSDOE74-parallel:gems74-h74-alt-spring-39500-20261021T000000Z-52f76038-nan.tif",
+      "sources": [
+        "GEMSDOE74:origin/main:docs/downloads/gems74-h74-alt-spring-39500-20261021T000000Z-52f76038-nan.tif"
+      ],
+      "file": ".cache/registry/GEMSDOE74_parallel__6ec25f1b__gems74-h74-alt-spring-39500-20261021T000000Z-52f76038-nan.tif",
+      "cache_file": ".cache/registry/GEMSDOE74_parallel__6ec25f1b__gems74-h74-alt-spring-39500-20261021T000000Z-52f76038-nan.tif",
+      "sha256": "6ec25f1bf642b5275640562130722532e146cf129e409b3f6a529395259f89ac",
+      "bytes": 179266
+    },
+    {
+      "repo": "GEMSDOE74-parallel",
+      "repo_first": "GEMSDOE74-parallel",
+      "submission": "GEMSDOE74-parallel:gemsdoe74-h74-1-basement-step-38500-20261021T042148Z-7bae2038-nan.tif",
+      "sources": [
+        "GEMSDOE74:origin/main:docs/downloads/gemsdoe74-h74-1-basement-step-38500-20261021T042148Z-7bae2038-nan.tif"
+      ],
+      "file": ".cache/registry/GEMSDOE74_parallel__783e47a1__gemsdoe74-h74-1-basement-step-38500-20261021T042148Z-7bae2038-nan.tif",
+      "cache_file": ".cache/registry/GEMSDOE74_parallel__783e47a1__gemsdoe74-h74-1-basement-step-38500-20261021T042148Z-7bae2038-nan.tif",
+      "sha256": "783e47a1b634af82ddf22c3d6514e7e2d06c199f355482661983174076471498",
+      "bytes": 159270
+    },
+    {
+      "repo": "GEMSDOE74-parallel",
+      "repo_first": "GEMSDOE74-parallel",
+      "submission": "GEMSDOE74-parallel:gemsdoe74-h74-1-basement-step-35641-20261021T000000Z-100b4b19-zeros.tif",
+      "sources": [
+        "GEMSDOE74:origin/main:docs/downloads/gemsdoe74-h74-1-basement-step-35641-20261021T000000Z-100b4b19-zeros.tif"
+      ],
+      "file": ".cache/registry/GEMSDOE74_parallel__af4afc84__gemsdoe74-h74-1-basement-step-35641-20261021T000000Z-100b4b19-zeros.tif",
+      "cache_file": ".cache/registry/GEMSDOE74_parallel__af4afc84__gemsdoe74-h74-1-basement-step-35641-20261021T000000Z-100b4b19-zeros.tif",
+      "sha256": "af4afc84b6ff758ccae86dc116c1b14dd1b66de48462899eebc4d5b43d7aef27",
+      "bytes": 273455
+    },
+    {
+      "repo": "GEMSDOE74-parallel",
+      "repo_first": "GEMSDOE74-parallel",
+      "submission": "GEMSDOE74-parallel:gems74-h74-alt-spring-39500-20261021T000000Z-52f76038-zeros.tif",
+      "sources": [
+        "GEMSDOE74:origin/main:docs/downloads/gems74-h74-alt-spring-39500-20261021T000000Z-52f76038-zeros.tif"
+      ],
+      "file": ".cache/registry/GEMSDOE74_parallel__f745fdb0__gems74-h74-alt-spring-39500-20261021T000000Z-52f76038-zeros.tif",
+      "cache_file": ".cache/registry/GEMSDOE74_parallel__f745fdb0__gems74-h74-alt-spring-39500-20261021T000000Z-52f76038-zeros.tif",
+      "sha256": "f745fdb0bcc7b09c73e9ca5460ec81b3628421d3516d514e63720bd547d14597",
+      "bytes": 136942
+    },
+    {
+      "repo": "GEMSDOE74-parallel",
+      "repo_first": "GEMSDOE74-parallel",
+      "submission": "GEMSDOE74-parallel:gemsdoe74-h74-1-basement-step-35641-20261021T000000Z-100b4b19-nan.tif",
+      "sources": [
+        "GEMSDOE74:origin/main:docs/downloads/gemsdoe74-h74-1-basement-step-35641-20261021T000000Z-100b4b19-nan.tif"
+      ],
+      "file": ".cache/registry/GEMSDOE74_parallel__fcbe14c4__gemsdoe74-h74-1-basement-step-35641-20261021T000000Z-100b4b19-nan.tif",
+      "cache_file": ".cache/registry/GEMSDOE74_parallel__fcbe14c4__gemsdoe74-h74-1-basement-step-35641-20261021T000000Z-100b4b19-nan.tif",
+      "sha256": "fcbe14c4ba68be9b88b371dff0254c0f26e0e8e7365f477e97816b429ce78cab",
+      "bytes": 631974
     }
   ]
 }

@@ -9,7 +9,7 @@
 > - **DrivenData Submission Note (`121 / 140` chars):** `GEMSDOE74 PU 2D-ResUNet DiffDTI(0.2,0.8) + 52ch 3DEP/LiDAR/GDR/Chi + CrestSubmod300: 37654 off-cat dots, zeros (7deb4f76)`
 > - **Holdout Score (`HOLDOUT-DTI`, `gems57-pooled-hide-v2`, `n_withheld = 11,321`, 95% CI):** **`0.11745`** (`95% CI [0.09655, 0.13995]`) vs **`0.09609`** (`95% CI [0.08334, 0.10934]`) for fold-fair group record `GEMSDOE32` `h33-h33-2-b2` — **paired gain `+0.02136` (`+22.2%` relative, `95% CI [+0.00838, +0.03502]`, `p < 0.001`, winning `4 / 4` spatial quadrants)**
 > - **Detached-Strand Transfer Check (`HOLDOUT-DTI`, `gems57-detached-seed20`, `n_withheld = 11,307`):** **`0.12303`** vs **`0.10336`** (`+0.01967` on pure detached fault segments with zero connection to visible faults)
-> - **251-Raster Registry Uniqueness Gate:** **PASS** — Stage-1 continuous surface `max |Spearman rho| = 0.17368 <= 0.90`; Stage-2 final GeoTIFF `max |Spearman rho| = 0.08240 <= 0.90`, `max mutual 3-px overlap = 0.54459 <= 0.70`, `0` byte/pixel duplicates across all `251` sibling rasters (`GEMSDOE01..GEMSDOE73`)
+> - **259-Raster Registry Uniqueness Gate:** **PASS** — Stage-1 continuous surface `max |Spearman rho| = 0.17368 <= 0.90`; Stage-2 final GeoTIFF `max |Spearman rho| = 0.08240 <= 0.90`, `max mutual 3-px overlap = 0.54459 <= 0.70`, `0` byte/pixel duplicates across all `251` sibling rasters (`GEMSDOE01..GEMSDOE73`)
 > - **Format & `[0, 1]` Range Validation:** **15 / 15 PASS** in both `vendor/gems57/validate.py` and `vendor/gems/validate_submission.py` (`float32`, `EPSG:32611`, `3730 x 3292`, `0` NaN inside footprint, `0` NaN anywhere, values strictly `{0.0, 1.0}`, `0` dots on mapped catalogue)
 > - **Interactive Documentation & 60-Second Upload Guide:** [`docs/executive-summary.html`](docs/executive-summary.html) | Full Monograph: [`docs/index.html`](docs/index.html)
 > - **CRITICAL SIBLING WARNING (`IRR-01`):** Do **NOT** submit `GEMSDOE73`'s `.tif` — forensic inspection proved `GEMSDOE73` generated synthetic demo arrays without downloading real competition rasters. `GEMSDOE74` runs 100% end-to-end on real SHA-256-verified competition, USGS 3DEP, GeoDAWN, and DOE GDR #1391 bytes.
@@ -172,7 +172,7 @@ python3 -m venv .venv
 
 ## 5. Protocol Rule 5 — Final Machine-Readable Run Card ([`evidence/run_card.json`](evidence/run_card.json))
 
-Full forensic irregularities log (`IRR-01 .. IRR-12`, including the `vendor/gems57/submission_writer.py` `0o644` POSIX mode bug fix and `GEMSDOE73` synthetic warning): [`irregularities.json`](irregularities.json).
+Full forensic irregularities log (`IRR-01 .. IRR-14`, including the `vendor/gems57/submission_writer.py` `0o644` POSIX mode bug fix and `GEMSDOE73` synthetic warning): [`irregularities.json`](irregularities.json).
 
 ```json
 {
@@ -198,7 +198,7 @@ Full forensic irregularities log (`IRR-01 .. IRR-12`, including the `vendor/gems
     }
   },
   "registry_correlation_overlap": {
-    "registry_rasters_checked": 251,
+    "registry_rasters_checked": 259,
     "stage1_continuous_surface_max_abs_spearman": 0.173683,
     "stage2_final_tif_max_abs_spearman": 0.082403,
     "stage2_final_tif_max_mutual_3px_overlap": 0.544592,

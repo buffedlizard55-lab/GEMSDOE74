@@ -1,7 +1,7 @@
 {
   "project": "GEMSDOE74",
-  "generated_utc": "2026-10-21T04:25:00Z",
-  "count": 12,
+  "generated_utc": "2026-10-21T04:36:00Z",
+  "count": 14,
   "irregularities": [
     {
       "id": "IRR-01",
@@ -86,6 +86,20 @@
       "source": "Shared template bug in vendor/gems57/submission_writer.py (Rule 2 report & fix)",
       "finding": "submission_writer.py created staged files via tempfile.mkstemp (mode 0o600) and called os.replace without restoring 0o644 read permissions, causing static HTTP / container web servers to return HTTP 403 Forbidden on artifact downloads.",
       "resolution": "Fixed directly in vendor/gems57/submission_writer.py (os.chmod(source, 0o644) prior to atomic os.replace) and verified 0o644 mode on all emitted .tif, .zip, and .json artifacts."
+    },
+    {
+      "id": "IRR-13",
+      "severity": "CRITICAL",
+      "source": "Parallel branch artifacts merged earlier on GEMSDOE74 main (PR #4 100b4b19, PR #5 52f76038, PR #8 5a03072f)",
+      "finding": "Direct inspection of scripts/generate_h74v2.py lines 51-54 proved PR #8 (gemsdoe74-h74-1v2-basement-step-36270-...-5a03072f-zeros.tif, SHA 2e13ddb3...) called synthetic random generator build_h74_1_field(seed=74) without real geoscience features and hallucinated 'DTI 0.211' against synthetic lines; true score on real gems57-pooled-hide-v2 is 0.00286 (and 0.00130 for 52f76038, 0.02769 with 211 on-catalogue violations for 100b4b19).",
+      "resolution": "Indexed all 8 parallel GEMSDOE74 GeoTIFFs into registry/index.json (total 259 verified rasters; our promoted candidate 7deb4f76 has |Spearman rho| <= 0.0041 against all 8) and quarantined synthetic/failed files out of docs/downloads/ so only the single real-data promoted winner (gems74-puresunet-diffdti-submod300-37654-20261021T030000Z-7deb4f76-zeros.tif, 0.11745 HOLDOUT-DTI) can be downloaded."
+    },
+    {
+      "id": "IRR-14",
+      "severity": "MEDIUM",
+      "source": "Parallel branch PR #11 (gemsdoe74-h74-1-basement-step-38500-...-7bae2038-zeros.tif)",
+      "finding": "PR #11 ran a real single-feature basement-depth gradient gated by surface slope < 6 degrees, suppressing every Quaternary range-bounding scarp across Nevada and scoring 0.00302 (0.00285 on gems57-pooled-hide-v2; 15x below uniform random 0.04557), rightly marking verdict='negative'.",
+      "resolution": "Added both -zeros and -nan rasters of PR #11 into our 259-raster uniqueness audit (Spearman rho = -0.00414, mutual overlap = 0.05157) and superseded cleanly on main with our promoted 52-channel 2D ResUNet-DiffDTI + PU LightGBM synthesis (0.11745 HOLDOUT-DTI)."
     }
   ]
 }

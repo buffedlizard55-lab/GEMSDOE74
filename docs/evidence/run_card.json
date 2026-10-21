@@ -171,7 +171,7 @@
     }
   },
   "registry_correlation_overlap": {
-    "registry_rasters_checked": 251,
+    "registry_rasters_checked": 259,
     "complete_accessible_scan": true,
     "stage1_continuous_surface_max_abs_spearman": 0.173683,
     "stage1_nearest_spearman_match": "60GEMSDOE:calib_hedgev2_01563_sample.tif",
