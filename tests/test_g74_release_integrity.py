@@ -112,8 +112,8 @@ def test_parallel_run_protocol_gates() -> None:
 
 def test_github_pages_links_assets_and_zero_synthetic_leftovers() -> None:
     """Verify all internal links & images across every HTML page in docs/ resolve on disk with zero legacy synthetic strings."""
-    html_files = sorted(DOCS.rglob("*.html"))
-    assert len(html_files) >= 14
+    html_files = [ROOT / "index.html"] + sorted(DOCS.rglob("*.html"))
+    assert len(html_files) >= 15
 
     banned_tokens = [
         "gemsdoe74-h74-1",

@@ -731,7 +731,16 @@ Marginal Gain Gate:  Delta_DTI &gt; 0   &lt;==&gt;   E[Delta TP_w / Delta N_dots
         patched = rbody.replace('href="downloads/', 'href="../downloads/').replace('href="executive-summary.html"', 'href="../executive-summary.html"')
         (review_dir / rname).write_text(render_shell(rtitle, active_key, patched, prefix="../"))
 
-    print(f"Built {len(pages)} root pages + {len(review_map)} review pages cleanly in {DOCS}!")
+    # Also write root `index.html` (`prefix="docs/"`) so GitHub Pages works identically whether repo Pages source is `/` or `/docs`!
+    root_index_body = (
+        index_body
+        .replace('href="downloads/', 'href="docs/downloads/')
+        .replace('href="executive-summary.html"', 'href="docs/executive-summary.html"')
+        .replace('src="assets/', 'src="docs/assets/')
+    )
+    (ROOT / "index.html").write_text(render_shell("Submission Hub & Promoted GeoTIFF", "index.html", root_index_body, prefix="docs/"))
+
+    print(f"Built root index.html + {len(pages)} docs pages + {len(review_map)} review pages cleanly!")
 
 
 if __name__ == "__main__":
