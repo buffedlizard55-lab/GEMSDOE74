@@ -30,25 +30,23 @@ def test_writer_requires_a_real_template(tmp_path):
         write_submission_geotiff(np.zeros((3, 4), np.float32), None, tmp_path / "no-template.tif")
 
 
-def test_writer_zeros_mode_uses_template_and_reopens(tmp_path):
+def test_writer_rejects_zero_filled_outside_mode(tmp_path):
     template = tmp_path / "sample.tif"
     footprint = make_template(template)
-    prediction = np.zeros_like(footprint)
-    prediction[0, 1] = 1
-    out = tmp_path / "candidate.tif"
+    with pytest.raises(ValueError, match="zero-filled outside bounds"):
+        write_submission_geotiff(np.zeros_like(footprint), template, tmp_path / "candidate.tif", outside_mode="zeros")
 
-    receipt = write_submission_geotiff(prediction, template, out, outside_mode="zeros", note="format test only")
 
-    assert receipt["local_format_validation_passed"] is True
-    assert receipt["positive_pixels_inside_template_footprint"] == 1
-    report = validate_tif(out, template)
-    assert report["passed"] is True
-    with rasterio.open(out) as ds:
-        actual = ds.read(1)
-        assert ds.crs.to_epsg() == 32611
-        assert ds.transform == from_origin(500000, 4500000, 100, 100)
-        assert np.isfinite(actual).all()
-        assert (actual >= 0).all() and (actual <= 1).all()
+def test_validator_rejects_zero_values_outside_official_bounds(tmp_path):
+    template = tmp_path / "sample.tif"
+    footprint = make_template(template)
+    with rasterio.open(template) as src:
+        profile = src.profile.copy()
+    with rasterio.open(tmp_path / "bad-zero-outside.tif", "w", **profile) as dst:
+        dst.write(np.zeros_like(footprint, dtype=np.float32), 1)
+    report = validate_tif(tmp_path / "bad-zero-outside.tif", template)
+    assert report["passed"] is False
+    assert next(c for c in report["checks"] if c["name"] == "outside_footprint_nan")["passed"] is False
 
 
 def test_writer_nan_mode_keeps_nan_only_outside(tmp_path):
@@ -59,5 +57,11 @@ def test_writer_nan_mode_keeps_nan_only_outside(tmp_path):
     receipt = write_submission_geotiff(np.zeros_like(footprint), template, out, outside_mode="nan", note="format test only")
 
     assert receipt["local_format_validation_passed"] is True
-    report = validate_tif(out, template, strict_portal_safe=False)
+    report = validate_tif(out, template)
     assert report["passed"] is True
+    with rasterio.open(out) as ds:
+        actual = ds.read(1)
+        inside = np.isfinite(footprint)
+        assert np.isfinite(actual[inside]).all()
+        assert np.isnan(actual[~inside]).all()
+        assert ds.nodata is not None and np.isnan(ds.nodata)

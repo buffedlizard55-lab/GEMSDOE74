@@ -1,0 +1,35 @@
+{
+  "file": "gemsdoe74-h74-1v2-basement-step-36270-20261021T000000Z-5a03072f-zeros.tif",
+  "sha256": "2e13ddb349bbc30b44c34f0d1ec1e6bae67b5c22741f43a56db928af1bf470e3",
+  "outside_mode": "zeros",
+  "measured_local_file_metadata": {
+    "shape": [
+      3730,
+      3292
+    ],
+    "crs": "EPSG:32611",
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "dtype": "float32",
+    "nodata": null,
+    "positive_cells": 36270,
+    "stored_cells": 12279160,
+    "finite_cells": 12279160,
+    "min_finite": 0.0,
+    "max_finite": 1.0
+  },
+  "release_status": "HOLD \u2014 REVIEW FIXTURE ONLY; DO NOT SUBMIT",
+  "evidence_class": "MEASURED-LOCAL: file hash and raster metadata read from current checked-in TIFF bytes; pinned repository constants are not an authenticated official template.",
+  "scientific_validation": "NOT ESTABLISHED: synthetic prediction field and hidden target; no compliant real-data holdout.",
+  "official_template_match": null,
+  "official_catalogue_match": null,
+  "organizer_confirmed_receipt": false,
+  "interpretation": "Pinned-constant/local byte checks only. Finite values across the file do not establish the organizer-required null/NaN outside the valid bounds; no science, footprint, catalogue, uniqueness or organizer acceptance is implied.",
+  "official_submission_format": "NOT CONFIRMED: official problem page requires null/NaN outside training bounds, and the official template is absent, so the bounds cannot be checked against these zero-filled bytes."
+}

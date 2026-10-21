@@ -36,7 +36,7 @@ This file records the operational requirements from the project owner's task. Th
 
 ## Current baseline warning (2026-10-21)
 
-`README.md` and `docs/review/repo-audit-2026-10-21.html` describe the current code review. In brief: competition data are absent; H74-1 is a synthetic research/format fixture; H74-A used sibling-mirror inputs of unverified provenance and an invalid proxy holdout. Neither is a validated competition prediction or cleared for submission. Do not reuse historical holdout score, AUC, or uniqueness values.
+`README.md` and `docs/review/repo-audit-2026-10-21.html` describe the current code review. In brief: competition data are absent; H74-1 and H74-1v2 use synthetic prediction fields/targets; H74-A used sibling-mirror inputs of unverified provenance and an invalid proxy holdout. None is a validated competition prediction or cleared for submission. H74-1v2's old internal `READY` receipt is not an organizer receipt. Do not reuse historical holdout score, AUC, or uniqueness values.
 
 ## Official starting links
 

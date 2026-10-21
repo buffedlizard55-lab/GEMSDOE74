@@ -1,10 +1,9 @@
 {
-  "schema": "gemsdoe74-audit-run-card/1",
+  "schema": "gemsdoe74-audit-run-card/2",
   "date_utc": "2026-10-21",
   "branch": "arena/2ac1b3ab-gemsdoe74",
-  "status": "HOLD — DO NOT SUBMIT. H74-1 is synthetic; H74-A has unverified sibling-mirror provenance. Neither is a validated competition prediction.",
-  "hypothesis": "H74-1 basement-step ridge gated by low surface slope; existing legacy artifact only",
-  "mechanism": "The legacy experiment synthesizes a basement-depth surface, computes a multiscale ridge response, and gates by a synthetic slope field. No official raster bands were consumed, so this is not a tested geological hypothesis.",
+  "hypothesis": "H74-1v2 basement-step ridge gated by low surface slope; legacy artifact audit only",
+  "mechanism": "The legacy script synthesizes a basement-depth surface, computes a multiscale ridge response, gates by synthetic slope, and emits 36,270 dots. The raster is not derived from official training features, so this is not a validated geological prediction.",
   "named_non_fault_process_that_could_mimic_it": "Paleochannel or lacustrine sediment-thickness boundary can produce a cover-thickness step and low-relief basin surface without fault displacement.",
   "holdout_dti": {
     "label": "HOLDOUT-DTI",
@@ -12,22 +11,22 @@
     "ci95": null,
     "evaluator_version": null,
     "withheld_positive_count": null,
-    "status": "NOT COMPUTED: official labels/features are absent and the legacy synthetic/quadrant evaluators do not implement the required segment-with-buffer protocol. Historical scores are invalid for release decisions."
+    "status": "NOT COMPUTED: legacy report's synthetic hidden target and 4-quadrant scoring are not the required buffered whole-segment hide-and-recover protocol. Prior HOLDOUT-DTI fields are withdrawn and must not be used for model selection."
   },
   "correlation_overlap_vs_registry": {
     "label": "MEASURED-LOCAL",
     "spearman_rank_correlation": null,
     "dot_overlap_within_3px_percent": null,
-    "status": "NOT MEASURED: no registry rasters are present in this checkout. Historical hard-coded and sibling-repository figures are not reproducible here."
+    "status": "NOT REPRODUCED: registry raster is not present in this checkout. Historical comparison values are not accepted as measured in this audit."
   },
   "raster": {
-    "file": "docs/downloads/gemsdoe74-h74-1-basement-step-35641-20261021T000000Z-100b4b19-zeros.tif",
-    "sha256": "af4afc84b6ff758ccae86dc116c1b14dd1b66de48462899eebc4d5b43d7aef27",
-    "evidence_class": "MEASURED-LOCAL: hash and metadata re-read from checked-in bytes",
-    "warning": "Synthetic historical format fixture; not a competition prediction and not cleared for submission."
+    "file": "docs/downloads/gemsdoe74-h74-1v2-basement-step-36270-20261021T000000Z-5a03072f-zeros.tif",
+    "sha256": "2e13ddb349bbc30b44c34f0d1ec1e6bae67b5c22741f43a56db928af1bf470e3",
+    "evidence_class": "MEASURED-LOCAL: hash and GeoTIFF metadata re-read from checked-in bytes",
+    "warning": "Historical research/format fixture; synthetic prediction field and hidden target; not cleared for submission."
   },
   "validator_output": {
-    "command": ".venv/bin/python scripts/validate_submission.py docs/downloads/gemsdoe74-h74-1-basement-step-35641-20261021T000000Z-100b4b19-zeros.tif",
+    "command": ".venv/bin/python scripts/validate_submission.py docs/downloads/gemsdoe74-h74-1v2-basement-step-36270-20261021T000000Z-5a03072f-zeros.tif",
     "exit_status": 0,
     "single_band_float32": true,
     "shape": [3730, 3292],
@@ -36,30 +35,31 @@
     "stored_values_finite": true,
     "stored_values_in_0_1": true,
     "nodata": null,
-    "positive_cells": 35641,
+    "positive_cells": 36270,
     "catalogue_check": null,
     "official_template_match": null,
-    "note": "Local check against pinned repository constants only. Catalogue and actual template checks are unavailable; exit 0 is not organizer confirmation."
+    "note": "Local format check against pinned repository constants only. Official template, footprint and labels are absent; exit 0 is not organizer confirmation."
   },
   "submission": {
-    "name": "GEMSDOE74-H74-1-BASEMENT-STEP",
-    "note": "GEMSDOE74 H74-1 basement-step B=2 d2.8 35641 dots; all-finite 0-1; zeros-outside",
-    "note_length_characters": 80,
+    "name": "GEMSDOE74-H74-1V2-BASEMENT-STEP",
+    "note": "GEMSDOE74 H74-1v2 basement-step B=2 d2.8 36270 dots; all-finite 0-1; zeros-outside",
+    "note_length_characters": 77,
     "release_status": "HOLD — DO NOT SUBMIT",
-    "organizer_confirmed_receipt": false
+    "organizer_confirmed_receipt": false,
+    "note_warning": "name/note are tracking metadata for this fixture only; do not use on a competition form"
   },
   "verdict": "negative",
   "budget": {
     "experiment_limit": 3,
     "experiments_run_in_this_review": 0,
     "time_limit_hours": 2,
-    "note": "Code/evidence review and format inspection only; no model experiment or submission slot used."
+    "note": "Code/evidence review and format inspection only; no valid model experiment or weekly slot used."
   },
   "limitations": [
-    "Official DrivenData training features, labels, and sample submission are absent and login-gated.",
-    "The true official footprint and catalogue cannot be checked.",
-    "The current generator is synthesis-only and hard-codes evaluation fields; it now fails closed.",
-    "No valid holdout, feature-alone leakage test on real labels, or registry duplicate calculation is available.",
-    "No organizer receipt exists for any file in this repository."
+    "Official DrivenData training features, labels and sample submission are absent and login-gated.",
+    "H74-1v2 generation used synthetic prediction fields and hidden truth; its prior numerical holdout and leakage values are invalid.",
+    "A previous session reported an owner-mirror footprint/catalogue; the mirror provenance is not organizer-authenticated and files are absent here.",
+    "The previous internal READY receipt is not an organizer receipt; it has been changed to HOLD.",
+    "No compliant holdout, real-data feature-alone leakage test, full registry duplicate calculation or organizer result is available."
   ]
 }

@@ -29,6 +29,8 @@ def sha256(path: Path) -> str:
 def main() -> int:
     missing = [name for name in REQUIRED if not (DATA / name).is_file()]
     if missing:
+        # Remove a stale success record so failed preparation cannot leave misleading state.
+        (DATA / "prepared_manifest.json").unlink(missing_ok=True)
         print("BLOCKED: missing required official input(s): " + ", ".join(missing), file=sys.stderr)
         print("No prepared_manifest.json was written. Obtain authorized files from the official data tab.", file=sys.stderr)
         return 2

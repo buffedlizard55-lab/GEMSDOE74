@@ -16,7 +16,7 @@ def test_write_and_validate():
             dst.write(np.where(fp,0.0,np.nan).astype(np.float32),1)
         out=pathlib.Path(td)/"out.tif"
         # use write_submission from grid
-        write_submission(arr, str(tpl), str(out), footprint=fp, outside="zero")
+        write_submission(arr, str(tpl), str(out), footprint=fp, outside="nan")
         v=validate_tif(out, tpl)
         assert v["passed"], v["checks"]
         with rasterio.open(out) as ds:
@@ -24,8 +24,25 @@ def test_write_and_validate():
             assert got.shape==shape
             assert ds.crs.to_string()==CRS
             assert ds.transform==TRANSFORM
-            assert got.min()>=0 and got.max()<=1
-            assert np.isfinite(got).all()
+            assert np.isfinite(got[fp]).all()
+            assert got[fp].min() >= 0 and got[fp].max() <= 1
+            assert np.isnan(got[~fp]).all()
+
+def test_writer_rejects_zero_outside_mode():
+    shape=(HEIGHT,WIDTH)
+    fp=synthetic_footprint(shape=shape)
+    arr=np.zeros(shape,dtype=np.float32)
+    with tempfile.TemporaryDirectory() as td:
+        tpl=pathlib.Path(td)/"tpl.tif"
+        meta=dict(driver="GTiff", dtype="float32", count=1, crs=CRS, transform=TRANSFORM, width=WIDTH, height=HEIGHT, nodata=np.nan)
+        with rasterio.open(tpl,"w",**meta) as dst:
+            dst.write(np.where(fp,0.0,np.nan).astype(np.float32),1)
+        try:
+            write_submission(arr, str(tpl), str(pathlib.Path(td)/"bad-zero.tif"), footprint=fp, outside="zero")
+            assert False, "zero outside mode must fail closed"
+        except ValueError as exc:
+            assert "outside must be 'nan'" in str(exc)
+
 
 def test_range_guard():
     shape=(HEIGHT,WIDTH)
@@ -39,7 +56,7 @@ def test_range_guard():
         with rasterio.open(tpl,"w",**meta) as dst:
             dst.write(np.where(fp,0.0,np.nan).astype(np.float32),1)
         try:
-            write_submission(bad, str(tpl), str(pathlib.Path(td)/"bad.tif"), footprint=fp, outside="zero")
+            write_submission(bad, str(tpl), str(pathlib.Path(td)/"bad.tif"), footprint=fp, outside="nan")
             assert False, "should have raised"
         except ValueError:
             pass

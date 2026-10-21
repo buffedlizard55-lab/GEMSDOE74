@@ -24,12 +24,12 @@ def sha256_of(path: pathlib.Path) -> str:
     return digest.hexdigest()
 
 
-def validate_tif(path: pathlib.Path, template_path: pathlib.Path, strict_portal_safe: bool = True):
-    """Validate bytes against the provided sample-submission template.
+def validate_tif(path: pathlib.Path, template_path: pathlib.Path):
+    """Validate output against the official sample-submission footprint.
 
-    Strict mode requires every stored value to be finite and within [0,1], with no
-    nodata tag (recommended for avoiding portal range errors). Non-strict mode checks
-    finite/range values inside the template footprint and permits only zero/NaN outside.
+    Following the organizer's submission-format guidance, require finite probabilities
+    in [0,1] inside the valid footprint and NaN outside. No synthetic footprint or
+    whole-array finite assumption is used.
     """
     path = pathlib.Path(path)
     template_path = pathlib.Path(template_path) if template_path is not None else None
@@ -53,19 +53,17 @@ def validate_tif(path: pathlib.Path, template_path: pathlib.Path, strict_portal_
         ])
         finite = np.isfinite(arr)
         in_range = finite & (arr >= 0.0) & (arr <= 1.0)
-        if strict_portal_safe:
-            checks.append({"name": "all_stored_values_finite", "passed": bool(finite.all()), "detail": f"{int(finite.sum())}/{arr.size}"})
-            checks.append({"name": "all_stored_values_in_0_1", "passed": bool(in_range.all()), "detail": f"min={float(np.nanmin(arr))}, max={float(np.nanmax(arr))}"})
-            checks.append({"name": "nodata_unset", "passed": ds.nodata is None, "detail": f"nodata={ds.nodata}"})
-        else:
-            inside_ok = bool(finite[footprint].all() and in_range[footprint].all())
-            outside_values = arr[~footprint]
-            outside_ok = bool(np.isfinite(outside_values).all() and ((outside_values == 0).all())) or bool(np.isnan(outside_values).all())
-            checks.append({"name": "inside_footprint_finite_in_range", "passed": inside_ok, "detail": f"footprint cells={int(footprint.sum())}"})
-            checks.append({"name": "outside_zero_or_nan", "passed": outside_ok, "detail": "outside cells must all be zero or all NaN"})
-            checks.append({"name": "no_infinity", "passed": not bool(np.isinf(arr).any()), "detail": "no infinite values"})
-            nodata_ok = ds.nodata is None or (isinstance(ds.nodata, float) and np.isnan(ds.nodata))
-            checks.append({"name": "nodata_none_or_nan", "passed": nodata_ok, "detail": f"nodata={ds.nodata}"})
+        inside_ok = bool(finite[footprint].all() and in_range[footprint].all())
+        outside_values = arr[~footprint]
+        outside_ok = bool(np.isnan(outside_values).all())
+        no_infinity = not bool(np.isinf(arr).any())
+        nodata_ok = ds.nodata is None or (isinstance(ds.nodata, float) and np.isnan(ds.nodata))
+        checks.extend([
+            {"name": "inside_footprint_finite_in_range", "passed": inside_ok, "detail": f"valid footprint cells={int(footprint.sum())}"},
+            {"name": "outside_footprint_nan", "passed": outside_ok, "detail": "all cells outside template bounds must be NaN"},
+            {"name": "no_infinity", "passed": no_infinity, "detail": "no infinite values anywhere"},
+            {"name": "nodata_none_or_nan", "passed": nodata_ok, "detail": f"nodata={ds.nodata}"},
+        ])
 
     return {"passed": all(c["passed"] for c in checks), "checks": checks}
 
@@ -74,16 +72,16 @@ def write_submission_geotiff(
     predictions: np.ndarray,
     template_path: pathlib.Path,
     out_path: pathlib.Path,
-    outside_mode: str = "zeros",
+    outside_mode: str = "nan",
     note: str | None = None,
 ):
     """Write a prediction grid using the official template's exact geometry.
 
-    `outside_mode` is `zeros` (strict all-finite output) or `nan` (NaN outside
-    template footprint). The official template is required; no synthetic fallback.
+    The official template is required; cells outside its valid footprint are written
+    as NaN per the organizer's documented submission format.
     """
-    if outside_mode not in {"zeros", "nan"}:
-        raise ValueError("outside_mode must be 'zeros' or 'nan'")
+    if outside_mode != "nan":
+        raise ValueError("outside_mode must be 'nan'; zero-filled outside bounds are not the documented submission format")
     template_path = pathlib.Path(template_path) if template_path is not None else None
     if template_path is None or not template_path.is_file():
         raise FileNotFoundError("official sample_submission.tif is required")
@@ -110,18 +108,12 @@ def write_submission_geotiff(
 
     out_path = pathlib.Path(out_path)
     out_path.parent.mkdir(parents=True, exist_ok=True)
-    if outside_mode == "zeros":
-        output = np.where(footprint, preds, 0.0).astype(np.float32)
-        profile["nodata"] = None
-        strict = True
-    else:
-        output = np.where(footprint, preds, np.nan).astype(np.float32)
-        profile["nodata"] = float("nan")
-        strict = False
+    output = np.where(footprint, preds, np.nan).astype(np.float32)
+    profile["nodata"] = float("nan")
 
     with rasterio.open(out_path, "w", **profile) as dst:
         dst.write(output, 1)
-    audit = validate_tif(out_path, template_path, strict_portal_safe=strict)
+    audit = validate_tif(out_path, template_path)
     if not audit["passed"]:
         raise ValueError(f"Validation failed after reopening written bytes: {audit}")
     audit["checks"] = [{**check, "passed": bool(check["passed"])} for check in audit["checks"]]
@@ -139,7 +131,7 @@ def write_submission_geotiff(
         "shape": list(output.shape),
         "transform": template_transform,
         "dtype": "float32",
-        "nodata": None if outside_mode == "zeros" else "nan",
+        "nodata": "nan",
         "positive_pixels_inside_template_footprint": int(np.count_nonzero(output[footprint] > 0)),
         "template_footprint_cells": int(footprint.sum()),
         "checks": audit["checks"],

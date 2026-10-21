@@ -4,20 +4,23 @@
 
 ## Current release decision: **HOLD — DO NOT SUBMIT**
 
-This repository currently contains **no scientifically validated competition prediction**. The GeoTIFFs under `docs/downloads/` are historical **format/research fixtures only**. H74-1 was generated from synthetic surfaces/footprint/targets; H74-A's earlier build used sibling-mirror inputs whose provenance and rights are unverified, and it was assessed with an invalid proxy holdout. Neither is validated against an authorized official feature stack and labels. Format checks do **not** validate prediction quality, exact footprint agreement with DrivenData's template, catalogue exclusion, uniqueness against the full registry, or expected leaderboard score. There is no ORGANIZER-CONFIRMED receipt for either file.
+This repository currently contains **no scientifically validated competition prediction**. The GeoTIFFs under `docs/downloads/` are historical **format/research fixtures only**. H74-1 and H74-1v2 were generated from synthetic prediction fields/targets; H74-A used sibling-mirror inputs of unverified provenance/rights and an invalid proxy holdout. None is validated against authorized official training features and labels. Format checks do **not** validate prediction quality, exact footprint agreement with DrivenData's template, catalogue exclusion, uniqueness against the full registry, or expected leaderboard score. No organizer submission receipt exists for any artifact.
 
 - The landing page and [submission guide](docs/executive-summary.html) explicitly say **DO NOT SUBMIT**.
-- Existing fixture: [H74-1 zeros TIFF](docs/downloads/gemsdoe74-h74-1-basement-step-35641-20261021T000000Z-100b4b19-zeros.tif) — format inspection only; not cleared.
-- Alternate fixture: [H74-A zeros TIFF](docs/downloads/gems74-h74-alt-spring-39500-20261021T000000Z-52f76038-zeros.tif) — format inspection only; not cleared.
+- H74-1 fixture: [zeros TIFF](docs/downloads/gemsdoe74-h74-1-basement-step-35641-20261021T000000Z-100b4b19-zeros.tif) — synthetic output; format inspection only; not cleared.
+- H74-A fixture: [zeros TIFF](docs/downloads/gems74-h74-alt-spring-39500-20261021T000000Z-52f76038-zeros.tif) — provenance unverified; format inspection only; not cleared.
+- H74-1v2 fixture: [zeros TIFF](docs/downloads/gemsdoe74-h74-1v2-basement-step-36270-20261021T000000Z-5a03072f-zeros.tif) — synthetic output; format inspection only; not cleared.
 - Auditable findings: [repository review](docs/review/repo-audit-2026-10-21.html), [irregularities](docs/irregularities.html), [run card](docs/data/run-card.json).
 
-The H74-1 run card's reported holdout score, confidence interval, AUC, uniqueness statistics, and `promote` verdict are **not valid evidence**: the generator constructs synthetic features and synthetic hidden positives, hard-codes an AUC, and inserts made-up registry similarity fields. Do not cite these as HOLDOUT-DTI results. Historical numbers in evidence files are retained for audit, but cannot be treated as validated competition results. The H74-A holdout files are also not a validated real-data holdout under the required protocol.
+Legacy H74-1/H74-1v2 reported holdout scores, confidence intervals, AUCs, uniqueness values, and `promote` verdicts are **not valid evidence**: scripts construct synthetic prediction fields/hidden positives, and one legacy path hard-coded canary/registry values. Do not cite them as valid HOLDOUT-DTI results. Raw historical evidence is retained only where explicitly marked invalid; the active run card reports null for unavailable results. H74-A's proxy holdout files also do not meet the required real-data protocol.
+
+A prior `MEASURED-FILE-AUDIT` used a hash-pinned **owner mirror, not organizer-authenticated**: it reported 20,013 H74-1 positive cells outside that mirror's footprint. The mirror data are absent here, so this finding is not independently reproduced and cannot establish the official footprint. This discrepancy reinforces that the H74-1 file is not cleared.
 
 ## The most important code-review finding
 
-`scripts/generate_submission.py` is not a real-data model pipeline. It synthesizes the basement-depth/slope layers, synthetic catalogue and hidden labels, then uses a simple quadrant evaluation that does not implement segment withholding with a buffer or catalogue-derived feature rebuilding. The script's purported leakage canary (`AUC=0.68`) and registry correlation/overlap (`0.42`, `38.2%`) are hard-coded. Running the script therefore produces a plausible-looking but scientifically unsupported raster and report. **The generator is disabled by default pending real inputs and a compliant evaluator.**
+The former `scripts/generate_submission.py` and `scripts/generate_h74v2.py` were not real-data model pipelines. They synthesize prediction fields and hidden labels; the evaluation does not implement buffered whole-segment withholding or visible-only catalogue-feature rebuilding. The first path hard-coded leakage/registry fields. Both commands now fail closed and cannot write a candidate or evaluation report. The old `scripts/evaluate_holdout*.py` entry points also fail closed.
 
-The local zero-filled TIFFs were independently opened with rasterio during review. They are single-band float32, shape 3730×3292, EPSG:32611, transform `(100, 0, 243350, 0, -100, 4508550)`, `nodata=None`, and their stored values are finite and within [0,1]. This is a **format-only local check against the repository's pinned constants**, not an ORGANIZER-CONFIRMED validator receipt and not a check against the actual official sample-submission file. The validator's optional catalogue check was skipped because labels are absent. Full evidence and limitations are on the audit page.
+The local TIFF metadata was inspected with rasterio. The zeros fixture is single-band float32, shape 3730×3292, EPSG:32611, transform `(100, 0, 243350, 0, -100, 4508550)`, `nodata=None`, and stored values are finite within [0,1]. These are **MEASURED-LOCAL** file facts only, checked against pinned repository constants. The official problem page says cells outside training bounds must be null/NaN; with the official sample template absent, this review cannot determine which cells are out of bounds, so zero-filled output is not confirmed competition-format compliant. No organizer receipt exists. The updated validator marks template/label checks unavailable when those inputs are absent. See the audit and [source register](docs/sources.html).
 
 ## Required work before a competition-ready TIF can be generated
 
@@ -27,14 +30,14 @@ The local zero-filled TIFFs were independently opened with rasterio during revie
 4. Run each feature alone as a leakage canary. Report a feature AUC above 0.90 as leakage until independently explained.
 5. Compare the candidate to the incumbent and appropriate random/baseline controls on the same spatially blocked folds; report the evaluator version, withheld-positive count, and defensible 95% CI. Do not use a projected score as a result.
 6. Compare final dots/raster against the full registry before any weekly slot selection. Log a duplicate and stop if Spearman rank correlation exceeds 0.90 or over 70% of dots are within 3 px of a registry raster.
-7. Generate a unique note ≤140 characters, validate the written file by reopening it against the official template, and only then have the separate selector decide whether it should consume a weekly submission slot.
+7. Generate a unique note ≤140 characters, reopen and validate the written file against the official template, and write null/NaN outside its valid bounds as required by the official problem page. Only then may the separate selector decide whether it should consume a weekly submission slot.
 
 ## Repository contents
 
 - `docs/` — GitHub Pages research, audit, sources, hypotheses and historical fixtures.
 - `src/gemsdoe74/` — feature experiments, emission, metric, grid and writer code; not all modules implement the required competition protocol.
 - `scripts/generate_submission.py` — intentionally fails closed; current synthetic implementation must not be used for competition predictions.
-- `scripts/validate_submission.py` — local format checks; catalogue check only runs if `/tmp/gems74_data/labels.tif` exists. A pass is not an official receipt.
+- `scripts/validate_submission.py` — local format checks. It uses optional `data/sample_submission.tif` and `data/labels.tif` when present; absent inputs are reported as unavailable. A pass is not an official receipt.
 - `data/` — ignored placeholder. Place authorized official files here; never commit competition labels or private data.
 - `PROMPT.md` — standing project brief. Read this and the current audit before each project session.
 
@@ -44,7 +47,7 @@ The local zero-filled TIFFs were independently opened with rasterio during revie
 python -m venv .venv
 .venv/bin/pip install -r requirements.txt pytest
 .venv/bin/pytest -q
-.venv/bin/python scripts/validate_submission.py docs/downloads/gemsdoe74-h74-1-basement-step-35641-20261021T000000Z-100b4b19-zeros.tif
+.venv/bin/python scripts/validate_submission.py docs/downloads/gemsdoe74-h74-1v2-basement-step-36270-20261021T000000Z-5a03072f-zeros.tif
 ```
 
 The test suite is software-level testing only; it does not prove the model's geological validity. The `test_canary` unit test checks that the canary helper detects a deliberately leaking toy feature; it does not test real competition features unless an authorized holdout is implemented.

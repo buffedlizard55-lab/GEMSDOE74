@@ -1,0 +1,25 @@
+{
+  "record_type": "repository-internal legacy release-gate record; NOT an organizer submission receipt",
+  "file": "gemsdoe74-h74-1v2-basement-step-36270-20261021T000000Z-5a03072f-zeros.tif",
+  "sha256": "2e13ddb349bbc30b44c34f0d1ec1e6bae67b5c22741f43a56db928af1bf470e3",
+  "submission_name": "GEMSDOE74-H74-1V2-BASEMENT-STEP",
+  "submission_note": "GEMSDOE74 H74-1v2 basement-step B=2 d2.8 36270 dots; all-finite 0-1; zeros-outside",
+  "note_chars": 77,
+  "release_status": "HOLD — DO NOT SUBMIT",
+  "organizer_confirmed": false,
+  "organizer_submission_receipt": null,
+  "local_format_validation": "Basic pinned-metadata/value checks only; exact template and organizer-required null/NaN outside-bounds compliance unavailable",
+  "holdout_metric": {
+    "label": "HOLDOUT-DTI",
+    "value": null,
+    "ci95": null,
+    "evaluator_version": null,
+    "withheld_positive_count": null,
+    "status": "NOT COMPUTED: legacy synthetic hidden truth and quadrant folds are not the required buffered whole-segment hide-and-recover protocol."
+  },
+  "leakage_canary_auc": null,
+  "registry_spearman": null,
+  "registry_overlap_within_3px_percent": null,
+  "verdict": "negative",
+  "warning": "All former performance, leakage, and uniqueness numbers are withdrawn. Do not submit or cite this record as organizer-confirmed."
+}

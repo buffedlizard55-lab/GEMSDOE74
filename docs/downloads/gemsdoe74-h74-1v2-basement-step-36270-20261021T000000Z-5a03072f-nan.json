@@ -1,0 +1,35 @@
+{
+  "file": "gemsdoe74-h74-1v2-basement-step-36270-20261021T000000Z-5a03072f-nan.tif",
+  "sha256": "4438eb971f5f0a07b6de6b8457e39eca0adc6ecaa1f4523b487e2b067448463f",
+  "outside_mode": "nan",
+  "measured_local_file_metadata": {
+    "shape": [
+      3730,
+      3292
+    ],
+    "crs": "EPSG:32611",
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "dtype": "float32",
+    "nodata": "nan",
+    "positive_cells": 36270,
+    "stored_cells": 12279160,
+    "finite_cells": 5167373,
+    "min_finite": 0.0,
+    "max_finite": 1.0
+  },
+  "release_status": "HOLD \u2014 REVIEW FIXTURE ONLY; DO NOT SUBMIT",
+  "evidence_class": "MEASURED-LOCAL: file hash and raster metadata read from current checked-in TIFF bytes; pinned repository constants are not an authenticated official template.",
+  "scientific_validation": "NOT ESTABLISHED: synthetic prediction field and hidden target; no compliant real-data holdout.",
+  "official_template_match": null,
+  "official_catalogue_match": null,
+  "organizer_confirmed_receipt": false,
+  "interpretation": "Retained only as a negative/local test fixture. It has NaN cells but official-template alignment and prediction science are unavailable.",
+  "official_submission_format": "NOT CONFIRMED: exact NaN/outside alignment cannot be assessed without the official sample-submission template."
+}

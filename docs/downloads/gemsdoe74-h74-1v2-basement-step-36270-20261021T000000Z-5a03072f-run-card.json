@@ -1,0 +1,61 @@
+{
+  "schema": "gemsdoe74-legacy-review-card/2",
+  "lane": "H74-1v2 \u2014 historical synthetic review fixture; not an eligible model candidate",
+  "hypothesis": "Synthetic basement-step gradient-magnitude ridge gated by low surface slope; mechanism remains an unvalidated hypothesis.",
+  "named_non_fault_mimic": "Paleochannel fill or lacustrine sediment lens can produce a cover-thickness boundary and low-relief surface without fault displacement.",
+  "generation_provenance": "Legacy script constructed a synthetic prediction field and synthetic hidden target. Historical statements that footprint/catalogue were real relied on an owner mirror whose provenance/rights are not organizer-authenticated and whose files are absent here.",
+  "holdout_dti": {
+    "label": "HOLDOUT-DTI",
+    "value": null,
+    "ci95": null,
+    "evaluator_version": null,
+    "withheld_positive_count": null,
+    "status": "NOT COMPUTED under required protocol. Previously reported values are withdrawn."
+  },
+  "leakage_canary_auc": null,
+  "registry_comparison": {
+    "spearman_rank_correlation": null,
+    "candidate_dots_within_3px_percent": null,
+    "status": "NOT REPRODUCED; registry raster absent."
+  },
+  "raster_sha256": "2e13ddb349bbc30b44c34f0d1ec1e6bae67b5c22741f43a56db928af1bf470e3",
+  "raster_metadata": {
+    "shape": [
+      3730,
+      3292
+    ],
+    "crs": "EPSG:32611",
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "dtype": "float32",
+    "nodata": null,
+    "positive_cells": 36270,
+    "stored_cells": 12279160,
+    "finite_cells": 12279160,
+    "min_finite": 0.0,
+    "max_finite": 1.0
+  },
+  "local_format_validation": {
+    "status": "PASS against pinned repository constants only",
+    "official_template_match": null,
+    "labels_catalogue_check": null,
+    "note": "Pinned-constant file check is not a complete official-format check, not an organizer receipt, and does not validate model science.",
+    "outside_bounds_requirement": "Official problem page says null/NaN outside training bounds; sample template absent, so exact compliance cannot be established. This zeros-mode fixture is not confirmed submission-format compliant."
+  },
+  "emitted_positive_pixels": 36270,
+  "legacy_configuration": {
+    "nominal_min_distance_px": 2.8,
+    "outside_mode": "zeros",
+    "seed": 74
+  },
+  "release_status": "HOLD \u2014 DO NOT SUBMIT",
+  "verdict": "negative",
+  "reason": "Synthetic hidden target, synthetic prediction field, invalid quadrant holdout, and historical mirror-based footprint/catalogue claims not reproducible in this checkout. Prior numerical results have been withdrawn.",
+  "organizer_confirmed": false
+}
