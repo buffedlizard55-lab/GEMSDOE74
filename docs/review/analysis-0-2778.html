@@ -3,7 +3,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>The 0.2778 question · GEMSDOE74</title>
 <link rel="stylesheet" href="../assets/site.css">
-</head><body>
+</head><body><aside id="INTEGRITY-RETRACTION-20261021" style="padding:24px;background:#fff0ed;color:#752217;border:4px solid #a82b20"><b>HISTORICAL PAGE — DO NOT SUBMIT.</b> Prior synthetic H74-1 scores, AUC and registry claims are retracted. Other legacy holdouts do not meet the buffered protocol. <a href="../audit-20261021.html">Read the authoritative audit.</a></aside>
 <header class="top"><span class="brand">GEMSDOE74</span><a href="../index.html">Site home</a><a href="submit-checklist.html">How to submit</a><a href="analysis-0-2778.html" aria-current="page">The 0.2778 question</a><a href="hypotheses.html">Hypotheses</a><a href="leaderboard.html">Leaderboard</a><a href="irregularities.html">Irregularities</a><a href="sources.html">Sources</a><a href="run-card.html">Run card</a></header>
 <main>
 
@@ -47,7 +47,7 @@
 </ul>
 <table>
 <tr><th>Score level</th><th>Break-even credit 0.2·s</th><th>Label</th></tr>
-<tr><td>0.2778 (the brief's figure)</td><td>0.0556</td><td><span class="pill p-cl">CLAIM</span> arithmetic only</td></tr>
+<tr><td>0.2778 (rank 47, public)</td><td>0.0556</td><td><span class="pill p-pl">PUBLIC-LEADERBOARD</span> arithmetic only; file attribution unverified</td></tr>
 <tr><td>0.3289 (DARD, rank 17, public)</td><td>0.0658</td><td><span class="pill p-pl">PUBLIC-LEADERBOARD</span> arithmetic only</td></tr>
 <tr><td>0.4413 (public #1)</td><td>0.0883</td><td><span class="pill p-pl">PUBLIC-LEADERBOARD</span> arithmetic only</td></tr>
 </table>
@@ -56,15 +56,15 @@
 
 <h2>4. Can we beat 0.2778?</h2>
 <div class="card">
-<p><b>On the public board:</b> 0.2778 is rank 47. Ranks 1–46 are all above it, and the top-5 public cut is 0.3539. Beating 0.2778 is therefore a rank-47 target, not a prize-level target. Prizes are decided on the private test set and on the expanded label set, which the public board does not show (rules §3.6).</p>
-<p><b>On our side:</b> the current C1 method has not been run because the official feature stack and sample template are absent. Earlier synthetic/mirror-based candidate evidence does not satisfy this session’s required holdout protocol. Therefore <b>no claim of beating 0.2778 is made</b>. A useful test needs authorized official inputs, a segment-buffered holdout, and comparison with the incumbent under identical folds; an organizer-confirmed score would require a submission receipt.</p>
+<p><b>On the public board:</b> 0.2778 is rank 47. Ranks 1–46 are all above it, and the top-5 public cut is 0.3539. Beating 0.2778 is therefore a rank-47 target, not a prize-level target. The public board is not the prize outcome: private-test performance and current award terms are not verified in this session, and the full rules text was not re-fetched.</p>
+<p><b>On our side:</b> the H74-1 basement-step lane has not been validated because its inherited output came from synthetic fields and the required official cache/template are not present. Earlier synthetic/mirror-based candidate evidence does not satisfy this session’s required holdout protocol. Therefore <b>no claim of beating 0.2778 is made</b>. A useful test needs authorized official inputs, a segment-buffered holdout, and comparison with the incumbent under identical folds; an organizer-confirmed score would require a submission receipt.</p>
 <p><b>Verdict:</b> <span class="pill p-no">NOT SHOWN</span> Plausible as a target, unproven as a result.</p>
 </div>
 
 <h2>5. What this changes in our plan</h2>
 <div class="card">
 <ul>
-<li>Score the emitted set by its <b>expected credit per dot</b>, not by how many dots it contains. Keep a dot only when its expected credit clears 0.2·s.</li>
+<li>Use marginal DTI contribution, not dot count alone. The shortcut credit threshold <code>k &gt; 0.2·s</code> applies only to an isolated binary pixel under the assumptions in section 3; otherwise evaluate the full change in TP, FP and FN.</li>
 <li>Test every idea on a holdout that is spatially blocked and withholds whole fault segments with a buffer, so that catalogue-derived features cannot see the held-out faults. The metric itself is implemented here and unit-tested.</li>
 <li>Do not spend a weekly slot on a file that has not beaten the incumbent on the holdout.</li>
 </ul>

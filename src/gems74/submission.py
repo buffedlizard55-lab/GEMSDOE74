@@ -32,7 +32,7 @@ import numpy as np
 EXPECTED_CRS = "EPSG:32611"
 EXPECTED_SHAPE = (3730, 3292)  # (rows, cols)
 EXPECTED_TRANSFORM = (100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)
-NOTE_MAX_CHARS = 200  # the GEMSDOE32 site reports this limit; not stated on the organiser form (see irregularities)
+NOTE_MAX_CHARS = 140  # project protocol; not a claimed organizer limit
 NAME_RE = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._-]{2,79}$")
 
 

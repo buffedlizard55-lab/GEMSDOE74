@@ -23,4 +23,11 @@ def test_empty():
     truth=np.zeros((5,5),bool)
     preds=np.zeros((5,5),np.float32)
     comp=compute_dti_components(preds, truth)
-    assert comp["score"]==1.0
+    assert comp["score"]==0.0
+
+def test_noncanonical_epsilon_is_rejected():
+    import pytest
+    truth=np.zeros((3,3),bool)
+    preds=np.zeros((3,3),np.float32)
+    with pytest.raises(ValueError, match="canonical metric epsilon"):
+        compute_dti_components(preds, truth, epsilon=1e-7)

@@ -1,41 +1,8 @@
-<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Executive summary — how to submit · GEMSDOE74</title><link rel="stylesheet" href="assets/site.css"></head>
-<body><header class="top"><span class="brand">GEMSDOE74</span><a href="index.html">Overview</a><a href="review/session-review-2026-10-21.html">Current review</a></header>
-<main>
-<h1>Executive summary — submitting a cleared GeoTIFF</h1>
-<div class="status hold"><p class="big">CURRENT STATUS: DO NOT SUBMIT</p><p>No current file is cleared. The downloads in this repository are historical review artifacts and are not approved prediction files. There is no C1 output or organizer receipt.</p></div>
-<p class="sub">This page explains the submission procedure for a future candidate after it passes the scientific and technical gates. The current status remains HOLD.</p>
-
-<h2>Before you upload any file</h2>
-<ol class="steps">
-<li>Use the output from a validated model built from authorized competition inputs. Do not submit a synthetic demo, historic review TIF, or file whose source/rights are unverified.</li>
-<li>Confirm the file is a single-band 32-bit float GeoTIFF, in EPSG:32611 at 100 m, with the exact CRS, shape, bounds and geotransform of the official sample submission. Use its exact outside-bounds mask; the official problem page specifies null or NaN outside bounds.</li>
-<li>Re-open the bytes after writing. Confirm there are no NaN or infinite values inside the footprint, all prediction values lie in [0,1], and CRS/shape/transform match. Keep the validation receipt and SHA-256 beside the candidate.</li>
-<li>Confirm the candidate passed the project holdout protocol, leakage canary, and registry uniqueness check, with a same-holdout incumbent comparison. This is a separate gate from GeoTIFF format validation.</li>
-</ol>
-
-<h2>DrivenData form steps (once a file is cleared)</h2>
-<ol class="steps">
-<li>Sign in to the <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">DOE GEMS Prize competition</a>.</li>
-<li>Open the competition's submission form and select <strong>File to submit</strong>. Choose the one-band <code>.tif</code>, or a <code>.zip</code> containing exactly one GeoTIFF if the form accepts that format.</li>
-<li>Review the upload's validation response. If it reports values outside [0,1], stop: do not patch the file by guessing. Re-open it and locate NaN, infinity, nodata sentinels, or values outside the allowed range. Also re-check geometry against the official sample.</li>
-<li>Use the optional Note to identify the experiment. Suggested note for the proposed C1 experiment (not an existing result; 96 characters): <code>C1 magnetic edge artifact suppression; HOLD pending official-data holdout and format validation.</code></li>
-<li>Submit only after the project status changes to <strong>OK TO SUBMIT</strong> based on a complete run card and a real candidate file. Save the submission-page receipt. That receipt is the only source of an organizer-confirmed result.</li>
-</ol>
-
-<h2>Submission identity</h2>
-<p>Proposed experiment label: <code>GEMSDOE74-C1-MAG-EDGE-ARTIFACT-SUPPRESSION</code>. This is a project tracking label, not proof of a file or a claim that the form has a separate name field. The note above is proposed only; do not paste it as an endorsement of a submission while the project is on HOLD.</p>
-
-<h2>Why the old range error must be checked, not assumed fixed</h2>
-<p>The official page requires prediction values between 0 and 1 and specifies null/NaN outside the raster bounds. A NaN or a nodata sentinel may cause a range failure if the portal treats it as a prediction value. A zero-filled exterior avoids non-finite range values but may conflict with the stated outside-bounds encoding. Therefore use the official sample's geometry/mask and test the exact output with the organizer's validator where available. This repo does not claim the historic TIFs resolve that policy question for a future model.</p>
-
-<h2>Official instructions and current status</h2>
-<ul>
-<li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">Official problem description, metric and submission format</a>.</li>
-<li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/data/">Official competition data page</a> (redirected to login during this review).</li>
-<li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/rules/">Competition rules</a>.</li>
-<li><a href="review/session-review-2026-10-21.html">Current research review, limitations, ranked C1 tests and run-card link</a>.</li>
-</ul>
-<p><strong>Bottom line:</strong> no file is cleared. Do not download a historical artifact expecting it to be a competition-ready prediction.</p>
-</main><footer>GEMSDOE74 · no organizer-confirmed submission exists for this session.</footer></body></html>
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>Executive summary · how submission works · GEMSDOE74</title>
+<style>body{font:17px/1.65 system-ui,sans-serif;background:#f4f6f8;color:#172b36;margin:0}main{max-width:960px;margin:auto;padding:30px 24px}nav a{margin-right:20px}a{color:#065b78}h1{line-height:1.2}.hold{border-left:6px solid #a82b20;background:#fff0ed;padding:20px}article{background:white;padding:22px;margin:22px 0;border:1px solid #dae1e5;border-radius:10px}code{overflow-wrap:anywhere;font-size:.85em}.btn{display:inline-block;padding:10px 16px;border:1px solid #065b78;border-radius:6px}small{color:#536574}</style></head><body><main>
+<nav><a href="index.html">Status & downloads</a><a href="executive-summary.html">Submission guide</a><a href="audit-20261021.html">Integrity audit</a><a href="review/session-review-2026-10-21.html">Current review</a><a href="review/leaderboard.html">Leaderboard snapshot</a></nav>
+<h1>Executive summary · how submission works</h1><section class="hold"><strong>DO NOT SUBMIT — research hold.</strong><br>Review downloads are available. No new competition-ready TIFF, valid holdout result, or complete uniqueness clearance exists.</section><article><h2>Today: download for review, not submission</h2><p>The primary requested deliverable—a new, scientifically evaluated and unique TIFF—is blocked, not complete. Do not upload a legacy file merely because its numeric range passes validation.</p><p><a class="btn" href="index.html">View review downloads</a></p></article>
+<article><h2>After independent promotion</h2><ol><li>Recover the genuine shared cache, source rights and real template. Validate feature names and grid metadata.</li><li>Run buffered whole-segment hide-and-recover, recomputing catalogue features from visible faults only. Require pooled DTI, withheld-positive count, block-bootstrap confidence interval and valid feature canaries.</li><li>Compare against the incumbent on identical folds. Check the entire registry before placement and final dot overlap after placement. Unknown comparisons block release.</li><li>Write a unique single-band GeoTIFF using the existing writer. Reopen bytes; validate shape, CRS, transform, finite footprint values and range [0,1]. Use a unique name and note no longer than 140 characters.</li><li>A separate selector checks the current weekly cap and rules. Only then use the competition's New submission form, select the promoted TIFF and paste its note.</li><li>Save the organizer's submission-page receipt and file hash. Only a score from that receipt may be labeled ORGANIZER-CONFIRMED.</li></ol></article>
+<article><h2>Range error troubleshooting</h2><p>Reject NaN or infinity inside the footprint and reject negative nodata sentinels or values above one. Do not clip unknown bad inputs into apparent validity. All-finite zero-outside output avoids numeric NaN/sentinel ambiguity but does not guarantee portal acceptance; the authenticated organizer template and current rules still govern.</p><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">Official format and problem description (fetched 2026-10-21)</a></article>
+<footer><small>Static audit dated 2026-10-21. No weekly submission slot used. File checks are not competition scores.</small></footer></main></body></html>

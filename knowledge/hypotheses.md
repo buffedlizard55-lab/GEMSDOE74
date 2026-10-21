@@ -1,17 +1,24 @@
 # Current hypothesis register — 2026-10-21
 
-> **HOLD.** Only one method lane is authorized for this session: C1, flight-line-artifact-suppressed magnetic edge detection. The official competition feature stack is not present, so no candidate has been run or validated. The inherited hypotheses and their claimed scores in the previous version of this file were not supported by a valid current holdout and must not be used as evidence or submission guidance.
+> **HOLD.** The current repository lane is H74-1: basement-step ridges gated by surface quiescence. The old implementation used synthetic fields/truth and must not be used as evidence or as a competition predictor. No new candidate has been run or validated in this review.
 
-## C1 lane (qualitative research priorities, not score forecasts)
+## Ranked H74-1 research tests
 
-The ranked variants, specific layers, physical signatures, off-catalogue rationale, non-fault mimics, implementation costs, official sources, and validation gate are maintained in [`docs/review/session-review-2026-10-21.html`](../docs/review/session-review-2026-10-21.html). Do not split into parallel method families or generate submission files from synthetic feature fields.
+1. **Ridge-location stability across scales** — depth-to-basement plus detrended-elevation slope; retain ridges whose position remains stable under smoothing. Qualitative highest priority, low cost. Mimic: buried paleochannel margin.
+2. **Signed step-profile corroboration** — same layers; test for a persistent signed step instead of a symmetric valley. Medium cost. Mimic: asymmetric sedimentary basin margin.
+3. **Regional-trend residual** — remove broad basement trend, then require residual ridge plus surface quiescence. Medium cost. Mimic: interpolation seam.
+4. **Gridding/nodata perturbation stability** — downweight ridges that migrate under edge/resampling perturbations. Medium cost. Mimic: survey-resolution boundary.
+
+These are qualitative hypotheses, not DTI forecasts. Layer names come from legacy local code and must be checked against official feature metadata before implementation. No external replacement data are proposed; the required official inputs/cache are absent. The official competition data page was checked and redirected to login.
+
+See [`docs/review/session-review-2026-10-21.html`](../docs/review/session-review-2026-10-21.html), [`docs/audit-20261021.html`](../docs/audit-20261021.html), and the current [negative run card](../docs/review/data/run-card.json).
 
 ## Gate before any future candidate
 
-- Authorized official `training_features.tif`, `labels.tif`, and `sample_submission.tif` with hashes and grid metadata.
-- Cached features with documented provenance.
-- Whole-segment holdout with buffer, visible-only catalogue feature derivation, exact masking, pooled DTI, confidence interval, and feature-alone leakage canaries.
-- Candidate and incumbent run on identical folds; duplicate correlation/3-pixel overlap checked against actual registry rasters.
-- Byte-level validator receipt and no unresolved data-rights issues.
+- Authorized official `training_features.tif`, labels/fault raster, and `sample_submission.tif`; verified source, hashes, layer names, grid and data-rights provenance.
+- Reuse the shared cached feature stack or record and approve any rebuild.
+- Whole-segment holdout with spatial buffer, visible-only catalogue feature derivation, exact masking, pooled official DTI, confidence interval, and feature-alone leakage canaries.
+- Candidate and incumbent run on identical folds; surface correlation and final-dot proximity checked against the actual complete registry.
+- Byte-level validator receipt, exact official footprint/mask, and no unresolved provenance issues.
 
-Until these conditions are met, the run-card verdict is `negative` and no weekly slot should be used.
+Until these conditions pass, the run-card verdict remains `negative`; do not spend a weekly submission slot.

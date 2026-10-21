@@ -1,41 +1,12 @@
-<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>GEMSDOE74 — DOE GEMS review</title><meta name="description" content="Auditable, evidence-first DOE GEMS research and submission pipeline. Current status: hold; no file cleared."><link rel="stylesheet" href="assets/site.css"></head>
-<body>
-<!-- BEGIN:SUBMISSION_STATUS -->
-<style>
-.gstat{font:15px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;border-radius:12px;padding:16px 18px;margin:16px 0;border:2px solid;color:#111;background:#fff}
-.gstat h2{font-size:18px;margin:0 0 6px}
-.gstat.hold{border-color:#b00020;background:#fff3f3}
-.gstat.ready{border-color:#0a7a0a;background:#f1fbf1}
-.gstat.notready{border-color:#b35c00;background:#fff8ef}
-.gstat ul{margin:6px 0 6px 18px;padding:0}
-.gstat code{font-size:13px}
-.gstat table{border-collapse:collapse;font-size:13px;margin:6px 0}
-.gstat td,.gstat th{border:1px solid #ddd;padding:4px 7px;text-align:left;vertical-align:top}
-.gstat .lab{display:inline-block;font-size:11px;font-weight:700;border-radius:999px;padding:2px 8px;margin-right:4px;background:#e8eefc;color:#123}
-.gstat .no{color:#b00020;font-weight:700}
-.gstat .yes{color:#0a7a0a;font-weight:700}
-.gstat .btn{display:inline-block;margin-top:6px;padding:9px 14px;border-radius:9px;font-weight:700;text-decoration:none;border:1px solid #888;color:#111;background:#fff}
-.gstat .btn.go{background:#0a7a0a;border-color:#0a7a0a;color:#fff}
-.gstat .btn.review{background:#fff;border-color:#b35c00;color:#7a3e00}
-.gstat .nav{font-size:13px;margin-top:8px}
-</style>
-<div class="gstat hold">
-<h2>HOLD — DO NOT SUBMIT ANY FILE FROM THIS SITE</h2>
-<p><b>No current candidate is cleared.</b> The official feature stack and sample template are absent; the current C1 method and protocol-compliant holdout have not been run. No new TIF was generated.</p>
-<p>Historical files under <code>downloads/</code> are inherited review artifacts, not approved predictions. Format validity does not establish model validity, provenance, or organizer acceptance.</p>
-<p>Current lane: <b>C1: suppress survey-oriented magnetic acquisition artifacts before detecting persistent magnetic edges that may mark buried fault-related contrasts.</b></p>
-<p><a class="btn review" href="review/session-review-2026-10-21.html">Open current session review and ranked tests</a> · <a href="review/run-card.html">run card</a> · <a href="executive-summary.html">how submission works once cleared</a></p>
-</div>
-<!-- END:SUBMISSION_STATUS -->
-<header class="top"><span class="brand">GEMSDOE74</span><a href="index.html" aria-current="page">Overview</a><a href="executive-summary.html">How to submit</a><a href="review/session-review-2026-10-21.html">Current review</a><a href="review/hypotheses.html">Hypotheses</a><a href="review/leaderboard.html">Leaderboard</a><a href="review/sources.html">Sources</a><a href="review/irregularities.html">Irregularities</a><a href="https://github.com/buffedlizard55-lab/GEMSDOE74">Repository</a></header>
-<main>
-<h1>DOE GEMS — evidence before submission</h1>
-<p class="sub">GEMSDOE74 is an auditable research and GeoTIFF pipeline for the DOE GEMS Prize. A valid file format is not evidence that its predictions are valid.</p>
-<div class="card"><h2>Current status: HOLD</h2><p>No TIF from this repository is cleared to submit. Official competition data and the official template are absent in this checkout. The historic TIF downloads are marked review-only and must not be presented as validated competition predictions.</p><p><a class="btn" href="review/session-review-2026-10-21.html">Read the current review and next steps</a></p></div>
-<section class="card"><h2>What is known</h2><ul><li>Official task: predict faults not already in the public catalogue.</li><li>Official metric: distance-weighted Tversky with a 300 m triangular kernel.</li><li>The participant leaderboard does not identify a submission raster by hash.</li></ul><p>Sources and uncertainty are documented in the <a href="review/session-review-2026-10-21.html">review</a>.</p></section>
-<section class="card"><h2>What is missing</h2><ul><li>Authorized DrivenData feature stack, labels, and sample submission.</li><li>A cached, provenance-tracked feature stack and real C1 model.</li><li>Whole-segment buffered holdout, leakage canary, and comparison to the incumbent on identical folds.</li></ul><p>Data access was observed to redirect to login; see the <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/data/">official data page</a>.</p></section>
-<div class="card"><h2>Research lane</h2><p><strong>C1 — flight-line-artifact-suppressed magnetic edge detection.</strong> It is a research hypothesis only; it has not been evaluated. The ranked variants and the non-fault mimic (lithologic contacts and survey artifacts) are listed in the <a href="review/session-review-2026-10-21.html">current review</a>.</p></div>
-<div class="card"><h2>Core values</h2><p><strong>Maximize P(Win):</strong> do not spend a weekly slot without evidence that a candidate beats the holdout incumbent. <strong>Own the Outcome:</strong> report negative or missing evidence plainly and fail closed.</p></div>
-</main><footer>Not affiliated with DrivenData, DOE, NLR, USGS, or INGENIOUS. All leaderboard results are public-test results unless explicitly stated otherwise.</footer></body></html>
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>GEMSDOE74 · submission status · GEMSDOE74</title>
+<style>body{font:17px/1.65 system-ui,sans-serif;background:#f4f6f8;color:#172b36;margin:0}main{max-width:960px;margin:auto;padding:30px 24px}nav a{margin-right:20px}a{color:#065b78}h1{line-height:1.2}.hold{border-left:6px solid #a82b20;background:#fff0ed;padding:20px}article{background:white;padding:22px;margin:22px 0;border:1px solid #dae1e5;border-radius:10px}code{overflow-wrap:anywhere;font-size:.85em}.btn{display:inline-block;padding:10px 16px;border:1px solid #065b78;border-radius:6px}small{color:#536574}</style></head><body><main>
+<nav><a href="index.html">Status & downloads</a><a href="executive-summary.html">Submission guide</a><a href="audit-20261021.html">Integrity audit</a><a href="review/session-review-2026-10-21.html">Current review</a><a href="review/leaderboard.html">Leaderboard snapshot</a></nav>
+<h1>GEMSDOE74 · submission status</h1><section class="hold"><strong>DO NOT SUBMIT — research hold.</strong><br>Review downloads are available. No new competition-ready TIFF, valid holdout result, or complete uniqueness clearance exists.</section><p>Fault-discovery research for geothermal exploration. The audit found fabricated evaluation evidence in the former generator; that path is now disabled.</p><article><h2>H74-A — historical, not promoted</h2>
+<p><a class="btn" download href="downloads/gems74-h74-alt-spring-39500-20261021T000000Z-52f76038-zeros.tif">Download TIFF for review only</a></p><p><code>gems74-h74-alt-spring-39500-20261021T000000Z-52f76038-zeros.tif</code></p>
+<p>Measured file checks: <b>PASS</b>. Nonzero cells outside mirrored footprint: 0.</p>
+<p>SHA-256: <code>f745fdb0bcc7b09c73e9ca5460ec81b3628421d3516d514e63720bd547d14597</code></p><p>Not cleared for submission. Range and grid checks do not establish model skill.</p></article><article><h2>H74-1 — synthetic, retracted</h2>
+<p><a class="btn" download href="downloads/gemsdoe74-h74-1-basement-step-35641-20261021T000000Z-100b4b19-zeros.tif">Download TIFF for review only</a></p><p><code>gemsdoe74-h74-1-basement-step-35641-20261021T000000Z-100b4b19-zeros.tif</code></p>
+<p>Measured file checks: <b>FAIL</b>. Nonzero cells outside mirrored footprint: 20,013.</p>
+<p>SHA-256: <code>af4afc84b6ff758ccae86dc116c1b14dd1b66de48462899eebc4d5b43d7aef27</code></p><p>Not cleared for submission. Range and grid checks do not establish model skill.</p></article><p><a href="review/data/run-card.json">Download negative run card (JSON)</a></p><ul><li><a href="review/session-review-2026-10-21.html">Current source-checked executive review</a></li><li><a href="review/hypotheses.html">Ranked H74-1 hypothesis slate</a></li><li><a href="review/leaderboard.html">Dated official public leaderboard snapshot</a></li><li><a href="review/sources.html">Primary-source register and access status</a></li></ul>
+<footer><small>Static audit dated 2026-10-21. No weekly submission slot used. File checks are not competition scores.</small></footer></main></body></html>

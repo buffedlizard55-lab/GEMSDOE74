@@ -18,7 +18,7 @@ def run(script: str, cwd: Path):
 def test_submission_generator_refuses_missing_official_inputs(tmp_path):
     result = run("generate_submission.py", tmp_path)
     assert result.returncode == 2
-    assert "no competition GeoTIFF was written" in result.stderr
+    assert "No new TIFF was generated" in result.stderr
     assert not list(tmp_path.rglob("*.tif"))
 
 
@@ -32,5 +32,5 @@ def test_holdout_evaluator_refuses_proxy_score(tmp_path):
 def test_prepare_data_does_not_claim_success_when_inputs_absent(tmp_path):
     result = run("prepare_data.py", tmp_path)
     assert result.returncode == 2
-    assert "No manifest was written" in result.stderr
+    assert "Missing required real inputs" in result.stderr
     assert not (tmp_path / "data" / "prepared_manifest.json").exists()

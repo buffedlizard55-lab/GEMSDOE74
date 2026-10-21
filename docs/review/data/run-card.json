@@ -1,95 +1,70 @@
 {
-  "schema": "gemsdoe74-run-card/2",
-  "session_branch": "arena/78b9ef56-gemsdoe74",
-  "date_utc": "2026-10-21",
-  "status": "HOLD — negative run card; no candidate file was generated or cleared.",
-  "blocker": "Official competition rasters and sample template are absent, and the data page redirected to login. The required C1 holdout cannot be run.",
-  "hypothesis": "C1: suppress survey-oriented magnetic acquisition artifacts before detecting persistent magnetic edges that may mark buried fault-related contrasts.",
-  "mechanism": "Estimate directional survey-line periodicity from the official GeoDAWN magnetic grids; test a narrowly targeted oriented spectral suppression followed by multi-scale magnetic edge extraction and persistence. Keep this as one method lane; do not promote a contact edge without independent fault-support evidence.",
-  "named_non_fault_process_that_could_mimic_it": "Lithologic or intrusive contacts can generate magnetic edges without fault displacement; residual acquisition, leveling, or gridding artifacts can mimic lineaments.",
-  "candidate_slate": [
-    {
-      "rank": 1,
-      "variant": "Data-estimated oriented notch suppression, then multi-scale TMI/RTP edge persistence.",
-      "expected_improvement": "Highest relative prior within lane; no numeric score forecast. Targets systematic false lineaments before edge detection.",
-      "cost": "Medium: needs full-resolution magnetic stack, directional spectrum diagnostics, and carefully matched ablations.",
-      "status": "not run"
-    },
-    {
-      "rank": 2,
-      "variant": "Directional structure-tensor concordance across TMI, RTP, and provided magnetic derivative layers after artifact estimation.",
-      "expected_improvement": "Lower relative prior; cross-layer agreement may reject artifacts but can also reject genuine faults with weak magnetic expression.",
-      "cost": "Low to medium after the feature stack is cached.",
-      "status": "not run"
-    },
-    {
-      "rank": 3,
-      "variant": "Edge persistence across spatial scales with explicit orientation veto only for periodic spectral peaks.",
-      "expected_improvement": "Lower relative prior; reduces one artifact family, but edge persistence alone is not evidence of faulting.",
-      "cost": "Low after the feature stack is cached.",
-      "status": "not run"
-    },
-    {
-      "rank": 4,
-      "variant": "Along-/across-survey directional residual diagnostics, gated by verified acquisition metadata.",
-      "expected_improvement": "Lowest current prior: metadata are not present, and an orientation veto can erase true faults aligned with acquisition direction.",
-      "cost": "Medium; requires verified survey geometry metadata.",
-      "status": "not run"
-    }
-  ],
-  "data_access": {
-    "official_data_page": "https://www.drivendata.org/competitions/306/competition-doe-gems/data/",
-    "observed_response": "Redirected to DrivenData login page during this review.",
-    "local_state": "No data/sample_submission.tif, data/training_features.tif, data/labels.tif, or cached feature stack exists in this checkout.",
-    "result": "C1 cannot be evaluated here. No external replacement data were used."
-  },
-  "holdout_dti": {
-    "label": "HOLDOUT-DTI",
-    "status": "NOT RUN",
+  "hypothesis": "H74-1 basement-step ridge gated by surface quiescence",
+  "mechanism": "Proposed concealed basement gradient ridges under low surface relief; prior implementation was synthetic",
+  "non_fault_mimic": "Buried paleochannel margin",
+  "holdout": {
+    "evidence_class": "HOLDOUT-DTI",
+    "status": "not measured with protocol-compliant evaluator",
     "evaluator_version": null,
-    "withheld_positive_count": null,
-    "pooled_score": null,
-    "ci95": null,
-    "reason": "Official rasters and a valid segment-buffered evaluator are absent. Existing random-pixel proxy results are not valid for this protocol."
+    "withheld_positives": null,
+    "dti": null,
+    "ci95": null
   },
+  "registry_comparison": {
+    "scope": "one H33 reference only; NOT complete registry clearance",
+    "reference_sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+    "surface_spearman": null,
+    "surface_reason": "original continuous surface not retained",
+    "final_raster_spearman": -7.787173743355393e-05,
+    "final_dots_within_3px_fraction": 0.1674558484770924,
+    "thresholds": {
+      "rank_correlation_duplicate_above": 0.9,
+      "dots_within_3px_duplicate_above_fraction": 0.7
+    }
+  },
+  "raster_sha256": null,
+  "new_raster_generated": false,
+  "historical_raster_audit": {
+    "file": "gemsdoe74-h74-1-basement-step-35641-20261021T000000Z-100b4b19-zeros.tif",
+    "sha256": "af4afc84b6ff758ccae86dc116c1b14dd1b66de48462899eebc4d5b43d7aef27",
+    "validator": {
+      "single_band": true,
+      "dtype_float32": true,
+      "crs_epsg_32611": true,
+      "shape_3730x3292": true,
+      "transform_100m_origin": true,
+      "nodata_none_or_nan": true,
+      "no_inf": true,
+      "finite_values_in_0_1": true,
+      "no_sentinel_-3.4e38": true,
+      "inside_footprint_all_finite": true,
+      "outside_footprint_nan_or_zero": false
+    },
+    "template_grid_match": true
+  },
+  "validator": {
+    "status": "not run on a new raster; none generated"
+  },
+  "submission_name": null,
+  "proposed_submission_name": "GEMSDOE74-H74-1-BASEMENT-STEP-R1",
+  "submission_note": "H74-1 basement-step stability test; HOLD pending official-data holdout and validation.",
+  "submission_note_characters": 86,
+  "submission_status": "proposed tracking label only; no current file to upload",
+  "verdict": "negative",
+  "experiments_run": 0,
+  "blockers": [
+    "shared feature cache missing",
+    "buffered fold-local evaluator missing",
+    "full registry unavailable",
+    "no organizer receipt or current weekly cap"
+  ],
+  "promotion": "not selected",
   "leakage_canary": {
     "status": "NOT RUN",
-    "reason": "No official feature stack or valid segment-buffered holdout is present. A missing-data test is now reported as skipped, not passed."
+    "reason": "No genuine segment-buffered holdout or official feature stack; canary integration test is explicitly skipped."
   },
-  "correlation_and_overlap_vs_registry": {
-    "status": "NOT RUN",
-    "rank_correlation": null,
-    "dot_overlap_within_3px": null,
-    "reason": "No C1 candidate raster or registry raster is present in this checkout. Do not substitute comparisons between unrelated inherited artifacts."
-  },
-  "raster": {
-    "generated": false,
-    "sha256": null,
-    "reason": "No new TIF was generated: only synthetic inputs are available, so a generated TIF would misrepresent a scientific prediction."
-  },
-  "validator_output": {
-    "status": "NOT RUN — no C1 GeoTIFF exists",
-    "no_nan_inside_footprint": null,
-    "values_in_0_1": null,
-    "crs_shape_transform_match": null,
-    "note": "Legacy TIF sidecars are format claims for inherited files only; the official sample template is absent."
-  },
-  "submission": {
-    "name": "GEMSDOE74-C1-MAG-EDGE-ARTIFACT-SUPPRESSION",
-    "note": "C1 magnetic edge artifact suppression; HOLD pending official-data holdout and format validation.",
-    "note_characters": 96,
-    "status": "PROPOSED NAME ONLY — no submission file generated"
-  },
-  "verdict": "negative",
-  "budget": {
-    "experiments_limit": 3,
-    "experiments_used": 0,
-    "time_limit_hours": 2,
-    "weekly_submission_slot_used": false
-  },
-  "score_labels": {
-    "HOLDOUT-DTI": "Not run in this session; no value is asserted.",
-    "ORGANIZER-CONFIRMED": "No receipt exists for a file created by this session.",
-    "PUBLIC-LEADERBOARD": "A public leaderboard value, not a holdout or organizer receipt."
+  "data_access": {
+    "source": "https://www.drivendata.org/competitions/306/competition-doe-gems/data/",
+    "observed": "Redirected to DrivenData login on 2026-10-21; no authenticated download in this session."
   }
 }
